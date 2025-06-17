@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Receitasdespesasextraorcamentarium>
  */
@@ -17,6 +17,7 @@ class ReceitasdespesasextraorcamentariumFactory extends Factory
     public function definition(): array
     {
         return [
+             'id' => Str::uuid(),
              'classificacao' => $this->faker->randomElement(['Receita Extra', 'Despesa Extra']),
             'descricao_classificacao' => $this->faker->sentence(3),
             'fonte_recursos' => $this->faker->randomElement(['Tesouro', 'Convênios', 'Doações', 'Outros']),

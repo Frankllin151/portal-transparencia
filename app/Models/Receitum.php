@@ -71,7 +71,7 @@ class Receitum extends Model
 		'realizado_percentual'
 	];
 
-	public function natureza_receitum()
+	public function naturezaReceitum()
 	{
 		return $this->belongsTo(NaturezaReceitum::class, 'natureza_id');
 	}

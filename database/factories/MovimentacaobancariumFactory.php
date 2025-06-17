@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Movimentacaobancarium>
  */
@@ -32,6 +32,7 @@ class MovimentacaobancariumFactory extends Factory
         
         $tiposConta = ['corrente', 'poupanca', 'salario', 'investimento'];
         return [
+             'id' => Str::uuid(),
             'nome_entidade' => $this->faker->company(),
             'codigo_conta' => $this->faker->numerify('######'),
             'codigo_banco' => $banco['codigo'],

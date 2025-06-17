@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Receitasdespesasextraorcamentarium;
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pagamentosreceitasdespesasextraorcamentarium>
  */
@@ -17,9 +18,10 @@ class PagamentosreceitasdespesasextraorcamentariumFactory extends Factory
     public function definition(): array
     {
         return [
-             'cpf_cnpj_beneficiario' => $this->faker->cpf(false), // ou cnpj(false) se quiser variar
-            'data_pagamento' => $this->faker->date(),
+              'id' => Str::uuid(),
+             'cpf_cnpj_beneficiario' => $this->faker->numerify('###.###.###-##'),
             'historico' => $this->faker->sentence(4),
+             'data_pagamento' => $this->faker->date(),
             'nome_beneficiario' => $this->faker->name(),
             'numero_pagamento' => $this->faker->unique()->numerify('#####'),
             'valor' => $this->faker->randomFloat(2, 100, 10000),

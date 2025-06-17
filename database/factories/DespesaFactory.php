@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Despesa>
  */
@@ -17,6 +17,7 @@ class DespesaFactory extends Factory
     public function definition(): array
     {
         return [
+            'id' => Str::uuid(),
          'ano_exercicio' => $this->faker->year(),
             'numero_empenho' => $this->faker->numerify('EMP####'),
             'tipo_empenho' => $this->faker->randomElement(['Ordinário', 'Extraordinário']),

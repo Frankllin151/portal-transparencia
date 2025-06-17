@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ContratosItem;
 /**
  * Class Contrato
  * 
@@ -79,7 +80,7 @@ class Contrato extends Model
 		'subcontratacao'
 	];
 
-	public function contratos_items()
+	public function contratosItems()
 	{
 		return $this->hasMany(ContratosItem::class);
 	}

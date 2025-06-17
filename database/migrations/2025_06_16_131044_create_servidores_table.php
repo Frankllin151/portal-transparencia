@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('classificacao_afastamento')->nullable();
 
             // Referência para cargos.id
-            $table->uuid('cargo_id');
-            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
+           /// $table->uuid('cargo_id');
+            //$table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
             $table->decimal('remuneracao_contratual', 15, 2);
             $table->decimal('contribuicao_empregado_rgps', 15, 2)->nullable();
             $table->decimal('contribuicao_empregado_rat_fat', 15, 2)->nullable();

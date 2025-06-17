@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nome_beneficiario');
             $table->string('numero_pagamento');
             $table->string('valor');
-            $table->foreign('receita_depesa_extraorcamentaria_id')->references('id')->on('receitasdespesasextraorcamentaria')->onDelete('cascade'); 
+           /// $table->foreign('receita_depesa_extraorcamentaria_id')->references('id')->on('receitasdespesasextraorcamentaria')->onDelete('cascade'); 
         });
     }
 

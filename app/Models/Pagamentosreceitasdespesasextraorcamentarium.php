@@ -30,7 +30,7 @@ class Pagamentosreceitasdespesasextraorcamentarium extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'receita_depesa_extraorcamentaria_id' => 'int'
+		'receita_depesa_extraorcamentaria_id' => 'string'
 	];
 
 	protected $fillable = [

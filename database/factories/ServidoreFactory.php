@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Cargo;
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Servidore>
  */
@@ -17,6 +18,7 @@ class ServidoreFactory extends Factory
     public function definition(): array
     {
         return [
+            'id' => Str::uuid(),
             'entidade' => $this->faker->company(),
             'matricula' => $this->faker->unique()->numerify('######'),
             'cargo_id' => Cargo::factory(),

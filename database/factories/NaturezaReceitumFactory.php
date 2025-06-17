@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\NaturezaReceitum>
  */
@@ -17,6 +17,7 @@ class NaturezaReceitumFactory extends Factory
     public function definition(): array
     {
         return [
+             'id' => Str::uuid(),
             'codigo' => $this->faker->unique()->numerify('1.1.1.##.##.##.##'), // formato simulado de código
             'descricao' => $this->faker->sentence(3),
             'categoria_economica' => $this->faker->randomElement(['Receita Corrente', 'Receita de Capital']),
