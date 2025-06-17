@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 /**
  * Class Despesa
  * 
@@ -68,7 +69,7 @@ class Despesa extends Model
 	use HasFactory;
 	protected $table = 'despesa';
 	public $incrementing = false;
-
+    protected $keyType = 'string';
 	protected $casts = [
 		'ano_exercicio' => 'int',
 		'valor_empenho' => 'float',
@@ -86,6 +87,7 @@ class Despesa extends Model
 	];
 
 	protected $fillable = [
+		'id',
 		'ano_exercicio',
 		'numero_empenho',
 		'tipo_empenho',
