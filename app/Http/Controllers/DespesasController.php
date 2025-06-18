@@ -14,7 +14,7 @@ class DespesasController extends Controller
     {
         $data = Despesa::orderBy("id" , "desc")->get();
 
-        return view("despesa" , ["data" => $data]);
+        return view("despesas.despesa" , ["data" => $data]);
     }
 
     /**
@@ -103,7 +103,7 @@ class DespesasController extends Controller
       if(!$despesa){
         abort(404, "Despesa não encontrada");
       }
-       return view("showdespesa", ["despesa" => $despesa]);
+       return view("despesas.showdespesa", ["despesa" => $despesa]);
     }
 
     /**

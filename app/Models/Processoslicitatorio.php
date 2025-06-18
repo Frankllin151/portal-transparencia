@@ -57,6 +57,7 @@ class Processoslicitatorio extends Model
 	];
 
 	protected $fillable = [
+		'id',
 		'entidade',
 		'numero_processo',
 		'ano_processo',

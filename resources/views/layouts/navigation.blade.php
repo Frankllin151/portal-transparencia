@@ -12,69 +12,35 @@
   </div>
   <div class="sidebar-menu-area">
     <ul class="sidebar-menu" id="sidebar-menu">
-      <li class="dropdown">
-        <a href="javascript:void(0)">
-          <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
-          <span>Dashboard</span>
-        </a>
-        <ul class="sidebar-submenu">
-          <li>
-            <a href="index.html"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> AI</a>
-          </li>
-          <li>
-            <a href="index-2.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i> CRM</a>
-          </li>
-          <li>
-            <a href="index-3.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> eCommerce</a>
-          </li>
-          <li>
-            <a href="index-4.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i> Cryptocurrency</a>
-          </li>
-          <li>
-            <a href="index-5.html"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i> Investment</a>
-          </li>
-          <li>
-            <a href="index-6.html"><i class="ri-circle-fill circle-icon text-purple w-auto"></i> LMS</a>
-          </li>
-          <li>
-            <a href="index-7.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> NFT & Gaming</a>
-          </li>
-          <li>
-            <a href="index-8.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i> Medical</a>
-          </li>
-          <li>
-            <a href="index-9.html"><i class="ri-circle-fill circle-icon text-purple w-auto"></i> Analytics</a>
-          </li>
-          <li>
-            <a href="index-10.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i> POS & Inventory </a>
-          </li>
-          <li>
-            <a href="index-11.html"><i class="ri-circle-fill circle-icon text-success-main w-auto"></i> Finance & Banking </a>
-          </li>
-          <li>
-            <a href="index-12.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i> Booking System</a>
-          </li>
-          <li>
-            <a href="index-13.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> Help Desk</a>
-          </li>
-          <li>
-            <a href="index-14.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i> Podcast </a>
-          </li>
-        </ul>
-      </li>
-      <li class="sidebar-menu-group-title">Application</li>
-      <li>
-        <a href="email.html">
-          <iconify-icon icon="mage:email" class="menu-icon"></iconify-icon>
-          <span>Email</span>
-        </a>
-      </li>
-      <li>
-        <a href="chat-message.html">
-          <iconify-icon icon="bi:chat-dots" class="menu-icon"></iconify-icon>
-          <span>Chat</span> 
-        </a>
-      </li>
+      
+       <li>
+      <a href="{{route('dashboard')}}">
+         <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
+         <span>Inicio</span>
+      </a>
+     </li>
+    <li class="dropdown">
+ <a href="javascript:void(0)">
+    <iconify-icon icon="mdi:wallet" class="menu-icon"></iconify-icon>
+    <span>Despesas</span> 
+  </a>
+  <ul class="sidebar-submenu">
+    <li><a href="{{route('despesas')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+    <li> <a href="{{route('despesas.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
+  </ul>
+    </li>
+    
+     <li class="dropdown">
+  <a href="javascript:void(0)">
+    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
+    <span>Processsos LCT</span> 
+  </a>
+  <ul class="sidebar-submenu">
+<li><a href="{{route('processo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+    <li> <a href="{{route('processo.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
+  </ul>
+  
+</li>
       <li>
         <a href="calendar-main.html">
           <iconify-icon icon="solar:calendar-outline" class="menu-icon"></iconify-icon>
