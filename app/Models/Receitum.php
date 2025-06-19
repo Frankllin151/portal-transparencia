@@ -55,6 +55,7 @@ class Receitum extends Model
 	];
 
 	protected $fillable = [
+		'id',
 		'data',
 		'natureza_id',
 		'finalidade',

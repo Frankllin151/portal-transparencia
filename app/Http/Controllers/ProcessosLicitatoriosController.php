@@ -62,7 +62,7 @@ class ProcessosLicitatoriosController extends Controller
 
         } catch (ValidationException $e) {
            
-            return dd($request->all());
+            return redirect()->back()->with('error', 'Erros nos inputs: ' . $e->errors())->withInput();
         } catch (\Exception $e) {
           
             return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o processo licitatório: ' . $e->getMessage())->withInput();

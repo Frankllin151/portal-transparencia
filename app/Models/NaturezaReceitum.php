@@ -40,6 +40,7 @@ class NaturezaReceitum extends Model
 	public $incrementing = false;
 
 	protected $fillable = [
+		'id',
 		'codigo',
 		'descricao',
 		'categoria_economica',
