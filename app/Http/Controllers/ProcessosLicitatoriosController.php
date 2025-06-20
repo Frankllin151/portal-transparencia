@@ -92,7 +92,7 @@ class ProcessosLicitatoriosController extends Controller
           if(!$dataId){
          abort(404, "Processos não encontrada");
       }
-     /// dd($dataId);
+    
         return view("processolct.edit" , ["processo"=> $dataId]);
     }
 

@@ -30,6 +30,7 @@ class Receitasdespesasextraorcamentarium extends Model
 	public $incrementing = false;
 
 	protected $fillable = [
+		'id',
 		'classificacao',
 		'descricao_classificacao',
 		'fonte_recursos',

@@ -19,6 +19,7 @@
          <span>Inicio</span>
       </a>
      </li>
+      <!---Despesas-->
     <li class="dropdown">
  <a href="javascript:void(0)">
     <iconify-icon icon="mdi:wallet" class="menu-icon"></iconify-icon>
@@ -29,7 +30,9 @@
     <li> <a href="{{route('despesas.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
   </ul>
     </li>
-    
+     <!---Despesas end-->
+
+       <!---Processo-->
      <li class="dropdown">
   <a href="javascript:void(0)">
     <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
@@ -41,7 +44,9 @@
   </ul>
   
 </li>
+  <!---Processo  end-->
 
+     <!---Natureza Receita-->
  <li class="dropdown">
   <a href="javascript:void(0)">
     <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
@@ -55,8 +60,9 @@
   </ul>
   
 </li>
+ <!---Natureza Receita end-->
 
-
+ <!--- Receita-->
  <li class="dropdown">
   <a href="javascript:void(0)">
     <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
@@ -64,11 +70,32 @@
   </a>
   <ul class="sidebar-submenu">
 <li><a href="{{route('receita')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+<li><a href="{{route('receita.novo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
 
    
   </ul>
   
 </li>
+ <!--- Receita end-->
+
+<!--ReceitasDespesasExtraorcamentaria--->
+
+ <li class="dropdown">
+  <a href="javascript:void(0)">
+    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
+    <span>Orçamentaria Despesas</span> 
+  </a>
+  <ul class="sidebar-submenu">
+<li><a href="{{route('despreceitaex')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+<li><a href="{{route('despreceitaex.novo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
+
+   
+  </ul>
+  
+</li>
+<!--ReceitasDespesasExtraorcamentaria end--->
+
+  <!---Settings-->
       <li class="dropdown">
         <a href="javascript:void(0)">
           <iconify-icon icon="icon-park-outline:setting-two" class="menu-icon"></iconify-icon>
@@ -94,6 +121,7 @@
          
         </ul>
       </li>
+        <!---Settings end-->
     </ul>
   </div>
 </aside>
