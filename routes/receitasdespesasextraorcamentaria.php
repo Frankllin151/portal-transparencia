@@ -1,7 +1,6 @@
 <?php 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReceiDesPexTraController;
-use App\Models\Receitasdespesasextraorcamentarium;
 
 Route::get("/dashboard/receita/despesa/extra/orcamentaria", 
 [ReceiDesPexTraController::class, "index"])

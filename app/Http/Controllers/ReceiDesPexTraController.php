@@ -32,8 +32,36 @@ class ReceiDesPexTraController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        dd($request->all());
+        try {
+           
+            $validatedData = $request->validate([
+                'classificacao' => 'required|string|max:255',
+                'numero' => 'required|string|max:255', 
+                'descricao_classificacao' => 'required|string|max:255',
+                'fonte_recursos' => 'required|string|max:255',
+                'mascara' => 'required|string|max:255',
+            ]);
+
+            $id = Str::uuid()->toString();
+            $validatedData = ['id' => $id] + $validatedData;
+
+           
+            $novaReceitaDespesa = Receitasdespesasextraorcamentarium::create($validatedData);
+
+            return redirect()->route('despreceitaex.show', ['id' => $novaReceitaDespesa->id])
+                ->with('success', 'Receita/Despesa Extraorçamentária cadastrada com sucesso!');
+
+        } catch (ValidationException $e) {
+           
+            return redirect()->back()
+                ->with('error', 'Erros nos inputs: ' . $e->errors())
+                ->withInput();
+        } catch (\Exception $e) {
+           
+            return redirect()->back()
+                ->with('error', 'Ocorreu um erro ao cadastrar a Receita/Despesa Extraorçamentária: ' . $e->getMessage())
+                ->withInput();
+        }
     }
 
     /**
@@ -105,10 +133,22 @@ class ReceiDesPexTraController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Receitasdespesasextraorcamentarium::findOrFail($id);
-        if(!$data){
-         abort(404, "Orçamentaria Receita  não encontrada");
-      }
-        return $data . "delete";
+         try {
+          
+            $data = Receitasdespesasextraorcamentarium::findOrFail($id);
+            $data->delete();
+
+            return redirect()->route('despreceitaex') 
+                ->with('success', 'Receita/Despesa Extraorçamentária excluída com sucesso!');
+
+        } catch (ModelNotFoundException $e) {
+            
+            return redirect()->back()
+                ->with('error', 'Receita/Despesa Extraorçamentária não encontrada.');
+        } catch (\Exception $e) {
+           
+            return redirect()->back()
+                ->with('error', 'Ocorreu um erro ao excluir a Receita/Despesa Extraorçamentária: ' . $e->getMessage());
+        }
     }
 }
