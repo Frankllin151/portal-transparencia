@@ -95,6 +95,25 @@
 </li>
 <!--ReceitasDespesasExtraorcamentaria end--->
 
+<!---Pagamento Receitas Depesas Extra Orçamentaria--->
+<li class="dropdown">
+  <a href="javascript:void(0)">
+    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
+    <span>Pagamentos Receita Depesas Orçamentaria</span> 
+  </a>
+  <ul class="sidebar-submenu">
+<li><a href="{{route('pagamentosdespesasreceita')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+<li>
+  <a href="{{route("pagamentosdespesasreceita.create")}}">
+    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+    Novo
+  </a>
+</li>
+  </ul>
+  
+</li>
+
+
   <!---Settings-->
       <li class="dropdown">
         <a href="javascript:void(0)">

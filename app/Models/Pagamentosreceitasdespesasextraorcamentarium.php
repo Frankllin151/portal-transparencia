@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Receitasdespesasextraorcamentarium;
 /**
  * Class Pagamentosreceitasdespesasextraorcamentarium
  * 
@@ -34,6 +35,7 @@ class Pagamentosreceitasdespesasextraorcamentarium extends Model
 	];
 
 	protected $fillable = [
+		'id',
 		'cpf_cnpj_beneficiario',
 		'data_pagamento',
 		'historico',
@@ -42,4 +44,8 @@ class Pagamentosreceitasdespesasextraorcamentarium extends Model
 		'valor',
 		'receita_depesa_extraorcamentaria_id'
 	];
+	public function Receitasdespesasextraorcamentarium()
+	{
+		return $this->belongsTo(Receitasdespesasextraorcamentarium::class, 'receita_depesa_extraorcamentaria_id');
+	}
 }

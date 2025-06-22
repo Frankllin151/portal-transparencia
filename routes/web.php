@@ -24,4 +24,5 @@ require __DIR__."/processoslicitatorios.php";
 require __DIR__."/naturezareitaroute.php";
 require __DIR__."/receita.php";
 require __DIR__."/receitasdespesasextraorcamentaria.php";
+require __DIR__."/PagamentosReceitasDespesasExtraorcamentariaRoute.php";
 require __DIR__.'/auth.php';
