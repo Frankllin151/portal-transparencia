@@ -33,6 +33,7 @@ class Movimentacaobancarium extends Model
 	public $incrementing = false;
 
 	protected $fillable = [
+		'id',
 		'nome_entidade',
 		'codigo_conta',
 		'codigo_banco',
