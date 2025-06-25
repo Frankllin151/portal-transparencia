@@ -27,4 +27,5 @@ require __DIR__."/receitasdespesasextraorcamentaria.php";
 require __DIR__."/MovimentacaoBancariaroute.php";
 require __DIR__."/PagamentosReceitasDespesasExtraorcamentariaRoute.php";
 require __DIR__."/cargosroute.php";
+require __DIR__."/tipopoderRoute.php";
 require __DIR__.'/auth.php';

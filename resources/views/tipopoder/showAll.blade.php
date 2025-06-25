@@ -1,0 +1,89 @@
+<x-app-layout>
+    <!--IMPORTANTE NAO REMOVA O x-slot no front-end não vai aparece
+    o componente navigation
+    -->
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+           
+        </h2>
+    </x-slot>
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
+  <h6 class="fw-semibold mb-0"> {{ __('Tipo Poder') }}</h6>
+  <ul class="d-flex align-items-center gap-2">
+    <li class="fw-medium">
+      <a href="{{route("tipopoder")}}" class="d-flex align-items-center gap-1 hover-text-primary">
+        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
+    {{ __('Tipo Poder') }}
+      </a>
+    </li>
+   
+    
+  </ul>
+</div>
+
+<div>
+    <a href="{{route("tipopoder.novo")}}" class="btn btn-primary ">Novo</a>
+</div>
+
+<!----tabela tipo poder---->
+<div class="card basic-data-table">
+  <div class="card-header">
+    <h5 class="mb-0">Tipo de Poder</h5> {{-- Título da tabela ajustado --}}
+  </div>
+  <div class="card-body">
+    <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
+      <thead>
+        <tr>
+          <th>
+            <div class="form-check style-check d-flex align-items-center">
+              <input class="form-check-input" type="checkbox">
+              <label class="form-check-label">S.L</label>
+            </div>
+          </th>
+
+          <th>Nome</th>
+          <th>Ativo</th>
+          <th>Criado Em</th> {{-- Adicionando Created At --}}
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($data as $index => $item)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $item->nome }}</td>
+            <td>
+              @if($item->ativo)
+                <span class="badge bg-success">Sim</span> {{-- Exemplo de badge para "ativo" --}}
+              @else
+                <span class="badge bg-danger">Não</span>
+              @endif
+            </td>
+           <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
+            <td>
+              
+              <a href="{{route('tipopoder.edit', $item->id)}}" class="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center" title="Editar">
+                <iconify-icon icon="lucide:edit"></iconify-icon>
+              </a>
+              <a href="javascript:void(0)"
+                 class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center"
+                 onclick="if(confirm('Deseja realmente deletar?')){ document.getElementById('delete-form-{{ $item->id }}').submit(); }"
+                 title="Excluir">
+                <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+              </a>
+              <form id="delete-form-{{ $item->id }}"
+                    action="{{route('tipopoder.delete', $item->id)}}" {{-- Rota de delete --}}
+                    method="POST"
+                    style="display: none;">
+                @csrf
+                @method('DELETE')
+              </form>
+            </td>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</x-app-layout>

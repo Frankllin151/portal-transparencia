@@ -19,3 +19,5 @@ Route::post("/despesas/store", [DespesasController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('despesas.store');
 //End Despesas
+
+

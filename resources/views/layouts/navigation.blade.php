@@ -28,6 +28,7 @@
   <ul class="sidebar-submenu">
     <li><a href="{{route('despesas')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
     <li> <a href="{{route('despesas.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
+    <li> <a href="{{route('tipopoder')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Poder</a></li>
   </ul>
     </li>
      <!---Despesas end-->

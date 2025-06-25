@@ -58,7 +58,7 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ $item->tipo_poder }}</td>
             <td>{{ $item->credor_cnpj_cpf }}</td>
-            <td>{{$item->valor_pago}}</td>
+            <td>{{ number_format($item->valor_pago, 2, ',', '.') }}</td>
             <td>{{ \Carbon\Carbon::parse($item->data_pagamento)->format('d/m/Y') }}</td>
             <td>
               <a href="{{ route('despesas.show', $item->id) }}" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
