@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('receita', function (Blueprint $table) {
            $table->uuid('id')->primary(); // UUID como chave primária
             $table->date('data');
-           $table->foreign('natureza_id')->references('id')->on('natureza_receita')->onDelete('cascade'); 
+          //// $table->foreign('natureza_id')->references('id')->on('natureza_receita')->onDelete('cascade'); 
             $table->string('finalidade');
             $table->string('forma_ingresso');
             $table->decimal('valor_orcado_inicial', 15, 2)->nullable();

@@ -387,14 +387,15 @@
                   <input type="text" name="modalidade_aplicacao" class="form-control" placeholder="Modalidade de aplicação">
                 </div>
                 <div class="col-12">
-                  <label class="form-label">Tipo Poder</label>
-                  <select name="tipo_poder" class="form-select" required>
-                    <option value="">Selecione o Poder</option>
-                    <option value="Executivo">Executivo</option>
-                    <option value="Legislativo">Legislativo</option>
-                    <option value="Judiciário">Judiciário</option>
-                  </select>
-                </div>
+  <label class="form-label">Tipo Poder</label>
+  <select name="tipo_poder" class="form-select" required>
+    
+    @foreach($dataTipoPoder as $poder)
+      <option value="{{ $poder->id }}">{{ $poder->nome }}</option>
+    @endforeach
+  </select>
+</div>
+
               </div>
             </div>
           </div>

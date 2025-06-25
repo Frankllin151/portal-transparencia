@@ -402,14 +402,17 @@
                   <label class="form-label">Modalidade Aplicação</label>
                   <input type="text" name="modalidade_aplicacao" class="form-control" value="{{ $editarDespesa->modalidade_aplicacao }}" placeholder="Modalidade de aplicação">
                 </div>
-                <div class="col-12">
-                  <label class="form-label">Tipo Poder</label>
-                  <select name="tipo_poder" class="form-select">
-                    <option value="Executivo" {{ $editarDespesa->tipo_poder == 'Executivo' ? 'selected' : '' }}>Executivo</option>
-                    <option value="Legislativo" {{ $editarDespesa->tipo_poder == 'Legislativo' ? 'selected' : '' }}>Legislativo</option>
-                    <option value="Judiciário" {{ $editarDespesa->tipo_poder == 'Judiciário' ? 'selected' : '' }}>Judiciário</option>
-                  </select>
-                </div>
+               <div class="col-12">
+  <label class="form-label">Tipo Poder</label>
+  <select name="tipo_poder" class="form-select" required>
+    @foreach ($dataTipoPoder as $poder)
+      <option value="{{ $poder->nome }}" {{ $editarDespesa->tipo_poder == $poder->nome? 'selected' : '' }}>
+        {{ $poder->nome }}
+      </option>
+    @endforeach
+  </select>
+</div>
+
               </div>
             </div>
           </div>

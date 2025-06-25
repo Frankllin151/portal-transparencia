@@ -27,7 +27,7 @@
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title mb-0">Cadastro de Tipo de Poder</h5>
+        <h5 class="card-title mb-0">Editar de Tipo de Poder</h5>
       </div>
       <div class="card-body">
         <form action="{{ route('tipopoder.update', $data->id) }}" method="POST" class="row gy-3 needs-validation" novalidate>

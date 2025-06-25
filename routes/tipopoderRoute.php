@@ -17,5 +17,5 @@ Route::get("/dashboard/tipo/edit/poder/{id}", [TipoPoderController::class, "edit
 Route::put("/dashboard/tipo/{id}/put/poder/", [TipoPoderController::class, "update"])
 ->middleware(['auth', 'verified'])->name('tipopoder.update');
 
-Route::put("/dashboard/tipo/delete/{id}/poder/", [TipoPoderController::class, "destroy"])
+Route::delete("/dashboard/tipo/delete/{id}/poder/", [TipoPoderController::class, "destroy"])
 ->middleware(['auth', 'verified'])->name('tipopoder.delete');

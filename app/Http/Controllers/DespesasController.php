@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Despesa;
+use App\Models\TipoPoder;
 use Illuminate\Support\Str;
 class DespesasController extends Controller
 {
@@ -13,7 +14,6 @@ class DespesasController extends Controller
     public function index()
     {
         $data = Despesa::orderBy("id" , "desc")->get();
-
         return view("despesas.despesa" , ["data" => $data]);
     }
 
@@ -22,7 +22,8 @@ class DespesasController extends Controller
      */
     public function create()
     {
-        return view("despesas.create");
+              $dataTipoPoder = TipoPoder::orderby("updated_at", "desc")->get();
+        return view("despesas.create", ["dataTipoPoder" =>  $dataTipoPoder]);
     }
 
     /**
@@ -112,10 +113,13 @@ class DespesasController extends Controller
     public function edit(string $id)
     {
       $editarDespesa = Despesa::find($id);
+      $dataTipoPoder = TipoPoder::orderby("updated_at", "desc")->get();
       if(!$editarDespesa){
         abort(404, "Despesa não encontrada");
       }
-      return view("despesas.edit" , ["editarDespesa" => $editarDespesa]);
+      return view("despesas.edit" , ["editarDespesa" => $editarDespesa , 
+    "dataTipoPoder" => $dataTipoPoder
+    ]);
     }
 
     /**

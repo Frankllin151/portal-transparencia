@@ -28,7 +28,7 @@
   <ul class="sidebar-submenu">
     <li><a href="{{route('despesas')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
     <li> <a href="{{route('despesas.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
-    <li> <a href="{{route('tipopoder')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Poder</a></li>
+   
   </ul>
     </li>
      <!---Despesas end-->
@@ -145,6 +145,23 @@
   </ul>
 </li>
 <!---Cargos end--->
+
+
+
+<!---Parâmentro --->
+
+<li class="dropdown">
+  <a href="javascript:void(0)">
+    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
+    <span>Parâmentro</span> 
+  </a>
+  <ul class="sidebar-submenu">
+     <li> <a href="{{route('tipopoder')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Poder</a></li>
+     <li> <a href="{{route('entidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Entidade</a></li>
+  
+  </ul>
+</li>
+<!---Parâmentro end--->
 
   <!---Settings-->
       <li class="dropdown">
