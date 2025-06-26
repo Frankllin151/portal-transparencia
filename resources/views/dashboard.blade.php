@@ -116,7 +116,7 @@
         </div>
 </div>
 <!--mini graficos  end-->
-
+<br>
 <!--Grafico redondo-->
 <div class="col-xxl-4">
   <div class="row gy-4">

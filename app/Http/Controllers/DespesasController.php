@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Despesa;
+use App\Models\Entidade;
 use App\Models\TipoPoder;
+use App\Models\Unidade;
+use App\Models\TipoEmpenho;
+use App\Models\CategoriaEmpenho;
 use Illuminate\Support\Str;
+
 class DespesasController extends Controller
 {
     /**
@@ -22,8 +27,18 @@ class DespesasController extends Controller
      */
     public function create()
     {
-              $dataTipoPoder = TipoPoder::orderby("updated_at", "desc")->get();
-        return view("despesas.create", ["dataTipoPoder" =>  $dataTipoPoder]);
+        $dataTipoPoder = TipoPoder::orderBy("updated_at", "desc")->get();
+        $dataEntidade = Entidade::orderBy("updated_at", "desc")->get();
+        $dataUnidade = Unidade::orderBy("updated_at", "desc")->get();
+        $dataTipoEmpenho = TipoEmpenho::orderBy("updated_at", "desc")->get();
+        $dataCategoriaEmpenho = CategoriaEmpenho::orderBy("updated_at", "desc")->get();
+        return view("despesas.create", [
+        "dataTipoPoder" =>  $dataTipoPoder,
+        "dataEntidade" => $dataEntidade,
+        "dataUnidade"  => $dataUnidade, 
+        "dataTipoEmpenho" => $dataTipoEmpenho, 
+        "dataCategoriaEmpenho" => $dataCategoriaEmpenho
+      ]);
     }
 
     /**
@@ -114,11 +129,19 @@ class DespesasController extends Controller
     {
       $editarDespesa = Despesa::find($id);
       $dataTipoPoder = TipoPoder::orderby("updated_at", "desc")->get();
+      $dataEntidade = Entidade::orderBy("updated_at", "desc")->get();
+      $dataUnidade = Unidade::orderBy("updated_at", "desc")->get();
+      $dataTipoEmpenho = TipoEmpenho::orderBy("updated_at", "desc")->get();
+      $dataCategoriaEmpenho = CategoriaEmpenho::orderBy("updated_at", "desc")->get();
       if(!$editarDespesa){
         abort(404, "Despesa não encontrada");
       }
       return view("despesas.edit" , ["editarDespesa" => $editarDespesa , 
-    "dataTipoPoder" => $dataTipoPoder
+    "dataTipoPoder" => $dataTipoPoder, 
+    "dataEntidade" => $dataEntidade,
+    "dataUnidade"  => $dataUnidade, 
+    "dataTipoEmpenho" => $dataTipoEmpenho, 
+    "dataCategoriaEmpenho" => $dataCategoriaEmpenho
     ]);
     }
 
@@ -130,10 +153,10 @@ class DespesasController extends Controller
         //
         $despesa = Despesa::find($id);
         if(!$despesa){
-             return redirect()->back()->with('error', 'Despesa não encontrada.');
+           return redirect()->back()->with('error', 'Despesa não encontrada.');
         }
            $despesa->update($request->all());
-   return redirect()->route('despesas.editar', ["id" => $id])->with('success', 'Despesa atualizada com sucesso.');
+   return redirect()->route('despesas.show', ["id" => $id])->with('success', 'Despesa atualizada com sucesso.');
     }
 
     /**

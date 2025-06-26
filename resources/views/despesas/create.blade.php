@@ -56,16 +56,21 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Tipo Empenho</label>
-                  <select name="tipo_empenho" class="form-select" required>
-                    <option value="">Selecione o Tipo</option>
-                    <option value="Ordinário">Ordinário</option>
-                    <option value="Estimativo">Estimativo</option>
-                    <option value="Global">Global</option>
-                  </select>
+                 <select name="tipo_empenho" class="form-select" required>
+    
+    @foreach($dataTipoEmpenho as $item)
+      <option value="{{ $item->nome}}">{{ $item->nome }}</option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Categoria Empenho</label>
-                  <input type="text" name="categoria_empenho" class="form-control" placeholder="Categoria do empenho">
+                  <select name="categoria_empenho" class="form-select" required>
+    
+    @foreach($dataCategoriaEmpenho as $item)
+      <option value="{{ $item->nome}}">{{ $item->nome }}</option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Histórico Empenho</label>
@@ -228,7 +233,12 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Entidade</label>
-                  <input type="text" name="entidade" class="form-control" placeholder="Nome da entidade">
+                  <select name="entidade" class="form-select" required>
+    
+    @foreach($dataEntidade as $item)
+      <option value="{{ $item->nome}}">{{ $item->nome }}</option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Órgão</label>
@@ -240,7 +250,12 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Unidade</label>
-                  <input type="text" name="unidade" class="form-control" placeholder="Nome da unidade">
+                  <select name="unidade" class="form-select" required>
+    
+    @foreach($dataUnidade as $item)
+      <option value="{{ $item->nome}}">{{ $item->nome }}</option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Código Unidade</label>
@@ -391,7 +406,7 @@
   <select name="tipo_poder" class="form-select" required>
     
     @foreach($dataTipoPoder as $poder)
-      <option value="{{ $poder->id }}">{{ $poder->nome }}</option>
+      <option value="{{ $poder->nome}}">{{ $poder->nome }}</option>
     @endforeach
   </select>
 </div>

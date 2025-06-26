@@ -21,10 +21,10 @@
   </ul>
 </div>
 
-<div>
+<div class="d-flex justify-content-end">
     <a href="{{route("tipopoder.novo")}}" class="btn btn-primary ">Novo</a>
 </div>
-
+<br>
 <!----tabela tipo poder---->
 <div class="card basic-data-table">
   <div class="card-header">

@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use  App\Models\TipoPoder;
+use App\Models\CategoriaEmpenho;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
-class TipoPoderController extends Controller
+
+class CategoriaEmpenhoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = TipoPoder::orderBy("updated_at", "desc")->get();
-        return view("tipopoder.showAll" , ["data" => $data]);
+        $data = CategoriaEmpenho::orderBy("updated_at", "desc")->get();
+        return view("categoriaempenho.showAll" , ["data" => $data]);
     }
 
     /**
@@ -23,7 +24,7 @@ class TipoPoderController extends Controller
      */
     public function create()
     {
-        return view("tipopoder.create");
+        return view("categoriaempenho.create");
     }
 
     /**
@@ -34,17 +35,16 @@ class TipoPoderController extends Controller
         try {
             $validatedData = $request->validate([
                 'nome' => 'required|string|max:255',
-                'ativo' => 'required|boolean', 
             ]);
 
             
             $id = Str::uuid()->toString();
             $validatedData = ['id' => $id] + $validatedData;
  
-          TipoPoder::create($validatedData);
+          CategoriaEmpenho::create($validatedData);
 
-            return redirect()->route('tipopoder')
-                ->with('success', 'Tipo de Poder cadastrado com sucesso!');
+            return redirect()->route('categoriaempenho')
+                ->with('success', 'categoria Empenho cadastrado com sucesso!');
 
         } catch (ValidationException $e) {
             
@@ -54,7 +54,7 @@ class TipoPoderController extends Controller
         } catch (\Exception $e) {
            
             return redirect()->back()
-                ->with('error', 'Ocorreu um erro ao cadastrar o Tipo de Poder: ' . $e->getMessage())
+                ->with('error', 'Ocorreu um erro ao cadastrar a  Categoria Empenho ' . $e->getMessage())
                 ->withInput();
         }
     }
@@ -67,11 +67,11 @@ class TipoPoderController extends Controller
     public function edit(string $id)
     {
     try {
-            $data = TipoPoder::findOrFail($id);
-            return view("tipopoder.edit",  ["data" => $data]);
+            $data = CategoriaEmpenho::findOrFail($id);
+            return view("categoriaempenho.edit",  ["data" => $data]);
         } catch (ModelNotFoundException $e) {
              return redirect()->back()
-                ->with('error', 'Tipo poder não encontrado');
+                ->with('error', 'Categoria Empenho não encontrado');
         }
     }
 
@@ -80,21 +80,20 @@ class TipoPoderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       $tipoPoder = TipoPoder::findOrFail($id);
+       $tipoPoder = CategoriaEmpenho::findOrFail($id);
 
     try {
         $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
-            'ativo' => 'required|boolean',
         ]);
 
         $tipoPoder->update($validatedData);
 
-        return redirect()->route('tipopoder')
-                         ->with('success', 'Tipo de Poder atualizado com sucesso!');
+        return redirect()->route('categoriaempenho')
+                         ->with('success', 'Tipo Empenho atualizado com sucesso!');
 
     } catch (ModelNotFoundException $e) {
-        abort(404, "Tipo de Poder não encontrado.");
+        abort(404, "Categoria Empenho não encontrado.");
         
     } catch (ValidationException $e) {
         return redirect()->back()
@@ -103,7 +102,7 @@ class TipoPoderController extends Controller
 
     } catch (\Exception $e) {
         return redirect()->back()
-                         ->with('error', 'Ocorreu um erro ao atualizar o registro: ' . $e->getMessage())
+                         ->with('error', 'Ocorreu um erro ao atualizar o  registro: Categoria Empenho ' . $e->getMessage())
                          ->withInput();
     }
     }
@@ -115,20 +114,20 @@ class TipoPoderController extends Controller
     {
           try {
           
-            $data = TipoPoder::findOrFail($id);
+            $data = CategoriaEmpenho::findOrFail($id);
             $data->delete();
 
-            return redirect()->route('tipopoder') 
-                ->with('success', 'Tipo poder  excluída com sucesso!');
+            return redirect()->route('categoriaempenho') 
+                ->with('success', 'Categoria Empenho excluída com sucesso!');
 
         } catch (ModelNotFoundException $e) {
             
             return redirect()->back()
-                ->with('error', 'Tipo poder  não encontrada.');
+                ->with('error', 'Categoria Empenho não encontrada.');
         } catch (\Exception $e) {
            
             return redirect()->back()
-                ->with('error', 'Ocorreu um erro ao excluir Tipo Poder : ' . $e->getMessage());
+                ->with('error', 'Ocorreu um erro ao excluir Categoria Empenho : ' . $e->getMessage());
         }
     
     }

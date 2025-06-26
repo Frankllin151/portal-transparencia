@@ -21,6 +21,11 @@
   </ul>
 </div>
 
+
+<div class="d-flex justify-content-end">
+    <a href="{{route("natureza.create")}}" class="btn btn-primary ">Novo</a>
+</div>
+
 <!--Tabela  natureza Receita-->
 <div class="card basic-data-table">
   <div class="card-header">

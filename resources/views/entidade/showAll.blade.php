@@ -20,12 +20,11 @@
     
   </ul>
 </div>
-
-<div>
-    <a href="{{route("entidade.novo")}}" class="btn btn-primary ">Novo</a>
+<div class="d-flex justify-content-end ">
+    <a href="{{ route('entidade.novo') }}" class="btn btn-primary">Novo</a>
 </div>
-
-<!----tabela tipo poder---->
+<br>
+<!----tabela Entidade---->
 <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Entidade</h5> {{-- Título da tabela ajustado --}}

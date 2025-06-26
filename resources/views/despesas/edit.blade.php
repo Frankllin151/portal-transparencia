@@ -58,15 +58,23 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Tipo Empenho</label>
-                  <select name="tipo_empenho" class="form-select">
-                    <option value="Ordinário" {{ $editarDespesa->tipo_empenho == 'Ordinário' ? 'selected' : '' }}>Ordinário</option>
-                    <option value="Estimativo" {{ $editarDespesa->tipo_empenho == 'Estimativo' ? 'selected' : '' }}>Estimativo</option>
-                    <option value="Global" {{ $editarDespesa->tipo_empenho == 'Global' ? 'selected' : '' }}>Global</option>
-                  </select>
+                 <select name="tipo_empenho" class="form-select" required>
+    @foreach ($dataTipoEmpenho as $item)
+      <option value="{{ $item->nome }}" {{ $editarDespesa->tipo_item == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Categoria Empenho</label>
-                  <input type="text" name="categoria_empenho" class="form-control" value="{{ $editarDespesa->categoria_empenho }}" placeholder="Categoria do empenho">
+                 <select name="categoria_empenho" class="form-select" required>
+    @foreach ($dataCategoriaEmpenho as $item)
+      <option value="{{ $item->nome }}" {{ $editarDespesa->tipo_item == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Histórico Empenho</label>
@@ -238,7 +246,13 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Entidade</label>
-                  <input type="text" name="entidade" class="form-control" value="{{ $editarDespesa->entidade }}" placeholder="Nome da entidade">
+                  <select name="entidade" class="form-select" required>
+    @foreach ($dataEntidade as $item)
+      <option value="{{ $item->nome }}" {{ $editarDespesa->tipo_item == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Órgão</label>
@@ -250,7 +264,13 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Unidade</label>
-                  <input type="text" name="unidade" class="form-control" value="{{ $editarDespesa->unidade }}" placeholder="Nome da unidade">
+                 <select name="unidade" class="form-select" required>
+    @foreach ($dataUnidade as $item)
+      <option value="{{ $item->nome }}" {{ $editarDespesa->tipo_item == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Código Unidade</label>

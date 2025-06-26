@@ -47,22 +47,6 @@
 </li>
   <!---Processo  end-->
 
-     <!---Natureza Receita-->
- <li class="dropdown">
-  <a href="javascript:void(0)">
-    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
-    <span>Natureza Receita</span> 
-  </a>
-  <ul class="sidebar-submenu">
-<li><a href="{{route('natureza')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
-
-<li><a href="{{route('natureza.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
-   
-  </ul>
-  
-</li>
- <!---Natureza Receita end-->
-
  <!--- Receita-->
  <li class="dropdown">
   <a href="javascript:void(0)">
@@ -158,7 +142,11 @@
   <ul class="sidebar-submenu">
      <li> <a href="{{route('tipopoder')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Poder</a></li>
      <li> <a href="{{route('entidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Entidade</a></li>
-  
+      <li> <a href="{{route('unidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Unidade</a></li>
+    <li> <a href="{{route('tipoempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Empenho</a></li>
+<li><a href="{{route('categoriaempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Categoria Empenho</a></li>
+    <li><a href="{{route('natureza')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Natureza Receita</a></li>
+
   </ul>
 </li>
 <!---Parâmentro end--->

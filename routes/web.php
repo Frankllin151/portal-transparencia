@@ -29,4 +29,7 @@ require __DIR__."/PagamentosReceitasDespesasExtraorcamentariaRoute.php";
 require __DIR__."/cargosroute.php";
 require __DIR__."/tipopoderRoute.php";
 require __DIR__."/entidaderoute.php";
+require __DIR__."/unidaderoute.php";
+require __DIR__."/tipoempenhoroute.php";
+require __DIR__."/categoriaEmpenhoRoute.php";
 require __DIR__.'/auth.php';
