@@ -221,7 +221,13 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Tipo Ação Programa</label>
-                  <input type="text" name="tipo_acao_programa" class="form-control" value="{{ $editarDespesa->tipo_acao_programa }}" placeholder="Tipo de ação">
+                 <select name="tipo_acao_programa" class="form-select" required>
+    @foreach ($dataTipoacao as $item)
+      <option value="{{ $item->nome }}" {{ $editarDespesa->tipo_acao_programa == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Código Programa</label>
@@ -256,7 +262,13 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Órgão</label>
-                  <input type="text" name="orgao" class="form-control" value="{{ $editarDespesa->orgao }}" placeholder="Nome do órgão">
+                 <select name="orgao" class="form-select" required>
+    @foreach ($dataNomeorgao as $poder)
+      <option value="{{ $poder->nome }}" {{ $editarDespesa->orgao == $poder->nome? 'selected' : '' }}>
+        {{ $poder->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Código Órgão</label>
@@ -291,7 +303,13 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Nome Credor</label>
-                  <input type="text" name="credor_nome" class="form-control" value="{{ $editarDespesa->credor_nome }}" placeholder="Nome do credor">
+                  <select name="credor_nome" class="form-select" required>
+    @foreach ($dataNomecredor as $item)
+      <option value="{{ $item->nome }}" {{ $editarDespesa->credor_nome == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">CNPJ/CPF Credor</label>
@@ -299,7 +317,14 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Natureza Jurídica</label>
-                  <input type="text" name="credor_natureza_juridica" class="form-control" value="{{ $editarDespesa->credor_natureza_juridica }}" placeholder="Natureza jurídica">
+                  <select name="credor_natureza_juridica" class="form-select" required>
+    @foreach ($dataNaturezajuridica as $item)
+      <option value="{{ $item->nome }}" {{ $editarDespesa->credor_natureza_juridica== $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
+              
                 </div>
               </div>
             </div>
@@ -403,7 +428,13 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Tipo Recurso</label>
-                  <input type="text" name="tipo_recurso" class="form-control" value="{{ $editarDespesa->tipo_recurso }}" placeholder="Tipo do recurso">
+               <select name="tipo_recurso" class="form-select" required>
+    @foreach ($dataTiporecurso as $poder)
+      <option value="{{ $poder->nome }}" {{ $editarDespesa->tipo_recurso == $poder->nome? 'selected' : '' }}>
+        {{ $poder->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
               </div>
             </div>
@@ -424,7 +455,7 @@
                 </div>
                <div class="col-12">
   <label class="form-label">Tipo Poder</label>
-  <select name="tipo_poder" class="form-select" required>
+  <select name="tipo_recurso" class="form-select" required>
     @foreach ($dataTipoPoder as $poder)
       <option value="{{ $poder->nome }}" {{ $editarDespesa->tipo_poder == $poder->nome? 'selected' : '' }}>
         {{ $poder->nome }}

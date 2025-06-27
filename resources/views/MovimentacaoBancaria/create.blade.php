@@ -53,7 +53,13 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Nome da Entidade</label>
-                  <input type="text" name="nome_entidade" class="form-control" value="{{ old('nome_entidade') }}" placeholder="Ex: Rutherford-Botsford">
+                
+            <select name="nome_entidade" class="form-select" required>
+    
+    @foreach($dataEntidade as $item)
+      <option value="{{ $item->nome}}" >{{ $item->nome }}</option>
+    @endforeach
+  </select>
                   @error('nome_entidade') <div class="text-danger">{{ $message }}</div> @enderror
                 </div>
                 <div class="col-12">
@@ -64,8 +70,13 @@
                 <div class="col-12">
                   <label class="form-label">Tipo da Conta</label>
                   <!-- Você pode usar um select para 'tipo_conta' se tiver opções fixas -->
-                  <input type="text" name="tipo_conta" class="form-control" value="{{ old('tipo_conta') }}" placeholder="Ex: salario, corrente, poupanca">
-                  @error('tipo_conta') <div class="text-danger">{{ $message }}</div> @enderror
+                 
+                   <select name="tipo_conta" class="form-select" required>
+    
+    @foreach($dataTipoConta as $item)
+      <option value="{{ $item->nome}}" >{{ $item->nome }}</option>
+    @endforeach
+  </select>
                 </div>
               </div>
             </div>

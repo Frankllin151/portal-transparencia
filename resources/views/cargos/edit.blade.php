@@ -56,17 +56,26 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Situação do Cargo</label>
-                  <input type="text" name="situacao_cargo" class="form-control" value="{{ old('situacao_cargo', $data->situacao_cargo) }}" placeholder="Ex: Ativo / Extinto">
-                  @error('situacao_cargo')
-                    <div class="text-danger mt-1">{{ $message }}</div>
-                  @enderror
+                   <select name="situacao_cargo" id="situacao_cargo" class="form-control" required>
+                  
+                    @foreach($dataSituacao as $item)
+                      <option value="{{ $item->nome }}" {{ $data->situacao_cargo== $item->nome? 'selected' : '' }}>
+                        {{ $item->nome}}
+                      </option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Classificação do Cargo</label>
-                  <input type="text" name="classificacao_cargo" class="form-control" value="{{ old('classificacao_cargo', $data->classificacao_cargo) }}" placeholder="Ex: Comissionado / Efetivo">
-                  @error('classificacao_cargo')
-                    <div class="text-danger mt-1">{{ $message }}</div>
-                  @enderror
+                  
+                   <select name="classificacao_cargo" id="classificacao_cargo" class="form-control" required>
+                  
+                    @foreach($dataClassificao as $item)
+                      <option value="{{ $item->nome }}" {{ $data->classificacao_cargo == $item->nome? 'selected' : '' }}>
+                        {{ $item->nome}}
+                      </option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
             </div>

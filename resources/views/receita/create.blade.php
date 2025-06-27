@@ -69,17 +69,26 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="finalidade">Finalidade</label>
-                  <input type="text" name="finalidade" id="finalidade" class="form-control @error('finalidade') is-invalid @enderror" placeholder="Ex: Exercitationem dolorum temporibus." value="{{ old('finalidade') }}" required>
-                  @error('finalidade')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
+                 <select name="finalidade" id="finalidade" class="form-control" required>
+                  
+                    @foreach($dataFinalidade as $item)
+                      <option value="{{ $item->nome }}">
+                        {{ $item->nome}}
+                      </option>
+                    @endforeach
+                  </select>
+                 
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="forma_ingresso">Forma de Ingresso</label>
-                  <input type="text" name="forma_ingresso" id="forma_ingresso" class="form-control @error('forma_ingresso') is-invalid @enderror" placeholder="Ex: Arrecadação Direta" value="{{ old('forma_ingresso') }}" required>
-                  @error('forma_ingresso')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
+                  <select name="forma_ingresso" id="forma_ingresso" class="form-control" required>
+                  
+                    @foreach($dataFormaIngresso as $item)
+                      <option value="{{ $item->nome }}" >
+                        {{ $item->nome}}
+                      </option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-12">
                   <div class="form-check">
@@ -176,10 +185,10 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-wrap justify-content-end gap-3">
-                <button type="button" class="btn btn-secondary" onclick="history.back()">
-                  <iconify-icon icon="mynaui:arrow-left" class="me-1"></iconify-icon>
-                  Cancelar
-                </button>
+               <a href="{{ route('receita') }}" class="btn btn-secondary">
+  <iconify-icon icon="mynaui:arrow-left" class="me-1"></iconify-icon>
+  Cancelar
+</a>
                 <button type="submit" class="btn btn-primary">
                   <iconify-icon icon="material-symbols:save" class="me-1"></iconify-icon>
                   Criar Receita

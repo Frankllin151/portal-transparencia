@@ -72,19 +72,28 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="finalidade">Finalidade</label>
-                  <input type="text" name="finalidade" id="finalidade" class="form-control @error('finalidade') is-invalid @enderror"
-                         placeholder="Ex: Exercitationem dolorum temporibus." value="{{ old('finalidade', $receita->finalidade) }}" required>
-                  @error('finalidade')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
+                
+                   <select name="finalidade" id="finalidade" class="form-control" required>
+                  
+                    @foreach($dataFinalidade as $item)
+                      <option value="{{ $item->nome }}" {{ $receita->finalidade== $item->nome? 'selected' : '' }}>
+                        {{ $item->nome}}
+                      </option>
+                    @endforeach
+                  </select>
+                 
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="forma_ingresso">Forma de Ingresso</label>
-                  <input type="text" name="forma_ingresso" id="forma_ingresso" class="form-control @error('forma_ingresso') is-invalid @enderror"
-                         placeholder="Ex: Arrecadação Direta" value="{{ old('forma_ingresso', $receita->forma_ingresso) }}" required>
-                  @error('forma_ingresso')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
+                 
+                  <select name="forma_ingresso" id="forma_ingresso" class="form-control" required>
+                  
+                    @foreach($dataFormaIngresso as $item)
+                      <option value="{{ $item->nome }}" {{ $receita->forma_ingresso== $item->nome? 'selected' : '' }}>
+                        {{ $item->nome}}
+                      </option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-12">
                   <div class="form-check">

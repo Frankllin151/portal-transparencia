@@ -34,6 +34,7 @@ class Cargo extends Model
 	public $incrementing = false;
 
 	protected $fillable = [
+		'id',
 		'ano',
 		'competencia',
 		'descricao_cargo',

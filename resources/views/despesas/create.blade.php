@@ -209,7 +209,11 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Tipo Ação Programa</label>
-                  <input type="text" name="tipo_acao_programa" class="form-control" placeholder="Tipo de ação">
+                  <select name="tipo_acao_programa" id="tipo_acao_programa" class="form-select" required>
+      @foreach($dataTipoacao as $item)
+        <option value="{{ $item->nome}}">{{ $item->nome }}</option>
+      @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Código Programa</label>
@@ -242,7 +246,11 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Órgão</label>
-                  <input type="text" name="orgao" class="form-control" placeholder="Nome do órgão">
+                  <select name="orgao" id="orgao" class="form-select" required>
+      @foreach($dataNomeorgao as $item)
+        <option value="{{ $item->nome }}">{{ $item->nome}}</option>
+      @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Código Órgão</label>
@@ -275,7 +283,11 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Nome Credor</label>
-                  <input type="text" name="credor_nome" class="form-control" placeholder="Nome do credor">
+                 <select name="credor_nome_" id="nome_credor" class="form-select" required>
+      @foreach($dataNomecredor as $item)
+        <option value="{{ $item->nome }}">{{ $item->nome }}</option>
+      @endforeach
+  </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">CNPJ/CPF Credor</label>
@@ -283,7 +295,12 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Natureza Jurídica</label>
-                  <input type="text" name="credor_natureza_juridica" class="form-control" placeholder="Natureza jurídica">
+                  <select name="credor_natureza_juridica" id="credor_natureza_juridica" class="form-select" required>
+
+      @foreach($dataNaturezajuridica as $item)
+        <option value="{{ $item->nome }}">{{ $item->nome }}</option>
+      @endforeach
+  </select>
                 </div>
               </div>
             </div>
@@ -383,7 +400,11 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Tipo Recurso</label>
-                  <input type="text" name="tipo_recurso" class="form-control" placeholder="Tipo do recurso">
+                  <select name="tipo_recurso" id="tipo_recurso" class="form-select" required>
+      @foreach($dataTiporecurso as $item)
+        <option value="{{ $item->nome }}">{{ $item->nome }}</option>
+      @endforeach
+  </select>
                 </div>
               </div>
             </div>

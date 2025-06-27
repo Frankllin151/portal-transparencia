@@ -23,3 +23,12 @@ Route::put("/dashboard/cargos/{id}", [CargosController::class, "update"])
 Route::delete("/dashboard/cargos/{id}", [CargosController::class, "destroy"])
     ->middleware(['auth', 'verified'])
     ->name('cargos.delete');
+
+Route::get("/cargos/novo", [CargosController::class, "create"])
+->middleware(['auth', 'verified'])
+    ->name('cargos.novo');
+
+
+Route::post("/cargos/novo/post", [CargosController::class, "store"])
+->middleware(['auth', 'verified'])
+    ->name('cargos.store');

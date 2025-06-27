@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movimentacaobancarium;
+use App\Models\Entidade;
+use App\Models\TipoConta;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -26,7 +28,11 @@ class MovimentacaoBancariaController extends Controller
      */
     public function create()
     {
-        return view("MovimentacaoBancaria.create");
+        $dataEntidade = Entidade::orderBy("updated_at" , "desc")->get();
+        $dataTipoConta = TipoConta::orderBy("updated_at" , "desc")->get();
+        return view("MovimentacaoBancaria.create",
+    ["dataEntidade"  => $dataEntidade, "dataTipoConta" => $dataTipoConta]
+    );
     }
 
     /**
@@ -97,7 +103,11 @@ class MovimentacaoBancariaController extends Controller
     {
         try {
             $data = Movimentacaobancarium::findOrFail($id);
-            return view("MovimentacaoBancaria.edit",  ["data" => $data]);
+            $dataEntidade = Entidade::orderBy("updated_at" , "desc")->get();
+        $dataTipoConta = TipoConta::orderBy("updated_at" , "desc")->get();
+            return view("MovimentacaoBancaria.edit",  ["data" => $data,
+        "dataEntidade"  => $dataEntidade, "dataTipoConta" => $dataTipoConta
+        ]);
         } catch (ModelNotFoundException $e) {
              return redirect()->back()
                 ->with('error', 'Receita/Despesa Extraorçamentária não encontrada.');

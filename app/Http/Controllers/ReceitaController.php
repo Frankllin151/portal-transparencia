@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\NaturezaReceitum;
 use App\Models\Receitum;
+use App\Models\Finalidade;
+use App\Models\Formaingresso;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
@@ -26,7 +28,13 @@ class ReceitaController extends Controller
     public function create()
     {
         $dataNatureza = NaturezaReceitum::orderBy("created_at", "desc")->get();
-        return view("receita.create", ["dataNatureza" => $dataNatureza]);
+        $dataFinalidade = Finalidade::orderBy("created_at", "desc")->get();
+        $dataFormaIngresso = Formaingresso::orderBy("created_at", "desc")->get();
+        return view("receita.create", [
+        "dataNatureza" => $dataNatureza,
+        "dataFinalidade" => $dataFinalidade, 
+        "dataFormaIngresso" => $dataFormaIngresso
+        ]);
     }
 
     /**
@@ -88,13 +96,17 @@ return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o process
     {
      $receitaId = Receitum::with("NaturezaReceitum")->findOrFail($id);
       $dataNatureza = NaturezaReceitum::orderBy("created_at", "desc")->get();
+      $dataFinalidade = Finalidade::orderBy("created_at", "desc")->get();
+        $dataFormaIngresso = Formaingresso::orderBy("created_at", "desc")->get();
     
       if(!$receitaId){
              abort(404, "Receita não encontrada");
          }
      return view("receita.edit", [ 
     "receita"=>$receitaId, 
-    "dataNatureza" => $dataNatureza
+    "dataNatureza" => $dataNatureza,
+    "dataFinalidade" => $dataFinalidade, 
+    "dataFormaIngresso" => $dataFormaIngresso
     ]);
     }
 

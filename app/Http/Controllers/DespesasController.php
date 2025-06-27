@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Despesa;
 use App\Models\Entidade;
 use App\Models\TipoPoder;
+use App\Models\Tipoacao;
+use App\Models\Tiporecurso;
+use App\Models\Nomeorgao;
+use App\Models\Nomecredor;
+use App\Models\Naturezajuridica;
 use App\Models\Unidade;
 use App\Models\TipoEmpenho;
 use App\Models\CategoriaEmpenho;
@@ -32,12 +37,22 @@ class DespesasController extends Controller
         $dataUnidade = Unidade::orderBy("updated_at", "desc")->get();
         $dataTipoEmpenho = TipoEmpenho::orderBy("updated_at", "desc")->get();
         $dataCategoriaEmpenho = CategoriaEmpenho::orderBy("updated_at", "desc")->get();
+        $dataTipoacao = Tipoacao::orderBy("updated_at", "desc")->get();
+        $dataTiporecurso = Tiporecurso::orderBy("updated_at", "desc")->get();
+        $dataNomeorgao = Nomeorgao::orderBy("updated_at", "desc")->get();
+        $dataNomecredor = Nomecredor::orderBy("updated_at", "desc")->get();
+        $dataNaturezajuridica = Naturezajuridica::orderBy("updated_at", "desc")->get();
         return view("despesas.create", [
         "dataTipoPoder" =>  $dataTipoPoder,
         "dataEntidade" => $dataEntidade,
         "dataUnidade"  => $dataUnidade, 
         "dataTipoEmpenho" => $dataTipoEmpenho, 
-        "dataCategoriaEmpenho" => $dataCategoriaEmpenho
+        "dataCategoriaEmpenho" => $dataCategoriaEmpenho,
+         'dataTipoacao' => $dataTipoacao,
+            'dataTiporecurso' => $dataTiporecurso,
+            'dataNomeorgao' => $dataNomeorgao,
+            'dataNomecredor' => $dataNomecredor,
+            'dataNaturezajuridica' => $dataNaturezajuridica
       ]);
     }
 
@@ -128,20 +143,30 @@ class DespesasController extends Controller
     public function edit(string $id)
     {
       $editarDespesa = Despesa::find($id);
-      $dataTipoPoder = TipoPoder::orderby("updated_at", "desc")->get();
-      $dataEntidade = Entidade::orderBy("updated_at", "desc")->get();
-      $dataUnidade = Unidade::orderBy("updated_at", "desc")->get();
-      $dataTipoEmpenho = TipoEmpenho::orderBy("updated_at", "desc")->get();
-      $dataCategoriaEmpenho = CategoriaEmpenho::orderBy("updated_at", "desc")->get();
+       $dataTipoPoder = TipoPoder::orderBy("updated_at", "desc")->get();
+        $dataEntidade = Entidade::orderBy("updated_at", "desc")->get();
+        $dataUnidade = Unidade::orderBy("updated_at", "desc")->get();
+        $dataTipoEmpenho = TipoEmpenho::orderBy("updated_at", "desc")->get();
+        $dataCategoriaEmpenho = CategoriaEmpenho::orderBy("updated_at", "desc")->get();
+        $dataTipoacao = Tipoacao::orderBy("updated_at", "desc")->get();
+        $dataTiporecurso = Tiporecurso::orderBy("updated_at", "desc")->get();
+        $dataNomeorgao = Nomeorgao::orderBy("updated_at", "desc")->get();
+        $dataNomecredor = Nomecredor::orderBy("updated_at", "desc")->get();
+        $dataNaturezajuridica = Naturezajuridica::orderBy("updated_at", "desc")->get();
       if(!$editarDespesa){
         abort(404, "Despesa não encontrada");
       }
       return view("despesas.edit" , ["editarDespesa" => $editarDespesa , 
-    "dataTipoPoder" => $dataTipoPoder, 
-    "dataEntidade" => $dataEntidade,
-    "dataUnidade"  => $dataUnidade, 
-    "dataTipoEmpenho" => $dataTipoEmpenho, 
-    "dataCategoriaEmpenho" => $dataCategoriaEmpenho
+    "dataTipoPoder" =>  $dataTipoPoder,
+        "dataEntidade" => $dataEntidade,
+        "dataUnidade"  => $dataUnidade, 
+        "dataTipoEmpenho" => $dataTipoEmpenho, 
+        "dataCategoriaEmpenho" => $dataCategoriaEmpenho,
+         'dataTipoacao' => $dataTipoacao,
+            'dataTiporecurso' => $dataTiporecurso,
+            'dataNomeorgao' => $dataNomeorgao,
+            'dataNomecredor' => $dataNomecredor,
+            'dataNaturezajuridica' => $dataNaturezajuridica
     ]);
     }
 

@@ -125,6 +125,7 @@
   </a>
   <ul class="sidebar-submenu">
 <li><a href="{{route('cargos')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+<li><a href="{{route('cargos.novo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
 
   </ul>
 </li>
@@ -141,11 +142,23 @@
   </a>
   <ul class="sidebar-submenu">
      <li> <a href="{{route('tipopoder')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Poder</a></li>
+         <li><a href="{{route('tipoacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Ação</a></li>
+          <li><a href="{{route('tiporecurso')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Recurso</a></li>
+    <li> <a href="{{route('tipoempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Empenho</a></li>
+    <li><a href="{{route('tipoconta')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo de Conta</a></li>
+<li><a href="{{route('categoriaempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Categoria Empenho</a></li>
      <li> <a href="{{route('entidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Entidade</a></li>
       <li> <a href="{{route('unidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Unidade</a></li>
-    <li> <a href="{{route('tipoempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Empenho</a></li>
-<li><a href="{{route('categoriaempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Categoria Empenho</a></li>
+      <li><a href="{{route('nomeorgao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Nome Orgão</a></li>
     <li><a href="{{route('natureza')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Natureza Receita</a></li>
+    <li><a href="{{route('naturezajuridica')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Natureza Juridica</a></li>
+    <li><a href="{{route('nomecredor')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Nome Credor</a></li>
+     <li><a href="{{route('finalidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Finalidade</a></li>
+      <li><a href="{{route('formaingresso')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Forma Ingresso</a></li>
+       <li><a href="{{route('classificacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação</a></li>
+ <li><a href="{{route('fonterecurso')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Fonte Recurso</a></li>
+  <li><a href="{{route('situacaocargo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Situação Cargo</a></li>
+  <li><a href="{{route('classificacaocargo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação do Cargo</a></li>
 
   </ul>
 </li>

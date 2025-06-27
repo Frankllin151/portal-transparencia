@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Receitasdespesasextraorcamentarium;
+use App\Models\Fonterecurso;
+use App\Models\Classificacao;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
@@ -24,7 +26,14 @@ class ReceiDesPexTraController extends Controller
      */
     public function create()
     {
-       return view("ReceitasDespesasExtraorcamentaria.create");
+      $dataFonteRecurso = Fonterecurso::orderBy("created_at", "desc")->get();
+      $dataClassificacao  = Classificacao::orderBy("created_at", "desc")->get();
+       return view("ReceitasDespesasExtraorcamentaria.create",
+    [
+    "dataFonteRecurso" => $dataFonteRecurso,
+    "dataClassificacao" => $dataClassificacao,
+    ]
+    );
     }
 
     /**
@@ -83,10 +92,15 @@ class ReceiDesPexTraController extends Controller
     public function edit(string $id)
     {
        $data = Receitasdespesasextraorcamentarium::findOrFail($id);
+       $dataFonteRecurso = Fonterecurso::orderBy("created_at", "desc")->get();
+      $dataClassificacao  = Classificacao::orderBy("created_at", "desc")->get();
         if(!$data){
          abort(404, "Orçamentaria Despesa Receita  não encontrada");
       }
-    return view("ReceitasDespesasExtraorcamentaria.edit", ["data" => $data]);
+    return view("ReceitasDespesasExtraorcamentaria.edit", ["data" => $data, 
+ "dataFonteRecurso" => $dataFonteRecurso,
+    "dataClassificacao" => $dataClassificacao,
+]);
     }
 
     /**

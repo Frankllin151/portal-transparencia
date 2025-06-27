@@ -49,12 +49,19 @@
             <div class="card-body">
               <div class="row gy-3">
                 <div class="col-md-6">
-                  <label class="form-label">Classificação</label>
-                  <input type="text" name="classificacao" class="form-control" value="{{ old('classificacao') }}" placeholder="Ex: Receita Extra">
-                  @error('classificacao')
-                    <div class="text-danger mt-1">{{ $message }}</div>
-                  @enderror
-                </div>
+    <label class="form-label">Classificação</label>
+    <select name="classificacao" class="form-control">
+        <option value="">Selecione a Classificação</option>
+        @foreach($dataClassificacao as $classificacao)
+            <option value="{{ $classificacao->nome }}" {{ old('classificacao') == $classificacao->nome ? 'selected' : '' }}>
+                {{ $classificacao->nome }}
+            </option>
+        @endforeach
+    </select>
+    @error('classificacao')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
                 <div class="col-md-6">
                   <label class="form-label">Número</label>
                   <input type="text" name="numero" class="form-control" value="{{ old('numero') }}" placeholder="Ex: 12345">
@@ -70,12 +77,19 @@
                   @enderror
                 </div>
                 <div class="col-md-6">
-                  <label class="form-label">Fonte de Recursos</label>
-                  <input type="text" name="fonte_recursos" class="form-control" value="{{ old('fonte_recursos') }}" placeholder="Ex: Doações">
-                  @error('fonte_recursos')
-                    <div class="text-danger mt-1">{{ $message }}</div>
-                  @enderror
-                </div>
+    <label class="form-label">Fonte de Recursos</label>
+    <select name="fonte_recursos" class="form-control">
+        <option value="">Selecione a Fonte de Recursos</option>
+        @foreach($dataFonteRecurso as $fonteRecurso)
+            <option value="{{ $fonteRecurso->nome }}" {{ old('fonte_recursos') == $fonteRecurso->nome ? 'selected' : '' }}>
+                {{ $fonteRecurso->nome }}
+            </option>
+        @endforeach
+    </select>
+    @error('fonte_recursos')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
                 <div class="col-md-6">
                   <label class="form-label">Máscara</label>
                   <input type="text" name="mascara" class="form-control" value="{{ old('mascara') }}" placeholder="Ex: 9.9.9.99.99">
