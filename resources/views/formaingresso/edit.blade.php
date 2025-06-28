@@ -12,10 +12,7 @@
   <h6 class="fw-semibold mb-0"> {{ __('Forma Ingresso') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("formaingresso")}}" class="d-flex align-items-center gap-1 hover-text-primary"> {{-- Rota do link ajustada --}}
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Forma Ingresso') }} {{-- Texto do link ajustado --}}
-      </a>
+      <a href="{{route("formaingresso.novo")}}" class="btn btn-primary ">Novo</a>
     </li>
   </ul>
 </div>

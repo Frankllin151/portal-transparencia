@@ -11,10 +11,8 @@
   <h6 class="fw-semibold mb-0"> {{ __('Natureza Receita') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route('natureza')}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Natureza Receita') }}
-      </a>
+     
+    <a href="{{route("natureza.create")}}" class="btn btn-primary ">Novo</a>
     </li>
    
     
@@ -22,9 +20,6 @@
 </div>
 
 
-<div class="d-flex justify-content-end">
-    <a href="{{route("natureza.create")}}" class="btn btn-primary ">Novo</a>
-</div>
 
 <!--Tabela  natureza Receita-->
 <div class="card basic-data-table">

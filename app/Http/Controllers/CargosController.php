@@ -155,8 +155,25 @@ class CargosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+   public function destroy(string $id)
     {
-        //
+          try {
+          
+            $data = Cargo::findOrFail($id);
+            $data->delete();
+
+            return redirect()->route('cargos') 
+                ->with('success', 'Cargo excluída com sucesso!');
+
+        } catch (ModelNotFoundException $e) {
+            
+            return redirect()->back()
+                ->with('error', 'Cargo não encontrada.');
+        } catch (\Exception $e) {
+           
+            return redirect()->back()
+                ->with('error', 'Ocorreu um erro ao excluir Cargo : ' . $e->getMessage());
+        }
+    
     }
 }

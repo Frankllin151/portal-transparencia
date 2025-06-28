@@ -11,20 +11,14 @@
   <h6 class="fw-semibold mb-0"> {{ __('Unidade') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("unidade")}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Unidade') }}
-      </a>
+     
+    <a href="{{route("unidade.novo")}}" class="btn btn-primary ">Novo</a>
     </li>
    
     
   </ul>
 </div>
 
-<div class="d-flex justify-content-end">
-    <a href="{{route("unidade.novo")}}" class="btn btn-primary ">Novo</a>
-</div>
-<br>
 
 <div class="card basic-data-table">
   <div class="card-header">

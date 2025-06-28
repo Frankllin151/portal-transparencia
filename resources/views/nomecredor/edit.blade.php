@@ -12,13 +12,11 @@
   <h6 class="fw-semibold mb-0"> {{ __('Nome Credor') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("nomecredor")}}" class="d-flex align-items-center gap-1 hover-text-primary"> {{-- Rota do link ajustada --}}
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Nome Credor') }} {{-- Texto do link ajustado --}}
-      </a>
+       <a href="{{route("nomecredor.novo")}}" class="btn btn-primary ">Novo</a>
     </li>
   </ul>
 </div>
+
 
 <div class="row gy-4">
   <div class="col-lg-12">

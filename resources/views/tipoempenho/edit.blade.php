@@ -12,11 +12,14 @@
   <h6 class="fw-semibold mb-0"> {{ __('Tipo Empenho') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("tipoempenho")}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Tipo Empenho') }}
-      </a>
+     
+    <a href="{{route("tipoempenho.novo")}}" class="btn btn-primary ">Novo</a>
     </li>
+   
+    
+  </ul>
+</div>
+
    
     
   </ul>

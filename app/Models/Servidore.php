@@ -56,6 +56,7 @@ class Servidore extends Model
 	];
 
 	protected $fillable = [
+		'id',
 		'entidade',
 		'matricula',
 		'cargo_id',

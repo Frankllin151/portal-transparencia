@@ -8,14 +8,12 @@
         </h2>
     </x-slot>
 
+
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
   <h6 class="fw-semibold mb-0"> {{ __('Natureza Jurídica') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("naturezajuridica")}}" class="d-flex align-items-center gap-1 hover-text-primary"> {{-- Rota do link ajustada --}}
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Natureza Jurídica') }} {{-- Texto do link ajustado --}}
-      </a>
+        <a href="{{route("naturezajuridica.novo")}}" class="btn btn-primary ">Novo</a> 
     </li>
   </ul>
 </div>

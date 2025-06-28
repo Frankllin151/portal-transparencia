@@ -44,4 +44,8 @@ require __DIR__."/fonterecursoroute.php";
 require __DIR__."/tipocontaroute.php";
 require __DIR__."/situacaodocargoroute.php";
 require __DIR__."/classificacaoCargoroute.php";
+require __DIR__."/servidoresRoute.php";
+require __DIR__."/vinculoEmpregaticioRoute.php";
+require __DIR__."/classificacaoAfastamentoroute.php";
+require __DIR__."/lotacaoroute.php";
 require __DIR__.'/auth.php';

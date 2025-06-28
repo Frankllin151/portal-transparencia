@@ -4,10 +4,10 @@
     <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
   </button>
   <div>
-    <a href="index.html" class="sidebar-logo">
-      <img src="{{ asset('assets/images/logo.png') }}" alt="site logo" class="light-logo">
-<img src="{{ asset('assets/images/logo-light.png') }}" alt="site logo" class="dark-logo">
-<img src="{{ asset('assets/images/logo-icon.png') }}" alt="site logo" class="logo-icon">
+    <a href="{{route("dashboard")}}" class="sidebar-logo">
+      <img src="{{ asset('assets/images/logo.jpeg') }}" alt="site logo" class="light-logo">
+<img src="{{ asset('assets/images/logo.jpeg') }}" alt="site logo" class="dark-logo">
+<img src="{{ asset('assets/images/logo.jpeg') }}" alt="site logo" class="logo-icon">
     </a>
   </div>
   <div class="sidebar-menu-area">
@@ -131,14 +131,26 @@
 </li>
 <!---Cargos end--->
 
-
+<!----Servidores ---->
+<li class="dropdown">
+ <a href="javascript:void(0)">
+    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
+    <span>Servidores</span> 
+  </a>
+  <ul class="sidebar-submenu">
+    <li><a href="{{route('servidores')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+    <li> <a href="{{route('servidores.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
+   
+  </ul>
+    </li>
+<!----Servidores  End ---->
 
 <!---Parâmentro --->
 
 <li class="dropdown">
   <a href="javascript:void(0)">
     <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
-    <span>Parâmentro</span> 
+    <span>Parâmentros</span> 
   </a>
   <ul class="sidebar-submenu">
      <li> <a href="{{route('tipopoder')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Poder</a></li>
@@ -159,7 +171,9 @@
  <li><a href="{{route('fonterecurso')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Fonte Recurso</a></li>
   <li><a href="{{route('situacaocargo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Situação Cargo</a></li>
   <li><a href="{{route('classificacaocargo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação do Cargo</a></li>
-
+  <li><a href="{{route('classificacaoafastamento')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação de Afastamento</a></li> 
+  <li><a href="{{route('vinculoempregaticio')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Vinculo Empregaticio</a></li>
+<li><a href="{{route('lotacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Lotação</a></li>
   </ul>
 </li>
 <!---Parâmentro end--->

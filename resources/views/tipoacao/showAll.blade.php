@@ -12,17 +12,11 @@
   <h6 class="fw-semibold mb-0"> {{ __('Tipo Ação') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("tipoacao")}}" class="d-flex align-items-center gap-1 hover-text-primary"> {{-- Rota do link ajustada --}}
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Tipo Ação') }} {{-- Texto do link ajustado --}}
-      </a>
+     <a href="{{route("tipoacao.novo")}}" class="btn btn-primary ">Novo</a>
     </li>
   </ul>
 </div>
 
-<div class="d-flex justify-content-end">
-    <a href="{{route("tipoacao.novo")}}" class="btn btn-primary ">Novo</a> {{-- Rota do botão "Novo" ajustada --}}
-</div>
 <br>
 
 <div class="card basic-data-table">
