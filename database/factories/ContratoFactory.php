@@ -19,7 +19,7 @@ class ContratoFactory extends Factory
          $dataInicial = $this->faker->dateTimeBetween('-2 years', 'now');
         $dataFinal = $this->faker->dateTimeBetween($dataInicial, $dataInicial->format('Y-m-d').' +1 year');
         return [
-             'id' => Str::uuid(),
+        'id' => Str::uuid(),
         'entidade' => $this->faker->company(),
         'data_assinatura' => $this->faker->date(),
         'numero_contrato' => $this->faker->numerify('CTR#####'),

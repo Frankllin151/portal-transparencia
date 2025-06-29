@@ -20,8 +20,8 @@ return new class extends Migration
             $table->decimal('valor_unitario', 15, 2);
             $table->decimal('valor_total', 15, 2);
             // Chave estrangeira para contratos
-       // $table->uuid('contrato_id');
-         // $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
+      /// $table->uuid('contrato_id');
+         //$table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade');
             $table->timestamps();
         });
     }

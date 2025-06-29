@@ -59,6 +59,7 @@ class Contrato extends Model
 	];
 
 	protected $fillable = [
+		'id',
 		'entidade',
 		'data_assinatura',
 		'numero_contrato',

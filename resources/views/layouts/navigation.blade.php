@@ -145,6 +145,39 @@
     </li>
 <!----Servidores  End ---->
 
+<!--Contrato--->
+
+<li class="dropdown">
+ <a href="javascript:void(0)">
+    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
+    <span>Contrato</span> 
+  </a>
+  <ul class="sidebar-submenu">
+    <li><a href="{{route('contratos')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+    <li> <a href="{{route('contratos.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
+   
+  </ul>
+    </li>
+<!--Contrato end--->
+
+
+
+<!--Contrato Item--->
+
+<li class="dropdown">
+ <a href="javascript:void(0)">
+    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
+    <span>Contrato  Items</span> 
+  </a>
+  <ul class="sidebar-submenu">
+    <li><a href="{{route('contratos_item')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Todos</a></li>
+    <li> <a href="{{route('contratos_item.create')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Novo</a></li>
+   
+  </ul>
+    </li>
+<!--Contrato Item end--->
+
+
 <!---Parâmentro --->
 
 <li class="dropdown">
@@ -158,7 +191,8 @@
           <li><a href="{{route('tiporecurso')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Recurso</a></li>
     <li> <a href="{{route('tipoempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Empenho</a></li>
     <li><a href="{{route('tipoconta')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo de Conta</a></li>
-<li><a href="{{route('categoriaempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Categoria Empenho</a></li>
+<li><a href="{{route('tipocontrato')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo de Contrato</a></li>
+    <li><a href="{{route('categoriaempenho')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Categoria Empenho</a></li>
      <li> <a href="{{route('entidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Entidade</a></li>
       <li> <a href="{{route('unidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Unidade</a></li>
       <li><a href="{{route('nomeorgao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Nome Orgão</a></li>
@@ -174,7 +208,8 @@
   <li><a href="{{route('classificacaoafastamento')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação de Afastamento</a></li> 
   <li><a href="{{route('vinculoempregaticio')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Vinculo Empregaticio</a></li>
 <li><a href="{{route('lotacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Lotação</a></li>
-  </ul>
+<li><a href="{{route('modalidadelicitacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Modalidade Licitacão</a></li>  
+</ul>
 </li>
 <!---Parâmentro end--->
 

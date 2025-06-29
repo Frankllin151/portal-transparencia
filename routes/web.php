@@ -48,4 +48,8 @@ require __DIR__."/servidoresRoute.php";
 require __DIR__."/vinculoEmpregaticioRoute.php";
 require __DIR__."/classificacaoAfastamentoroute.php";
 require __DIR__."/lotacaoroute.php";
+require __DIR__."/tipoContratoRoute.php";
+require __DIR__."/ModalidadeLicitacaoRoute.php";
+require __DIR__."/ContratoRoute.php";
+require __DIR__."/ContratoItemRoute.php";
 require __DIR__.'/auth.php';

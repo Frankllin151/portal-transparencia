@@ -41,6 +41,7 @@ class ContratosItem extends Model
 	];
 
 	protected $fillable = [
+		'id',
 		'codigo_item_contrato',
 		'descricao_item_contrato',
 		'unidade_medida',
