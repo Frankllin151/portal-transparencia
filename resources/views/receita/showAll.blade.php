@@ -49,11 +49,9 @@
           <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $item->forma_ingresso}}</td>
-            <td>{{ $item->valor_arrecadado_acumulado}}</td>
-            <td>{{ $item->valor_orcado_atualizado}}</td>
-            <td>           
-            R$ {{ number_format($item->realizado_percentual , 2, ',', '.') }}
-            </td>
+            <td>{{ number_format($item->valor_arrecadado_acumulado, 2, ',', '.')}}</td>
+            <td>{{ number_format($item->valor_orcado_atualizado, 2, ',', '.')}}</td>
+            <td>% {{$item->realizado_percentual }}</td>
             <td>
               <a href="{{route('receita.show', $item->id)}}" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center" title="Visualizar">
                 <iconify-icon icon="iconamoon:eye-light"></iconify-icon>

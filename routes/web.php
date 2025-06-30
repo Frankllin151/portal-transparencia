@@ -1,11 +1,22 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use  App\Http\Controllers\TelaHomeController;
+use App\Http\Controllers\PublicaReceitaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Tela Publicas
+Route::get('/', [TelaHomeController::class, "index"])->name("main");
+Route::get("/publica/receitas", [PublicaReceitaController::class,"index"])
+->name("receitapublica");
+Route::get("/publica/receitas/prevista/x/realizada", [PublicaReceitaController::class, 
+"previstaRealizada"])
+->name('receita.prevista.x.realizada');
+Route::get("/publica/receita/orcamentaria", [PublicaReceitaController::class, 
+"ReceitaOrcamentaria"])
+->name("receita.orcamentaria");
+// Tela Publicas end
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -18,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // End configuração 
+
 
 require __DIR__."/despesa.php";
 require __DIR__."/processoslicitatorios.php";
