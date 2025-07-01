@@ -92,42 +92,42 @@
                   <label class="form-label">Valor Empenho</label>
                   <div class="input-group">
                     <span class="input-group-text bg-base">R$</span>
-                    <input type="number" name="valor_empenho" class="form-control" step="0.01" placeholder="0,00">
+                    <input type="text" name="valor_empenho" class="form-control money" placeholder="0,00">
                   </div>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Valor Liquidado</label>
                   <div class="input-group">
                     <span class="input-group-text bg-base">R$</span>
-                    <input type="number" name="valor_liquidado" class="form-control" step="0.01" placeholder="0,00">
+                    <input type="text" name="valor_liquidado" class="form-control money" placeholder="0,00">
                   </div>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Valor Pago</label>
                   <div class="input-group">
                     <span class="input-group-text bg-base">R$</span>
-                    <input type="number" name="valor_pago" class="form-control" step="0.01" placeholder="0,00">
+                    <input type="text" name="valor_pago" class="form-control money" placeholder="0,00">
                   </div>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Valor Orçado</label>
                   <div class="input-group">
                     <span class="input-group-text bg-base">R$</span>
-                    <input type="number" name="valor_orcado" class="form-control" step="0.01" placeholder="0,00">
+                    <input type="text" name="valor_orcado" class="form-control money" placeholder="0,00">
                   </div>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Valor Atualizado</label>
                   <div class="input-group">
                     <span class="input-group-text bg-base">R$</span>
-                    <input type="number" name="valor_atualizado" class="form-control" step="0.01" placeholder="0,00">
+                    <input type="text" name="valor_atualizado" class="form-control money" placeholder="0,00">
                   </div>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Valor Alterado</label>
                   <div class="input-group">
                     <span class="input-group-text bg-base">R$</span>
-                    <input type="number" name="valor_alterado" class="form-control" step="0.01" placeholder="0,00">
+                    <input type="text" name="valor_alterado" class="form-control money" placeholder="0,00">
                   </div>
                 </div>
               </div>
@@ -458,3 +458,13 @@
   </div>
 </div>
 </x-app-layout>
+
+<!-- jQuery (se ainda não estiver incluso) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('.money').mask('000.000.000.000.000,00', {reverse: true});
+});
+</script>
