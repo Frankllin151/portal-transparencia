@@ -90,8 +90,10 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor">Valor</label>
-                  <input type="number" step="0.01" name="valor" id="valor" class="form-control @error('valor') is-invalid @enderror"
-                         placeholder="0.00" value="{{ old('valor', $data->valor) }}" required>
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" step="0.01" name="valor" id="valor" class="form-control money @error('valor') is-invalid @enderror" placeholder="0,00" value="{{ old('valor', $data->valor) }}" required>
+                  </div>
                   @error('valor')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
@@ -139,3 +141,13 @@
 </div>
 
 </x-app-layout>
+
+<!-- jQuery (se ainda não estiver incluso) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('.money').mask('000.000.000.000.000,00', {reverse: true});
+});
+</script>

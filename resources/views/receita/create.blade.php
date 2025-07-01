@@ -115,56 +115,80 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label" for="valor_orcado_inicial">Valor Orçado Inicial</label>
-                  <input type="number" step="0.01" name="valor_orcado_inicial" id="valor_orcado_inicial" class="form-control @error('valor_orcado_inicial') is-invalid @enderror" placeholder="0.00" value="{{ old('valor_orcado_inicial') }}">
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" name="valor_orcado_inicial" id="valor_orcado_inicial" class="form-control money @error('valor_orcado_inicial') is-invalid @enderror" placeholder="0,00" value="{{ old('valor_orcado_inicial') }}">
+                  </div>
                   @error('valor_orcado_inicial')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_orcado_atualizado">Valor Orçado Atualizado</label>
-                  <input type="number" step="0.01" name="valor_orcado_atualizado" id="valor_orcado_atualizado" class="form-control @error('valor_orcado_atualizado') is-invalid @enderror" placeholder="0.00" value="{{ old('valor_orcado_atualizado') }}">
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" name="valor_orcado_atualizado" id="valor_orcado_atualizado" class="form-control money @error('valor_orcado_atualizado') is-invalid @enderror" placeholder="0,00" value="{{ old('valor_orcado_atualizado') }}">
+                  </div>
                   @error('valor_orcado_atualizado')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_deducoes_orcado">Valor Deduções Orçado</label>
-                  <input type="number" step="0.01" name="valor_deducoes_orcado" id="valor_deducoes_orcado" class="form-control @error('valor_deducoes_orcado') is-invalid @enderror" placeholder="0.00" value="{{ old('valor_deducoes_orcado') }}">
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" name="valor_deducoes_orcado" id="valor_deducoes_orcado" class="form-control money @error('valor_deducoes_orcado') is-invalid @enderror" placeholder="0,00" value="{{ old('valor_deducoes_orcado') }}">
+                  </div>
                   @error('valor_deducoes_orcado')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_arrecadado_mes">Valor Arrecadado Mês</label>
-                  <input type="number" step="0.01" name="valor_arrecadado_mes" id="valor_arrecadado_mes" class="form-control @error('valor_arrecadado_mes') is-invalid @enderror" placeholder="0.00" value="{{ old('valor_arrecadado_mes') }}">
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" name="valor_arrecadado_mes" id="valor_arrecadado_mes" class="form-control money @error('valor_arrecadado_mes') is-invalid @enderror" placeholder="0,00" value="{{ old('valor_arrecadado_mes') }}">
+                  </div>
                   @error('valor_arrecadado_mes')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_arrecadado_acumulado">Valor Arrecadado Acumulado</label>
-                  <input type="number" step="0.01" name="valor_arrecadado_acumulado" id="valor_arrecadado_acumulado" class="form-control @error('valor_arrecadado_acumulado') is-invalid @enderror" placeholder="0.00" value="{{ old('valor_arrecadado_acumulado') }}">
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" name="valor_arrecadado_acumulado" id="valor_arrecadado_acumulado" class="form-control money @error('valor_arrecadado_acumulado') is-invalid @enderror" placeholder="0,00" value="{{ old('valor_arrecadado_acumulado') }}">
+                  </div>
                   @error('valor_arrecadado_acumulado')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_deducoes_mes">Valor Deduções Mês</label>
-                  <input type="number" step="0.01" name="valor_deducoes_mes" id="valor_deducoes_mes" class="form-control @error('valor_deducoes_mes') is-invalid @enderror" placeholder="0.00" value="{{ old('valor_deducoes_mes') }}">
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" name="valor_deducoes_mes" id="valor_deducoes_mes" class="form-control money @error('valor_deducoes_mes') is-invalid @enderror" placeholder="0,00" value="{{ old('valor_deducoes_mes') }}">
+                  </div>
                   @error('valor_deducoes_mes')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_lancado_mes">Valor Lançado Mês</label>
-                  <input type="number" step="0.01" name="valor_lancado_mes" id="valor_lancado_mes" class="form-control @error('valor_lancado_mes') is-invalid @enderror" placeholder="0.00" value="{{ old('valor_lancado_mes') }}">
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" name="valor_lancado_mes" id="valor_lancado_mes" class="form-control money @error('valor_lancado_mes') is-invalid @enderror" placeholder="0,00" value="{{ old('valor_lancado_mes') }}">
+                  </div>
                   @error('valor_lancado_mes')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_lancado_periodo">Valor Lançado Período</label>
-                  <input type="number" step="0.01" name="valor_lancado_periodo" id="valor_lancado_periodo" class="form-control @error('valor_lancado_periodo') is-invalid @enderror" placeholder="0.00" value="{{ old('valor_lancado_periodo') }}">
+                  <div class="input-group">
+                    <span class="input-group-text bg-base">R$</span>
+                    <input type="text" name="valor_lancado_periodo" id="valor_lancado_periodo" class="form-control money @error('valor_lancado_periodo') is-invalid @enderror" placeholder="0,00" value="{{ old('valor_lancado_periodo') }}">
+                  </div>
                   @error('valor_lancado_periodo')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
@@ -203,3 +227,13 @@
 </div>
 
 </x-app-layout>
+
+<!-- jQuery (se ainda não estiver incluso) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('.money').mask('000.000.000.000.000,00', {reverse: true});
+});
+</script>
