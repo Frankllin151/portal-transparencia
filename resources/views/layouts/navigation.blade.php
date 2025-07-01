@@ -178,12 +178,12 @@
 <!--Contrato Item end--->
 
 
-<!---Parâmentro --->
+<!---Parâmetro --->
 
 <li class="dropdown">
   <a href="javascript:void(0)">
     <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
-    <span>Parâmentros</span> 
+    <span>Parâmetros</span> 
   </a>
   <ul class="sidebar-submenu">
      <li> <a href="{{route('tipopoder')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo Poder</a></li>
@@ -213,7 +213,7 @@
 
 </ul>
 </li>
-<!---Parâmentro end--->
+<!---Parâmetro end--->
 
   <!---Settings-->
       <li class="dropdown">
