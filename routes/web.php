@@ -13,8 +13,9 @@ Route::get("/publica/receitas/prevista/x/realizada", [PublicaReceitaController::
 "previstaRealizada"])
 ->name('receita.prevista.x.realizada');
 Route::get("/publica/receita/orcamentaria", [PublicaReceitaController::class, 
-"ReceitaOrcamentaria"])
-->name("receita.orcamentaria");
+"ReceitaOrcamentaria"])->name("receita.orcamentaria");
+Route::get("/publica/receitas/orcamentaria/diaria", [PublicaReceitaController::class,
+"VisualizaDiariaOrcamentaria"])->name("receita.orcamentaria.diaria");
 // Tela Publicas end
 
 
@@ -64,4 +65,5 @@ require __DIR__."/tipoContratoRoute.php";
 require __DIR__."/ModalidadeLicitacaoRoute.php";
 require __DIR__."/ContratoRoute.php";
 require __DIR__."/ContratoItemRoute.php";
+require __DIR__."/FormaJulgamentoRoute.php";
 require __DIR__.'/auth.php';

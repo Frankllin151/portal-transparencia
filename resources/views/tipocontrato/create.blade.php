@@ -7,15 +7,14 @@
            {{ __('Novo Tipo de Contrato') }} {{-- Título do cabeçalho ajustado --}}
         </h2>
     </x-slot>
-
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-  <h6 class="fw-semibold mb-0"> {{ __('Tipo Contrato') }}</h6> {{-- Título da seção ajustado --}}
+  <h6 class="fw-semibold mb-0"> {{ __('Tipo de Contrato') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("tipocontrato")}}" class="d-flex align-items-center gap-1 hover-text-primary"> {{-- Rota do link ajustada --}}
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Tipo Contrato') }} {{-- Texto do link ajustado --}}
-      </a>
+     <a href="{{ route('tipocontrato') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
+          Voltar
+        </a>
     </li>
   </ul>
 </div>

@@ -58,7 +58,7 @@
           </div>
         </div>
         <p class="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-          <a href="#" class="text-primary-main">Ver Detalhes</a>
+          <a href="{{route("receita.orcamentaria.diaria")}}" class="text-primary-main">Ver Detalhes</a>
         </p>
       </div>
     </div>

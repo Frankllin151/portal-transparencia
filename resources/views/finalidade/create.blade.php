@@ -7,13 +7,14 @@
            {{ __('Nova Finalidade') }} {{-- Título do cabeçalho ajustado --}}
         </h2>
     </x-slot>
-
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
   <h6 class="fw-semibold mb-0"> {{ __('Finalidade') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      
-    <a href="{{route("finalidade.novo")}}" class="btn btn-primary ">Novo</a>
+     <a href="{{ route('finalidade') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
+          Voltar
+        </a>
     </li>
   </ul>
 </div>

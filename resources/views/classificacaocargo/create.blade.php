@@ -7,16 +7,17 @@
            {{ __('Nova Classificação de Cargo') }} {{-- Título do cabeçalho ajustado --}}
         </h2>
     </x-slot>
-
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-  <h6 class="fw-semibold mb-0"> {{ __('Classificação Cargo') }}</h6> {{-- Título da seção ajustado --}}
+  <h6 class="fw-semibold mb-0"> {{ __('Classificação do Cargo') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("classificacaocargo.novo")}}" class="btn btn-primary ">Novo</a>
+     <a href="{{ route('classificacaocargo') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
+          Voltar
+        </a>
     </li>
   </ul>
 </div>
-
 <div class="row gy-4">
   <div class="col-lg-12">
     <div class="card">

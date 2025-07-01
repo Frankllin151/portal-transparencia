@@ -92,7 +92,7 @@
                   <label class="form-label">Valor Empenho</label>
                   <div class="input-group">
                     <span class="input-group-text bg-base">R$</span>
-                    <input type="number" name="valor_empenho" class="form-control" step="0.01" placeholder="0,00" required>
+                    <input type="number" name="valor_empenho" class="form-control" step="0.01" placeholder="0,00">
                   </div>
                 </div>
                 <div class="col-12">
@@ -177,7 +177,7 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Data Empenho</label>
-                  <input type="date" name="data_empenho" class="form-control" required>
+                  <input type="date" name="data_empenho" class="form-control" >
                 </div>
                 <div class="col-12">
                   <label class="form-label">Data Liquidação</label>
@@ -283,7 +283,7 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Nome Credor</label>
-                 <select name="credor_nome_" id="nome_credor" class="form-select" required>
+                 <select name="credor_nome" id="nome_credor" class="form-select" required>
       @foreach($dataNomecredor as $item)
         <option value="{{ $item->nome }}">{{ $item->nome }}</option>
       @endforeach

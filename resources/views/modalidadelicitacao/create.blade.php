@@ -7,12 +7,14 @@
            {{ __('Nova Modalidade de Licitação') }} {{-- Título do cabeçalho ajustado --}}
         </h2>
     </x-slot>
-
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-  <h6 class="fw-semibold mb-0"> {{ __('Modalidade Licitação') }}</h6> {{-- Título da seção ajustado --}}
+  <h6 class="fw-semibold mb-0"> {{ __('Modalidade Licitacão') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-     <a href="{{route("modalidadelicitacao.novo")}}">Novo</a>
+     <a href="{{ route('modalidadelicitacao') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
+          Voltar
+        </a>
     </li>
   </ul>
 </div>

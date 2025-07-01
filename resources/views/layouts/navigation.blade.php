@@ -201,6 +201,7 @@
     <li><a href="{{route('nomecredor')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Nome Credor</a></li>
      <li><a href="{{route('finalidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Finalidade</a></li>
       <li><a href="{{route('formaingresso')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Forma Ingresso</a></li>
+<li><a href="{{route('formajulgamento')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Forma Julgamento</a></li> 
        <li><a href="{{route('classificacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação</a></li>
  <li><a href="{{route('fonterecurso')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Fonte Recurso</a></li>
   <li><a href="{{route('situacaocargo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Situação Cargo</a></li>
@@ -209,6 +210,7 @@
   <li><a href="{{route('vinculoempregaticio')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Vinculo Empregaticio</a></li>
 <li><a href="{{route('lotacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Lotação</a></li>
 <li><a href="{{route('modalidadelicitacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Modalidade Licitacão</a></li>  
+
 </ul>
 </li>
 <!---Parâmentro end--->

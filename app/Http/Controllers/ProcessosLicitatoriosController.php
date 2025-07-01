@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Processoslicitatorio;
 use Illuminate\Support\Str;
+use App\Models\Situacaocargo;
+use App\Models\Entidade;
+use App\Models\ModalidadeLicitacao;
+use App\Models\FormaJulgamento;
 use Illuminate\Validation\ValidationException;
 class ProcessosLicitatoriosController extends Controller
 {
@@ -22,7 +26,14 @@ class ProcessosLicitatoriosController extends Controller
      */
     public function create()
     {
-       return view("processolct.create");
+      $dataSituacao = Situacaocargo::all();
+      $dataEntidade  = Entidade::all();
+      $dataModalidade = ModalidadeLicitacao::all();
+      $dataFormaJulgamento = FormaJulgamento::all();
+       return view("processolct.create", ["dataSituacao"=>$dataSituacao,
+       "dataEntidade" =>$dataEntidade , "dataModalidade" => $dataModalidade, 
+    "dataFormaJulgamento" =>$dataFormaJulgamento
+    ]);
     }
 
     /**
@@ -62,7 +73,7 @@ class ProcessosLicitatoriosController extends Controller
 
         } catch (ValidationException $e) {
            
-            return redirect()->back()->with('error', 'Erros nos inputs: ' . $e->errors())->withInput();
+            return redirect()->back()->with('error', 'Ocorreu um erro nos  inputs:');
         } catch (\Exception $e) {
           
             return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o processo licitatório: ' . $e->getMessage())->withInput();
@@ -87,13 +98,20 @@ class ProcessosLicitatoriosController extends Controller
      */
     public function edit(string $id)
     {
-
+          
          $dataId = Processoslicitatorio::find($id);
           if(!$dataId){
          abort(404, "Processos não encontrada");
       }
-    
-        return view("processolct.edit" , ["processo"=> $dataId]);
+         $dataSituacao = Situacaocargo::all();
+      $dataEntidade  = Entidade::all();
+      $dataModalidade = ModalidadeLicitacao::all();
+      $dataFormaJulgamento = FormaJulgamento::all();
+        return view("processolct.edit" , ["processo"=> $dataId,
+    "dataSituacao"=>$dataSituacao,
+       "dataEntidade" =>$dataEntidade , "dataModalidade" => $dataModalidade, 
+    "dataFormaJulgamento" =>$dataFormaJulgamento
+    ]);
     }
 
     /**

@@ -1,18 +1,18 @@
-
 <x-app-layout>
-    <!--IMPORTANTE NAO REMOVA O x-slot no front-end não vai aparece
+    <!--IMPORTANTE NAO REMOVA O x-slot no front-end não vai aparecer
     o componente navigation
     -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-           
+           {{ __('Nova Forma de Julgamento') }} {{-- Título do cabeçalho ajustado --}}
         </h2>
     </x-slot>
+
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-  <h6 class="fw-semibold mb-0"> {{ __('Entidade') }}</h6> {{-- Título da seção ajustado --}}
+  <h6 class="fw-semibold mb-0"> {{ __('Forma Julgamento') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-     <a href="{{ route('entidade') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+     <a href="{{ route('formajulgamento') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
           <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
           Voltar
         </a>
@@ -24,16 +24,15 @@
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title mb-0">Cadastro de Entidade</h5>
+        <h5 class="card-title mb-0">Cadastro de Forma Julgamento</h5> {{-- Título do card ajustado --}}
       </div>
       <div class="card-body">
-        <form action="{{ route('entidade.store') }}" method="POST" class="row gy-3 needs-validation" novalidate>
+        <form action="{{ route('formajulgamento.store') }}" method="POST" class="row gy-3 needs-validation" novalidate> {{-- Rota do formulário ajustada --}}
           @csrf
 
           <div class="col-md-6">
             <label class="form-label">Nome</label>
             <div class="icon-field has-validation">
-              
               <input type="text" name="nome" class="form-control" placeholder="Digite o nome" required>
               <div class="invalid-feedback">
                 Por favor, preencha o nome.
@@ -41,7 +40,6 @@
             </div>
           </div>
 
-          
           <div class="col-md-12">
             <button class="btn btn-primary-600" type="submit">Salvar</button>
           </div>
@@ -50,7 +48,5 @@
     </div>
   </div>
 </div>
-
-
 
 </x-app-layout>

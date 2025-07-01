@@ -49,7 +49,13 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Entidade</label>
-                  <input type="text" name="entidade" class="form-control" value="{{ $processo->entidade }}" placeholder="Nome da entidade">
+                   <select name="entidade" class="form-select" required>
+    @foreach ($dataEntidade as $item)
+      <option value="{{ $item->nome }}" {{ $processo->entidade == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
                 </div>
                 <div class="col-6">
                   <label class="form-label">Número Processo</label>
@@ -87,25 +93,25 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Modalidade</label>
-                  <select name="modalidade" class="form-select">
-                    <option value="Pregão" {{ $processo->modalidade == 'Pregão' ? 'selected' : '' }}>Pregão</option>
-                    <option value="Concorrência" {{ $processo->modalidade == 'Concorrência' ? 'selected' : '' }}>Concorrência</option>
-                    <option value="Tomada de Preços" {{ $processo->modalidade == 'Tomada de Preços' ? 'selected' : '' }}>Tomada de Preços</option>
-                    <option value="Convite" {{ $processo->modalidade == 'Convite' ? 'selected' : '' }}>Convite</option>
-                    <option value="Concurso" {{ $processo->modalidade == 'Concurso' ? 'selected' : '' }}>Concurso</option>
-                    <option value="Leilão" {{ $processo->modalidade == 'Leilão' ? 'selected' : '' }}>Leilão</option>
-                  </select>
+                  <select name="modalidade" class="form-select" required>
+    @foreach ($dataEntidade as $item)
+      <option value="{{ $item->nome }}" {{ $processo->modalidade == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
+                 
                 </div>
                 <div class="col-12">
                   <label class="form-label">Forma Contratação</label>
-                  <select name="forma_contratacao" class="form-select">
-                    <option value="Pregão" {{ $processo->forma_contratacao == 'Pregão' ? 'selected' : '' }}>Pregão</option>
-                    <option value="Concorrência" {{ $processo->forma_contratacao == 'Concorrência' ? 'selected' : '' }}>Concorrência</option>
-                    <option value="Tomada de Preços" {{ $processo->forma_contratacao == 'Tomada de Preços' ? 'selected' : '' }}>Tomada de Preços</option>
-                    <option value="Convite" {{ $processo->forma_contratacao == 'Convite' ? 'selected' : '' }}>Convite</option>
-                    <option value="Dispensa" {{ $processo->forma_contratacao == 'Dispensa' ? 'selected' : '' }}>Dispensa</option>
-                    <option value="Inexigibilidade" {{ $processo->forma_contratacao == 'Inexigibilidade' ? 'selected' : '' }}>Inexigibilidade</option>
-                  </select>
+                   <select name="forma_contratacao" class="form-select" required>
+    @foreach ($dataSituacao as $item)
+      <option value="{{ $item->nome }}" {{  $processo->forma_contratacao == $item->nome? 'selected' : '' }}>
+        {{ $item->nome }}
+      </option>
+    @endforeach
+  </select>
+                 
                 </div>
                 <div class="col-12">
                   <label class="form-label">Forma Julgamento</label>

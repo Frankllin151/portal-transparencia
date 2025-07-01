@@ -48,7 +48,11 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Entidade</label>
-                  <input type="text" name="entidade" class="form-control" placeholder="Nome da entidade">
+                  <select name="entidade" id="entidade" required  class="form-select">
+                  @foreach($dataEntidade as $item)
+                      <option value="{{$item->nome}}">{{$item->nome}}</option>
+                  @endforeach
+                 </select>
                 </div>
                 <div class="col-6">
                   <label class="form-label">Número Processo</label>
@@ -86,36 +90,29 @@
                 <div class="col-12">
                   <label class="form-label">Modalidade</label>
                   <select name="modalidade" class="form-select">
-                    <option value="">Selecione a Modalidade</option>
-                    <option value="Pregão">Pregão</option>
-                    <option value="Concorrência">Concorrência</option>
-                    <option value="Tomada de Preços">Tomada de Preços</option>
-                    <option value="Convite">Convite</option>
-                    <option value="Concurso">Concurso</option>
-                    <option value="Leilão">Leilão</option>
+                    @foreach($dataModalidade as $item)
+                    <option value="{{$item->nome}}">{{$item->nome}}</option>
+                    @endforeach
+                    
                   </select>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Forma Contratação</label>
-                  <select name="forma_contratacao" class="form-select">
-                    <option value="">Selecione a Forma de Contratação</option>
-                    <option value="Pregão">Pregão</option>
-                    <option value="Concorrência">Concorrência</option>
-                    <option value="Tomada de Preços">Tomada de Preços</option>
-                    <option value="Convite">Convite</option>
-                    <option value="Dispensa">Dispensa</option>
-                    <option value="Inexigibilidade">Inexigibilidade</option>
+                   <select name="forma_contratacao" class="form-select">
+                  @foreach($dataModalidade as $item)
+                       <option value="{{$item->nome}}">{{$item->nome}}</option>
+                  @endforeach
                   </select>
+                   
                 </div>
                 <div class="col-12">
                   <label class="form-label">Forma Julgamento</label>
-                  <select name="forma_julgamento" class="form-select">
-                    <option value="">Selecione a Forma de Julgamento</option>
-                    <option value="Menor Preço">Menor Preço</option>
-                    <option value="Melhor Técnica">Melhor Técnica</option>
-                    <option value="Técnica e Preço">Técnica e Preço</option>
-                    <option value="Maior Lance">Maior Lance</option>
+                   <select name="forma_julgamento" class="form-select">
+                  @foreach($dataFormaJulgamento as $item)
+                       <option value="{{$item->nome}}">{{$item->nome}}</option>
+                  @endforeach
                   </select>
+                 
                 </div>
                 <div class="col-12">
                   <label class="form-label">Registro de Preços</label>
@@ -140,14 +137,11 @@
               <div class="row gy-3">
                 <div class="col-12">
                   <label class="form-label">Situação</label>
-                  <select name="situacao" class="form-select">
-                    <option value="">Selecione a Situação</option>
-                    <option value="Em andamento">Em andamento</option>
-                    <option value="Concluído">Concluído</option>
-                    <option value="Suspenso">Suspenso</option>
-                    <option value="Cancelado">Cancelado</option>
-                    <option value="Deserto">Deserto</option>
-                    <option value="Fracassado">Fracassado</option>
+                  <select name="situacao" class="form-select" required>
+                    @foreach($dataSituacao as $item)
+                    <option value="{{$item->nome}}">{{$item->nome}}</option>
+                    @endforeach
+                   
                   </select>
                 </div>
                 <div class="col-12">
@@ -202,38 +196,7 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Estado do Certame</label>
-                  <select name="estado_certame" class="form-select">
-                    <option value="">Selecione o Estado</option>
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
-                    <option value="NC">NC</option>
-                    <option value="DC">DC</option>
-                  </select>
+                   <input type="text" name="estado_certame" class="form-control" placeholder="Estado certame">
                 </div>
                 <div class="col-12">
                   <label class="form-label">Nome do Contato</label>
