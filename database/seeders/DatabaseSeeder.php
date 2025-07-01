@@ -37,7 +37,30 @@ class DatabaseSeeder extends Seeder
         Receitasdespesasextraorcamentarium::factory()->count(10)->create();
         Pagamentosreceitasdespesasextraorcamentarium::factory()->count(3)->create();
 
-
-       
+        $this->call([
+            TipoPoderSeeder::class,
+            TipoacaoSeeder::class,
+            TiporecursoSeeder::class,
+            TipoEmpenhoSeeder::class,
+            TipoContaSeeder::class,
+            TipoContratoSeeder::class,
+            CategoriaEmpenhoSeeder::class,
+            EntidadeSeeder::class,
+            UnidadeSeeder::class,
+            NomeorgaoSeeder::class,
+            NaturezaReceitumSeeder::class,
+            NaturezajuridicaSeeder::class,
+            NomecredorSeeder::class,
+            FinalidadeSeeder::class,
+            FormaingressoSeeder::class,
+            FormaJulgamentoSeeder::class,
+            ClassificacaoSeeder::class,
+            SituacaocargoSeeder::class,
+            ClassificacaocargoSeeder::class,
+            ClassificacaoAfastamentoSeeder::class,
+            VinculoempregaticioSeeder::class,
+            LotacaoSeeder::class,
+            ModalidadeLicitacaoSeeder::class,
+        ]);
     }
 }
