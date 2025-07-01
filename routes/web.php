@@ -1,22 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use  App\Http\Controllers\TelaHomeController;
-use App\Http\Controllers\PublicaReceitaController;
 use Illuminate\Support\Facades\Route;
 
-// Tela Publicas
-Route::get('/', [TelaHomeController::class, "index"])->name("main");
-Route::get("/publica/receitas", [PublicaReceitaController::class,"index"])
-->name("receitapublica");
-Route::get("/publica/receitas/prevista/x/realizada", [PublicaReceitaController::class, 
-"previstaRealizada"])
-->name('receita.prevista.x.realizada');
-Route::get("/publica/receita/orcamentaria", [PublicaReceitaController::class, 
-"ReceitaOrcamentaria"])->name("receita.orcamentaria");
-Route::get("/publica/receitas/orcamentaria/diaria", [PublicaReceitaController::class,
-"VisualizaDiariaOrcamentaria"])->name("receita.orcamentaria.diaria");
-// Tela Publicas end
 
 
 Route::get('/dashboard', function () {

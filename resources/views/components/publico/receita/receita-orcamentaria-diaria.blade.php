@@ -1,7 +1,44 @@
+
+<br>
+<br>
 <div class="container">
-<p>{{$quantidadeDados}}</p>
-<p>{{number_format($totalValorOrcadoAtualizado, 2,"," , ".") }}</p>
-<p>{{number_format($totalValorLancadoPeriodo,2, "," ,  ".")}}</p>
+    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
+
+  <div class="col">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div>
+            <p class="fw-medium text-primary-light mb-1"></p>
+            <h6 class="mb-0">Total Registro: {{$quantidadeDados}}</h6> </div>
+          
+        </div>
+</div>
+
+  <div class="col">
+     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div>
+            <p class="fw-medium text-primary-light mb-1"></p>
+            <h6 class="mb-0">Valor Orçado Atualizado: R${{number_format($totalValorOrcadoAtualizado, 2,"," , ".") }}</h6> </div>
+          
+        </div>
+    </div>
+
+    <div class="col">
+ <div class="col">
+     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div>
+            <p class="fw-medium text-primary-light mb-1"></p>
+            <h6 class="mb-0">Valor Arrecado da receita no periodo:  R$ {{number_format($totalValorLancadoPeriodo,2, "," ,  ".")}}</h6> </div>
+          
+        </div>
+
+    </div>
+    </div>
+
+
+    </div>
+    <br>
+    <br>
+    <hr>
 <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
     @foreach ($receitaOrcamentaria as $receita)
     <div class="col">

@@ -45,7 +45,7 @@
     </head>
     <body>
    <x-header></x-header>
-  <x-receitas-publicar></x-receitas-publicar>
+  <x-pessoal-despesas></x-pessoal-despesas>
   <x-footer></x-footer>
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>

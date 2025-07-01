@@ -2,6 +2,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DespesasController;
+use App\Http\Controllers\PublicoDespesasController;
 // Despesas
 Route::get("/dashboard/despesas",[DespesasController::class, "index"])
 ->middleware(['auth', 'verified'])->name('despesas');
@@ -21,3 +22,9 @@ Route::post("/despesas/store", [DespesasController::class, 'store'])
 //End Despesas
 
 
+//Tela publica Despesas 
+Route::get("/publico/despesas", [PublicoDespesasController::class, "index"])
+->name("publico.despesas");
+Route::get("/publico/despesas/pessoal", [PublicoDespesasController::class,  "DespesasPessoal"])
+->name("publico.despesas.pessoal");
+//Tela Publica Depesas End
