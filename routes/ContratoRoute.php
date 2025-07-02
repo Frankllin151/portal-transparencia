@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ContratoController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PublicoContratoController;
 
 // Rota para listar todos os contratos
 Route::get("/dashboard/contratos", [ContratoController::class, "index"])
@@ -38,3 +38,19 @@ Route::put("/dashboard/contratos/{id}/editar", [ContratoController::class, "upda
 Route::delete('/dashboard/contratos/{id}/delete', [ContratoController::class, 'destroy'])
     ->middleware(['auth', 'verified'])
     ->name('contratos.destroy');
+
+
+
+//Tela publica
+Route::get("/publico/contrato",
+ [PublicoContratoController::class, "index"] )->name("pulico.contrato");
+
+
+// 2. Contratos
+Route::get("/publico/contrato/lista", [PublicoContratoController::class, "contratos"])
+    ->name("publico.contrato.lista");
+
+// 3. Fiscais dos Contratos
+Route::get("/publico/contrato/fiscais", [PublicoContratoController::class, "fiscais"])
+    ->name("publico.contrato.fiscais");
+// Tela publica end

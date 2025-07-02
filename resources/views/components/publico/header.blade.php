@@ -14,28 +14,26 @@
           <a class="nav-link active" aria-current="page" href="{{route("main")}}">Início</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Receitas</a>
+          <a class="nav-link" href="{{route("receitapublica")}}">Receitas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Despesas</a>
+          <a class="nav-link" href="{{route("publico.despesas")}}">Despesas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Servidores</a>
+          <a class="nav-link" href="{{route("publico.servidores")}}">Servidores</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Mais
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Convênios</a></li>
-            <li><a class="dropdown-item" href="#">Licitações</a></li>
+            <li><a class="dropdown-item" href="{{route("publico.relatorio")}}">Relatório</a></li>
+            <li><a class="dropdown-item" href="{{route("publico.processos")}}">Licitações</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Perguntas Frequentes</a></li>
+           
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contato</a>
-        </li>
+       
       </ul>
       <form class="d-flex ms-lg-3 mt-2 mt-lg-0">
         <input class="form-control me-2" type="search" placeholder="Pesquisar no portal..." aria-label="Pesquisar">

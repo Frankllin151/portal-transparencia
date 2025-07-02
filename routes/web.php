@@ -52,4 +52,6 @@ require __DIR__."/ModalidadeLicitacaoRoute.php";
 require __DIR__."/ContratoRoute.php";
 require __DIR__."/ContratoItemRoute.php";
 require __DIR__."/FormaJulgamentoRoute.php";
+require __DIR__."/relatorioRoutes.php";
+require __DIR__."/comprasDiretasRoutes.php";
 require __DIR__.'/auth.php';

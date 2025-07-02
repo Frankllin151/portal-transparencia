@@ -1,5 +1,6 @@
 <?php 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\publicoExecucaoExtraOrcamentariaController;
 use App\Http\Controllers\ReceiDesPexTraController;
 
 Route::get("/dashboard/receita/despesa/extra/orcamentaria", 
@@ -28,3 +29,11 @@ Route::put("/dashboard/extra/orcamentaria/{id}/receita",
 Route::delete("/dashboard/extra/{id}/orcamentaria/receita", 
 [ReceiDesPexTraController::class, "destroy"])
 ->middleware(['auth', 'verified'])->name('despreceitaex.destroy');
+
+
+
+//Tela publica 
+Route::get("/publico/execucao/extraorcamentaria", 
+[publicoExecucaoExtraOrcamentariaController::class, "index"])
+->name("publico.execucao.extraorcamentaria");
+//Tela publica end

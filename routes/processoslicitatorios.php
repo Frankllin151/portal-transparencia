@@ -1,6 +1,7 @@
 <?php 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProcessosLicitatoriosController;
+use App\Http\Controllers\PublicoProcessosLicitatoriosController;
 
 Route::get('/processo/licitatorio',[ProcessosLicitatoriosController::class, 'index'])
 ->middleware(['auth', 'verified'])->name('processo');
@@ -16,3 +17,23 @@ Route::post("/processo/create",[ProcessosLicitatoriosController::class, 'store']
 ->middleware(['auth', 'verified'])->name('processo.store');
 Route::delete('/processo/delete/{id}', [ProcessosLicitatoriosController::class, 'destroy'])
 ->middleware(['auth', 'verified'])->name('processo.delete');
+
+
+
+/// Telas publicas 
+Route::get("publico/processos", [PublicoProcessosLicitatoriosController::class, "index"])
+->name("publico.processos");
+
+
+// 1. Dispensa de Licitação
+Route::get("publico/processos/dispensa", [PublicoProcessosLicitatoriosController::class, "dispensa"])
+    ->name("publico.processos.dispensa");
+
+// 2. Processos Licitatórios (ativos ou em andamento)
+Route::get("publico/processos/licitacoes", [PublicoProcessosLicitatoriosController::class, "licitacoes"])
+    ->name("publico.processos.licitacoes");
+
+// 3. Processos Licitatórios Finalizados
+Route::get("publico/processos/finalizados", [PublicoProcessosLicitatoriosController::class, "finalizados"])
+    ->name("publico.processos.finalizados");
+// Telas publicas end

@@ -21,7 +21,7 @@ class PessoalDespesas extends Component
     $this->ValorAlterado = Despesa::sum("valor_alterado");
     $this->ValorEmpenho =  Despesa::sum("valor_empenho");
     $this->QuantidadeRegistro = Despesa::count();
-    $this->TodosRegistroLoop   = Despesa::orderBy("updated_at",  "desc");
+    $this->TodosRegistroLoop   = Despesa::orderBy("updated_at",  "desc")->get();
 
         // quantidade de registro
         //valor_empenho , valor_alterado ,

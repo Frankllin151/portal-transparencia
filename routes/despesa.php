@@ -2,6 +2,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DespesasController;
+use App\Http\Controllers\PublicaReceitaController;
 use App\Http\Controllers\PublicoDespesasController;
 // Despesas
 Route::get("/dashboard/despesas",[DespesasController::class, "index"])
@@ -25,6 +26,22 @@ Route::post("/despesas/store", [DespesasController::class, 'store'])
 //Tela publica Despesas 
 Route::get("/publico/despesas", [PublicoDespesasController::class, "index"])
 ->name("publico.despesas");
+
 Route::get("/publico/despesas/pessoal", [PublicoDespesasController::class,  "DespesasPessoal"])
 ->name("publico.despesas.pessoal");
+
+Route::get("/publico/despesas/diarias/viagens", [PublicoDespesasController::class, 
+"DespesasDiariaEViagens"])->name("publico.despesas.diario.viagens");
+
+Route::get("/publico/despesas/orcamentaria", [PublicoDespesasController::class, "DespesasOrcamentaria"])
+->name("publico.despesas.orcamentaria");
+
+Route::get("publico/despesas/credor",[PublicoDespesasController::class, "Credor"])
+->name("despesas.credor");
+
+Route::get("publico/despesas/programas/acoes", [PublicoDespesasController::class, "ProgramasAcaoes"])
+->name("publico.despesas.acoes");
+
+Route::get("publico/despesas/execucao/detalhada",[PublicoDespesasController::class, "ExecucaoDetalhadaDedepesas"])
+->name("publico.despesas.execucao.detalhada");
 //Tela Publica Depesas End

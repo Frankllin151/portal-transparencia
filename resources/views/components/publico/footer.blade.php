@@ -11,10 +11,26 @@
         <h5 class="text-uppercase text-light mb-4 fw-bold ">Links Úteis</h5>
     
         <ul class="list-unstyled">
-          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Legislação</a></li>
-          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Dados Abertos</a></li>
-          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">SIC (Serviço de Informação ao Cidadão)</a></li>
-          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none hover-white">Ouvidoria</a></li>
+        <li class="mb-2">
+    <a href="{{ route('publico.despesas') }}" class="text-white-50 text-decoration-none hover-white">
+      Despesas
+    </a>
+  </li>
+  <li class="mb-2">
+    <a href="{{ route('publico.relatorio') }}" class="text-white-50 text-decoration-none hover-white">
+      Relatórios
+    </a>
+  </li>
+  <li class="mb-2">
+    <a href="{{ route('publico.processos') }}" class="text-white-50 text-decoration-none hover-white">
+      Processos Licitatórios
+    </a>
+  </li>
+  <li class="mb-2">
+    <a href="{{ route('publico.compras.diretas') }}" class="text-white-50 text-decoration-none hover-white">
+      Compras Diretas
+    </a>
+  </li>
         </ul>
       </div>
       <div class="col-md-4 mb-4">
