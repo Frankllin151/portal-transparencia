@@ -73,40 +73,14 @@ class ProfileController extends Controller
     $ValorDepesasaPaga = Despesa::sum("valor_pago");
     $Receita = Receitum::sum("valor_orcado_inicial");
     $processo = Processoslicitatorio::count();
-    $totalRemuneracaoContratual = Servidore::sum('remuneracao_contratual');
-    $percetualBancario = $this->percetual( $totalRemuneracaoContratual );
+    $totalRemuneracaoContratualRegistro = Servidore::count();
+    
        return view('dashboard', ["pagamentoValor" => $pagamentoValor,
     "valorPagoDepesaPaga" => $ValorDepesasaPaga, 
     "processo" => $processo, 
     "Receita" => $Receita, 
-    "percetualBancario" => $percetualBancario
+    'totalRemuneracaoContratualRegistro' =>  $totalRemuneracaoContratualRegistro, 
     ]);
     }
 
-    private function percetual($totalRemuneracaoContratual )
-    {
-    
-
-// 2. Se você quer o percentual de cada movimentação em relação ao total:
-$movimentacoes = Servidore::all();
-
-$percentuaisPorMovimentacao = [];
-
-foreach ($movimentacoes as $movimentacao) {
-    if ($totalRemuneracaoContratual > 0) {
-        $percentual = ($movimentacao->remuneracao_contratual / $totalRemuneracaoContratual) * 100;
-        $percentuaisPorMovimentacao[] = [
-            'id' => $movimentacao->id,
-            'remuneracao_contratual' => $movimentacao->remuneracao_contratual,
-            'percentual' => round($percentual, 2) // Arredonda para 2 casas decimais
-        ];
-    } else {
-        $percentuaisPorMovimentacao[] = [
-            'id' => $movimentacao->id,
-            'remuneracao_contratual' => $movimentacao->remuneração_contratual,
-            'percentual' => 0 // Se o total for zero, o percentual é zero
-        ];
-    }
-}
-    }
 }

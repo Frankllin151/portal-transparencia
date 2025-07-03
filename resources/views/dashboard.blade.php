@@ -201,7 +201,7 @@
                           <div class="progress-bar bg-indigo rounded-pill" style="width: 70%;"></div>
                         </div>
                       </div>
-                      <span class="text-secondary-light font-xs fw-semibold">70%</span>
+                      <span class="text-secondary-light font-xs fw-semibold">{{$totalRemuneracaoContratualRegistro}}%</span>
                     </div>
                   </div>
 
@@ -214,7 +214,7 @@
             <div class="card h-100 radius-8 border-0 overflow-hidden">
               <div class="card-body p-24">
                 <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                  <h6 class="mb-2 fw-bold text-lg">Customer Overview</h6>
+
                   <div class="">
                     <select class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
                      <option>Mes</option>
