@@ -34,7 +34,7 @@
                       </span>
                       <div>
                         <span class="mb-2 fw-medium text-secondary-light text-sm">Pagamentos</span>
-                        <h6 class="fw-semibold">R$ 1,800.000</h6>
+                        <h6 class="fw-semibold">R$ {{number_format($pagamentoValor, 2,"," , ".")}}</h6>
                       </div>
                     </div>
                   
@@ -56,7 +56,7 @@
                       </span>
                       <div>
                         <span class="mb-2 fw-medium text-secondary-light text-sm">Receitas</span>
-                        <h6 class="fw-semibold">8,000</h6>
+                        <h6 class="fw-semibold">R$ {{number_format($Receita, 2, ",", ".")}}</h6>
                       </div>
                     </div>
                   
@@ -78,7 +78,7 @@
                       </span>
                       <div>
                         <span class="mb-2 fw-medium text-secondary-light text-sm">Depesas</span>
-                        <h6 class="fw-semibold">R$ 2,500,000</h6>
+                        <h6 class="fw-semibold">R$ {{number_format($valorPagoDepesaPaga, 2, ",",".")}}</h6>
                       </div>
                     </div>
                   
@@ -100,7 +100,7 @@
                       </span>
                       <div>
                         <span class="mb-2 fw-medium text-secondary-light text-sm">Licitações</span>
-                        <h6 class="fw-semibold">25 Processos</h6>
+                        <h6 class="fw-semibold">{{$processo}} Processos</h6>
                       </div>
                     </div>
                   
@@ -124,13 +124,13 @@
             <div class="card h-100 radius-8 border-0">
               <div class="card-body p-24">
                 <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-                  <h6 class="mb-2 fw-bold text-lg">Campaigns</h6>
+                  <h6 class="mb-2 fw-bold text-lg">Movimento Bancaria</h6>
                   <div class="">
                     <select class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
-                      <option>Yearly</option>
-                      <option>Monthly</option>
-                      <option>Weekly</option>
-                      <option>Today</option>
+                      <option>Mes</option>
+                      <option>Ano</option>
+                      <option>Semana</option>
+                      
                     </select>
                   </div>
                 </div>
@@ -142,7 +142,7 @@
                       <span class="text-xxl line-height-1 d-flex align-content-center flex-shrink-0 text-orange">
                         <iconify-icon icon="majesticons:mail" class="icon"></iconify-icon>
                       </span>
-                      <span class="text-primary-light fw-medium text-sm ps-12">Email</span>
+                      <span class="text-primary-light fw-medium text-sm ps-12">Contrato</span>
                     </div>
                     <div class="d-flex align-items-center gap-2 w-100">
                       <div class="w-100 max-w-66 ms-auto">
@@ -159,7 +159,7 @@
                       <span class="text-xxl line-height-1 d-flex align-content-center flex-shrink-0 text-success-main">
                         <iconify-icon icon="eva:globe-2-fill" class="icon"></iconify-icon>
                       </span>
-                      <span class="text-primary-light fw-medium text-sm ps-12">Website</span>
+                      <span class="text-primary-light fw-medium text-sm ps-12">Movimento Bancaria</span>
                     </div>
                     <div class="d-flex align-items-center gap-2 w-100">
                       <div class="w-100 max-w-66 ms-auto">
@@ -174,9 +174,9 @@
                   <div class="d-flex align-items-center justify-content-between gap-3 mb-12">
                     <div class="d-flex align-items-center">
                       <span class="text-xxl line-height-1 d-flex align-content-center flex-shrink-0 text-info-main">
-                        <iconify-icon icon="fa6-brands:square-facebook" class="icon"></iconify-icon>
+                      <iconify-icon icon="mdi:trending-up"></iconify-icon>
                       </span>
-                      <span class="text-primary-light fw-medium text-sm ps-12">Facebook</span>
+                      <span class="text-primary-light fw-medium text-sm ps-12">Cargos</span>
                     </div>
                     <div class="d-flex align-items-center gap-2 w-100">
                       <div class="w-100 max-w-66 ms-auto">
@@ -193,7 +193,7 @@
                       <span class="text-xxl line-height-1 d-flex align-content-center flex-shrink-0 text-indigo">
                         <iconify-icon icon="fluent:location-off-20-filled" class="icon"></iconify-icon>
                       </span>
-                      <span class="text-primary-light fw-medium text-sm ps-12">Email</span>
+                      <span class="text-primary-light fw-medium text-sm ps-12">Servidores</span>
                     </div>
                     <div class="d-flex align-items-center gap-2 w-100">
                       <div class="w-100 max-w-66 ms-auto">
@@ -217,10 +217,9 @@
                   <h6 class="mb-2 fw-bold text-lg">Customer Overview</h6>
                   <div class="">
                     <select class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
-                      <option>Yearly</option>
-                      <option>Monthly</option>
-                      <option>Weekly</option>
-                      <option>Today</option>
+                     <option>Mes</option>
+                      <option>Ano</option>
+                      <option>Semana</option>
                     </select>
                   </div>
                 </div>
