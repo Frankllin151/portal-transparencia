@@ -14,7 +14,9 @@ class PublicoComprasDiretas extends Controller
         //valor
        $data = Pagamentosreceitasdespesasextraorcamentarium::with("Receitasdespesasextraorcamentarium")
        ->get();
+        $Valor= Pagamentosreceitasdespesasextraorcamentarium::sum("valor");
        $total = Pagamentosreceitasdespesasextraorcamentarium::count();
-        return view("comprasdiretas.listacompras", ["data" => $data, "total" => $total]);
+        return view("comprasdiretas.listacompras", ["data" => $data, 
+        "total" => $total, "Valor" => $Valor]);
     }
 }

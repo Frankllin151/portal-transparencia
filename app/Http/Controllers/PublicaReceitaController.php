@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Receitum;
+use Illuminate\Support\Facades\DB;
 class PublicaReceitaController extends Controller
 {
     /**
@@ -17,12 +18,35 @@ class PublicaReceitaController extends Controller
 
    public function previstaRealizada()
    {
-    return  view("receita.previstaXrealizada");
+   $dataGrafico = Receitum::select(
+                DB::raw('YEAR(updated_at) as ano'),
+                DB::raw('SUM(valor_orcado_atualizado) as total_orcado')
+            )
+            ->groupBy('ano')
+            ->orderBy('ano', 'desc') // Opcional: ordenar os anos
+            ->get();
+          
+    return  view("receita.previstaXrealizada", ["dataGrafico"=>  $dataGrafico]);
    }
 
   public function ReceitaOrcamentaria()
   {
-    return view("receita.receitaOrcamentaria");
+    $valorAtulizao = Receitum::select(
+                DB::raw('YEAR(updated_at) as ano'),
+                DB::raw('SUM(valor_orcado_atualizado) as total_orcado')
+            )
+            ->groupBy('ano')
+            ->orderBy('ano', 'desc') // Opcional: ordenar os anos
+            ->get();
+  $ValorArrecado = Receitum::select(
+                DB::raw('YEAR(updated_at) as ano'),
+                DB::raw('SUM(valor_arrecadado_acumulado) as total_orcado')
+            )
+            ->groupBy('ano')
+            ->orderBy('ano', 'desc') // Opcional: ordenar os anos
+            ->get();
+    return view("receita.receitaOrcamentaria", ["valorAtulizao" => $valorAtulizao , 
+    "ValorArrecado" => $ValorArrecado ]);
   }
 
 

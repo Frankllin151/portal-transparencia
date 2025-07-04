@@ -62,137 +62,92 @@
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
 
-
-
   <script>
+  // ================================ Preparação dos Dados ================================
+  const valorAtulizaoRaw = @json($valorAtulizao);
+  const ValorArrecadoRaw = @json($ValorArrecado);
 
-  // ================================ Revenue Growth Area Chart Start ================================ 
-  function createChartTwo(chartId, chartColor) {
-    
-    var options = {
-      series: [
-          {
-            name: 'This Day',
-            data: [4, 18, 13, 40, 30, 50, 30, 60, 40, 75, 45, 90],
-          },
-      ],
+  // Mapeia os dados para o formato que o ApexCharts espera
+  // Precisamos garantir que ambos os arrays de dados tenham os mesmos anos e na mesma ordem
+  // Primeiro, colete todos os anos únicos e ordene-os
+  const allYears = [...new Set([
+      ...valorAtulizaoRaw.map(item => item.ano),
+      ...ValorArrecadoRaw.map(item => item.ano)
+  ])].sort((a, b) => a - b); // Ordena os anos de forma ascendente
+
+  // Mapeia os valores orçados e arrecadados para cada ano, garantindo que haja um valor para cada ano
+  const valorAtulizaoData = allYears.map(year => {
+      const found = valorAtulizaoRaw.find(item => item.ano === year);
+      return found ? found.total_orcado : 0; // Se não encontrar, assume 0
+  });
+
+  const ValorArrecadoData = allYears.map(year => {
+      const found = ValorArrecadoRaw.find(item => item.ano === year);
+      return found ? found.total_orcado : 0; // Se não encontrar, assume 0
+  });
+
+  // ================================ Configuração do Gráfico ================================
+  var options = {
+      series: [{
+          name: "Valor Orçado Atualizado",
+          data: valorAtulizaoData
+      }, {
+          name: "Valor Arrecadado Acumulado",
+          data: ValorArrecadoData
+      }],
       chart: {
-          type: 'area',
-          width: '100%',
-          height: 162,
-          sparkline: {
-            enabled: false // Remove whitespace
-          },
+          type: 'bar',
+          height: 350, // Aumente a altura para melhor visualização
           toolbar: {
               show: false
           },
-          padding: {
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0
-          }
+      },
+      plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '50%', // Ajuste a largura das colunas
+            endingShape: 'rounded'
+          },
       },
       dataLabels: {
           enabled: false
       },
       stroke: {
-          curve: 'smooth',
-          width: 2,
-          colors: [chartColor],
-          lineCap: 'round'
-      },
-      grid: {
           show: true,
-          borderColor: 'red',
-          strokeDashArray: 0,
-          position: 'back',
-          xaxis: {
-              lines: {
-                  show: false
-              }
-          },   
-          yaxis: {
-              lines: {
-                  show: false
-              }
-          },  
-          row: {
-              colors: undefined,
-              opacity: 0.5
-          },  
-          column: {
-              colors: undefined,
-              opacity: 0.5
-          },  
-          padding: {
-              top: -30,
-              right: 0,
-              bottom: -10,
-              left: 0
-          },  
-      },
-      fill: {
-          type: 'gradient',
-          colors: [chartColor], // Set the starting color (top color) here
-          gradient: {
-              shade: 'light', // Gradient shading type
-              type: 'vertical',  // Gradient direction (vertical)
-              shadeIntensity: 0.5, // Intensity of the gradient shading
-              gradientToColors: [`${chartColor}00`], // Bottom gradient color (with transparency)
-              inverseColors: false, // Do not invert colors
-              opacityFrom: .6, // Starting opacity
-              opacityTo: 0.3,  // Ending opacity
-              stops: [0, 100],
-          },
-      },
-      // Customize the circle marker color on hover
-      markers: {
-        colors: [chartColor],
-        strokeWidth: 3,
-        size: 0,
-        hover: {
-          size: 10
-        }
+          width: 2,
+          colors: ['transparent']
       },
       xaxis: {
-          labels: {
-              show: false
-          },
-          categories: [`Jan`, `Feb`, `Mar`, `Apr`, `May`, `Jun`, `Jul`, `Aug`, `Sep`, `Oct`, `Nov`, `Dec`],
-          tooltip: {
-              enabled: false,
-          },
-          tooltip: {
-            enabled: false
-          },
-          labels: {
-            formatter: function (value) {
-              return value;
-            },
-            style: {
-              fontSize: "14px"
-            }
-          },
+          categories: allYears.map(String), // Anos como strings para o eixo X
+          title: {
+            text: 'Ano'
+          }
       },
       yaxis: {
-          labels: {
-              show: false
-          },
+        title: {
+            text: 'Valor (R$)'
+        },
+        labels: {
+            formatter: function (value) {
+                return 'R$ ' + value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+      },
+      fill: {
+          opacity: 1
       },
       tooltip: {
-          x: {
-              format: 'dd/MM/yy HH:mm'
-          },
+          y: {
+              formatter: function (val) {
+                  return "R$ " + val.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              }
+          }
       },
-    };
+      colors: ['#007bff', '#28a745'] // Cores para as séries: azul para orçado, verde para arrecadado
+  };
 
-    var chart = new ApexCharts(document.querySelector(`#${chartId}`), options);
-    chart.render();
-  }
-  createChartTwo('revenue-chart', '#487fff');
-  // ================================ Revenue Growth Area Chart End ================================ 
-
-  </script>
+  var chart = new ApexCharts(document.querySelector("#receitaOrcamentariaChart"), options);
+  chart.render();
+</script>
     </body>
 </html>

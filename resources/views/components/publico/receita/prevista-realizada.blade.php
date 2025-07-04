@@ -13,7 +13,7 @@
               
               </div>
             </div>
-            <div id="revenue-chart" class="mt-28"></div>
+            <div id="barChart" class="barChart"></div>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
           <th>Valor Orçado (Inicial)</th>
           <th>Valor Lançado Até o Período</th>
           <th>Valor Lançado no Período</th>
-          <th>ver mais</th>
+       
         </tr>
       </thead>
       <tbody>
@@ -44,10 +44,7 @@
             <td>{{ number_format($item->valor_orcado_inicial, 2, ',', '.') }}</td>
             <td>{{ number_format($item->valor_lancado_periodo, 2, ',', '.') }}</td> {{-- Assumindo que este campo representa 'Valor Lançado Até o Período' --}}
             <td>{{ number_format($item->valor_lancado_mes, 2, ',', '.') }}</td> {{-- 'Valor Lançado no Período' --}}
-            <td>
-              <a href="" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
-                <iconify-icon icon="iconamoon:eye-light"></iconify-icon></a>
-            </td>
+       
           </tr> 
         @endforeach
       </tbody>

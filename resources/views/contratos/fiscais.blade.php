@@ -48,6 +48,25 @@
    <br>
    <br>
    <div class="container">
+     <div class="col-xxl-4">
+        <div class="card h-100 radius-8 border">
+          <div class="card-body p-24">
+            <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
+              <div>
+              
+              
+              </div>
+              <div class="text-end">
+               {{-- <h6 class="mb-2 fw-bold text-lg">{{ number_format($totalValorOrcadoAtualizado, 2, ",", ".")}}</h6>--}}
+              
+              </div>
+            </div>
+          
+         <div id="contratosValorChart"></div>
+
+          </div>
+        </div>
+      </div>
     <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Fiscais de Contratos</h5>
@@ -107,6 +126,194 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
+  <script>
+  // ================================ Preparação dos Dados ================================
+  // Mapeamos as variáveis do PHP para o JavaScript
+  const valorInicialRaw = @json($valorInicialPorAno);
+  const valorFinalRaw = @json($valorFinalPorAno);
 
+  // Coleta todos os anos únicos de ambas as coleções e os ordena
+  const allYears = [...new Set([
+      ...valorInicialRaw.map(item => item.ano),
+      ...valorFinalRaw.map(item => item.ano)
+  ])].sort((a, b) => a - b); // Ordena os anos de forma ascendente
+
+  // Mapeia os dados de Valor Inicial para cada ano
+  const valorInicialData = allYears.map(year => {
+      const found = valorInicialRaw.find(item => item.ano === year);
+      // Retorna o 'total_valor_inicial' se encontrado, senão 0
+      return found ? found.total_valor_inicial : 0;
+  });
+
+  // Mapeia os dados de Valor Final para cada ano
+  const valorFinalData = allYears.map(year => {
+      const found = valorFinalRaw.find(item => item.ano === year);
+      // Retorna o 'total_valor_final' se encontrado, senão 0
+      return found ? found.total_valor_final : 0;
+  });
+
+  // ================================ Configuração do Gráfico de Barras Agrupadas ================================
+  var options = {
+      series: [{
+          name: "Valor Inicial", // Nome da série para o gráfico
+          data: valorInicialData // Dados do valor inicial por ano
+      }, {
+          name: "Valor Final", // Nome da série para o gráfico
+          data: valorFinalData // Dados do valor final por ano
+      }],
+      chart: {
+          type: 'bar', // Tipo de gráfico de barras
+          height: 350, // Altura do gráfico
+          toolbar: {
+              show: false // Oculta a barra de ferramentas
+          },
+      },
+      plotOptions: {
+          bar: {
+            horizontal: false, // Barras verticais
+            columnWidth: '50%', // Ajusta a largura das colunas para barras agrupadas
+            endingShape: 'rounded' // Cantos arredondados no topo das barras
+          },
+      },
+      dataLabels: {
+          enabled: false // Desabilita os rótulos de dados nas barras
+      },
+      stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent'] // Borda transparente para as barras
+      },
+      xaxis: {
+          categories: allYears.map(String), // Anos como strings para o eixo X
+          title: {
+            text: 'Ano' // Título do eixo X
+          }
+      },
+      yaxis: {
+        title: {
+            text: 'Valor (R$)' // Título do eixo Y
+        },
+        labels: {
+            formatter: function (value) {
+                // Formata os valores do eixo Y como moeda brasileira
+                return 'R$ ' + value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+      },
+      fill: {
+          opacity: 1, // Opacidade total para o preenchimento
+          // Cores para as séries: azul claro para Valor Inicial, verde para Valor Final
+          // Adaptei as cores do seu exemplo anterior para ficarem distintas
+          colors: ['#007bff', '#28a745'] 
+      },
+      tooltip: {
+          y: {
+              formatter: function (val) {
+                  // Formata os valores do tooltip como moeda brasileira
+                  return "R$ " + val.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              }
+          }
+      },
+      // Não há propriedade 'grid' no exemplo fornecido, mas se precisar ocultá-la:
+      // grid: { show: false }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#contratosValorChart"), options);
+  chart.render();
+</script><script>
+  // ================================ Preparação dos Dados ================================
+  // Mapeamos as variáveis do PHP para o JavaScript
+  const valorInicialRaw = @json($valorInicialPorAno);
+  const valorFinalRaw = @json($valorFinalPorAno);
+
+  // Coleta todos os anos únicos de ambas as coleções e os ordena
+  const allYears = [...new Set([
+      ...valorInicialRaw.map(item => item.ano),
+      ...valorFinalRaw.map(item => item.ano)
+  ])].sort((a, b) => a - b); // Ordena os anos de forma ascendente
+
+  // Mapeia os dados de Valor Inicial para cada ano
+  const valorInicialData = allYears.map(year => {
+      const found = valorInicialRaw.find(item => item.ano === year);
+      // Retorna o 'total_valor_inicial' se encontrado, senão 0
+      return found ? found.total_valor_inicial : 0;
+  });
+
+  // Mapeia os dados de Valor Final para cada ano
+  const valorFinalData = allYears.map(year => {
+      const found = valorFinalRaw.find(item => item.ano === year);
+      // Retorna o 'total_valor_final' se encontrado, senão 0
+      return found ? found.total_valor_final : 0;
+  });
+
+  // ================================ Configuração do Gráfico de Barras Agrupadas ================================
+  var options = {
+      series: [{
+          name: "Valor Inicial", // Nome da série para o gráfico
+          data: valorInicialData // Dados do valor inicial por ano
+      }, {
+          name: "Valor Final", // Nome da série para o gráfico
+          data: valorFinalData // Dados do valor final por ano
+      }],
+      chart: {
+          type: 'bar', // Tipo de gráfico de barras
+          height: 350, // Altura do gráfico
+          toolbar: {
+              show: false // Oculta a barra de ferramentas
+          },
+      },
+      plotOptions: {
+          bar: {
+            horizontal: false, // Barras verticais
+            columnWidth: '50%', // Ajusta a largura das colunas para barras agrupadas
+            endingShape: 'rounded' // Cantos arredondados no topo das barras
+          },
+      },
+      dataLabels: {
+          enabled: false // Desabilita os rótulos de dados nas barras
+      },
+      stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent'] // Borda transparente para as barras
+      },
+      xaxis: {
+          categories: allYears.map(String), // Anos como strings para o eixo X
+          title: {
+            text: 'Ano' // Título do eixo X
+          }
+      },
+      yaxis: {
+        title: {
+            text: 'Valor (R$)' // Título do eixo Y
+        },
+        labels: {
+            formatter: function (value) {
+                // Formata os valores do eixo Y como moeda brasileira
+                return 'R$ ' + value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+      },
+      fill: {
+          opacity: 1, // Opacidade total para o preenchimento
+          // Cores para as séries: azul claro para Valor Inicial, verde para Valor Final
+          // Adaptei as cores do seu exemplo anterior para ficarem distintas
+          colors: ['#007bff', '#28a745'] 
+      },
+      tooltip: {
+          y: {
+              formatter: function (val) {
+                  // Formata os valores do tooltip como moeda brasileira
+                  return "R$ " + val.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              }
+          }
+      },
+      // Não há propriedade 'grid' no exemplo fornecido, mas se precisar ocultá-la:
+      // grid: { show: false }
+  };
+
+  var chart = new ApexCharts(document.querySelector("#contratosValorChart"), options);
+  chart.render();
+</script>
     </body>
 </html>

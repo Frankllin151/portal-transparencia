@@ -50,6 +50,7 @@
    <div class="container">
 
    <div class="card basic-data-table">
+
   <div class="card-header">
     <h5 class="mb-0">Dispensa de Licitação</h5>
   </div>

@@ -45,9 +45,43 @@
     </head>
     <body>
    <x-header></x-header>
-  <x-prevista-realizada></x-prevista-realizada>
-  <x-footer></x-footer>
+   <div class="container">
+   <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 py-3">
 
+    {{-- Verifica se há cards para exibir --}}
+    @if($cards->isNotEmpty())
+        @foreach($cards as $card)
+            <div class="col">
+                <div class="card shadow-none border  h-100">
+                  <div class="card-body p-20">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                      <div>
+                        <p class="fw-medium text-primary-light mb-1">{{ $card['title'] }}</p>
+                        <h6 class="mb-0"></h6>
+                      </div>
+                      <div class="w-50-px h-50-px {{ $card['color_class'] }} rounded-circle d-flex justify-content-center align-items-center">
+                        <iconify-icon icon="{{ $card['icon'] }}" class="text-white text-2xl mb-0"></iconify-icon>
+                      </div>
+                    </div>
+                    <p class="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
+                      <a href="{{ route($card['route']) }}" class="text-primary-main">Ver Detalhes</a>
+                    </p>
+                  </div>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <div class="col-12">
+            <div class="alert alert-info" role="alert">
+                Nenhum resultado encontrado para sua pesquisa.
+            </div>
+        </div>
+    @endif
+
+   </div>
+</div>
+
+  <x-footer></x-footer>
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/js/lib/apexcharts.min.js') }}"></script>
@@ -62,88 +96,5 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
-<script>
-  // Prepara os dados para o ApexCharts
- 
-  const rawData =  @json($dataGrafico);
-  // Mapeia os dados para o formato que o ApexCharts espera
-  const chartCategories = rawData.map(item => item.ano.toString()); // Anos como strings
-  const chartData = rawData.map(item => item.total_orcado); // Valores orçados
-
-  // ================================ Total Subscriber bar chart Start ================================
-  var options = {
-      series: [{
-          name: "Valor Orçado Atualizado", // Nome da série para o gráfico
-          data: chartData, // Seus dados de valor orçado por ano
-      }],
-      chart: {
-          type: 'bar',
-          height: 235,
-          toolbar: {
-              show: false
-          },
-      },
-      plotOptions: {
-          bar: {
-            borderRadius: 6,
-            horizontal: false,
-            columnWidth: 24,
-            columnWidth: '52%',
-            endingShape: 'rounded',
-          }
-      },
-      dataLabels: {
-          enabled: false
-      },
-      fill: {
-          type: 'gradient',
-          colors: ['#dae5ff'], // Cor de início do gradiente
-          gradient: {
-              shade: 'light',
-              type: 'vertical',
-              shadeIntensity: 0.5,
-              gradientToColors: ['#dae5ff'],
-              inverseColors: false,
-              opacityFrom: 1,
-              opacityTo: 1,
-              stops: [0, 100],
-          },
-      },
-      grid: {
-          show: false,
-          borderColor: '#D1D5DB',
-          strokeDashArray: 4,
-          position: 'back',
-          padding: {
-            top: -10,
-            right: -10,
-            bottom: -10,
-            left: -10
-          }
-      },
-      xaxis: {
-          type: 'category',
-          categories: chartCategories, // Seus anos como categorias do eixo X
-          title: {
-            text: 'Ano' // Título para o eixo X
-          }
-      },
-      yaxis: {
-        show: true, // Mostrar o eixo Y para visualizar os valores
-        title: {
-            text: 'Valor Orçado' // Título para o eixo Y
-        },
-        labels: {
-            formatter: function (value) {
-                return 'R$ ' + value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            }
-        }
-      },
-  };
-
-  var chart = new ApexCharts(document.querySelector("#barChart"), options);
-  chart.render();
-  // ================================ Total Subscriber bar chart End ================================
-</script>
     </body>
 </html>

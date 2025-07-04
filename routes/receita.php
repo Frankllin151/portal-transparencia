@@ -22,7 +22,7 @@ Route::delete("/dashboard/delete/{id}/receita",[ReceitaController::class, "destr
 
 
 // Tela Publicas
-Route::get('/', [TelaHomeController::class, "index"])->name("main");
+
 Route::get("/publica/receitas", [PublicaReceitaController::class,"index"])
 ->name("receitapublica");
 Route::get("/publica/receitas/prevista/x/realizada", [PublicaReceitaController::class, 

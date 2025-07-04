@@ -62,5 +62,84 @@
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
 
+  <script>
+  // ================================ Dados para o Gráfico Donut ================================
+  const valorEmpenhoTotal = {{ $valorEmpenho ?? 0 }};
+
+  // Se o valor for 0, ApexCharts pode não renderizar bem.
+  // Podemos adicionar uma fatia simbólica para garantir a renderização.
+  const chartSeries = valorEmpenhoTotal > 0 ? [valorEmpenhoTotal] : [1]; // Se > 0, usa o valor, senão usa 1 simbólico
+  const chartLabels = valorEmpenhoTotal > 0 ? ['Valor Empenhado'] : ['Nenhum Valor'];
+  const chartColors = valorEmpenhoTotal > 0 ? ['#4CAF50'] : ['#CCCCCC']; // Verde para valor, Cinza para nenhum
+
+  // ================================ Configuração do Gráfico Donut ================================
+  var options = {
+      series: chartSeries,
+      colors: chartColors,
+      labels: chartLabels,
+      legend: {
+          show: false // Não mostra a legenda, pois só há uma fatia (ou uma simbólica)
+      },
+      chart: {
+        type: 'donut',
+        height: 270,
+        sparkline: {
+          enabled: false // Desabilita sparkline para ter mais controle sobre labels e centro
+        },
+        // Ajuste de margens e padding
+        margin: { top: 0, right: 0, bottom: 0, left: 0 },
+        padding: { top: 0, right: 0, bottom: 0, left: 0 }
+      },
+      stroke: {
+        width: 0, // Sem borda nas fatias
+      },
+      dataLabels: {
+        enabled: false // Desabilitamos as labels das fatias, pois a informação principal está no centro
+      },
+      plotOptions: {
+          pie: {
+              donut: {
+                  size: '65%', // Ajusta o tamanho do anel
+                  labels: {
+                      show: true,
+                      name: {
+                          show: true,
+                          fontSize: '16px',
+                          color: undefined,
+                          offsetY: -10,
+                          text: 'Total Empenhado' // Texto fixo acima do valor central
+                      },
+                      value: {
+                          show: true,
+                          fontSize: '22px',
+                          color: undefined,
+                          formatter: function (val) {
+                              // Exibe o valor empenhado formatado no centro do donut
+                              return 'R$ ' + valorEmpenhoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                          }
+                      },
+                      total: { // A seção 'total' pode ser usada para um valor agregado, mas 'value' já faz o que queremos
+                          show: false // Desabilita o total padrão para não duplicar ou confundir
+                      }
+                  }
+              }
+          }
+      },
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }],
+  };
+
+  var chart = new ApexCharts(document.querySelector("#valorEmpenhoDonutChart"), options);
+  chart.render();
+</script>
     </body>
 </html>

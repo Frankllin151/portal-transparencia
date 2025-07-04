@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Despesa;
 
 class PublicoDespesasController extends Controller
 {
@@ -12,7 +13,9 @@ class PublicoDespesasController extends Controller
     }
     public  function DespesasPessoal()
     {
-        return view("despesas.DepesasPessoal");
+       $valorEmpenho = Despesa::sum("valor_empenho");
+      
+        return view("despesas.DepesasPessoal", ["valorEmpenho" => $valorEmpenho]);
     }
     public function DespesasDiariaEViagens( )
     {

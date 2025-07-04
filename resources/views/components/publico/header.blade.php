@@ -35,8 +35,8 @@
         </li>
        
       </ul>
-      <form class="d-flex ms-lg-3 mt-2 mt-lg-0">
-        <input class="form-control me-2" type="search" placeholder="Pesquisar no portal..." aria-label="Pesquisar">
+      <form class="d-flex ms-lg-3 mt-2 mt-lg-0" action="{{ route('search.results') }}">
+        <input class="form-control me-2" type="search" name="query" placeholder="Pesquisar no portal..." aria-label="Pesquisar">
         <button class="btn btn-outline-primary" type="submit">Buscar</button>
       </form>
     </div>
