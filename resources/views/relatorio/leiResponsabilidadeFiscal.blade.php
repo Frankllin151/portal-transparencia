@@ -49,100 +49,54 @@
    <br>
    <br>
    <div class="container">
-    <h4>Relatório de Responsabilidade Fiscal</h4>
-
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-        {{-- Receita do Mês --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1">Receita Arrecadada no Mês</p>
-                    <h6 class="mb-0">R$ {{ number_format($receitaMes, 2, ',', '.') }}</h6>
-                </div>
-            </div>
-        </div>
-
-        {{-- Receita Anual --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1">Receita Acumulada no Ano</p>
-                    <h6 class="mb-0">R$ {{ number_format($receitaAno, 2, ',', '.') }}</h6>
-                </div>
-            </div>
-        </div>
-
-        {{-- Receita Corrente Líquida --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1">Receita Corrente Líquida</p>
-                    <h6 class="mb-0">R$ {{ number_format($receitaCorrenteLiquida, 2, ',', '.') }}</h6>
-                </div>
-            </div>
-        </div>
-
-        {{-- Despesa Paga no Mês --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1">Despesa Paga no Mês</p>
-                    <h6 class="mb-0">R$ {{ number_format($despesaPagoMes, 2, ',', '.') }}</h6>
-                </div>
-            </div>
-        </div>
-
-        {{-- Resultado Fiscal --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1">Resultado Fiscal do Mês</p>
-                    <h6 class="mb-0">
-                        @if ($resultadoFiscalMes >= 0)
-                            <span class="text-success">Superávit: R$ {{ number_format($resultadoFiscalMes, 2, ',', '.') }}</span>
-                        @else
-                            <span class="text-danger">Déficit: R$ {{ number_format(abs($resultadoFiscalMes), 2, ',', '.') }}</span>
-                        @endif
-                    </h6>
-                </div>
-            </div>
-        </div>
+    <div class="card basic-data-table">
+    <div class="card-header">
+        <h5 class="mb-0">Relatório de Responsabilidade Fiscal</h5>
     </div>
-
-    <br>
-    <br>
-    <hr>
-
-    <h5>Detalhamento das Despesas do Mês</h5>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-        <div class="col">
-            <div class="card shadow-sm border h-100">
-                <div class="card-body p-4 d-flex flex-column">
-                    <p class="fw-semibold mb-2">Valor Empenhado</p>
-                    <h6 class="text-primary">R$ {{ number_format($despesaEmpenhadoMes, 2, ',', '.') }}</h6>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card shadow-sm border h-100">
-                <div class="card-body p-4 d-flex flex-column">
-                    <p class="fw-semibold mb-2">Valor Liquidado</p>
-                    <h6 class="text-warning">R$ {{ number_format($despesaLiquidadoMes, 2, ',', '.') }}</h6>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card shadow-sm border h-100">
-                <div class="card-body p-4 d-flex flex-column">
-                    <p class="fw-semibold mb-2">Valor Pago</p>
-                    <h6 class="text-success">R$ {{ number_format($despesaPagoMes, 2, ',', '.') }}</h6>
-                </div>
-            </div>
-        </div>
+    <div class="card-body">
+        <table class="table table-bordered mb-0">
+            <tbody>
+                <tr>
+                    <td><p class="mb-0"><strong>Receita Arrecadada no Mês</strong></p></td>
+                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$receitaMes, 2, ',', '.') }}</strong></p></td>
+                </tr>
+                <tr>
+                    <td><p class="mb-0"><strong>Receita Acumulada no Ano</strong></p></td>
+                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$receitaAno, 2, ',', '.') }}</strong></p></td>
+                </tr>
+                <tr>
+                    <td><p class="mb-0"><strong>Receita Corrente Líquida</strong></p></td>
+                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$receitaCorrenteLiquida, 2, ',', '.') }}</strong></p></td>
+                </tr>
+                <tr>
+                    <td><p class="mb-0"><strong>Despesa Paga no Mês</strong></p></td>
+                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$despesaPagoMes, 2, ',', '.') }}</strong></p></td>
+                </tr>
+                <tr>
+                    <td><p class="mb-0"><strong>Despesa Empenhada no Mês</strong></p></td>
+                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$despesaEmpenhadoMes, 2, ',', '.') }}</strong></p></td>
+                </tr>
+                 <tr>
+                    <td><p class="mb-0"><strong>Despesa Liquidada no Mês</strong></p></td>
+                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$despesaLiquidadoMes, 2, ',', '.') }}</strong></p></td>
+                </tr>
+                <tr>
+                    <td><p class="mb-0"><strong>Resultado Fiscal do Mês</strong></p></td>
+                    <td>
+                        <p class="mb-0">
+                            @if ($resultadoFiscalMes >= 0)
+                                <strong class="text-success">Superávit: R$ {{ number_format((float)$resultadoFiscalMes, 2, ',', '.') }}</strong>
+                            @else
+                                <strong class="text-danger">Déficit: R$ {{ number_format(abs((float)$resultadoFiscalMes), 2, ',', '.') }}</strong>
+                            @endif
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+   </div>
 
   <x-footer></x-footer>
 

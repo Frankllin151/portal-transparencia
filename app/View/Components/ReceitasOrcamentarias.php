@@ -14,7 +14,7 @@ class ReceitasOrcamentarias extends Component
      */
     public function __construct()
     {
-       $this->receitaOrcamentaria = Receitum::with("NaturezaReceitum")->get();
+    
     }
 
     /**
@@ -22,8 +22,15 @@ class ReceitasOrcamentarias extends Component
      */
     public function render(): View|Closure|string
     {
+     $data =  Receitum::with("NaturezaReceitum")->get();
+     $totalRegistro = Receitum::with("NaturezaReceitum")->count();
+     $valorOrcadoAtualizado =Receitum::sum("valor_orcado_atualizado");
+     $valorArrecadomes  = Receitum::sum("valor_arrecadado_mes");
         return view('components.publico.receita.receitas-orcamentarias',
-    ["receitaOrcamentaria" => $this->receitaOrcamentaria]
+    ["data" => $data, "totalRegistro"=> $totalRegistro,
+       'valorOrcadoAtualizado' =>$valorOrcadoAtualizado,
+         "valorArrecadomes" => $valorArrecadomes
+    ] 
     );
     }
 }

@@ -1,90 +1,54 @@
 <br>
 <br>
 <div class="container">
-    <h4>Despesas Pessoal</h4>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    {{-- Usando QuantidadeRegistro do controller --}}
-                    <h6 class="mb-0">Total Registro: {{ $QuantidadeRegistro }}</h6> 
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    {{-- Usando ValorEmpenho do controller --}}
-                    <h6 class="mb-0">Valor Total Empenhado: R${{ number_format($ValorEmpenho, 2, ",", ".") }}</h6> 
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    {{-- Usando ValorAlterado do controller --}}
-                    <h6 class="mb-0">Valor Total Alterado: R$ {{ number_format($ValorAlterado, 2, ",", ".") }}</h6> 
-                </div>
-            </div>
-        </div>
-
+    <div class="card basic-data-table">
+  <div class="card-header">
+    <h5 class="mb-0">Despesas Pessoal</h5>
+  </div>
+  <div class="card-body">
+   <div class="row mb-4">
+    {{-- Total de Registros --}}
+    <div class="col-md-4">
+        <p class="mb-0"><strong>Total de Registros: {{ (float)$QuantidadeRegistro }}</strong></p>
     </div>
-    <br>
-    <br>
-    <hr>
-
-    <h5>Registros de Despesas</h5>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-        @forelse ($TodosRegistroLoop as $despesa)
-            <div class="col">
-                <div class="card shadow-sm border h-100">
-                    <div class="card-body p-4 d-flex flex-column">
-
-                        <div class="mb-3 pb-3 border-bottom">
-                            <p class="text-muted mb-1">
-                                <small>Data do Empenho:</small>
-                                <strong class="text-dark">{{ \Carbon\Carbon::parse($despesa->data_empenho)->format('d/m/Y') }}</strong>
-                            </p>
-
-                            <div class="mt-2">
-                                <p class="text-muted mb-1">Detalhes do Empenho:</p>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Número:</span> {{ $despesa->numero_empenho }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Elemento:</span> {{ $despesa->codigo_elemento }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Histórico:</span> {{ $despesa->historico_empenho }}
-                                </small>
-                            </div>
-                        </div>
-
-                        <div class="mt-auto">
-                            <p class="fw-medium text-primary mb-1">Credor</p>
-                            <small class="mb-0 text-dark fw-bold">{{ $despesa->credor_nome }}</small>
-                        </div>
-                        <div class="mt-auto">
-                            <p class="fw-medium text-primary mb-1">Valor Liquidado</p>
-                            <small class="mb-0 text-success fw-bold">R$ {{ number_format($despesa->valor_liquidado, 2, ',', '.') }}</small>
-                        </div>
-                        <div class="mt-auto">
-                            <p class="fw-medium text-primary mb-1">Valor Pago</p>
-                            <small class="mb-0 text-success fw-bold">R$ {{ number_format($despesa->valor_pago, 2, ',', '.') }}</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    {{-- Valor Total Empenhado --}}
+    <div class="col-md-4">
+        <p class="mb-0"><strong>Valor Total Empenhado: R$ {{ number_format((float)$ValorEmpenho, 2, ",", ".") }}</strong></p>
+    </div>
+    {{-- Valor Total Alterado --}}
+    <div class="col-md-4">
+        <p class="mb-0"><strong>Valor Total Alterado: R$ {{ number_format((float)$ValorAlterado, 2, ",", ".") }}</strong></p>
+    </div>
+</div>
+    <table class="table bordered-table mb-0" id="dataTableDespesasPessoal" data-page-length='10'>
+      <thead>
+        <tr>
+          <th>S.L</th>
+          <th>Data do Empenho</th>
+          <th>Número do Empenho</th>
+          <th>Código do Elemento</th>
+         
+          <th>Valor Liquidado</th>
+          <th>Valor Pago</th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse ($TodosRegistroLoop as $index => $despesa)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ \Carbon\Carbon::parse($despesa->data_empenho)->format('d/m/Y') }}</td>
+            <td>{{ $despesa->numero_empenho }}</td>
+            <td>{{ $despesa->codigo_elemento }}</td>
+            <td>R$ {{ number_format((float)$despesa->valor_liquidado, 2, ',', '.') }}</td>
+            <td>R$ {{ number_format((float)$despesa->valor_pago, 2, ',', '.') }}</td>
+          </tr>
         @empty
-            <div class="col-12">
-                <p class="text-center text-muted">Nenhum registro de despesa encontrado.</p>
-            </div>
+          <tr>
+            <td colspan="8" class="text-center">Nenhum registro de despesa encontrado.</td>
+          </tr>
         @endforelse
-    </div>
+      </tbody>
+    </table>
+  </div>
+</div>
 </div>

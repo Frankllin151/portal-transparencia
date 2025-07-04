@@ -40,6 +40,7 @@ public function movimentacaoBancariaMensal()
         'TodasContas' => $todasContas,
     ]);
 }
+
 public function leiResponsabilidadeFiscal()
     {
         $mesAtual = now()->format('m');
@@ -91,4 +92,5 @@ public function leiResponsabilidadeFiscal()
             'resultadoFiscalMes' => $resultadoFiscalMes
         ]);
     }
+
 }

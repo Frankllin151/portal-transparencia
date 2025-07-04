@@ -42,6 +42,7 @@ class PrevistaRealizada extends Component
      */
     public function render(): View|Closure|string
     {
+         $data = Receitum::with("NaturezaReceitum")->get();
         return view('components.publico.receita.prevista-realizada', 
     [
         'totalValorOrcadoInicial' => $this->totalValorOrcadoInicial,
@@ -53,6 +54,7 @@ class PrevistaRealizada extends Component
             'totalValorLancadoMes' => $this->totalValorLancadoMes,
             'totalValorLancadoPeriodo' => $this->totalValorLancadoPeriodo,
             'percentualValor' => $this->percentualValor,
+            "data"=>$data
     ]
     );
     }

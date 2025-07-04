@@ -1,43 +1,52 @@
 <div class="container">
-   <div class="col-xxl-4">
-        <div class="card h-100 radius-8 border">
-          <div class="card-body p-24">
-            <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-              <div>
-                <h6 class="mb-2 fw-bold text-lg">Receitas Orçamentária</h6>
-              
-              </div>
-              <div class="text-end">
-                <h6 class="mb-2 fw-bold text-lg">valor</h6>
-                <span class="bg-success-focus ps-12 pe-12 pt-2 pb-2 rounded-2 fw-medium text-success-main text-sm">%valor</span>
-              </div>
-            </div>
-            <div id="revenue-chart" class="mt-28"></div>
-          </div>
-        </div>
-      </div>
-<div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-      @foreach ($receitaOrcamentaria as $receita)
-    
-        <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-           <div  class="border border-secondary p-3 rounded">
-            <p>Natureza</p>
-              <small>Código:{{$receita->naturezaReceitum->codigo}}</small> <br>
-             <small>Descrição:{{$receita->naturezaReceitum->descricao}}</small>
-           </div>
-            <p class="fw-medium text-primary-light mb-1">Valor Orçado Inicial</p>
-            <h6 class="mb-0">{{number_format($receita->valor_orcado_inicial, 2, ",",  ".")}}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="card basic-data-table">
+  <div class="card-header">
+    <h5 class="mb-0">Receitas Orçamentárias</h5>
   </div>
-    
-@endforeach
-</div>
+  <div class="card-body">
+    <div class="row mb-4">
+      {{-- Total de Registros --}}
+      <div class="col-md-3">
+        <p class="mb-0"><strong>Total de Registros: {{ (float)$totalRegistro }}</strong></p>
+      </div>
+      {{-- Valor Orçado Atualizado Total --}}
+      <div class="col-md-3">
+        <p class="mb-0"><strong>Valor Orçado Atualizado Total:R$ {{ number_format((float)$valorOrcadoAtualizado, 2, ",", ".") }}</strong></p>
+      </div>
+      {{-- Valor Arrecadado Mês Total --}}
+      <div class="col-md-3">
+        <p class="mb-0"><strong>Valor Arrecadado Mês Total:R$ {{ number_format((float)$valorArrecadomes, 2, ",", ".") }}</strong></p>
+      </div>
+      {{-- Você pode adicionar mais totais aqui se precisar de um quarto, ou deixar 3 --}}
+    </div>
 
+    <table class="table bordered-table mb-0" id="dataTableReceitas" data-page-length='10'>
+      <thead>
+        <tr>
+          <th>S.L</th>
+          <th>Natureza da Receita</th>
+          <th>Descricao Receita</th>
+          <th>Valor Orçado</th>
+         <th>Valor Atualizado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse ($data as $index => $item)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $item->naturezaReceitum->codigo ?? 'N/A' }}</td>
+             <td>{{$item->naturezaReceitum->descricao}}</td>
+            <td>R$ {{ number_format($item->valor_orcado_inicial, 2, ',', '.') }}</td>
+            <td>{{ number_format($item->valor_orcado_atualizado, 2, ',', '.') }}</td>
+           
+          </tr>
+        @empty
+          <tr>
+            <td colspan="4" class="text-center">Nenhum registro de receita encontrado.</td>
+          </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
+</div>
 </div>

@@ -47,88 +47,54 @@
    <x-header></x-header>
    <br>
    <br>
-  <div class="container">
-    <h5>Pagamento Extra Orçamentária Receita Despesas</h5>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-
-        {{-- Total de Registros --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    <h6 class="mb-0">Total de Registros: {{ $QuantidadeRegistro }}</h6>
-                </div>
-            </div>
-        </div>
-
-        {{-- Valor Pago (Total) --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    <h6 class="mb-0">Valor Total Pago: R${{ number_format($ValorPagoTotal, 2, ",", ".") }}</h6>
-                </div>
-            </div>
-        </div>
-
+   <div class="container">
+    <div class="card basic-data-table">
+  <div class="card-header">
+    <h5 class="mb-0">Pagamentos Extra Orçamentários</h5>
+  </div>
+  <div class="card-body">
+    <div class="row mb-4">
+      {{-- Total de Registros --}}
+      <div class="col-md-4">
+        <p class="mb-0"><strong>Total de Registros: {{ (float)$QuantidadeRegistro }}</strong></p>
+      </div>
+      {{-- Valor Pago (Total) --}}
+      <div class="col-md-4">
+        <p class="mb-0"><strong>Valor Total Pago: R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
+      </div>
     </div>
-    <br>
-    <br>
-    <hr>
 
-    <h5>Registros de Pagamentos Extra Orçamentários</h5>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-        @forelse ($extraorcametariaPagamento as $pagamento)
-            <div class="col">
-                <div class="card shadow-sm border h-100">
-                    <div class="card-body p-4 d-flex flex-column">
-
-                        {{-- Detalhes do Pagamento --}}
-                        <div class="mb-3 pb-3 border-bottom">
-                            <p class="text-muted mb-1">
-                                <small>Número do Pagamento:</small>
-                                <strong class="text-dark">{{ $pagamento->numero_pagamento }}</strong>
-                            </p>
-
-                            <div class="mt-2">
-                                <small class="d-block">
-                                    <span class="fw-semibold">Data do Pagamento:</span> {{ \Carbon\Carbon::parse($pagamento->data_pagamento)->format('d/m/Y') }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Nome do Beneficiário:</span> {{ $pagamento->nome_beneficiario }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">CPF/CNPJ do Beneficiário:</span> {{ $pagamento->cpf_cnpj_beneficiario }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Histórico:</span> {{ $pagamento->historico }}
-                                </small>
-                                @if ($pagamento->Receitasdespesasextraorcamentarium)
-                                    <small class="d-block">
-                                        <span class="fw-semibold">Classificação:</span> {{ $pagamento->Receitasdespesasextraorcamentarium->classificacao }}
-                                    </small>
-                                    <small class="d-block">
-                                        <span class="fw-semibold">Descrição da Classificação:</span> {{ $pagamento->Receitasdespesasextraorcamentarium->descricao_classificacao }}
-                                    </small>
-                                @endif
-                            </div>
-                        </div>
-
-                        {{-- Valor Pago --}}
-                        <div class="mt-auto">
-                            <p class="fw-medium text-primary mb-1">Valor Pago</p>
-                            <small class="mb-0 text-success fw-bold">R$ {{ number_format((float)str_replace(',', '.', str_replace('.', '', $pagamento->valor)), 2, ',', '.') }}</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <table class="table bordered-table mb-0" id="dataTableExtraOrcamentaria" data-page-length='10'>
+      <thead>
+        <tr>
+          <th>S.L</th>
+          <th>Número do Pagamento</th>
+          <th>Data do Pagamento</th>
+          <th>Nome do Beneficiário</th>
+          <th>CPF/CNPJ</th>
+          <th>Valor Pago</th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse ($extraorcametariaPagamento as $index => $pagamento)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $pagamento->numero_pagamento }}</td>
+            <td>{{ \Carbon\Carbon::parse($pagamento->data_pagamento)->format('d/m/Y') }}</td>
+            <td>{{ $pagamento->nome_beneficiario }}</td>
+            <td>{{ $pagamento->cpf_cnpj_beneficiario }}</td>
+            <td>R$ {{ number_format((float)str_replace(',', '.', str_replace('.', '', $pagamento->valor)), 2, ',', '.') }}</td>
+          </tr>
         @empty
-            <div class="col-12">
-                <p class="text-center text-muted">Nenhum registro de pagamento extra orçamentário encontrado.</p>
-            </div>
+          <tr>
+            <td colspan="9" class="text-center">Nenhum registro de pagamento extra orçamentário encontrado.</td>
+          </tr>
         @endforelse
-    </div>
+      </tbody>
+    </table>
+  </div>
 </div>
+   </div>
 
   <x-footer></x-footer>
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>

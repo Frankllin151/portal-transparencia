@@ -1,103 +1,57 @@
 <div class="container">
-    <h4>Despesas por Programação e Ação</h4>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
+    <div class="card basic-data-table">
+  <div class="card-header">
+    <h5 class="mb-0">Despesas por Programação e Ação</h5>
+  </div>
+  <div class="card-body">
+    <div class="row mb-4">
+      {{-- Total de resultados --}}
+      <div class="col-md-3">
+        <p class="mb-0"><strong>Total de Registros: {{ (float)$QuantidadeRegistro }}</strong></p>
+      </div>
 
-        {{-- Total de resultados --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    <h6 class="mb-0">Total de Registros: {{ $QuantidadeRegistro }}</h6>
-                </div>
-            </div>
-        </div>
+      {{-- Valor Atualizado (Total) --}}
+      <div class="col-md-3">
+        <p class="mb-0"><strong>Valor Total Atualizado: R$ {{ number_format((float)$ValorAtualizadoTotal, 2, ",", ".") }}</strong></p>
+      </div>
 
-        {{-- Valor Atualizado (Total) --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    <h6 class="mb-0">Valor Total Atualizado: R${{ number_format($ValorAtualizadoTotal, 2, ",", ".") }}</h6>
-                </div>
-            </div>
-        </div>
+      {{-- Valor Empenho (Total) --}}
+      <div class="col-md-3">
+        <p class="mb-0"><strong>Valor Total Empenhado: R$ {{ number_format((float)$ValorEmpenhoTotal, 2, ",", ".") }}</strong></p>
+      </div>
 
-        {{-- Valor Empenho (Total) --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    <h6 class="mb-0">Valor Total Empenhado: R$ {{ number_format($ValorEmpenhoTotal, 2, ",", ".") }}</h6>
-                </div>
-            </div>
-        </div>
-
-        {{-- Valor Liquidado (Total) --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    <h6 class="mb-0">Valor Total Liquidado: R$ {{ number_format($ValorLiquidadoTotal, 2, ",", ".") }}</h6>
-                </div>
-            </div>
-        </div>
-
+      {{-- Valor Liquidado (Total) --}}
+      <div class="col-md-3">
+        <p class="mb-0"><strong>Valor Total Liquidado: R$ {{ number_format((float)$ValorLiquidadoTotal, 2, ",", ".") }}</strong></p>
+      </div>
     </div>
-    <br>
-    <br>
-    <hr>
 
-    <h5>Registros de Despesas por Programação e Ação</h5>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-        @forelse ($TodosRegistroLoop as $despesa)
-            <div class="col">
-                <div class="card shadow-sm border h-100">
-                    <div class="card-body p-4 d-flex flex-column">
-
-                        {{-- Informações de Programação e Ação --}}
-                        <div class="mb-3 pb-3 border-bottom">
-                            <p class="text-muted mb-1">
-                                <small>Programa:</small>
-                                <strong class="text-dark">{{ $despesa->objetivo_programa }}</strong>
-                            </p>
-
-                            <div class="mt-2">
-                                <small class="d-block">
-                                    <span class="fw-semibold">Descrição Função:</span> {{ $despesa->descricao_funcao ?? 'Não informado' }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Tipo de Ação:</span> {{ $despesa->tipo_acao_programa }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Código Programa:</span> {{ $despesa->codigo_programa }}
-                                </small>
-                            </div>
-                        </div>
-
-                        {{-- Valores da Despesa --}}
-                        <div class="mt-auto">
-                            <p class="fw-medium text-primary mb-1">Valor Orçado</p>
-                            <small class="mb-0 text-dark fw-bold">R$ {{ number_format($despesa->valor_orcado, 2, ',', '.') }}</small>
-                        </div>
-                        <div class="mt-auto">
-                            <p class="fw-medium text-primary mb-1">Valor Atualizado</p>
-                            <small class="mb-0 text-dark fw-bold">R$ {{ number_format($despesa->valor_atualizado, 2, ',', '.') }}</small>
-                        </div>
-                        <div class="mt-auto">
-                            <p class="fw-medium text-primary mb-1">Valor Liquidado</p>
-                            <small class="mb-0 text-info fw-bold">R$ {{ number_format($despesa->valor_liquidado, 2, ',', '.') }}</small>
-                        </div>
-                        <div class="mt-auto">
-                            <p class="fw-medium text-primary mb-1">Valor Pago</p>
-                            <small class="mb-0 text-success fw-bold">R$ {{ number_format($despesa->valor_pago, 2, ',', '.') }}</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <table class="table bordered-table mb-0" id="dataTableDespesasPrograma" data-page-length='10'>
+      <thead>
+        <tr>
+          <th>S.L</th>
+          <th>Programa (Objetivo)</th>
+          <th>Descrição Função</th>
+          <th>Tipo de Ação</th>
+          <th>Valor Pago</th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse ($TodosRegistroLoop as $index => $despesa)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $despesa->objetivo_programa }}</td>
+            <td>{{ $despesa->descricao_funcao ?? 'Não informado' }}</td>
+            <td>{{ $despesa->tipo_acao_programa }}</td>
+            <td>R$ {{ number_format((float)$despesa->valor_pago, 2, ',', '.') }}</td>
+          </tr>
         @empty
-            <div class="col-12">
-                <p class="text-center text-muted">Nenhum registro de despesa por programação e ação encontrado.</p>
-            </div>
+          <tr>
+            <td colspan="9" class="text-center">Nenhum registro de despesa por programação e ação encontrado.</td>
+          </tr>
         @endforelse
-    </div>
+      </tbody>
+    </table>
+  </div>
+</div>
 </div>

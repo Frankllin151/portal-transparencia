@@ -45,65 +45,51 @@
     </head>
     <body>
    <x-header></x-header>
-  <div class="container">
-        <h4 class="mb-4 text-center">Contratos</h4>
-
-        <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-
-            {{-- Total de Registros --}}
-            <div class="col">
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 card shadow-sm border h-100 p-3">
-                    <div>
-                        <p class="fw-medium text-primary-light mb-1"></p>
-                        <h6 class="mb-0">Total de Registros: {{ $total ?? 0 }}</h6>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <br>
-        <br>
-        <hr>
-
-        <h5 class="mb-4">Registros de Contratos</h5>
-        <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-            @forelse ($data as $contrato)
-                <div class="col">
-                    <div class="card shadow-sm border h-100">
-                        <div class="card-body p-4 d-flex flex-column">
-
-                            {{-- Detalhes do Contrato --}}
-                            <div class="mb-3 pb-3 border-bottom">
-                                <p class="text-muted mb-1">
-                                    <small>Número do Contrato:</small>
-                                    <strong class="text-dark">{{ $contrato->numero_contrato ?? 'N/A' }}</strong>
-                                </p>
-
-                                <div class="mt-2">
-                                    <small class="d-block">
-                                        <span class="fw-semibold">Data de Assinatura:</span> {{ $contrato->data_assinatura ? \Carbon\Carbon::parse($contrato->data_assinatura)->format('d/m/Y') : 'N/A' }}
-                                    </small>
-                                    <small class="d-block">
-                                        <span class="fw-semibold">Tipo de Contrato:</span> {{ $contrato->tipo_contrato ?? 'N/A' }}
-                                    </small>
-                                    <small class="d-block">
-                                        <span class="fw-semibold">Contratado:</span> {{ $contrato->contratado ?? 'N/A' }}
-                                    </small>
-                                    <small class="d-block">
-                                        <span class="fw-semibold">Situação:</span> {{ $contrato->situacao ?? 'N/A' }}
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @empty
-                <div class="col-12">
-                    <p class="text-center text-muted">Nenhum registro de contrato encontrado.</p>
-                </div>
-            @endforelse
-        </div>
+   <div class="container">
+    <div class="card basic-data-table">
+  <div class="card-header">
+    <h5 class="mb-0">Contratos</h5>
+  </div>
+  <div class="card-body">
+    <div class="row mb-4">
+      {{-- Total de Registros --}}
+      <div class="col-md-4">
+        <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
+      </div>
+      {{-- Adicione outros totais ou resumos aqui, se aplicável --}}
     </div>
+
+    <table class="table bordered-table mb-0" id="dataTableContratos" data-page-length='10'>
+      <thead>
+        <tr>
+          <th>S.L</th>
+          <th>Número do Contrato</th>
+          <th>Data de Assinatura</th>
+          <th>Tipo de Contrato</th>
+          <th>Contratado</th>
+          <th>Situação</th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse ($data as $index => $contrato)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $contrato->numero_contrato ?? 'N/A' }}</td>
+            <td>{{ $contrato->data_assinatura ? \Carbon\Carbon::parse($contrato->data_assinatura)->format('d/m/Y') : 'N/A' }}</td>
+            <td>{{ $contrato->tipo_contrato ?? 'N/A' }}</td>
+            <td>{{ $contrato->contratado ?? 'N/A' }}</td>
+            <td>{{ $contrato->situacao ?? 'N/A' }}</td>
+          </tr>
+        @empty
+          <tr>
+            <td colspan="6" class="text-center">Nenhum registro de contrato encontrado.</td>
+          </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
+</div>
+   </div>
   <x-footer></x-footer>
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>

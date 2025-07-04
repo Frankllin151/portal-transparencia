@@ -10,7 +10,7 @@
               </div>
               <div class="text-end">
                 <h6 class="mb-2 fw-bold text-lg">{{ number_format($totalValorOrcadoAtualizado, 2, ",", ".")}}</h6>
-                <span class="bg-success-focus ps-12 pe-12 pt-2 pb-2 rounded-2 fw-medium text-success-main text-sm">%{{$percentualValor}}</span>
+              
               </div>
             </div>
             <div id="revenue-chart" class="mt-28"></div>
@@ -20,122 +20,38 @@
 
 
       <!-- front-end publica Receita X Realizada -->
-      <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Valor Orçado Inicial</p>
-            <h6 class="mb-0">{{ $totalValorOrcadoInicial }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
+      <div class="card basic-data-table">
+  <div class="card-header">
+    <h5 class="mb-0">Detalhes da Receita</h5>
   </div>
-
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Valor Orçado Atualizado</p>
-            <h6 class="mb-0">{{ $totalValorOrcadoAtualizado }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Total Deduções Orçado</p>
-            <h6 class="mb-0">{{ $totalValorDeducoesOrcado }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Valor Arrecadado Mês</p>
-            <h6 class="mb-0">{{ $totalValorArrecadadoMes }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Valor Arrecadado Acumulado</p>
-            <h6 class="mb-0">{{ $totalValorArrecadadoAcumulado }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Total Deduções Mês</p>
-            <h6 class="mb-0">{{ $totalValorDeducoesMes }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Valor Lançado Mês</p>
-            <h6 class="mb-0">{{ $totalValorLancadoMes }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Valor Lançado Período</p>
-            <h6 class="mb-0">{{ $totalValorLancadoPeriodo }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Percentual Valor</p>
-            <h6 class="mb-0">%{{ $percentualValor }}</h6>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="card-body">
+    <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
+      <thead>
+        <tr>
+          <th>S.L</th>
+          <th>Natureza da Receita</th>
+          <th>Valor Orçado (Inicial)</th>
+          <th>Valor Lançado Até o Período</th>
+          <th>Valor Lançado no Período</th>
+          <th>ver mais</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($data as $index => $item)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $item->naturezaReceitum->descricao ?? 'N/A' }}</td> {{-- Acessando a descrição da natureza --}}
+            <td>{{ number_format($item->valor_orcado_inicial, 2, ',', '.') }}</td>
+            <td>{{ number_format($item->valor_lancado_periodo, 2, ',', '.') }}</td> {{-- Assumindo que este campo representa 'Valor Lançado Até o Período' --}}
+            <td>{{ number_format($item->valor_lancado_mes, 2, ',', '.') }}</td> {{-- 'Valor Lançado no Período' --}}
+            <td>
+              <a href="" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">
+                <iconify-icon icon="iconamoon:eye-light"></iconify-icon></a>
+            </td>
+          </tr> 
+        @endforeach
+      </tbody>
+    </table>
   </div>
 </div>
 </div>

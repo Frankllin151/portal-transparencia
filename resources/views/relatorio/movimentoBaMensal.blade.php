@@ -48,64 +48,49 @@
    <x-header></x-header>
    <br>
    <br>
+
 <div class="container">
-    <h4>Movimentação Bancárias Mensal</h4>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-
-        {{-- Total de Registros --}}
-        <div class="col">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <div>
-                    <p class="fw-medium text-primary-light mb-1"></p>
-                    <h6 class="mb-0">Total de Registros: {{ $QuantidadeRegistro }}</h6>
-                </div>
-            </div>
-        </div>
-
+    <div class="card basic-data-table">
+  <div class="card-header">
+    <h5 class="mb-0">Movimentação Bancária</h5>
+  </div>
+  <div class="card-body">
+    <div class="row mb-4">
+      {{-- Total de Registros --}}
+      <div class="col-md-4">
+        <p class="mb-0"><strong>Total de Registros: {{ (float)$QuantidadeRegistro }}</strong></p>
+      </div>
+      {{-- You can add other totals here if your controller provides them, e.g., total balance --}}
     </div>
-    <br>
-    <br>
-    <hr>
 
-    <h5>Registros de Contas Bancárias</h5>
-    <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
-        @forelse ($TodasContas as $conta)
-            <div class="col">
-                <div class="card shadow-sm border h-100">
-                    <div class="card-body p-4 d-flex flex-column">
-
-                        {{-- Detalhes da Conta --}}
-                        <div class="mb-3 pb-3 border-bottom">
-                            <p class="text-muted mb-1">
-                                <small>Nome do Banco:</small>
-                                <strong class="text-dark">{{ $conta->nome_banco }}</strong>
-                            </p>
-
-                            <div class="mt-2">
-                                <small class="d-block">
-                                    <span class="fw-semibold">Descrição da Agência:</span> {{ $conta->descricao_agencia }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Número da Conta:</span> {{ $conta->numero_conta }}
-                                </small>
-                                <small class="d-block">
-                                    <span class="fw-semibold">Tipo de Conta:</span> {{ $conta->tipo_conta }}
-                                </small>
-                                {{-- Usando nome_entidade como "Função da Conta" ou "Entidade da Conta" --}}
-                                <small class="d-block">
-                                    <span class="fw-semibold">Entidade da Conta:</span> {{ $conta->nome_entidade }}
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <table class="table bordered-table mb-0" id="dataTableMovimentacaoBancaria" data-page-length='10'>
+      <thead>
+        <tr>
+          <th>S.L</th>
+          <th>Nome do Banco</th>
+          <th>Número da Conta</th>
+          <th>Tipo de Conta</th>
+          <th>Entidade da Conta</th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse ($TodasContas as $index => $conta)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $conta->nome_banco }}</td>
+            <td>{{ $conta->numero_conta }}</td>
+            <td>{{ $conta->tipo_conta }}</td>
+            <td>{{ $conta->nome_entidade }}</td>
+          </tr>
         @empty
-            <div class="col-12">
-                <p class="text-center text-muted">Nenhum registro de conta bancária encontrado.</p>
-            </div>
+          <tr>
+            <td colspan="6" class="text-center">Nenhum registro de movimentação bancária encontrado.</td>
+          </tr>
         @endforelse
-    </div>
+      </tbody>
+    </table>
+  </div>
+</div>
 </div>
 
   <x-footer></x-footer>
