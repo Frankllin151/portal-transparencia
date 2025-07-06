@@ -15532,3 +15532,27 @@ td.fc-header-center {
 }
 
 /* === footer css end === */
+
+
+/**ajustes**/
+@media (min-width: 1400px) and (max-width: 1899.98px) {
+            .meu-container-principal {
+                flex: 0 0 auto !important;
+                width:100%;
+            }
+            .largura-x{
+              flex:0 0 auto;
+             width: 50% !important;
+            }
+        }
+
+        @media (min-width: 1900px) {
+            .meu-container-principal {
+              flex: 0 0 auto !important;
+                width:100%;
+            }
+            .largura-x{
+              flex:0 0 auto;
+              width: 50% !important;
+            }
+        }

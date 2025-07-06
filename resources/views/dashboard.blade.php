@@ -21,7 +21,7 @@
   </ul>
 </div>
 <!--mini graficos-->
-<div class="col-xxl-8">
+<div class="col-xxl-8" style="width: 100%;">
   <div class="row gy-4">
           <div class="col-xxl-4 col-sm-6">
             <div class="card p-3 shadow-2 radius-8 border input-form-light h-100 bg-gradient-end-1">
@@ -118,9 +118,9 @@
 <!--mini graficos  end-->
 <br>
 <!--Grafico redondo-->
-<div class="col-xxl-4">
+<div class="col-xxl-4 meu-container-principal ">
   <div class="row gy-4">
-          <div class="col-xxl-12 col-sm-6">
+          <div class="col-xxl-12 col-sm-6   largura-x" >
             <div class="card h-100 radius-8 border-0">
               <div class="card-body p-24">
                 <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
@@ -210,10 +210,10 @@
               </div>
             </div>
           </div>
-          <div class="col-xxl-12 col-sm-6">
+          <div class="col-xxl-12 col-sm-6 largura-x">
             <div class="card h-100 radius-8 border-0 overflow-hidden">
               <div class="card-body p-24">
-                <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
+                <div class=" d-flex align-items-center flex-wrap gap-2 justify-content-between">
 
                   <div class="">
                     <select class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
@@ -224,7 +224,7 @@
                   </div>
                 </div>
 
-                <div class="d-flex flex-wrap align-items-center mt-3"> 
+                <div class="   d-flex flex-wrap align-items-center mt-3"> 
                   <ul class="flex-shrink-0">
                     <li class="d-flex align-items-center gap-2 mb-28">
                       <span class="w-12-px h-12-px rounded-circle bg-success-main"></span>
