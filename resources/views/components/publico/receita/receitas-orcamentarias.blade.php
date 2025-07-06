@@ -1,6 +1,6 @@
 <div class="container">
-
-<div class="col-xxl-4">
+<br>
+<div class="">
         <div class="card h-100 radius-8 border">
           <div class="card-body p-24">
             <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
