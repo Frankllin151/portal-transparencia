@@ -144,6 +144,10 @@
   var chart = new ApexCharts(document.querySelector("#barChart"), options);
   chart.render();
   // ================================ Total Subscriber bar chart End ================================
+
+
+
+
 </script>
     </body>
 </html>

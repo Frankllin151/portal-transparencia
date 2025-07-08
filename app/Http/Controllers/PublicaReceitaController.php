@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Receitum;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 class PublicaReceitaController extends Controller
 {
@@ -56,14 +57,20 @@ class PublicaReceitaController extends Controller
       return view("receita.ReceitaOrcamentariaDiaria");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+   public function show($id)
+   {
+    try{
+      $data = Receitum::findOrFail($id);
+      return $data;
     }
-
+    catch(ModelNotFoundException $e)
+    {
+ return redirect()->back()
+                ->with('error', 'Receita não encontrado');
+    }
+   }
+    
+    
     /**
      * Update the specified resource in storage.
      */

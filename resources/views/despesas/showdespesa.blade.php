@@ -12,10 +12,10 @@
   <h6 class="fw-semibold mb-0"> {{ __('Despesas') }}: <small>{{$despesa->credor_cnpj_cpf}}</small></h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{ route('despesas') }}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Despesas') }} : 
-      </a>
+     <a href="{{ route('despesas') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar
+</a>
     </li>
    
     

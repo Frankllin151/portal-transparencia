@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 <x-app-layout>
     <!--IMPORTANTE NAO REMOVA O x-slot no front-end não vai aparece
     o componente navigation
@@ -11,9 +14,9 @@
   <h6 class="fw-semibold mb-0"> {{ __('Servidores') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("servidores")}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Servidores') }}
+      <a href="{{route("servidores.create")}}" class="btn btn-primary">
+       
+    {{ __('Novo') }}
       </a>
     </li>
    
@@ -32,8 +35,9 @@
           <th>S.L</th> {{-- Mantendo a coluna de Serial/Linha --}}
           <th>Nome do Servidor</th>
           <th>Vínculo Empregatício</th>
+          <th>Descrição</th>
           <th>Situação</th>
-          <th>Entidade</th>
+    
           <th>Ação</th>
         </tr>
       </thead>
@@ -43,8 +47,11 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ $item->nome_servidor }}</td>
             <td>{{ $item->vinculo_empregaticio }}</td>
+         
+            <td>{{ $item->cargo ? Str::before($item->cargo->descricao_cargo, ' ') : '-' }}</td>
             <td>{{ $item->situacao }}</td>
-            <td>{{ $item->entidade }}</td>
+           
+            
             <td>
               {{-- Botão Visualizar --}}
               <a href="{{ route('servidores.show', ["id" => $item->id]) }}" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center" title="Visualizar">

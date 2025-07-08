@@ -11,10 +11,10 @@
   <h6 class="fw-semibold mb-0"> {{ __(' Pagamentos de Receitas e Despesas') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route('pagamentosdespesasreceita')}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __(' Pagamentos de Receitas e Despesas') }}
-      </a>
+      <a href="{{ route('pagamentosdespesasreceita') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar 
+</a>
     </li>
    
     

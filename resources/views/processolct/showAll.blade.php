@@ -11,9 +11,9 @@
   <h6 class="fw-semibold mb-0"> {{ __('Processos Licitatorios') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route('processo')}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Processos Licitatorios') }}
+      <a href="{{route('processo.create')}}" class="btn btn-primary">
+       
+    {{ __('Novo') }}
       </a>
     </li>
    

@@ -11,10 +11,11 @@
   <h6 class="fw-semibold mb-0"> {{ __('Receita Orçamentaria') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route('despreceitaex')}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Receita Orçamentaria') }}
-      </a>
+     
+       <a href="{{route('pagamentosdespesasreceita')}}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
+          Voltar
+        </a>
     </li>
    
     
@@ -28,10 +29,7 @@
       <h6 class="card-title mb-0">Adicionar Pagamento Extra Orçamentário</h6>
       <div class="d-flex gap-2">
         {{-- Botão de Voltar para uma lista, por exemplo --}}
-        <a href="javascript:void(0)" onclick="history.back()" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
-          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
-          Voltar
-        </a>
+       
       </div>
     </div>
   </div>

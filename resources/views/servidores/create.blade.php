@@ -11,10 +11,10 @@
   <h6 class="fw-semibold mb-0"> {{ __('Servidores') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("servidores")}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Servidores') }}
-      </a>
+       <a href="{{route("servidores")}}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
+          Voltar
+        </a>
     </li>
    
     
@@ -27,10 +27,7 @@
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
       <h6 class="card-title mb-0">Adicionar Novo Servidor</h6>
       <div class="d-flex gap-2">
-        <a href="javascript:void(0)" onclick="history.back()" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
-          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
-          Voltar
-        </a>
+       
       </div>
     </div>
   </div>
@@ -50,8 +47,16 @@
                 <div class="col-12">
                   <label class="form-label" for="nome_servidor">Nome do Servidor</label>
                   <input type="text" name="nome_servidor" id="nome_servidor" class="form-control @error('nome_servidor') is-invalid @enderror"
-                         value="{{ old('nome_servidor') }}" placeholder="Nome Completo do Servidor">
+                         value="{{ old('nome_servidor') }}" placeholder="Nome Servidor">
                   @error('nome_servidor')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="col-12">
+                   <label class="form-label" for="cpf">CPF do Servidor</label>
+                  <input type="text" name="cpf" id="cpf" class="form-control cpf @error('cpf') is-invalid @enderror"
+                         value="{{ old('cpf') }}" placeholder="000.000.000-00">
+                  @error('cpf')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
@@ -156,8 +161,15 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="classificacao_cargo">Classificação do Cargo (no Servidor)</label>
-                  <input type="text" name="classificacao_cargo" id="classificacao_cargo" class="form-control @error('classificacao_cargo') is-invalid @enderror"
-                         value="{{ old('classificacao_cargo') }}" placeholder="Ex: Efetivo, Comissionado" required>
+           
+                  <select name="classificacao_cargo" 
+                  class="form-control @error('classificacao_cargo') is-invalid @enderror"
+                         value="{{ old('classificacao_cargo') }}" required
+                  >
+                    @foreach($cargoClassisficacao as $item)
+                       <option value="{{$item->nome}}">{{$item->nome}}</option>
+                    @endforeach
+                  </select>
                   @error('classificacao_cargo')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
@@ -310,4 +322,31 @@
   </div>
 </div>
 
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cpfInputs = document.querySelectorAll('.cpf');
+
+    cpfInputs.forEach(function(input) {
+        input.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+            let formattedValue = '';
+
+            if (value.length > 0) {
+                formattedValue = value.substring(0, 3);
+                if (value.length > 3) {
+                    formattedValue += '.' + value.substring(3, 6);
+                }
+                if (value.length > 6) {
+                    formattedValue += '.' + value.substring(6, 9);
+                }
+                if (value.length > 9) {
+                    formattedValue += '-' + value.substring(9, 11);
+                }
+            }
+            e.target.value = formattedValue;
+        });
+    });
+});
+</script>
 </x-app-layout>

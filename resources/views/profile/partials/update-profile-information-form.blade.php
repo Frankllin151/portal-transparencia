@@ -1,11 +1,10 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-gray-900 mb-16">
             {{ __('Profile Information') }}
         </h2>
-
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Atualize as informações do perfil e o endereço de e-mail da sua conta.") }}
         </p>
     </header>
 
@@ -17,15 +16,15 @@
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+        <div class="mb-20">
+            <label for="name" class="form-label fw-semibold text-primary-light text-sm mb-8">{{ __('Nome Completo') }} <span class="text-danger-600">*</span></label>
+            <input id="name" name="name" type="text" class="form-control radius-8" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name" placeholder="Enter Full Name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+        <div class="mb-20">
+            <label for="email" class="form-label fw-semibold text-primary-light text-sm mb-8">{{ __('Email') }} <span class="text-danger-600">*</span></label>
+            <input id="email" name="email" type="email" class="form-control radius-8" value="{{ old('email', $user->email) }}" required autocomplete="username" placeholder="Enter email address" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -47,8 +46,11 @@
             @endif
         </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="d-flex align-items-center justify-content-center gap-3">
+          
+            <button type="submit" class="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8">
+                {{ __('Salva') }}
+            </button>
 
             @if (session('status') === 'profile-updated')
                 <p

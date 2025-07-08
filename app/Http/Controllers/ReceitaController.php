@@ -67,11 +67,14 @@ class ReceitaController extends Controller
         ->with('success', 'Receita  cadastrado com sucesso!');
 
         } catch(ValidationException $e){
-return redirect()->back()->with('error', 'Erros nos inputs: ' . 
-$e->errors())->withInput();
+            $erros = collect($e->errors())->flatten()->implode(' | ');
+    return redirect()->back()->with('error', 'Erros nos inputs: ' . $erros)->withInput();
         } catch(\Exception $e){
-return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o processo licitatório: ' .
- $e->getMessage())->withInput();
+            
+$erros = collect( $e->getMessage())->flatten()->implode(' | ');
+return redirect()->back()->with(
+    'error', 'Ocorreu um erro ao cadastrar o processo licitatório: '
+. $erros);
         }
     }
 

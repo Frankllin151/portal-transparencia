@@ -75,7 +75,8 @@ class Servidore extends Model
 		'efetivo_em_cargo_comissionado',
 		'carga_horaria_semanal',
 		'carga_horaria_mensal',
-		'organograma'
+		'organograma', 
+		"cpf"
 	];
 
 	public function cargo()

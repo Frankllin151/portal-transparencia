@@ -15556,3 +15556,24 @@ td.fc-header-center {
               width: 50% !important;
             }
         }
+
+
+/**TABELA AJUSTE*/
+/* Container que terá a barra de rolagem real (inferior) */
+.table-responsive-scrollable {
+    overflow-x: auto; /* A barra de rolagem principal estará aqui embaixo */
+}
+
+/* O wrapper para a barra de rolagem superior */
+.horizontal-scroll-top-wrapper {
+    overflow-x: auto; /* Permite que este div role */
+    overflow-y: hidden; /* Esconde a barra de rolagem vertical que pode aparecer */
+    height: 15px; /* Altura da barra de rolagem superior */
+    margin-bottom: -15px; /* Compensa a altura do wrapper para que o conteúdo abaixo se ajuste */
+}
+
+/* O conteúdo real que será rolado na barra de rolagem superior */
+.horizontal-scroll-top {
+    width: 100%; /* Será ajustado via JS para corresponder à largura real da tabela */
+    height: 1px; /* Apenas um pixel de altura para o conteúdo, a barra de rolagem será visível por causa do wrapper */
+}

@@ -11,10 +11,10 @@
   <h6 class="fw-semibold mb-0"> {{ __('Processos Licitatorios') }}: {{$processo->numero_processo}}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route('processo')}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Processos Licitatorios') }}
-      </a>
+      <a href="{{ route('processo') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
+          Voltar
+        </a>
     </li>
    
     

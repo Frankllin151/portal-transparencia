@@ -10,16 +10,14 @@
 
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
   <h6 class="fw-semibold mb-0"> {{ __('Movimentação Bancaria') }}</h6>
-  <ul class="d-flex align-items-center gap-2">
-    <li class="fw-medium">
-      <a href="{{route('movimentacao')}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Movimentação Bancaria') }}
-      </a>
-    </li>
-   
-    
-  </ul>
+ <ul class="d-flex align-items-center gap-2">
+  <li class="fw-medium">
+    <a href="{{ route('movimentacao') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+      <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+      Voltar 
+    </a>
+  </li>
+</ul>
 </div>
 
 <!-- Edita Movimentação  Bancaria-->
@@ -29,10 +27,7 @@
       <h6 class="card-title mb-0">Editar Movimentação Bancária</h6>
       <div class="d-flex gap-2">
         <!-- Rota para visualizar os detalhes da Movimentação Bancária -->
-        <a href="{{ route('movimentacaobancaria.show', $data->id) }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
-          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
-          Voltar
-        </a>
+       
       </div>
     </div>
   </div>

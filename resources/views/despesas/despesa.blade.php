@@ -12,9 +12,9 @@
   <h6 class="fw-semibold mb-0"> {{ __('Despesas') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{ route('despesas') }}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Despesas') }}
+      <a href="{{ route('despesas.create') }}" class="btn btn-primary ">
+       
+    {{ __('Novo') }}
       </a>
     </li>
    
@@ -58,7 +58,7 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ $item->tipo_poder }}</td>
             <td>{{ $item->credor_cnpj_cpf }}</td>
-            <td>{{ number_format($item->valor_pago, 2, ',', '.') }}</td>
+            <td>R${{ number_format($item->valor_pago, 2, ',', '.') }}</td>
             <td>{{ \Carbon\Carbon::parse($item->data_pagamento)->format('d/m/Y') }}</td>
             <td>
               <a href="{{ route('despesas.show', $item->id) }}" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center">

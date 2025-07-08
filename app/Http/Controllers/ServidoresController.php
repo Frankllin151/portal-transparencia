@@ -8,6 +8,7 @@ use  App\Models\Servidore;
 use App\Models\Situacaocargo;
 use App\Models\Entidade;
 use App\Models\ClassificacaoAfastamento;
+use App\Models\Classificacaocargo;
 use App\Models\Nomeorgao;
 use App\Models\Lotacao;
 use App\Models\Vinculoempregaticio;
@@ -23,7 +24,9 @@ class ServidoresController extends Controller
   public function index()
     { // nome_servidor ,  vinculo_empregaticio , situacao , entidade
         // Recupera todos os servidores, ordenados pela data de criação mais recente
-        $data = Servidore::orderBy("updated_at", "desc")->get();
+        $data = Servidore::with('cargo')
+    ->orderBy('updated_at', 'desc')
+    ->get();
      
         return view("servidores.showAll", ["data" => $data]);
     }
@@ -41,6 +44,7 @@ class ServidoresController extends Controller
             $Entidade = Entidade::orderBy("updated_at", "desc")->get();
             $Orgao = Nomeorgao::orderBy("updated_at", "desc")->get(); 
             $lotacao = Lotacao::orderBy("updated_at", "desc")->get(); 
+            $cargoClassisficacao = Classificacaocargo::orderBy("updated_at", "desc")->get(); 
         // Retorna a view 'servidores.create' passando os cargos disponíveis
         return view("servidores.create", ["cargos" => $cargos,
      "situacaoCargo" => $situacaoCargo  , 
@@ -48,7 +52,8 @@ class ServidoresController extends Controller
                 "vinculoEmpregaticio" => $vinculoEmpregaticio, 
                 "Entidade" => $Entidade, 
                 "Orgao" => $Orgao, 
-                "lotacao" => $lotacao
+                "lotacao" => $lotacao, 
+                "cargoClassisficacao" => $cargoClassisficacao 
     ]);
     }
     /**
@@ -78,6 +83,7 @@ class ServidoresController extends Controller
                 'carga_horaria_semanal' => 'required|numeric|between:0,999.99', // 5,2 decimal
                 'carga_horaria_mensal' => 'nullable|numeric|between:0,999.99',
                 'organograma' => 'nullable|string|max:255',
+                "cpf" => 'nullable|string|max:255',
             ]);
 
             // Gera um UUID para o ID do novo servidor
@@ -139,6 +145,7 @@ class ServidoresController extends Controller
             $Entidade = Entidade::orderBy("updated_at", "desc")->get();
             $Orgao = Nomeorgao::orderBy("updated_at", "desc")->get(); 
             $lotacao = Lotacao::orderBy("updated_at", "desc")->get(); 
+             $cargoClassisficacao = Classificacaocargo::orderBy("updated_at", "desc")->get();
             // Retorna a view 'servidores.edit' passando os dados do servidor e os cargos
             return view("servidores.edit",  [
                 "data" => $data,
@@ -148,7 +155,8 @@ class ServidoresController extends Controller
                 "vinculoEmpregaticio" => $vinculoEmpregaticio, 
                 "Entidade" => $Entidade, 
                 "Orgao" => $Orgao, 
-                "lotacao" => $lotacao
+                "lotacao" => $lotacao, 
+                "cargoClassisficacao" => $cargoClassisficacao
             ]);
         } catch (ModelNotFoundException $e) {
             // Caso o servidor não seja encontrado, redireciona de volta com mensagem de erro
@@ -188,6 +196,7 @@ class ServidoresController extends Controller
                 'carga_horaria_semanal' => 'required|numeric|between:0,999.99',
                 'carga_horaria_mensal' => 'nullable|numeric|between:0,999.99',
                 'organograma' => 'nullable|string|max:255',
+                "cpf" => 'nullable|string|max:255',
             ]);
 
             // Atualiza os atributos do servidor com os dados validados

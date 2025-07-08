@@ -25,11 +25,18 @@ Route::delete("/dashboard/delete/{id}/receita",[ReceitaController::class, "destr
 
 Route::get("/publica/receitas", [PublicaReceitaController::class,"index"])
 ->name("receitapublica");
+
 Route::get("/publica/receitas/prevista/x/realizada", [PublicaReceitaController::class, 
 "previstaRealizada"])
 ->name('receita.prevista.x.realizada');
+
+Route::get("/publica/receitas/prevista/x/realizada/{id}", [PublicaReceitaController::class, "show"])
+->name('receita.prevista.id.realizada');
+
 Route::get("/publica/receita/orcamentaria", [PublicaReceitaController::class, 
 "ReceitaOrcamentaria"])->name("receita.orcamentaria");
+
 Route::get("/publica/receitas/orcamentaria/diaria", [PublicaReceitaController::class,
 "VisualizaDiariaOrcamentaria"])->name("receita.orcamentaria.diaria");
+
 // Tela Publicas end

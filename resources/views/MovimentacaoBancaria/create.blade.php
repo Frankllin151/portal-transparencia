@@ -12,10 +12,10 @@
   <h6 class="fw-semibold mb-0"> {{ __('Movimentação Bancaria') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route('movimentacao')}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __('Movimentação Bancaria') }}
-      </a>
+      <a href="{{ route('movimentacao') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
+          Voltar para a Lista
+        </a>
     </li>
    
     
@@ -29,10 +29,7 @@
       <h6 class="card-title mb-0">Adicionar Nova Movimentação Bancária</h6>
       <div class="d-flex gap-2">
         <!-- Rota para a lista de Movimentações Bancárias (index) -->
-        <a href="{{ route('movimentacao') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
-          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
-          Voltar para a Lista
-        </a>
+       
       </div>
     </div>
   </div>

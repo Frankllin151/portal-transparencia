@@ -11,9 +11,9 @@
   <h6 class="fw-semibold mb-0"> {{ __(' Receita') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route('receita')}}" class="d-flex align-items-center gap-1 hover-text-primary">
-        <iconify-icon icon="solar:home-smile-angle-outline" class="icon text-lg"></iconify-icon>
-    {{ __(' Receita') }}
+      <a href="{{route('receita.novo')}}" class="btn btn-primary">
+       
+    {{ __(' Novo') }}
       </a>
     </li>
    
@@ -49,8 +49,8 @@
           <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $item->forma_ingresso}}</td>
-            <td>{{ number_format($item->valor_arrecadado_acumulado, 2, ',', '.')}}</td>
-            <td>{{ number_format($item->valor_orcado_atualizado, 2, ',', '.')}}</td>
+            <td>R${{ number_format($item->valor_arrecadado_acumulado, 2, ',', '.')}}</td>
+            <td>R${{ number_format($item->valor_orcado_atualizado, 2, ',', '.')}}</td>
             <td>% {{$item->realizado_percentual }}</td>
             <td>
               <a href="{{route('receita.show', $item->id)}}" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center" title="Visualizar">
