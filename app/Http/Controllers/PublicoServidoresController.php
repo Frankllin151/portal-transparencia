@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servidore;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class PublicoServidoresController extends Controller
@@ -54,5 +55,20 @@ class PublicoServidoresController extends Controller
     ->where('situacao', 'Ativo')->count();
     return view("servidores.servidorespublicoativos", ["data" => $data, 
     "total" => $total,  "remuneracao" => $remuneracao]);
+   }
+
+   public function  show($id)
+   {
+     try {
+            // Tenta encontrar o servidor pelo ID, incluindo o relacionamento com Cargo
+            $data = Servidore::with('cargo')->findOrFail($id);
+           
+            
+            return view("servidores.showpublicoid",["servidor" => $data]);
+        } catch (ModelNotFoundException $e) {
+            // Caso o servidor não seja encontrado, redireciona de volta com mensagem de erro
+            return redirect()->back()
+                ->with('error', 'Servidor não encontrado.');
+        }
    }
 }

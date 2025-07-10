@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
     <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Despesas por Programação e Ação</h5>
@@ -26,32 +26,48 @@
       </div>
     </div>
 
-    <table class="table bordered-table mb-0" id="dataTableDespesasPrograma" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Programa (Objetivo)</th>
-          <th>Descrição Função</th>
-          <th>Tipo de Ação</th>
-          <th>Valor Pago</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($TodosRegistroLoop as $index => $despesa)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $despesa->objetivo_programa }}</td>
-            <td>{{ $despesa->descricao_funcao ?? 'Não informado' }}</td>
-            <td>{{ $despesa->tipo_acao_programa }}</td>
-            <td>R$ {{ number_format((float)$despesa->valor_pago, 2, ',', '.') }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="9" class="text-center">Nenhum registro de despesa por programação e ação encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+    <div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableDespesasPrograma" data-page-length='10'>
+            <thead>
+                <tr>
+                  
+                    <th class="ps-8"><small>PROGRAMA</small></th>
+                    <th class="ps-8"><small>FUNÇÃO</small></th>
+                    <th class="ps-8"><small>AÇÃO</small></th>
+                    <th class="ps-8"><small>CÓDIGO DA DESPESA</small></th>
+                    <th class="ps-8"><small>VALOR ORÇADO DA DESPESA R$</small></th>
+                    <th class="ps-8"><small>VALOR ATUALIZADO DA DESPESA R$</small></th>
+                    <th class="ps-8"><small>EMPENHADO ATUALIZADO DA DESPESA R$</small></th>
+                    <th class="ps-8"><small>LIQUIDADO ATUALIZADO DA DESPESA R$</small></th>
+                    <th class="ps-8"><small>VALOR PAGO ATUALIZADO DA DESPESA R$</small></th>
+                     <td class="ps-8"><small>Ver mais</small></td>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($TodosRegistroLoop as $index => $despesa)
+                    <tr>
+                       
+                        <td class="ps-8"><small>{{ $despesa->descricao_programa ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $despesa->descricao_funcao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $despesa->descricao_acao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $despesa->mascara_natureza ?? $despesa->natureza_despesa ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_orcado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_atualizado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_empenho, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_liquidado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_pago, 2, ',', '.') }}</small></td>
+                     <td class="ps-8"><small><a href="{{route("publico.despesas.pessoal.id", $despesa->id)}}">
+                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                        </a></small></td>
+                      </tr>
+                @empty
+                    <tr>
+                        <td colspan="10" class="text-center"><small>Nenhum registro de despesa por programação e ação encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
   </div>
 </div>
 </div>

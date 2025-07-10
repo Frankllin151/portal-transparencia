@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
     <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Despesas Orçamentárias</h5>
@@ -30,33 +30,44 @@
     <p class="mb-0"><strong>Valor Total Pago: R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
   </div>
 </div>
-
-    <table class="table bordered-table mb-0" id="dataTableDespesas" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Data Empenho</th>
-          <th>Órgão</th>
-          <th>Nº Empenho</th>
-          <th>Valor Pago</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($TodosRegistroLoop as $index => $despesa)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ \Carbon\Carbon::parse($despesa->data_empenho)->format('d/m/Y') }}</td>
-            <td>{{ $despesa->orgao }}</td>
-            <td>{{ $despesa->numero_empenho }}</td>
-            <td>{{ number_format($despesa->valor_pago, 2, ',', '.') }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="12" class="text-center">Nenhum registro de despesa orçamentária encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+<div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableDespesas" data-page-length='10'>
+            <thead>
+                <tr>
+                    
+                    <th class="ps-8"><small>NÚMERO</small></th>
+                    <th class="ps-8"><small>DESCRIÇÃO DA DESPESA</small></th>
+                    <th class="ps-8"><small>VALOR ORÇADO DA DESPESA R$</small></th>
+                    <th class="ps-8"><small>VALOR ATUALIZADO DA DESPESA R$</small></th>
+                    <th class="ps-8"><small>VALOR EMPENHADO DA DESPESA R$</small></th>
+                    <th class="ps-8"><small>VALOR LIQUIDADO DA DESPESA R$</small></th>
+                    <th class="ps-8"><small>VALOR PAGO DA DESPESA R$</small></th>
+                      <th class="ps-8"><small>Ver mais</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($TodosRegistroLoop as $index => $despesa)
+                    <tr>
+                     
+                        <td class="ps-8"><small>{{ $despesa->codigo_acao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $despesa->descricao_programa ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_orcado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_atualizado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_empenho, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_liquidado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_pago, 2, ',', '.') }}</small></td>
+                    <td class="ps-8"><small><a href="{{route("publico.despesas.pessoal.id", $despesa->id)}}">
+                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                        </a></small></td>
+                      </tr>
+                @empty
+                    <tr>
+                        <td colspan="8" class="text-center"><small>Nenhum registro de despesa orçamentária encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
   </div>
 </div>
 </div>

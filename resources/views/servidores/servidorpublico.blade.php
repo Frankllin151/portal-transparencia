@@ -47,7 +47,7 @@
    <x-header></x-header>
 <br>
 <br>
-<div class="container">
+<div class="">
    <div class="">
         <div class="card h-100 radius-8 border">
           <div class="card-body p-24">
@@ -80,35 +80,46 @@
       {{-- Add other summary totals here if applicable --}}
     </div>
 
-    <table class="table bordered-table mb-0" id="dataTableServidoresComissionados" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Nome do Servidor</th>
-          <th>Matrícula</th>
-          <th>Vínculo Empregatício</th>
-          <th>Remuneração Contratual</th>
-         
-          <th>Situação</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($data as $index => $servidor)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $servidor->nome_servidor ?? 'N/A' }}</td>
-            <td>{{ $servidor->matricula ?? 'N/A' }}</td>
-            <td>{{ $servidor->vinculo_empregaticio ?? 'N/A' }}</td>
-            <td>R$ {{ number_format((float)($servidor->remuneracao_contratual ?? 0), 2, ',', '.') }}</td>
-            <td>{{ $servidor->situacao ?? 'N/A' }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="10" class="text-center">Nenhum servidor comissionado encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+  <div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableServidoresComissionados" data-page-length='10'>
+            <thead>
+                <tr>
+                   
+                    <th class="ps-8"><small>NOME DO SERVIDOR</small></th>
+                    <th class="ps-8"><small>ÓRGÃO</small></th>
+                    <th class="ps-8"><small>DATA DE ADMISSÃO</small></th>
+                    <th class="ps-8"><small>TIPO DE MATRÍCULA</small></th>
+                    <th class="ps-8"><small>VÍNCULO EMPREGATÍCIO</small></th>
+                    <th class="ps-8"><small>CARGA HORÁRIA MENSAL</small></th>
+                    <th class="ps-8"><small>CARGA HORÁRIA SEMANAL</small></th>
+                    <th class="ps-8"><small>CARGO</small></th>
+                    <th class="ps-8"><small>REMUNERAÇÃO CONTRATUAL R$</small></th>
+                    <th class="ps-8"><small>SITUAÇÃO</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($data as $index => $servidor)
+                    <tr>
+                      
+                        <td class="ps-8"><small>{{ $servidor->nome_servidor ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->orgao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ \Carbon\Carbon::parse($servidor->data_admissao)->format('d/m/Y') ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->matricula ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->vinculo_empregaticio ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->carga_horaria_mensal ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->carga_horaria_semanal ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->cargo->descricao_cargo ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)($servidor->remuneracao_contratual ?? 0), 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->situacao ?? 'N/A' }}</small></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="11" class="text-center"><small>Nenhum servidor comissionado encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
   </div>
 </div>
 </div>

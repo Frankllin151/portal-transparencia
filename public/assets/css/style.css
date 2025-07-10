@@ -15577,3 +15577,33 @@ td.fc-header-center {
     width: 100%; /* Será ajustado via JS para corresponder à largura real da tabela */
     height: 1px; /* Apenas um pixel de altura para o conteúdo, a barra de rolagem será visível por causa do wrapper */
 }
+
+
+
+
+@media print{
+  .btn-sm{
+   display:none !important;
+  }
+  footer{
+     display:none !important;
+  }
+  /*botão sem função*/
+  .btn  , .form-control,  .btn-outline-primary{
+    display:none !important;
+  }
+  /*graficos*/
+  #receitaOrcamentariaChart{
+   display:none !important;
+  }
+
+}
+
+
+/*botão sem função   (imprimir , enviar)*/
+.btn-danger{
+   display:none !important;
+}
+.btn-primary-600{
+     display:none !important;
+}

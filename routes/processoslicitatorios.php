@@ -24,7 +24,8 @@ Route::delete('/processo/delete/{id}', [ProcessosLicitatoriosController::class, 
 Route::get("publico/processos", [PublicoProcessosLicitatoriosController::class, "index"])
 ->name("publico.processos");
 
-
+Route::get("licitacao/publico/processos/{id}", [PublicoProcessosLicitatoriosController::class, "show"])
+->name("publico.processos.id");
 // 1. Dispensa de Licitação
 Route::get("publico/processos/dispensa", [PublicoProcessosLicitatoriosController::class, "dispensa"])
     ->name("publico.processos.dispensa");

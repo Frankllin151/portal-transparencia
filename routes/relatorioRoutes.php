@@ -12,6 +12,9 @@ Route::get("/publico/relatorio",[RelatoriosController::class,"index"])
 Route::get("/publico/relatorio/movimentacao-bancaria", [RelatoriosController::class, "movimentacaoBancaria"])
     ->name('publico.relatorio.movimentacao_bancaria');
 
+Route::get("publico/relatorio/movimentacao-bancaria/{id}", [RelatoriosController::class, "show"])
+->name("publico.relatorio.movimentacao_bancaria.id");
+
 // 2. Movimentação Bancária Mensal
 Route::get("/publico/relatorio/movimentacao-bancaria-mensal", [RelatoriosController::class, "movimentacaoBancariaMensal"])
     ->name('publico.relatorio.movimentacao_bancaria_mensal');
@@ -19,3 +22,4 @@ Route::get("/publico/relatorio/movimentacao-bancaria-mensal", [RelatoriosControl
 // 3. Relatório da Lei de Responsabilidade Fiscal
 Route::get("/publico/relatorio/lei-responsabilidade-fiscal", [RelatoriosController::class, "leiResponsabilidadeFiscal"])
     ->name('publico.relatorio.lei_responsabilidade_fiscal');
+

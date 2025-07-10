@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
     <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Despesas Diárias de Viagem</h5>
@@ -25,35 +25,50 @@
         <p class="mb-0"><strong>Valor Pago Atual: R$ {{ number_format((float)$ValorPagoAtual, 2, ",", ".") }}</strong></p>
       </div>
     </div>
-
-    <table class="table bordered-table mb-0" id="dataTableDespesasDiarias" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Data do Empenho</th>
-          <th>Órgão</th>
-          <th>Número do Empenho</th>
-          <th>Descrição do Programa</th>
-          <th>Valor Pago Atual</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($TodosRegistroLoop as $index => $despesa)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ \Carbon\Carbon::parse($despesa->data_empenho)->format('d/m/Y') }}</td>
-            <td>{{ $despesa->orgao }}</td>
-            <td>{{ $despesa->numero_empenho }}</td>
-            <td>{{ $despesa->descricao_programa }}</td>
-            <td>R$ {{ number_format((float)$despesa->valor_pago, 2, ',', '.') }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="10" class="text-center">Nenhum registro de despesa de viagem encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+<div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableDespesasDiarias" data-page-length='10'>
+            <thead>
+                <tr>
+                    <th class="ps-8"><small>S.L</small></th>
+                    <th class="ps-8"><small>ÓRGÃO</small></th>
+                    <th class="ps-8"><small>NÚMERO DO EMPENHO</small></th>
+                    <th class="ps-8"><small>DATA DO EMPENHO</small></th>
+                    <th class="ps-8"><small>CREDOR</small></th>
+                    <th class="ps-8"><small>CARGO DO CREDOR</small></th>
+                    <th class="ps-8"><small>DESCRIÇÃO DA VIAGEM</small></th>
+                    <th class="ps-8"><small>VALOR PAGO INICIAL R$</small></th>
+                    <th class="ps-8"><small>VALOR ANULADO R$</small></th>
+                    <th class="ps-8"><small>VALOR PAGO ATUAL R$</small></th>
+                    <th class="ps-8"><small>Ver mais</small></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($TodosRegistroLoop as $index => $despesa)
+                    <tr>
+                        <td class="ps-8"><small>{{ $index + 1 }}</small></td>
+                        <td class="ps-8"><small>{{ $despesa->orgao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $despesa->numero_empenho ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ \Carbon\Carbon::parse($despesa->data_empenho)->format('d/m/Y') }}</small></td>
+                        <td class="ps-8"><small>{{ $despesa->credor_nome ?? 'N/A' }}</small></td>
+                        {{-- Campos que agora têm mapeamento --}}
+                        <td class="ps-8"><small>{{ $despesa->credor_natureza_juridica ?? 'N/A' }}</small></td> <td class="ps-8"><small>{{ $despesa->descricao_funcao ?? 'N/A' }}</small></td> {{-- Valor Pago Inicial ainda sem mapeamento direto --}}
+                        <td class="ps-8"><small>R$ {{number_format((float) $despesa->valor_liquidado,2, ',', '.')}}</small></td> 
+                        <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_atualizado, 2, ',', '.') }}</small></td> <td class="ps-8"><small>R$ {{ number_format((float)$despesa->valor_pago, 2, ',', '.') }}</small></td>
+                       <td class="ps-8"><small><a href="{{route("publico.despesas.pessoal.id", $despesa->id)}}">
+                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                        </a></small></td> 
+                      
+                      </tr>
+                        
+                        @empty
+                    <tr>
+                        <td colspan="10" class="text-center"><small>Nenhum registro de despesa encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
   </div>
 </div>
 </div>

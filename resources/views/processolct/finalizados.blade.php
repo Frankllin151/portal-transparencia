@@ -47,7 +47,7 @@
    <x-header></x-header>
    <br>
    <br>
-   <div class="container">
+   <div class="">
     <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Processos de Licitação (Concluídos)</h5>
@@ -60,37 +60,64 @@
       </div>
       {{-- Adicione outros totais aqui, se aplicável --}}
     </div>
-
-    <table class="table bordered-table mb-0" id="dataTableProcessosConcluidos" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Número do Processo</th>
-          <th>Ano do Processo</th>
-          <th>Ano da Licitação</th>
-          <th>Modalidade</th>
-          <th>Situação</th>
-          <th>Registro de Preços</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($data as $index => $processo)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $processo->numero_processo ?? 'N/A' }}</td>
-            <td>{{ $processo->ano_processo ?? 'N/A' }}</td>
-            <td>{{ $processo->ano_licitacao ?? 'N/A' }}</td>
-            <td>{{ $processo->modalidade ?? 'N/A' }}</td>
-            <td>{{ $processo->situacao ?? 'N/A' }}</td>
-            <td>{{ $processo->registro_precos ? 'Sim' : 'Não' }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="7" class="text-center">Nenhum processo de licitação concluído encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+<div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableDispensaLicitacao" data-page-length='10'>
+            <thead>
+                <tr>
+                    <th class="ps-8"><small>S.L</small></th>
+                    <th class="ps-8"><small>ENTIDADE</small></th>
+                    <th class="ps-8"><small>NÚMERO DO PROCESSO</small></th>
+                    <th class="ps-8"><small>ANO DO PROCESSO</small></th>
+                    <th class="ps-8"><small>NÚMERO DA LICITAÇÃO</small></th>
+                    <th class="ps-8"><small>ANO DA LICITAÇÃO</small></th>
+                    <th class="ps-8"><small>MODALIDADE</small></th>
+                    <th class="ps-8"><small>TIPO DE OBJETO</small></th>
+                    <th class="ps-8"><small>FORMA DE JULGAMENTO</small></th>
+                    <th class="ps-8"><small>SITUAÇÃO</small></th>
+                    <th class="ps-8"><small>DATA DE HOMOLOGAÇÃO</small></th>
+                    <th class="ps-8"><small>CIDADE DO CERTAME</small></th>
+                    <th class="ps-8"><small>ESTADO DO CERTAME</small></th>
+                    <th class="ps-8"><small>ABERTURA DOS ENVELOPES</small></th>
+                    <th class="ps-8"><small>INÍCIO RECEBIMENTO ENVELOPES</small></th>
+                    <th class="ps-8"><small>TÉRMINO RECEBIMENTO ENVELOPES</small></th>
+                    <th class="ps-8"><small>DATA DE CRIAÇÃO</small></th>
+                    <th class="ps-8"><small>FORMA DE CONTRATAÇÃO</small></th>
+                    <th class="ps-8"><small>REGISTRO DE PREÇOS</small></th>
+                    <th class="ps-8"><small>NOME DO CONTATO</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($data as $index => $processo)
+                    <tr>
+                        <td class="ps-8"><small>{{ $index + 1 }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->entidade ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->numero_processo ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->ano_processo ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->numero_licitacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->ano_licitacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->modalidade ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->tipo_objeto ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->forma_julgamento ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->situacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->data_homologacao ? \Carbon\Carbon::parse($processo->data_homologacao)->format('d/m/Y') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->cidade_certame ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->estado_certame ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->data_hora_abertura_envelopes ? \Carbon\Carbon::parse($processo->data_hora_abertura_envelopes)->format('d/m/Y H:i:s') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->inicio_recebimento_envelopes ? \Carbon\Carbon::parse($processo->inicio_recebimento_envelopes)->format('d/m/Y H:i:s') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->termino_recebimento_envelopes ? \Carbon\Carbon::parse($processo->termino_recebimento_envelopes)->format('d/m/Y H:i:s') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->data_criacao ? \Carbon\Carbon::parse($processo->data_criacao)->format('d/m/Y') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->forma_contratacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->registro_precos ? 'Sim' : 'Não' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->nome_contato ?? 'N/A' }}</small></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="20" class="text-center"><small>Nenhum registro de processo licitatório encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
   </div>
 </div>
    </div>

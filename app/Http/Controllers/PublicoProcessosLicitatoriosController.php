@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Processoslicitatorio;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class PublicoProcessosLicitatoriosController extends Controller
 {
     public function index()
@@ -30,5 +32,19 @@ class PublicoProcessosLicitatoriosController extends Controller
          $data = Processoslicitatorio::where('situacao', 'Concluído')->get();
          $total =  Processoslicitatorio::where('situacao', 'Concluído')->count();
          return view("processolct.finalizados" , ["data" => $data, "total" => $total]); 
+    }
+    public function show($id)
+    {
+         try {
+            // Tenta encontrar o servidor pelo ID, incluindo o relacionamento com Cargo
+            $data = Processoslicitatorio::findOrFail($id);
+            // Retorna a view 'servidores.showid' passando os dados
+            
+            return view("processolct.showpublicoid", ["processo" => $data]);
+        } catch (ModelNotFoundException $e) {
+            // Caso o servidor não seja encontrado, redireciona de volta com mensagem de erro
+            return redirect()->back()
+                ->with('error', 'Servidor não encontrado.');
+        }
     }
 }

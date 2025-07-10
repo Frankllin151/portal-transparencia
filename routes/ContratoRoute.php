@@ -50,6 +50,10 @@ Route::get("/publico/contrato",
 Route::get("/publico/contrato/lista", [PublicoContratoController::class, "contratos"])
     ->name("publico.contrato.lista");
 
+
+Route::get("/publico/contrato/lista/{id}", [PublicoContratoController::class, "show"])
+    ->name("publico.contrato.lista.id");
+
 // 3. Fiscais dos Contratos
 Route::get("/publico/contrato/fiscais", [PublicoContratoController::class, "fiscais"])
     ->name("publico.contrato.fiscais");

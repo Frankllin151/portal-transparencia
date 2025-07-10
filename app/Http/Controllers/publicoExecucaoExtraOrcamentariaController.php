@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagamentosreceitasdespesasextraorcamentarium;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class publicoExecucaoExtraOrcamentariaController extends Controller
 {
     public function  index()
@@ -24,5 +26,22 @@ class publicoExecucaoExtraOrcamentariaController extends Controller
     ["extraorcametariaPagamento" => $extraorcametaria,
             "QuantidadeRegistro" => $quantidadeRegistro,
             "ValorPagoTotal" => $valorPagoTotal,]);
+    }
+
+
+    public function show($id){
+ try {
+            // Tenta encontrar o servidor pelo ID, incluindo o relacionamento com Cargo
+            $data = Pagamentosreceitasdespesasextraorcamentarium::
+            with("receitasdespesasextraorcamentarium")->findOrFail($id);
+
+            // Retorna a view 'servidores.showid' passando os dados
+            
+            return view("ReceitasDespesasExtraorcamentaria.showpublicoid", ["data" => $data]);
+        } catch (ModelNotFoundException $e) {
+            // Caso o servidor não seja encontrado, redireciona de volta com mensagem de erro
+            return redirect()->back()
+                ->with('error', 'Servidor não encontrado.');
+        }
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contrato;
+use App\Models\ContratosItem;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class PublicoContratoController extends Controller
@@ -13,8 +15,10 @@ class PublicoContratoController extends Controller
     }
     public function contratos()
     {
-        //data_assinatura, numero_contrato, tipo_contrato ,  contratado , situacao 
-        $data = Contrato::all();
+       
+        $data = ContratosItem::with('contrato')
+    ->orderByDesc('updated_at')
+    ->get();
         $total = Contrato::count();
         return view("contratos.contratoslista", ["data" => $data, "total" => $total]);
     }
@@ -22,7 +26,9 @@ class PublicoContratoController extends Controller
     public function fiscais()
     {
         //contratado, tipo_contrato, competencia , valor_inicial , valor_final
-         $data = Contrato::all();
+         $data = ContratosItem::with('contrato')
+    ->orderByDesc('updated_at')
+    ->get();
           $total = Contrato::count();
            $valorInicialPorAno = Contrato::select(
                 DB::raw('YEAR(updated_at) as ano'), // Seleciona o ano como 'ano'
@@ -42,9 +48,24 @@ class PublicoContratoController extends Controller
             ->get();
          
 
-        return view("contratos.fiscais", ["data" => $data, "total" => $total, 
+       return view("contratos.fiscais", ["data" => $data, "total" => $total, 
     "valorInicialPorAno" => $valorInicialPorAno,
             "valorFinalPorAno" => $valorFinalPorAno,
     ]);
+    }
+
+    public function show($id)
+    {
+         try {
+            // Tenta encontrar o servidor pelo ID, incluindo o relacionamento com Cargo
+            $data = ContratosItem::with('contrato')->findOrFail($id);
+            // Retorna a view 'servidores.showid' passando os dados
+            
+            return view("contratos.showpublicoid",  ["data" => $data]);
+        } catch (ModelNotFoundException $e) {
+            // Caso o servidor não seja encontrado, redireciona de volta com mensagem de erro
+            return redirect()->back()
+                ->with('error', 'Servidor não encontrado.');
+        }
     }
 }

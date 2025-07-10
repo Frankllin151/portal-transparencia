@@ -47,7 +47,7 @@
    <x-header></x-header>
    <br>
    <br>
-   <div class="container">
+   <div class="">
     <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Pagamentos Extra Orçamentários</h5>
@@ -64,35 +64,52 @@
       </div>
     </div>
 
-    <table class="table bordered-table mb-0" id="dataTableExtraOrcamentaria" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Número do Pagamento</th>
-          <th>Data do Pagamento</th>
-          <th>Nome do Beneficiário</th>
-          <th>CPF/CNPJ</th>
-          <th>Valor Pago</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($extraorcametariaPagamento as $index => $pagamento)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $pagamento->numero_pagamento }}</td>
-            <td>{{ \Carbon\Carbon::parse($pagamento->data_pagamento)->format('d/m/Y') }}</td>
-            <td>{{ $pagamento->nome_beneficiario }}</td>
-            <td>{{ $pagamento->cpf_cnpj_beneficiario }}</td>
-            <td>R$ {{ number_format((float)str_replace(',', '.', str_replace('.', '', $pagamento->valor)), 2, ',', '.') }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="9" class="text-center">Nenhum registro de pagamento extra orçamentário encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
-  </div>
+    <div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableExtraOrcamentaria" data-page-length='10'>
+            <thead>
+                <tr>
+                    
+                    <th class="ps-8"><small>NÚMERO DO PAGAMENTO</small></th>
+                    <th class="ps-8"><small>DATA DO PAGAMENTO</small></th>
+                    <th class="ps-8"><small>NOME DO BENEFICIÁRIO</small></th>
+                    <th class="ps-8"><small>CPF/CNPJ</small></th>
+                    <th class="ps-8"><small>CLASSIFICAÇÃO</small></th>
+                    <th class="ps-8"><small>DESCRIÇÃO CLASSIFICAÇÃO</small></th>
+                    <th class="ps-8"><small>FONTE DE RECURSOS</small></th>
+                    <th class="ps-8"><small>HISTÓRICO</small></th>
+                    <th class="ps-8"><small>VALOR PAGO R$</small></th>
+                    <th class="ps-8"><small>Ver mais</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($extraorcametariaPagamento as $index => $pagamento)
+                    <tr>
+                        
+                        <td class="ps-8"><small>{{ $pagamento->numero_pagamento ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ \Carbon\Carbon::parse($pagamento->data_pagamento)->format('d/m/Y') ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $pagamento->nome_beneficiario ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $pagamento->cpf_cnpj_beneficiario ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $pagamento->Receitasdespesasextraorcamentarium->classificacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $pagamento->Receitasdespesasextraorcamentarium->descricao_classificacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $pagamento->Receitasdespesasextraorcamentarium->fonte_recursos ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $pagamento->historico ?? 'N/A' }}</small></td>
+                        <td class="ps-8">
+                            <small>
+                                R$ {{ number_format((float)str_replace(',', '.', str_replace('.', '', $pagamento->valor ?? '0')), 2, ',', '.') }}
+                            </small>
+                        </td>
+                         <td class="ps-8"><small><a href="{{route("publico.execucao.extraorcamentaria.id", $pagamento->id)}}">
+                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                        </a></small></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="10" class="text-center"><small>Nenhum registro de pagamento extra orçamentário encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
    </div>
 

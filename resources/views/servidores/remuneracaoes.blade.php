@@ -47,7 +47,7 @@
    <x-header></x-header>
 <br>
 <br>
-<div class="container">
+<div class="">
   
     <div class="card basic-data-table">
        <div class="">
@@ -81,37 +81,57 @@
       {{-- Adicione outros totais aqui, se houver --}}
     </div>
 
-    <table class="table bordered-table mb-0" id="dataTableRemuneracoes" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Nome do Servidor</th>
-          <th>Matrícula</th>
-          <th>Vínculo Empregatício</th>
-          <th>Remuneração Contratual</th>
-          <th>Competência do Cargo</th>
-          <th>Situação</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($data as $index => $servidor)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $servidor->nome_servidor ?? 'N/A' }}</td>
-            <td>{{ $servidor->matricula ?? 'N/A' }}</td>
-            <td>{{ $servidor->vinculo_empregaticio ?? 'N/A' }}</td>
-            <td>R$ {{ number_format((float)($servidor->remuneracao_contratual ?? 0), 2, ',', '.') }}</td>
-            <td>{{ $servidor->cargo->competencia ?? 'N/A' }}</td>
-        
-            <td>{{ $servidor->situacao ?? 'N/A' }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="10" class="text-center">Nenhum registro de remuneração encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+    <div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableRemuneracoes" data-page-length='10'>
+            <thead>
+                <tr>
+                   
+                    <th class="ps-8"><small>NOME DO SERVIDOR</small></th>
+                    <th class="ps-8"><small>CARGO</small></th>
+                    <th class="ps-8"><small>TIPO DE MATRÍCULA</small></th>
+                    <th class="ps-8"><small>VÍNCULO EMPREGATÍCIO</small></th>
+                    <th class="ps-8"><small>ÓRGÃO</small></th>
+                    <th class="ps-8"><small>ORGANOGRAMA</small></th>
+                    <th class="ps-8"><small>DATA DE ADMISSÃO</small></th>
+                    <th class="ps-8"><small>SITUAÇÃO</small></th>
+                    <th class="ps-8"><small>REMUNERAÇÃO BRUTA R$</small></th>
+                    <th class="ps-8"><small>REMUNERAÇÃO LÍQUIDA R$</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($data as $index => $servidor)
+                    <tr>
+                      
+                        <td class="ps-8"><small>{{ $servidor->nome_servidor ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->cargo->descricao_cargo ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{$servidor->matricula}}</small></td> {{-- Tipo de Matrícula - Sem campo direto --}}
+                        <td class="ps-8"><small>{{ $servidor->vinculo_empregaticio ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->orgao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->organograma ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ \Carbon\Carbon::parse($servidor->data_admissao)->format('d/m/Y') ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->situacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)($servidor->remuneracao_contratual ?? 0), 2, ',', '.') }}</small></td>
+                        <td class="ps-8">
+                            <small>
+                                R$ {{ number_format(
+                                    max(0, 
+                                        (float)($servidor->remuneracao_contratual ?? 0) - 
+                                        (float)($servidor->contribuicao_empregado_rgps ?? 0) - 
+                                        (float)($servidor->contribuicao_empregado_rat_fat ?? 0)
+                                    ), 
+                                    2, ',', '.') 
+                                }}
+                            </small>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="11" class="text-center"><small>Nenhum registro de remuneração encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
   </div>
 </div>
 </div>

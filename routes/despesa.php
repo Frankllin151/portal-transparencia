@@ -30,6 +30,10 @@ Route::get("/publico/despesas", [PublicoDespesasController::class, "index"])
 Route::get("/publico/despesas/pessoal", [PublicoDespesasController::class,  "DespesasPessoal"])
 ->name("publico.despesas.pessoal");
 
+
+Route::get("/publico/despesas/pessoal/{id}", [PublicoDespesasController::class,  "show"])
+->name("publico.despesas.pessoal.id");
+
 Route::get("/publico/despesas/diarias/viagens", [PublicoDespesasController::class, 
 "DespesasDiariaEViagens"])->name("publico.despesas.diario.viagens");
 
@@ -44,4 +48,7 @@ Route::get("publico/despesas/programas/acoes", [PublicoDespesasController::class
 
 Route::get("publico/despesas/execucao/detalhada",[PublicoDespesasController::class, "ExecucaoDetalhadaDedepesas"])
 ->name("publico.despesas.execucao.detalhada");
+
+
+
 //Tela Publica Depesas End

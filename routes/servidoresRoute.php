@@ -43,6 +43,10 @@ Route::delete('/dashboard/servidores/{id}/delete', [ServidoresController::class,
 //Tela publico  
 Route::get("/publico/servidores", [PublicoServidoresController::class,"index"])
 ->name("publico.servidores");
+
+
+Route::get("/serve/publico/servidores/{id}", [PublicoServidoresController::class,"show"])
+->name("publico.servidores.id");
 // 1. Cargos e Vencimentos
 Route::get("/publico/servidores/cargos-vencimentos", [PublicoServidoresController::class, "cargosVencimentos"])
 ->name("publico.servidores.cargos-vencimentos");

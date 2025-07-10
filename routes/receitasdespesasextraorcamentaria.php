@@ -36,4 +36,6 @@ Route::delete("/dashboard/extra/{id}/orcamentaria/receita",
 Route::get("/publico/execucao/extraorcamentaria", 
 [publicoExecucaoExtraOrcamentariaController::class, "index"])
 ->name("publico.execucao.extraorcamentaria");
+Route::get("/publico/execucao/extraorcamentaria/{id}", [publicoExecucaoExtraOrcamentariaController::class ,"show"])
+->name("publico.execucao.extraorcamentaria.id");
 //Tela publica end

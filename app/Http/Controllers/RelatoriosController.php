@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Movimentacaobancarium;
 use App\Models\Receitum;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RelatoriosController extends Controller
 {
@@ -91,6 +92,21 @@ public function leiResponsabilidadeFiscal()
             'despesaLiquidadoMes' => $despesaLiquidadoMes,
             'resultadoFiscalMes' => $resultadoFiscalMes
         ]);
+    }
+
+    public function show($id)
+    {
+         try {
+            // Tenta encontrar o servidor pelo ID, incluindo o relacionamento com Cargo
+            $data = Movimentacaobancarium::findOrFail($id);
+         
+            
+            return view("relatorio.showpublicoid",  ["data" => $data]);
+        } catch (ModelNotFoundException $e) {
+            // Caso o servidor não seja encontrado, redireciona de volta com mensagem de erro
+            return redirect()->back()
+                ->with('error', 'Movimento Bancario não encontrado.');
+        }
     }
 
 }

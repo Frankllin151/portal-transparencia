@@ -60,8 +60,8 @@ class PublicaReceitaController extends Controller
    public function show($id)
    {
     try{
-      $data = Receitum::findOrFail($id);
-      return $data;
+    $data = Receitum::with('naturezaReceitum')->findOrFail($id);
+return view("receita.showpublicoid", ["receita" => $data]);
     }
     catch(ModelNotFoundException $e)
     {

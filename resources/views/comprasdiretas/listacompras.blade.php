@@ -47,7 +47,7 @@
    <x-header></x-header>
    <br>
    <br>
-   <div class="container">
+   <div class="">
 
      <div class="">
         <div class="card h-100 radius-8 border">
@@ -81,37 +81,48 @@
       </div>
       {{-- Adicione outros totais ou resumos aqui, se aplicável --}}
     </div>
-
-    <table class="table bordered-table mb-0" id="dataTableComprasDiretas" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Número do Pagamento</th>
-          <th>Data do Pagamento</th>
-          <th>Nome do Beneficiário</th>
-          <th>CPF/CNPJ do Beneficiário</th>
-         
-          <th>Valor</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($data as $index => $pagamento)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $pagamento->numero_pagamento ?? 'N/A' }}</td>
-            <td>{{ $pagamento->data_pagamento ? \Carbon\Carbon::parse($pagamento->data_pagamento)->format('d/m/Y') : 'N/A' }}</td>
-            <td>{{ $pagamento->nome_beneficiario ?? 'N/A' }}</td>
-            <td>{{ $pagamento->cpf_cnpj_beneficiario ?? 'N/A' }}</td>
-        
-            <td>R$ {{ number_format((float)($pagamento->valor ?? 0), 2, ',', '.') }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="7" class="text-center">Nenhum registro de pagamento encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
+<div class="table-responsive-scrollable">
+    <table class="table bordered-table mb-0" id="dataTablePagamentosExtraOrcamentario" data-page-length='10'>
+        <thead>
+            <tr>
+                
+                <th class="ps-8"><small>Data do Pagamento</small></th>
+                <th class="ps-8"><small>Número do Pagamento</small></th>
+                <th class="ps-8"><small>Nome do Beneficiário</small></th>
+                <th class="ps-8"><small>CPF/CNPJ Beneficiário</small></th>
+                <th class="ps-8"><small>Histórico</small></th>
+                <th class="ps-8"><small>Valor R$</small></th>
+                <th class="ps-8"><small>Classificação (Extra)</small></th>
+                <th class="ps-8"><small>Ver mais</small></th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($data as $index => $pagamentoExtra)
+                <tr>
+                    
+                    <td class="ps-8"><small>{{ \Carbon\Carbon::parse($pagamentoExtra->data_pagamento)->format('d/m/Y') }}</small></td>
+                    <td class="ps-8"><small>{{ $pagamentoExtra->numero_pagamento ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $pagamentoExtra->nome_beneficiario ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $pagamentoExtra->cpf_cnpj_beneficiario ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ Str::before($pagamentoExtra->historico ?? 'N/A', ' ') }}</small></td>
+                    <td class="ps-8"><small>R$ {{ number_format((float)$pagamentoExtra->valor, 2, ',', '.') }}</small></td>
+                    <td class="ps-8"><small>{{ $pagamentoExtra->Receitasdespesasextraorcamentarium->descricao_classificacao ?? 'N/A' }}</small></td>
+                    <td class="ps-8">
+                        <small>
+                            <a href="{{route("publico.compras.diretas.id", $pagamentoExtra->id)}}">
+                                <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                            </a>
+                        </small>
+                    </td>  
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="9" class="text-center"><small>Nenhum registro de pagamento extraorçamentário encontrado.</small></td>
+                </tr>
+            @endforelse
+        </tbody>
     </table>
+</div>
   </div>
 </div>
    </div>

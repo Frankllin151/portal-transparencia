@@ -45,7 +45,7 @@
     </head>
     <body>
    <x-header></x-header>
-   <div class="container">
+   <div class="">
     <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Contratos</h5>
@@ -59,34 +59,71 @@
       {{-- Adicione outros totais ou resumos aqui, se aplicável --}}
     </div>
 
+   <div class="table-responsive-scrollable">
     <table class="table bordered-table mb-0" id="dataTableContratos" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Número do Contrato</th>
-          <th>Data de Assinatura</th>
-          <th>Tipo de Contrato</th>
-          <th>Contratado</th>
-          <th>Situação</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($data as $index => $contrato)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $contrato->numero_contrato ?? 'N/A' }}</td>
-            <td>{{ $contrato->data_assinatura ? \Carbon\Carbon::parse($contrato->data_assinatura)->format('d/m/Y') : 'N/A' }}</td>
-            <td>{{ $contrato->tipo_contrato ?? 'N/A' }}</td>
-            <td>{{ $contrato->contratado ?? 'N/A' }}</td>
-            <td>{{ $contrato->situacao ?? 'N/A' }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="6" class="text-center">Nenhum registro de contrato encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
+        <thead>
+            <tr>
+                <th class="ps-8"><small>S.L</small></th>
+                <th class="ps-8"><small>ENTIDADE</small></th>
+                <th class="ps-8"><small>DATA DE ASSINATURA</small></th>
+                <th class="ps-8"><small>NÚMERO DO CONTRATO</small></th>
+                <th class="ps-8"><small>Nº PROCESSO</small></th>
+                <th class="ps-8"><small>ANO CONTRATO</small></th>
+                <th class="ps-8"><small>MODALIDADE LICITAÇÃO</small></th>
+                <th class="ps-8"><small>NÚMERO LICITAÇÃO</small></th>
+                <th class="ps-8"><small>TIPO DE CONTRATO</small></th>
+                <th class="ps-8"><small>OBJETO DO CONTRATO</small></th>
+                <th class="ps-8"><small>CONTRATADO</small></th>
+                <th class="ps-8"><small>DATA VIGÊNCIA INICIAL</small></th>
+                <th class="ps-8"><small>DATA VIGÊNCIA FINAL</small></th>
+                <th class="ps-8"><small>SITUAÇÃO</small></th>
+                <th class="ps-8"><small>VALOR INICIAL R$</small></th>
+                <th class="ps-8"><small>VALOR FINAL R$</small></th>
+                <th class="ps-8"><small>COMPETÊNCIA</small></th>
+                <th class="ps-8"><small>INSTRUMENTO DO CONTRATO</small></th>
+                <th class="ps-8"><small>CÓDIGO FORNECEDOR</small></th>
+                <th class="ps-8"><small>CÓDIGO PROCESSO</small></th>
+                <th class="ps-8"><small>SUBCONTRATAÇÃO</small></th>
+                <th class="ps-8"><small>VER MAIS</small></th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($data as $index => $item)
+                <tr>
+                    <td class="ps-8"><small>{{ $index + 1 }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->entidade ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->data_assinatura ? \Carbon\Carbon::parse($item->contrato->data_assinatura)->format('d/m/Y') : 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->numero_contrato ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->numero_processo ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->ano ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->modalidade_licitacao ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->numero_licitacao ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->tipo_contrato ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->descricao_item_contrato ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->contratado ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->data_vigencia_inicial ? \Carbon\Carbon::parse($item->contrato->data_vigencia_inicial)->format('d/m/Y') : 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->data_vigencia_final ? \Carbon\Carbon::parse($item->contrato->data_vigencia_final)->format('d/m/Y') : 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->situacao ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>R$ {{ number_format((float)($item->contrato->valor_inicial ?? 0), 2, ',', '.') }}</small></td>
+                    <td class="ps-8"><small>R$ {{ number_format((float)($item->contrato->valor_final ?? 0), 2, ',', '.') }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->competencia ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->instrumento_contrato ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->codigo_fornecedor ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->codigo_processo ?? 'N/A' }}</small></td>
+                    <td class="ps-8"><small>{{ $item->contrato->subcontratacao ?? 'N/A' }}</small></td>
+                 <td class="ps-8"><small><a href="{{route("publico.contrato.lista.id", $item->id)}}">
+                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                        </a></small></td>
+                  </tr>
+            @empty
+                <tr>
+                    <td colspan="21" class="text-center"><small>Nenhum registro encontrado.</small></td>
+                </tr>
+            @endforelse
+        </tbody>
     </table>
+</div>
+
   </div>
 </div>
    </div>

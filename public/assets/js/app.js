@@ -138,4 +138,10 @@ $('#selectAll').on('change', function () {
 
 
 
-/*JAVASCRIPT*/
+const warningButtons = document.getElementsByClassName('btn-warning');
+
+for (let i = 0; i < warningButtons.length; i++) {
+  warningButtons[i].addEventListener('click', function () {
+    window.print(); // This is equivalent to Ctrl+P
+  });
+}

@@ -46,7 +46,7 @@
     </head>
     <body>
    <x-header></x-header>
-<div class="container">
+<div class="">
     <div class="card basic-data-table">
   <div class="card-header">
     <h5 class="mb-0">Movimentação Bancária</h5>
@@ -59,33 +59,44 @@
       </div>
       {{-- You can add other totals here if your controller provides them, e.g., total balance --}}
     </div>
-
-    <table class="table bordered-table mb-0" id="dataTableMovimentacaoBancaria" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Nome do Banco</th>
-          <th>Número da Conta</th>
-          <th>Tipo de Conta</th>
-          <th>Entidade da Conta</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($TodasContas as $index => $conta)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $conta->nome_banco }}</td>
-            <td>{{ $conta->numero_conta }}</td>
-            <td>{{ $conta->tipo_conta }}</td>
-            <td>{{ $conta->nome_entidade }}</td>
-          </tr>
-        @empty
-          <tr>
-            <td colspan="6" class="text-center">Nenhum registro de movimentação bancária encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+     <div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableMovimentacaoBancaria" data-page-length='10'>
+            <thead>
+                <tr>
+                   
+                    <th class="ps-8"><small>NOME DO BANCO</small></th>
+                    <th class="ps-8"><small>DESCRIÇÃO DA AGÊNCIA</small></th>
+                    <th class="ps-8"><small>NÚMERO DA CONTA</small></th>
+                    <th class="ps-8"><small>TIPO DE CONTA</small></th>
+                    <th class="ps-8"><small>FUNÇÃO DA CONTA</small></th>
+                    <th class="ps-8"><small>ENTIDADE DA CONTA</small></th>
+                    <th class="ps-8"><small>VER MAIS</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($TodasContas as $index => $conta)
+                    <tr>
+                      
+                        <td class="ps-8"><small>{{ $conta->nome_banco ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $conta->descricao_agencia ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $conta->numero_conta ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $conta->tipo_conta ?? 'N/A' }}</small></td>
+                        {{-- Assumindo que Função da Conta é o mesmo que Tipo de Conta, como indicado --}}
+                        <td class="ps-8"><small>{{ $conta->tipo_conta ?? 'N/A' }}</small></td>
+                        {{-- Presumi que 'nome_entidade' é o campo para 'Entidade da Conta' --}}
+                        <td class="ps-8"><small>{{ $conta->nome_entidade ?? 'N/A' }}</small></td>
+                          <td class="ps-8"><small><a href="{{route("publico.relatorio.movimentacao_bancaria.id", $conta->id)}}">
+                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                        </a></small></td>
+                      </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center"><small>Nenhum registro de movimentação bancária encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
   </div>
 </div>
 </div>

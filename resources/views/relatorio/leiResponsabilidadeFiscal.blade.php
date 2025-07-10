@@ -53,48 +53,51 @@
     <div class="card-header">
         <h5 class="mb-0">Relatório de Responsabilidade Fiscal</h5>
     </div>
-    <div class="card-body">
-        <table class="table table-bordered mb-0">
-            <tbody>
-                <tr>
-                    <td><p class="mb-0"><strong>Receita Arrecadada no Mês</strong></p></td>
-                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$receitaMes, 2, ',', '.') }}</strong></p></td>
-                </tr>
-                <tr>
-                    <td><p class="mb-0"><strong>Receita Acumulada no Ano</strong></p></td>
-                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$receitaAno, 2, ',', '.') }}</strong></p></td>
-                </tr>
-                <tr>
-                    <td><p class="mb-0"><strong>Receita Corrente Líquida</strong></p></td>
-                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$receitaCorrenteLiquida, 2, ',', '.') }}</strong></p></td>
-                </tr>
-                <tr>
-                    <td><p class="mb-0"><strong>Despesa Paga no Mês</strong></p></td>
-                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$despesaPagoMes, 2, ',', '.') }}</strong></p></td>
-                </tr>
-                <tr>
-                    <td><p class="mb-0"><strong>Despesa Empenhada no Mês</strong></p></td>
-                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$despesaEmpenhadoMes, 2, ',', '.') }}</strong></p></td>
-                </tr>
-                 <tr>
-                    <td><p class="mb-0"><strong>Despesa Liquidada no Mês</strong></p></td>
-                    <td><p class="mb-0"><strong>R$ {{ number_format((float)$despesaLiquidadoMes, 2, ',', '.') }}</strong></p></td>
-                </tr>
-                <tr>
-                    <td><p class="mb-0"><strong>Resultado Fiscal do Mês</strong></p></td>
-                    <td>
-                        <p class="mb-0">
-                            @if ($resultadoFiscalMes >= 0)
-                                <strong class="text-success">Superávit: R$ {{ number_format((float)$resultadoFiscalMes, 2, ',', '.') }}</strong>
-                            @else
-                                <strong class="text-danger">Déficit: R$ {{ number_format(abs((float)$resultadoFiscalMes), 2, ',', '.') }}</strong>
-                            @endif
-                        </p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="card-body">
+    {{-- Para este tipo de tabela de resumo, a rolagem superior horizontal não é tipicamente necessária,
+         pois ela não costuma ter muitas colunas que fariam o conteúdo exceder a largura.
+         Portanto, removi o horizontal-scroll-top-wrapper e o table-responsive-scrollable. --}}
+    <table class="table bordered-table mb-0">
+        <tbody>
+            <tr>
+                <td class="ps-8"><small><strong>Receita Arrecadada no Mês</strong></small></td>
+                <td class="ps-8"><small><strong>R$ {{ number_format((float)$receitaMes, 2, ',', '.') }}</strong></small></td>
+            </tr>
+            <tr>
+                <td class="ps-8"><small><strong>Receita Acumulada no Ano</strong></small></td>
+                <td class="ps-8"><small><strong>R$ {{ number_format((float)$receitaAno, 2, ',', '.') }}</strong></small></td>
+            </tr>
+            <tr>
+                <td class="ps-8"><small><strong>Receita Corrente Líquida</strong></small></td>
+                <td class="ps-8"><small><strong>R$ {{ number_format((float)$receitaCorrenteLiquida, 2, ',', '.') }}</strong></small></td>
+            </tr>
+            <tr>
+                <td class="ps-8"><small><strong>Despesa Paga no Mês</strong></small></td>
+                <td class="ps-8"><small><strong>R$ {{ number_format((float)$despesaPagoMes, 2, ',', '.') }}</strong></small></td>
+            </tr>
+            <tr>
+                <td class="ps-8"><small><strong>Despesa Empenhada no Mês</strong></small></td>
+                <td class="ps-8"><small><strong>R$ {{ number_format((float)$despesaEmpenhadoMes, 2, ',', '.') }}</strong></small></td>
+            </tr>
+             <tr>
+                <td class="ps-8"><small><strong>Despesa Liquidada no Mês</strong></small></td>
+                <td class="ps-8"><small><strong>R$ {{ number_format((float)$despesaLiquidadoMes, 2, ',', '.') }}</strong></small></td>
+            </tr>
+            <tr>
+                <td class="ps-8"><small><strong>Resultado Fiscal do Mês</strong></small></td>
+                <td class="ps-8">
+                    <small>
+                        @if ($resultadoFiscalMes >= 0)
+                            <strong class="text-success">Superávit: R$ {{ number_format((float)$resultadoFiscalMes, 2, ',', '.') }}</strong>
+                        @else
+                            <strong class="text-danger">Déficit: R$ {{ number_format(abs((float)$resultadoFiscalMes), 2, ',', '.') }}</strong>
+                        @endif
+                    </small>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </div>
    </div>
 

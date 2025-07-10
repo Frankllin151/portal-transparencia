@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
 <br>
 <div class="">
         <div class="card h-100 radius-8 border">
@@ -39,33 +39,44 @@
       {{-- Você pode adicionar mais totais aqui se precisar de um quarto, ou deixar 3 --}}
     </div>
 
-    <table class="table bordered-table mb-0" id="dataTableReceitas" data-page-length='10'>
-      <thead>
-        <tr>
-          <th>S.L</th>
-          <th>Natureza da Receita</th>
-          <th>Descricao Receita</th>
-          <th>Valor Orçado</th>
-         <th>Valor Atualizado</th>
-        </tr>
-      </thead>
-      <tbody>
-        @forelse ($data as $index => $item)
-          <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $item->naturezaReceitum->codigo ?? 'N/A' }}</td>
-             <td>{{$item->naturezaReceitum->descricao}}</td>
-            <td>R$ {{ number_format($item->valor_orcado_inicial, 2, ',', '.') }}</td>
-            <td>{{ number_format($item->valor_orcado_atualizado, 2, ',', '.') }}</td>
-           
-          </tr>
-        @empty
-          <tr>
-            <td colspan="4" class="text-center">Nenhum registro de receita encontrado.</td>
-          </tr>
-        @endforelse
-      </tbody>
-    </table>
+    <div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableReceitas" data-page-length='10'>
+            <thead>
+                <tr>
+                    <th class="ps-8"><small>Rubrica Natureza</small></th>
+                    <th class="ps-8"><small>Descrição Natureza Receita</small></th>
+                    <th class="ps-8"><small>Valor Orçado R$</small></th>
+                    <th class="ps-8"><small>Orçado Atualizado R$</small></th>
+                    <th class="ps-8"><small>Valor Lançado Mês</small></th>
+                    <th class="ps-8"><small>Valor Arrecadado Mês</small></th>
+                    <th class="ps-8"><small>Valor Arrecadado Acumulado Até o Mês</small></th>
+                    <th class="ps-8"><small>Realizado (%)</small></th>
+                     <th class="ps-8"><small>Ver mais</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($data as $index => $item)
+                    <tr>
+                        <td class="ps-8"><small>{{ $item->naturezaReceitum->rubrica ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $item->naturezaReceitum->descricao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format($item->valor_orcado_inicial, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format($item->valor_orcado_atualizado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format($item->valor_lancado_mes, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format($item->valor_arrecadado_mes, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format($item->valor_arrecadado_acumulado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>{{ number_format($item->realizado_percentual, 2, ',', '.') }}%</small></td>
+                        <td class="ps-8"><small><a href="{{route("receita.prevista.id.realizada", $item->id)}}">
+                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                        </a></small></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="8" class="text-center"><small>Nenhum registro de receita encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
   </div>
 </div>
 </div>

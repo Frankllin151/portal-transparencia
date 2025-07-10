@@ -1,47 +1,63 @@
-<x-app-layout>
-    <!--IMPORTANTE NAO REMOVA O x-slot no front-end não vai aparece
-    o componente navigation
-    -->
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-           
-        </h2>
-    </x-slot>
-<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-  <h6 class="fw-semibold mb-0"> {{ __('Servidores') }}</h6>
-  <ul class="d-flex align-items-center gap-2">
-    <li class="fw-medium">
-      <a href="{{route("servidores")}}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
-          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
-          Voltar
-        </a>
-    </li>
-   
-    
-  </ul>
-</div>
-<!--servidor  id-->
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Portal  Transparência</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+
+        <!-- Styles / Scripts -->
+        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @else
+        @endif
+
+
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" sizes="16x16">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/apexcharts.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/dataTables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/editor-katex.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/editor.atom-one-dark.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/editor.quill.snow.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/flatpickr.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/full-calendar.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/jquery-jvectormap-2.0.5.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/magnific-popup.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/slick.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/prism.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/file-upload.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/audioplayer.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <style>
+    body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa; /* Fundo levemente cinza para destacar o header/footer brancos */
+        }
+  </style>
+    </head>
+    <body>
+   <x-header></x-header>
+
 <div class="card">
   <div class="card-header">
-    <div class="d-flex flex-wrap align-items-center justify-content-end gap-2">
-      <!-- Estes botões são placeholders, ajuste as rotas conforme necessário -->
-      <a href="javascript:void(0)" class="btn btn-sm btn-primary-600 radius-8 d-inline-flex align-items-center gap-1">
-        <iconify-icon icon="pepicons-pencil:paper-plane" class="text-xl"></iconify-icon>
-        Enviar
-      </a>
-      <a href="javascript:void(0)" class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
+   
+<div class="d-flex justify-content-between gap-2">
+       <a href="{{ route('publico.servidores') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar 
+</a>
+       <a href="javascript:void(0)" class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
         <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
         Download
       </a>
-      <!-- Supondo uma rota 'naturezareceita.edit' -->
-      <a href="{{ route('servidores.edit', $servidor->id) }}" class="btn btn-sm btn-success radius-8 d-inline-flex align-items-center gap-1">
-        <iconify-icon icon="uil:edit" class="text-xl"></iconify-icon>
-        Editar
-      </a>
-      <button type="button" class="btn btn-sm btn-danger radius-8 d-inline-flex align-items-center gap-1" onclick="window.print()">
-        <iconify-icon icon="basil:printer-outline" class="text-xl"></iconify-icon>
-        Imprimir
-      </button>
     </div>
   </div>
   <div class="card-body py-40">
@@ -262,5 +278,21 @@
     </div>
   </div>
 </div>
+  <x-footer></x-footer>
 
-</x-app-layout>
+<script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/apexcharts.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/iconify-icon.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/jquery-ui.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/jquery-jvectormap-2.0.5.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/jquery-jvectormap-world-mill-en.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/magnifc-popup.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/slick.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/prism.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
+  <script src="{{ asset('assets/js/app.js') }}"></script>
+    </body>
+</html>

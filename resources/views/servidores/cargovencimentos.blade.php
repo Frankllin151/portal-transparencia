@@ -45,7 +45,7 @@
     </head>
     <body>
    <x-header></x-header>
-   <div class="container">
+   <div class="">
     
     <div class="card basic-data-table">
     <div class="card-header">
@@ -60,33 +60,42 @@
             {{-- You can add other summary totals here if applicable --}}
         </div>
 
+       <div class="table-responsive-scrollable">
         <table class="table bordered-table mb-0" id="dataTableServidores" data-page-length='10'>
             <thead>
                 <tr>
-                    <th>S.L</th>
-                    <th>Nome do Servidor</th>
-                    <th>Vínculo Empregatício</th>
-                    <th>Remuneração Contratual</th>
-                    <th>Situação do Cargo</th>
+                 
+                    <th class="ps-8"><small>ENTIDADE</small></th>
+                    <th class="ps-8"><small>DESCRIÇÃO DO CARGO</small></th>
+                    <th class="ps-8"><small>CLASSIFICAÇÃO DO CARGO</small></th>
+                    <th class="ps-8"><small>MATRÍCULA</small></th>
+                    <th class="ps-8"><small>VINCULO EMPREGATICIO</small></th>
+                    <th class="ps-8"><small>SITUAÇÃO DO CARGO</small></th>
+                     <th class="ps-8"><small>VER MAIS</small></th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($data as $index => $servidor)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $servidor->nome_servidor ?? 'N/A' }}</td>
-                        <td>{{ $servidor->vinculo_empregaticio ?? 'N/A' }}</td>
-                        <td>R$ {{ number_format((float)($servidor->remuneracao_contratual ?? 0), 2, ',', '.') }}</td>
-                        
-                        <td>{{ $servidor->cargo->situacao_cargo ?? 'N/A' }}</td>
+                      
+                        <td class="ps-8"><small>{{ $servidor->entidade ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->cargo->descricao_cargo ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->cargo->classificacao_cargo ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->matricula ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->vinculo_empregaticio ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $servidor->cargo->situacao_cargo ?? 'N/A' }}</small></td>
+                       <td class="ps-8"><small><a href="{{route("publico.servidores.id", $servidor->id)}}">
+                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                        </a></small></td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center">Nenhum registro de servidor encontrado.</td>
+                        <td colspan="7" class="text-center"><small>Nenhum registro de servidor encontrado.</small></td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
+    </div>
     </div>
 </div>
    </div>

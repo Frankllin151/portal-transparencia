@@ -50,7 +50,7 @@
    <div class="container">
     <div class="card basic-data-table">
   <div class="card-header">
-    <h5 class="mb-0">Processos de Licitação</h5>
+    <h5 class="mb-0">Processos de Licitação </h5>
   </div>
   <div class="card-body">
     <div class="row mb-4">
