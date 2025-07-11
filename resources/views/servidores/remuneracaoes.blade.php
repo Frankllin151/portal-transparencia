@@ -70,13 +70,26 @@
         </div>
       </div>
   <div class="card-header">
-    <h5 class="mb-0">Servidores Remunerações</h5>
+    <h5 class="mb-0">Servidores e Remunerações</h5>
   </div>
   <div class="card-body">
     <div class="row mb-4">
       {{-- Total de Registros --}}
       <div class="col-md-4">
         <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
+      </div>
+       <div class="col-md-4">
+        <p class="mb-0"><strong>Tipo de Matricula(Contagem): {{ $matricula}}</strong></p>
+      </div>
+        <div class="col-md-4">
+        <p class="mb-0"><strong>Situação (Contagem): {{ $afastado}}</strong></p>
+      </div>
+
+
+        <div class="col-md-4">
+      <p class="mb-0"><strong>Remuneração bruta (Contagem):R$ 
+    {{ number_format(is_array($remuneracao) ? max($remuneracao) : $remuneracao, 2, ',', '.') }}
+</strong></p>
       </div>
       {{-- Adicione outros totais aqui, se houver --}}
     </div>
@@ -224,6 +237,14 @@
           }
         }
       }],
+       tooltip: {
+          y: { // Configurações para o valor do eixo Y no tooltip
+              formatter: function (val) {
+                  // Converte o valor para float e formata como moeda brasileira
+                  return "R$ " + parseFloat(val).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              }
+          }
+      },
   };
 
   var chart = new ApexCharts(document.querySelector("#remuneracaoDonutChart"), options);

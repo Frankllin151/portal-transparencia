@@ -16,17 +16,17 @@
 
       {{-- Valor Empenho (Total) --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Total Empenhado: R$ {{ number_format((float)$ValorEmpenhoTotal, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor do  Empenhado (Soma): R$ {{ number_format((float)$ValorEmpenhoTotal, 2, ",", ".") }}</strong></p>
       </div>
 
       {{-- Valor Liquidado (Total) --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Total Liquidado: R$ {{ number_format((float)$ValorLiquidadoTotal, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor  Liquidado (Soma): R$ {{ number_format((float)$ValorLiquidadoTotal, 2, ",", ".") }}</strong></p>
       </div>
 
       {{-- Valor Pago (Total) --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Total Pago: R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor  Pago (Soma): R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
       </div>
     </div>
 <div class="table-responsive-scrollable">

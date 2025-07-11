@@ -13,11 +13,11 @@
       </div>
       {{-- Total Valor Orçado Atualizado --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Orçado Atualizado Total: R$ {{ number_format((float)$totalValorOrcadoAtualizado, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor Orçado Atualizado (Soma): R$ {{ number_format((float)$totalValorOrcadoAtualizado, 2, ",", ".") }}</strong></p>
       </div>
       {{-- Total Valor Lançado Período --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Lançado no Período Total: R$ {{ number_format((float)$totalValorLancadoPeriodo, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor Lançado no Período (Soma): R$ {{ number_format((float)$totalValorLancadoPeriodo, 2, ",", ".") }}</strong></p>
       </div>
     </div>
 

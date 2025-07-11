@@ -10,24 +10,19 @@
     <p class="mb-0"><strong>Total de Registros: {{ (float)$QuantidadeRegistro }}</strong></p>
   </div>
   {{-- Valor Total Orçado --}}
-  <div class="col-md-3">
-    <p class="mb-0"><strong>Valor Total Orçado: R$ {{ number_format((float)$ValorOrcadoTotal, 2, ",", ".") }}</strong></p>
+   <div class="col-md-3">
+    <p class="mb-0"><strong>Valor  Empenhado da Despesa (Soma): R$ {{ number_format((float)$ValorEmpenhoTotal, 2, ",", ".") }}</strong></p>
   </div>
-  {{-- Valor Total Atualizado --}}
-  <div class="col-md-3">
-    <p class="mb-0"><strong>Valor Total Atualizado: R$ {{ number_format((float)$ValorAtualizadoTotal, 2, ",", ".") }}</strong></p>
-  </div>
-  {{-- Valor Total Empenhado --}}
-  <div class="col-md-3">
-    <p class="mb-0"><strong>Valor Total Empenhado: R$ {{ number_format((float)$ValorEmpenhoTotal, 2, ",", ".") }}</strong></p>
-  </div>
+  
+ 
+ 
   {{-- Valor Total Liquidado --}}
   <div class="col-md-3 mt-2">
-    <p class="mb-0"><strong>Valor Total Liquidado: R$ {{ number_format((float)$ValorLiquidadoTotal, 2, ",", ".") }}</strong></p>
+    <p class="mb-0"><strong>Valor  Liquidado da Despesa (Soma): R$ {{ number_format((float)$ValorLiquidadoTotal, 2, ",", ".") }}</strong></p>
   </div>
   {{-- Valor Total Pago --}}
   <div class="col-md-3 mt-2">
-    <p class="mb-0"><strong>Valor Total Pago: R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
+    <p class="mb-0"><strong>Valor Pago da Despesa (Soma): R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
   </div>
 </div>
 <div class="table-responsive-scrollable">

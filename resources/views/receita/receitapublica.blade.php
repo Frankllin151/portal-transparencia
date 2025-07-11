@@ -43,9 +43,13 @@
         }
   </style>
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
    <x-header></x-header>
+
+   <main class="flex-grow-1">
   <x-receitas-publicar></x-receitas-publicar>
+      </main>
+
   <x-footer></x-footer>
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>

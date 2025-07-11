@@ -79,6 +79,11 @@
       <div class="col-md-4">
         <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
       </div>
+
+      <div class="col-md-4">
+    <p class="mb-0"><strong> Valor (Soma)
+      : R$ {{ number_format($Valor, 2, ',', '.') }}</strong></p>
+</div>
       {{-- Adicione outros totais ou resumos aqui, se aplicável --}}
     </div>
 <div class="table-responsive-scrollable">
@@ -141,7 +146,7 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
-<script>
+  <script>
   // ================================ Dados para o Gráfico Donut ================================
   const totalPagamentosValor = {{ $Valor ?? 0 }}; // Pega o valor da variável PHP, padrão 0 se não existir
 
@@ -204,6 +209,16 @@
               }
           }
       },
+      // --- AQUI É ONDE VOCÊ ADICIONA (OU AJUSTA) O TOOLTIP ---
+      tooltip: {
+          y: { // Configurações para o valor do eixo Y no tooltip
+              formatter: function (val) {
+                  // Converte o valor para float e formata como moeda brasileira
+                  return "R$ " + parseFloat(val).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              }
+          }
+      },
+      // --- FIM DA MODIFICAÇÃO DO TOOLTIP ---
       responsive: [{
         breakpoint: 480,
         options: {

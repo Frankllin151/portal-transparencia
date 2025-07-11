@@ -12,17 +12,18 @@
 
       {{-- Valor Atualizado (Total) --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Total Atualizado: R$ {{ number_format((float)$ValorAtualizadoTotal, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor  Atualizado da Despesa (Soma): R$ 
+          {{ number_format((float)$ValorAtualizadoTotal, 2, ",", ".") }}</strong></p>
       </div>
 
       {{-- Valor Empenho (Total) --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Total Empenhado: R$ {{ number_format((float)$ValorEmpenhoTotal, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Empenho Atualizado da Despesa (Soma): R$  {{ number_format(max(0, $valorEmpenhoAtualizado), 2, ",", ".") }}</strong></p>
       </div>
 
       {{-- Valor Liquidado (Total) --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Total Liquidado: R$ {{ number_format((float)$ValorLiquidadoTotal, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor  Liquidado da despesa: R$ {{ number_format((float)$ValorLiquidadoTotal, 2, ",", ".") }}</strong></p>
       </div>
     </div>
 

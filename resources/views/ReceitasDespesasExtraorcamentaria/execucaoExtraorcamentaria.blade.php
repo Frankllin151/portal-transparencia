@@ -50,7 +50,7 @@
    <div class="">
     <div class="card basic-data-table">
   <div class="card-header">
-    <h5 class="mb-0">Pagamentos Extra Orçamentários</h5>
+    <h5 class="mb-0">Receitas e Despesas Extraorçamentárias</h5>
   </div>
   <div class="card-body">
     <div class="row mb-4">
@@ -58,10 +58,18 @@
       <div class="col-md-4">
         <p class="mb-0"><strong>Total de Registros: {{ (float)$QuantidadeRegistro }}</strong></p>
       </div>
-      {{-- Valor Pago (Total) --}}
-      <div class="col-md-4">
-        <p class="mb-0"><strong>Valor Total Pago: R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
-      </div>
+     <div class="col-md-4">
+  <p class="mb-0">
+    <strong>Valor da Receita: R$ {{ number_format(max(0, (float)$valorReceita), 2, ",", ".") }}</strong>
+  </p>
+</div>
+
+<div class="col-md-4">
+  <p class="mb-0">
+    <strong>Valor da Despesa: R$ {{ number_format(max(0, (float)$valorDespesa), 2, ",", ".") }}</strong>
+  </p>
+</div>
+
     </div>
 
     <div class="table-responsive-scrollable">

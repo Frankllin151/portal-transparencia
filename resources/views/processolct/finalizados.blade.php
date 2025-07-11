@@ -58,6 +58,14 @@
       <div class="col-md-4">
         <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
       </div>
+
+       <div class="col-md-4">
+
+        <p class="mb-0"><strong>Modalide (Contagem): <br>
+        <small> {{ $modalidade }} Dispensa de licitações</small>   <br>
+        <small>{{$pregao}} Pregão Eletrónico</small> 
+        </strong></p>
+      </div>
       {{-- Adicione outros totais aqui, se aplicável --}}
     </div>
 <div class="table-responsive-scrollable">

@@ -29,11 +29,13 @@ class Despesasprograma extends Component
         // Calcula os valores totais para o cabeçalho
         $valorAtualizadoTotal = $todosRegistros->sum('valor_atualizado');
         $valorEmpenhoTotal = $todosRegistros->sum('valor_empenho');
+        $valorEmpenhoAtualizado = $valorAtualizadoTotal  - $valorEmpenhoTotal;
         $valorLiquidadoTotal = $todosRegistros->sum('valor_liquidado');
         return view('components.publico.despesas.despesasprograma', [
              'QuantidadeRegistro' => $quantidadeRegistro,
             'ValorAtualizadoTotal' => $valorAtualizadoTotal,
             'ValorEmpenhoTotal' => $valorEmpenhoTotal,
+            'valorEmpenhoAtualizado' => $valorEmpenhoAtualizado ,
             'ValorLiquidadoTotal' => $valorLiquidadoTotal,
             'TodosRegistroLoop' => $todosRegistros,
         ]);

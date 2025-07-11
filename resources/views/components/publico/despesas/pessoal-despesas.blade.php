@@ -35,11 +35,11 @@
     </div>
     {{-- Valor Total Empenhado --}}
     <div class="col-md-4">
-        <p class="mb-0"><strong>Valor Total Empenhado: R$ {{ number_format((float)$ValorEmpenho, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor Empenhado (Soma): R$ {{ number_format((float)$ValorEmpenho, 2, ",", ".") }}</strong></p>
     </div>
     {{-- Valor Total Alterado --}}
     <div class="col-md-4">
-        <p class="mb-0"><strong>Valor Total Alterado: R$ {{ number_format((float)$ValorAlterado, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor  Anulado (Soma): R$ {{ number_format((float)$ValorAlterado, 2, ",", ".") }}</strong></p>
     </div>
 </div>
    <div class="table-responsive-scrollable">

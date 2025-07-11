@@ -57,7 +57,7 @@
     {{-- Para este tipo de tabela de resumo, a rolagem superior horizontal não é tipicamente necessária,
          pois ela não costuma ter muitas colunas que fariam o conteúdo exceder a largura.
          Portanto, removi o horizontal-scroll-top-wrapper e o table-responsive-scrollable. --}}
-    <table class="table bordered-table mb-0">
+    <table class="table bordered-table mb-0" id="noDatatables" data-no-datatable>
         <tbody>
             <tr>
                 <td class="ps-8"><small><strong>Receita Arrecadada no Mês</strong></small></td>

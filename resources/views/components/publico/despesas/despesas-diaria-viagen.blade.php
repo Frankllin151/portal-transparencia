@@ -12,34 +12,34 @@
 
       {{-- Valor pago inicial (Valor Empenhado) --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Empenhado (Inicial): R$ {{ number_format((float)$ValorEmpenho, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor pago  Inicial(Soma): R$ {{ number_format((float)$ValorEmpenho, 2, ",", ".") }}</strong></p>
       </div>
 
       {{-- Valor_alterado --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Total Alterado: R$ {{ number_format((float)$ValorAlterado, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor  Anulado (Soma): R$ {{ number_format((float)$ValorAlterado, 2, ",", ".") }}</strong></p>
       </div>
 
       {{-- Valor pago atual (assumindo que $ValorPagoAtual é o valor total pago) --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Pago Atual: R$ {{ number_format((float)$ValorPagoAtual, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor Pago Atual (Soma): R$ {{ number_format((float)$ValorPagoAtual, 2, ",", ".") }}</strong></p>
       </div>
     </div>
 <div class="table-responsive-scrollable">
-        <table class="table bordered-table mb-0" id="dataTableDespesasDiarias" data-page-length='10'>
+        <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
             <thead>
                 <tr>
-                    <th class="ps-8"><small>S.L</small></th>
-                    <th class="ps-8"><small>ÓRGÃO</small></th>
-                    <th class="ps-8"><small>NÚMERO DO EMPENHO</small></th>
-                    <th class="ps-8"><small>DATA DO EMPENHO</small></th>
-                    <th class="ps-8"><small>CREDOR</small></th>
-                    <th class="ps-8"><small>CARGO DO CREDOR</small></th>
-                    <th class="ps-8"><small>DESCRIÇÃO DA VIAGEM</small></th>
-                    <th class="ps-8"><small>VALOR PAGO INICIAL R$</small></th>
-                    <th class="ps-8"><small>VALOR ANULADO R$</small></th>
-                    <th class="ps-8"><small>VALOR PAGO ATUAL R$</small></th>
-                    <th class="ps-8"><small>Ver mais</small></th>
+                    <th scope="col"  class="ps-8"><small>S.L</small></th>
+                    <th scope="col"  class="ps-8"><small>ÓRGÃO</small></th>
+                    <th scope="col"  class="ps-8"><small>NÚMERO DO EMPENHO</small></th>
+                    <th scope="col"  class="ps-8"><small>DATA DO EMPENHO</small></th>
+                    <th scope="col"  class="ps-8"><small>CREDOR</small></th>
+                    <th scope="col"  class="ps-8"><small>CARGO DO CREDOR</small></th>
+                    <th scope="col"  class="ps-8"><small>DESCRIÇÃO DA VIAGEM</small></th>
+                    <th scope="col"  class="ps-8"><small>VALOR PAGO INICIAL R$</small></th>
+                    <th scope="col"  class="ps-8"><small>VALOR ANULADO R$</small></th>
+                    <th scope="col"  class="ps-8"><small>VALOR PAGO ATUAL R$</small></th>
+                    <th scope="col"  class="ps-8"><small>Ver mais</small></th>
                     
                 </tr>
             </thead>

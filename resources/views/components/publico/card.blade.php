@@ -104,7 +104,7 @@
           <div>
             <p class="fw-medium text-primary-light mb-1">Processos Licitatórios</p>
             <h6 class="mb-0"></h6> </div>
-          <div class="w-50-px h-50-px btn-primary-600 rounded-circle d-flex justify-content-center align-items-center">
+          <div class="w-50-px h-50-px btn-lilac-600 rounded-circle d-flex justify-content-center align-items-center">
             <iconify-icon icon="mdi:gavel" class="text-white text-2xl mb-0"></iconify-icon>
           </div>
         </div>

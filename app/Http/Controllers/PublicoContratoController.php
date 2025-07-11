@@ -19,17 +19,12 @@ class PublicoContratoController extends Controller
         $data = ContratosItem::with('contrato')
     ->orderByDesc('updated_at')
     ->get();
-        $total = Contrato::count();
-        return view("contratos.contratoslista", ["data" => $data, "total" => $total]);
-    }
+     $valorfinal = Contrato::sum("valor_final"); 
+     $valorInicial = Contrato::sum("valor_inicial");
 
-    public function fiscais()
-    {
-        //contratado, tipo_contrato, competencia , valor_inicial , valor_final
-         $data = ContratosItem::with('contrato')
-    ->orderByDesc('updated_at')
-    ->get();
-          $total = Contrato::count();
+        $total = Contrato::count();
+
+
            $valorInicialPorAno = Contrato::select(
                 DB::raw('YEAR(updated_at) as ano'), // Seleciona o ano como 'ano'
                 DB::raw('SUM(valor_inicial) as total_valor_inicial')
@@ -48,9 +43,26 @@ class PublicoContratoController extends Controller
             ->get();
          
 
-       return view("contratos.fiscais", ["data" => $data, "total" => $total, 
-    "valorInicialPorAno" => $valorInicialPorAno,
+
+
+        return view("contratos.contratoslista", [
+            "data" => $data, "total" => $total , "valorFinal" 
+            => $valorfinal , "valorInicial" => $valorInicial,
+              "valorInicialPorAno" => $valorInicialPorAno,
             "valorFinalPorAno" => $valorFinalPorAno,
+        
+        ]);
+    }
+
+    public function fiscais()
+    {
+        //contratado, tipo_contrato, competencia , valor_inicial , valor_final
+         $data = ContratosItem::with('contrato')
+    ->orderByDesc('updated_at')
+    ->get();
+          $total = Contrato::count();
+       return view("contratos.fiscais", ["data" => $data, "total" => $total
+  
     ]);
     }
 

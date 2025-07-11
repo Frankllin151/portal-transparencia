@@ -12,7 +12,7 @@
 
       {{-- Valor Pago (Total) --}}
       <div class="col-md-4">
-        <p class="mb-0"><strong>Valor Pago (Total): R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor Pago (Soma): R$ {{ number_format((float)$ValorPagoTotal, 2, ",", ".") }}</strong></p>
       </div>
     </div>
  <div class="table-responsive-scrollable">

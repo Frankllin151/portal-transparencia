@@ -24,14 +24,31 @@ class PublicoProcessosLicitatoriosController extends Controller
     {
          $data =Processoslicitatorio::all();
         $total = Processoslicitatorio::count();
-    return view("processolct.processoslicitacoe", ["data" => $data, "total" => $total]);
+
+    $Modalidade= Processoslicitatorio::with("cargo")->
+    where('modalidade', ["convite" , "Concorrência" , "Convite"])->count();
+    $pregao = Processoslicitatorio::with("cargo")->
+    where('modalidade', "Pregão")->count();
+    return view("processolct.processoslicitacoe", [
+        "data" => $data, 
+        "total" => $total, 
+        "modalidade" =>  $Modalidade, 
+        "pregao" => $pregao
+    ]);
     }
 
     public function finalizados()
     {
+          $Modalidade= Processoslicitatorio::with("cargo")->
+    where('modalidade', ["convite" , "Concorrência" , "Convite"])->count();
+    $pregao = Processoslicitatorio::with("cargo")->
+    where('modalidade', "Pregão")->count();
          $data = Processoslicitatorio::where('situacao', 'Concluído')->get();
          $total =  Processoslicitatorio::where('situacao', 'Concluído')->count();
-         return view("processolct.finalizados" , ["data" => $data, "total" => $total]); 
+         return view("processolct.finalizados" , ["data" => $data, "total" => $total, 
+        "modalidade" =>  $Modalidade, 
+        "pregao" => $pregao
+        ]); 
     }
     public function show($id)
     {

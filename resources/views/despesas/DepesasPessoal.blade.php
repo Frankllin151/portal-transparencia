@@ -61,8 +61,7 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
-
-  <script>
+<script>
   // ================================ Dados para o Gráfico Donut ================================
   const valorEmpenhoTotal = {{ $valorEmpenho ?? 0 }};
 
@@ -113,8 +112,9 @@
                           show: true,
                           fontSize: '22px',
                           color: undefined,
+                          // Exibe o valor empenhado formatado no centro do donut
                           formatter: function (val) {
-                              // Exibe o valor empenhado formatado no centro do donut
+                              // Usamos o valorEmpenhoTotal diretamente para garantir a exibição do valor total
                               return 'R$ ' + valorEmpenhoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                           }
                       },
@@ -125,6 +125,16 @@
               }
           }
       },
+      // --- MODIFICAÇÃO: Formatação do Tooltip ---
+      tooltip: {
+          y: {
+              formatter: function (val) {
+                  // Aqui formatamos o valor do tooltip
+                  return "R$ " + parseFloat(val).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              }
+          }
+      },
+      // ------------------------------------------
       responsive: [{
         breakpoint: 480,
         options: {

@@ -44,9 +44,10 @@
         }
   </style>
     </head>
-    <body>
-   <x-header></x-header>
-   <div class="container">
+    <body class="d-flex flex-column min-vh-100">
+         <x-header></x-header>
+      <main class="flex-grow-1">
+ <div class="container">
 <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 py-3">
 
   {{-- Relatório de Movimentação Bancária --}}
@@ -112,6 +113,9 @@
 </div>
 
 </div>
+      </main>
+
+    
   <x-footer></x-footer>
 
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>

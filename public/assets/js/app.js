@@ -145,3 +145,67 @@ for (let i = 0; i < warningButtons.length; i++) {
     window.print(); // This is equivalent to Ctrl+P
   });
 }
+
+
+//// ignorar aviso do DataTable alert
+// No início do seu script, antes de tudo mais
+const originalAlert = window.alert;
+
+window.alert = function(message) {
+    // Verifica se a mensagem contém a string específica do alerta do DataTables
+    if (message && typeof message === 'string' && message.includes('DataTables warning: table id=dataTable_0 - Incorrect column count')) {
+        console.log('Alerta do DataTables interceptado e ignorado:', message);
+        return; // Impede que o alerta seja exibido
+    }
+    // Para todos os outros alertas, exibe o alerta original
+    originalAlert.apply(window, arguments);
+};
+
+// ... (seu código aplicarDataTablePadrao)
+document.addEventListener("DOMContentLoaded", aplicarDataTablePadrao);
+
+
+/// Adicionar ids dataTable  em todas os sistemas 
+// e scope="col"
+function aplicarDataTablePadrao() {
+  const tabelas = document.querySelectorAll("table");
+
+  tabelas.forEach((tabela, index) => {
+    // Ignora tabelas com o atributo data-no-datatable="true"
+    if (tabela.hasAttribute('data-no-datatable')) return;
+
+    // Define um ID único para cada tabela
+    const idTabela = `dataTable_${index}`;
+    tabela.id = idTabela;
+
+    // Aplica estilo à tabela
+    tabela.style.border = "0.3px solid #ccc";
+    tabela.style.borderCollapse = "collapse";
+
+    // Aplica estilo às células th e td
+    const ths = tabela.querySelectorAll("thead th");
+    ths.forEach(th => {
+      th.setAttribute("scope", "col");
+     
+    
+    });
+
+    const tds = tabela.querySelectorAll("tbody td");
+    tds.forEach(td => {
+    
+     
+    });
+
+    // Inicializa o DataTable para essa tabela
+    new DataTable(`#${idTabela}`, {
+      language: {
+        lengthMenu: "Mostrar _MENU_ registros por página",
+        search: "Buscar:"
+      }
+    });
+  });
+}
+
+// Espera o DOM carregar antes de executar
+document.addEventListener("DOMContentLoaded", aplicarDataTablePadrao);
+

@@ -57,6 +57,14 @@
             <div class="col-md-4">
                 <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
             </div>
+
+             <div class="col-md-4">
+                <p class="mb-0"><strong>Classificação do cargo (Contagem): {{ $CaargoContagemEfetivo }}</strong></p>
+            </div>
+
+             <div class="col-md-4">
+                <p class="mb-0"><strong>Situação (Contagem): {{  $situacao }}</strong></p>
+            </div>
             {{-- You can add other summary totals here if applicable --}}
         </div>
 

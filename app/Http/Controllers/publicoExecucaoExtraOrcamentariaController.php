@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagamentosreceitasdespesasextraorcamentarium;
+use App\Models\Receitum;
+use App\Models\Despesa;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class publicoExecucaoExtraOrcamentariaController extends Controller
@@ -21,11 +23,16 @@ class publicoExecucaoExtraOrcamentariaController extends Controller
         $valorPagoTotal = $extraorcametaria->sum(function($item) {
             return (float)str_replace(',', '.', str_replace('.', '', $item->valor));
         });
+        $valorDespesa = Despesa::sum("valor_pago") - $valorPagoTotal;
+        $valorReceita = Receitum::sum("valor_orcado_inicial") - $valorPagoTotal;
 
         return view("ReceitasDespesasExtraorcamentaria.execucaoExtraorcamentaria",
     ["extraorcametariaPagamento" => $extraorcametaria,
             "QuantidadeRegistro" => $quantidadeRegistro,
-            "ValorPagoTotal" => $valorPagoTotal,]);
+            "ValorPagoTotal" => $valorPagoTotal,
+          "valorDespesa" => $valorPagoTotal , 
+          "valorReceita" => $valorReceita
+        ]);
     }
 
 

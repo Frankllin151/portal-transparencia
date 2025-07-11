@@ -62,15 +62,15 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
-<script>
+  <script>
   // Prepara os dados para o ApexCharts
- 
-  const rawData =  @json($dataGrafico);
+  const rawData = @json($dataGrafico);
+
   // Mapeia os dados para o formato que o ApexCharts espera
   const chartCategories = rawData.map(item => item.ano.toString()); // Anos como strings
   const chartData = rawData.map(item => item.total_orcado); // Valores orçados
 
-  // ================================ Total Subscriber bar chart Start ================================
+  // ================================ Configuração do Gráfico ================================
   var options = {
       series: [{
           name: "Valor Orçado Atualizado", // Nome da série para o gráfico
@@ -78,7 +78,7 @@
       }],
       chart: {
           type: 'bar',
-          height: 235,
+          height: 350, // Altura ajustada para ser mais parecida com o segundo gráfico
           toolbar: {
               show: false
           },
@@ -87,30 +87,21 @@
           bar: {
             borderRadius: 6,
             horizontal: false,
-            columnWidth: 24,
-            columnWidth: '52%',
+            // columnWidth: 24, // Removido para usar a porcentagem
+            columnWidth: '50%', // Largura da coluna ajustada
             endingShape: 'rounded',
           }
       },
       dataLabels: {
           enabled: false
       },
+      // Estilo de preenchimento (cor sólida como no segundo exemplo)
       fill: {
-          type: 'gradient',
-          colors: ['#dae5ff'], // Cor de início do gradiente
-          gradient: {
-              shade: 'light',
-              type: 'vertical',
-              shadeIntensity: 0.5,
-              gradientToColors: ['#dae5ff'],
-              inverseColors: false,
-              opacityFrom: 1,
-              opacityTo: 1,
-              stops: [0, 100],
-          },
+          opacity: 1,
+          colors: ['#007bff'], // Cor azul para a barra, como no primeiro item do segundo gráfico
       },
       grid: {
-          show: false,
+          show: false, // Mantido como no seu original
           borderColor: '#D1D5DB',
           strokeDashArray: 4,
           position: 'back',
@@ -131,7 +122,7 @@
       yaxis: {
         show: true, // Mostrar o eixo Y para visualizar os valores
         title: {
-            text: 'Valor Orçado' // Título para o eixo Y
+            text: 'Valor Orçado (R$)' // Título para o eixo Y
         },
         labels: {
             formatter: function (value) {
@@ -139,15 +130,24 @@
             }
         }
       },
+      // Configuração do tooltip para formatar o valor como R$
+      tooltip: {
+          y: {
+              formatter: function (val) {
+                  return "R$ " + val.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              }
+          }
+      },
+      // Adicionado stroke para borda nas barras, como no segundo gráfico
+      stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent'] // A cor transparente dá a ilusão de barras separadas
+      },
   };
 
   var chart = new ApexCharts(document.querySelector("#barChart"), options);
   chart.render();
-  // ================================ Total Subscriber bar chart End ================================
-
-
-
-
 </script>
     </body>
 </html>

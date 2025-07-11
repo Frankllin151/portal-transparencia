@@ -28,7 +28,7 @@ class DespesasDiariaViagen extends Component
         $quantidadeRegistro = $todosRegistros->count();
 
         // Calcula o valor total empenhado
-        $valorEmpenho = $todosRegistros->sum('valor_empenho');
+        $valorEmpenho = $todosRegistros->sum('valor_atualizado');
 
         // Calcula o valor total alterado
         $valorAlterado = $todosRegistros->sum('valor_alterado');
