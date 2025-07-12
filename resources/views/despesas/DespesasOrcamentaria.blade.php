@@ -61,6 +61,77 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
+<script>
+    // ================================ Preparação dos Dados ================================
+    const valorEmpenho = @json($valorEmpenho);
+    const valorLiquidado = @json($valorLiquidado);
+    const valorPago = @json($valorPago);
 
+    // ================================ Configuração do Gráfico ================================
+    var options = {
+        series: [{
+            name: "Valor Empenhado",
+            data: [valorEmpenho] // Data for a single bar
+        }, {
+            name: "Valor Liquidado",
+            data: [valorLiquidado] // Data for a single bar
+        }, {
+            name: "Valor Pago",
+            data: [valorPago] // Data for a single bar
+        }],
+        chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: {
+                show: false
+            },
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: '60%', // Adjust column width
+                endingShape: 'rounded'
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+        },
+        xaxis: {
+            categories: ['Despesas'], // A single category for the group of bars
+            title: {
+                text: '' // No title needed if it's just 'Despesas'
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Valor (R$)'
+            },
+            labels: {
+                formatter: function (value) {
+                    return 'R$ ' + value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return "R$ " + val.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+            }
+        },
+        colors: ['#007bff', '#ffc107', '#28a745'] // Blue for Empenhado, Yellow for Liquidado, Green for Pago
+    };
+
+    var chart = new ApexCharts(document.querySelector("#despesasChart"), options);
+    chart.render();
+</script>
     </body>
 </html>

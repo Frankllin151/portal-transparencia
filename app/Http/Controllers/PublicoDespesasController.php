@@ -20,24 +20,41 @@ class PublicoDespesasController extends Controller
     }
     public function DespesasDiariaEViagens( )
     {
-        return  view("despesas.DepesasDiariaViagens");
+        $valorpago   = Despesa::sum("valor_pago");
+        return  view("despesas.DepesasDiariaViagens", ["valorpago" => $valorpago]);
     }
     public function DespesasOrcamentaria()
     {
-        return view("despesas.DespesasOrcamentaria");
+        $valorEmpenho = Despesa::sum("valor_empenho");
+        $valorLiquidado = Despesa::sum("valor_liquidado");
+        $valorpago   = Despesa::sum("valor_pago");
+        return view("despesas.DespesasOrcamentaria", 
+    [ "valorEmpenho" => $valorEmpenho,
+        "valorLiquidado" => $valorLiquidado,
+        "valorPago" => $valorpago]
+    );
     }
     public function Credor()
     {
-         return view("despesas.DespesasCredor");
+        $valorpago = Despesa::sum("valor_pago");
+         return view("despesas.DespesasCredor", 
+         ["valorPago" => $valorpago]
+        );
     }
     public function ProgramasAcaoes()
     {
-        return view("despesas.DespesasProgramasAcoes");
+ $todosRegistros = Despesa::all();
+         $valorAtualizadoTotal = $todosRegistros->sum('valor_atualizado');
+        $valorEmpenhoTotal = $todosRegistros->sum('valor_empenho');
+        $valorEmpenhoAtualizado = $valorAtualizadoTotal  - $valorEmpenhoTotal;
+
+        return view("despesas.DespesasProgramasAcoes", ["valorEmpenhoAtualizado" =>$valorEmpenhoAtualizado]);
     }
 
     public function ExecucaoDetalhadaDedepesas()
     {
-    return view("despesas.DespesasExecucao");
+     $valorEmpenho = Despesa::sum("valor_empenho");
+    return view("despesas.DespesasExecucao" ,["valorEmpenho" => $valorEmpenho ]);
     }
 
     public function show($id)
