@@ -62,67 +62,71 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
-  <script>
-  // Prepara os dados para o ApexCharts
-  const rawData = @json($dataGrafico);
+<script>
+  // ================================ Preparação dos Dados ================================
+  const valorAtulizaoRaw = @json($ValorOrcadoAtualizado);
+  const ValorArrecadoRaw = @json($ValorArrecadado );
 
   // Mapeia os dados para o formato que o ApexCharts espera
-  const chartCategories = rawData.map(item => item.ano.toString()); // Anos como strings
-  const chartData = rawData.map(item => item.total_orcado); // Valores orçados
+  // Precisamos garantir que ambos os arrays de dados tenham os mesmos anos e na mesma ordem
+  // Primeiro, colete todos os anos únicos e ordene-os
+  const allYears = [...new Set([
+      ...valorAtulizaoRaw.map(item => item.ano),
+      ...ValorArrecadoRaw.map(item => item.ano)
+  ])].sort((a, b) => a - b); // Ordena os anos de forma ascendente
+
+  // Mapeia os valores orçados e arrecadados para cada ano, garantindo que haja um valor para cada ano
+  const valorAtulizaoData = allYears.map(year => {
+      const found = valorAtulizaoRaw.find(item => item.ano === year);
+      return found ? parseFloat(found.total_orcado) : 0; // Converte para número e assume 0 se não encontrar
+  });
+
+  const ValorArrecadoData = allYears.map(year => {
+      const found = ValorArrecadoRaw.find(item => item.ano === year);
+      // CORREÇÃO AQUI: Use 'total_arrecadado' para a série de valor arrecadado
+      return found ? parseFloat(found.total_arrecadado) : 0; // Converte para número e assume 0 se não encontrar
+  });
 
   // ================================ Configuração do Gráfico ================================
   var options = {
       series: [{
-          name: "Valor Orçado Atualizado", // Nome da série para o gráfico
-          data: chartData, // Seus dados de valor orçado por ano
+          name: "Valor Orçado Atualizado",
+          data: valorAtulizaoData
+      }, {
+          name: "Valor Arrecadado da Receita Acumulado no periodo",
+          data: ValorArrecadoData
       }],
       chart: {
           type: 'bar',
-          height: 350, // Altura ajustada para ser mais parecida com o segundo gráfico
+          height: 350, // Aumente a altura para melhor visualização
           toolbar: {
               show: false
           },
       },
       plotOptions: {
           bar: {
-            borderRadius: 6,
             horizontal: false,
-            // columnWidth: 24, // Removido para usar a porcentagem
-            columnWidth: '50%', // Largura da coluna ajustada
-            endingShape: 'rounded',
-          }
+            columnWidth: '50%', // Ajuste a largura das colunas
+            endingShape: 'rounded'
+          },
       },
       dataLabels: {
           enabled: false
       },
-      // Estilo de preenchimento (cor sólida como no segundo exemplo)
-      fill: {
-          opacity: 1,
-          colors: ['#007bff'], // Cor azul para a barra, como no primeiro item do segundo gráfico
-      },
-      grid: {
-          show: false, // Mantido como no seu original
-          borderColor: '#D1D5DB',
-          strokeDashArray: 4,
-          position: 'back',
-          padding: {
-            top: -10,
-            right: -10,
-            bottom: -10,
-            left: -10
-          }
+      stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
       },
       xaxis: {
-          type: 'category',
-          categories: chartCategories, // Seus anos como categorias do eixo X
+          categories: allYears.map(String), // Anos como strings para o eixo X
           title: {
-            text: 'Ano' // Título para o eixo X
+            text: 'Ano'
           }
       },
       yaxis: {
-        show: true, // Mostrar o eixo Y para visualizar os valores
         title: {
-            text: 'Valor Orçado (R$)' // Título para o eixo Y
+            text: 'Valor (R$)'
         },
         labels: {
             formatter: function (value) {
@@ -130,7 +134,9 @@
             }
         }
       },
-      // Configuração do tooltip para formatar o valor como R$
+      fill: {
+          opacity: 1
+      },
       tooltip: {
           y: {
               formatter: function (val) {
@@ -138,16 +144,12 @@
               }
           }
       },
-      // Adicionado stroke para borda nas barras, como no segundo gráfico
-      stroke: {
-          show: true,
-          width: 2,
-          colors: ['transparent'] // A cor transparente dá a ilusão de barras separadas
-      },
+      colors: ['#007bff', '#28a745'] // Cores para as séries: azul para orçado, verde para arrecadado
   };
 
   var chart = new ApexCharts(document.querySelector("#barChart"), options);
   chart.render();
 </script>
+<!---->
     </body>
 </html>

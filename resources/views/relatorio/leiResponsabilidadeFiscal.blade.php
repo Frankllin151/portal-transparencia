@@ -51,7 +51,23 @@
    <div class="container">
     <div class="card basic-data-table">
     <div class="card-header">
-        <h5 class="mb-0">Relatório de Responsabilidade Fiscal</h5>
+     
+
+ <div  class="d-flex  align-items-center justify-content-between ">
+     <h5 class="mb-0">Relatório de Responsabilidade Fiscal</h5>
+    <div>
+
+       <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar 
+</a>
+ <a href="javascript:void(0)" class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
+        <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
+        Download
+      </a>
+    </div>
+   </div>
+
     </div>
   <div class="card-body">
     {{-- Para este tipo de tabela de resumo, a rolagem superior horizontal não é tipicamente necessária,
