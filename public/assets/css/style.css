@@ -15589,7 +15589,7 @@ td.fc-header-center {
      display:none !important;
   }
   /*botão sem função*/
-  .btn  , .form-control,  .btn-outline-primary{
+  .form-control,  .btn-outline-primary{
     display:none !important;
   }
   /*graficos*/
@@ -15599,11 +15599,3 @@ td.fc-header-center {
 
 }
 
-
-/*botão sem função   (imprimir , enviar)*/
-.btn-danger{
-   display:none !important;
-}
-.btn-primary-600{
-     display:none !important;
-}

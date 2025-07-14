@@ -12,7 +12,10 @@
   <h6 class="fw-semibold mb-0"> {{ __('Modalidade Licitação') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-     <a href="{{route("modalidadelicitacao.novo")}}">Novo</a>
+   <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar 
+</a>
     </li>
   </ul>
 </div>

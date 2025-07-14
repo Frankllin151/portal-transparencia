@@ -12,7 +12,10 @@
   <h6 class="fw-semibold mb-0"> {{ __('Classificação Afastamento') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-      <a href="{{route("classificacaoafastamento.novo")}}" class="btn btn-primary ">Novo</a> {{-- Rota do botão "Novo" ajustada --}}
+       <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar 
+</a>
     </li>
   </ul>
 </div>
@@ -39,6 +42,7 @@
           </div>
           
           <div class="col-md-12">
+            <a href="javascript:history.back()" class="btn btn-secondary">Voltar</a>
             <button class="btn btn-primary-600" type="submit">Salvar</button>
           </div>
         </form>

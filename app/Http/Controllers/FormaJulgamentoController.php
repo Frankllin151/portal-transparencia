@@ -111,6 +111,7 @@ class FormaJulgamentoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         try {
             // Encontra a forma de julgamento pelo ID ou lança uma exceção ModelNotFoundException
             $formaJulgamento = FormaJulgamento::findOrFail($id);

@@ -4,41 +4,53 @@
     -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-           {{ __('Editar Tipo de Recurso') }} {{-- Título do cabeçalho ajustado --}}
+           
         </h2>
     </x-slot>
 
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-  <h6 class="fw-semibold mb-0"> {{ __('Tipo Recurso') }}</h6> {{-- Título da seção ajustado --}}
+  <h6 class="fw-semibold mb-0"> {{ __('Tipo Empenho') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-         <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+     
+    <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
     <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
     Voltar 
 </a>
     </li>
+   
+    
   </ul>
 </div>
+
+   
+    
+  </ul>
+</div>
+
+
 
 <div class="row gy-4">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="card-title mb-0">Edição de Tipo Recurso</h5> {{-- Título do card ajustado --}}
+        <h5 class="card-title mb-0">Ediçao de Tipo Matrícula</h5>
       </div>
       <div class="card-body">
-        <form action="{{ route('tiporecurso.update', $data->id) }}" method="POST" class="row gy-3 needs-validation" novalidate> {{-- Rota do formulário e parâmetro ajustados --}}
+        <form action="{{ route('tipomatricula.update', $data->id) }}" method="POST" class="row gy-3 needs-validation" novalidate>
           @csrf
-          @method("PUT") {{-- Mantido para o método PUT --}}
+          @method("PUT")
           <div class="col-md-6">
             <label class="form-label">Nome</label>
             <div class="icon-field has-validation">
-              <input type="text" name="nome" class="form-control" placeholder="Digite o nome" value="{{$data->nome}}" required> {{-- Valor do campo preenchido com $data->nome --}}
+              
+              <input type="text" name="nome" class="form-control" placeholder="Digite o nome" value="{{$data->nome}}" required>
               <div class="invalid-feedback">
                 Por favor, preencha o nome.
               </div>
             </div>
           </div>
+
           
           <div class="col-md-12">
             <button class="btn btn-primary-600" type="submit">Salvar</button>

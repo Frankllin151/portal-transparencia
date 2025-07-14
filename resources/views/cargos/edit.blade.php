@@ -27,10 +27,10 @@
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
       <h6 class="card-title mb-0">Editar Cargo</h6>
       <div class="d-flex gap-2">
-        <a href="{{ route('cargos.show', $data->id) }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
-          <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
-          Voltar
-        </a>
+         <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar 
+</a>
       </div>
     </div>
   </div>

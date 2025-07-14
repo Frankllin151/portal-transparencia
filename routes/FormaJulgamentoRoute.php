@@ -21,7 +21,7 @@ Route::get("/dashboard/forma/edit/julgamento/{id}", [FormaJulgamentoController::
     ->middleware(['auth', 'verified'])->name('formajulgamento.edit');
 
 // Rota para atualizar uma forma de julgamento existente
-Route::put("/dashboard/forma/{id}/put/julgamento/", [FormaJulgamentoController::class, "update"])
+Route::put("/dashboard/forma/{id}/put/julgamento", [FormaJulgamentoController::class, "update"])
     ->middleware(['auth', 'verified'])->name('formajulgamento.update');
 
 // Rota para deletar uma forma de julgamento

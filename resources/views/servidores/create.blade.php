@@ -76,9 +76,18 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="matricula">Matrícula</label>
-                  <input type="text" name="matricula" id="matricula" class="form-control @error('matricula') is-invalid @enderror"
-                         value="{{ old('matricula') }}" placeholder="Número de Matrícula" required>
-                  @error('matricula')
+                 
+                  <select name="matricula" id="matricula"  class="form-control @error('matricula') is-invalid @enderror" required>
+                    <option value="">Selecione o Tipo matrícula</option>
+                    @foreach($matricula as $item)
+                      <option value="{{ $item->nome }}" {{ old('matricula') == $item->nome ? 'selected' : '' }}>
+                        {{ $item->nome }}
+                      </option>
+                    @endforeach
+                  </select>
+                 
+                 
+                         @error('matricula')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>

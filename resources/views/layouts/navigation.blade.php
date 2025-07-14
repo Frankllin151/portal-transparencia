@@ -120,6 +120,8 @@
           <li><a href="{{route('vinculoempregaticio')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Vinculo Empregaticio</a></li>
           <li><a href="{{route('lotacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Lotação</a></li>
           <li><a href="{{route('modalidadelicitacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Modalidade Licitacão</a></li>
+       
+        <li><a href="{{route('tipomatricula.index')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo de Matrícula</a></li>
         </ul>
       </li>
 

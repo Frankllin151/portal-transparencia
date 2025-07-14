@@ -11,6 +11,7 @@ use App\Models\ClassificacaoAfastamento;
 use App\Models\Classificacaocargo;
 use App\Models\Nomeorgao;
 use App\Models\Lotacao;
+use App\Models\TipoMatricula;
 use App\Models\Vinculoempregaticio;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -42,6 +43,7 @@ class ServidoresController extends Controller
             $classificacaoAfastamento = ClassificacaoAfastamento::orderBy("updated_at", "desc")->get();
             $vinculoEmpregaticio = Vinculoempregaticio::orderBy("updated_at", "desc")->get();
             $Entidade = Entidade::orderBy("updated_at", "desc")->get();
+            $Tipomatricula = TipoMatricula::orderBy("updated_at", "desc")->get();
             $Orgao = Nomeorgao::orderBy("updated_at", "desc")->get(); 
             $lotacao = Lotacao::orderBy("updated_at", "desc")->get(); 
             $cargoClassisficacao = Classificacaocargo::orderBy("updated_at", "desc")->get(); 
@@ -53,7 +55,8 @@ class ServidoresController extends Controller
                 "Entidade" => $Entidade, 
                 "Orgao" => $Orgao, 
                 "lotacao" => $lotacao, 
-                "cargoClassisficacao" => $cargoClassisficacao 
+                "cargoClassisficacao" => $cargoClassisficacao , 
+                "matricula" =>  $Tipomatricula
     ]);
     }
     /**
@@ -145,6 +148,7 @@ class ServidoresController extends Controller
             $Entidade = Entidade::orderBy("updated_at", "desc")->get();
             $Orgao = Nomeorgao::orderBy("updated_at", "desc")->get(); 
             $lotacao = Lotacao::orderBy("updated_at", "desc")->get(); 
+             $Tipomatricula = TipoMatricula::orderBy("updated_at", "desc")->get();
              $cargoClassisficacao = Classificacaocargo::orderBy("updated_at", "desc")->get();
             // Retorna a view 'servidores.edit' passando os dados do servidor e os cargos
             return view("servidores.edit",  [
@@ -156,7 +160,8 @@ class ServidoresController extends Controller
                 "Entidade" => $Entidade, 
                 "Orgao" => $Orgao, 
                 "lotacao" => $lotacao, 
-                "cargoClassisficacao" => $cargoClassisficacao
+                "cargoClassisficacao" => $cargoClassisficacao, 
+                "matricula" => $Tipomatricula 
             ]);
         } catch (ModelNotFoundException $e) {
             // Caso o servidor não seja encontrado, redireciona de volta com mensagem de erro

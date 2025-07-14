@@ -161,51 +161,58 @@ window.alert = function(message) {
     originalAlert.apply(window, arguments);
 };
 
-// ... (seu código aplicarDataTablePadrao)
-document.addEventListener("DOMContentLoaded", aplicarDataTablePadrao);
 
 
-/// Adicionar ids dataTable  em todas os sistemas 
-// e scope="col"
+
 function aplicarDataTablePadrao() {
   const tabelas = document.querySelectorAll("table");
 
   tabelas.forEach((tabela, index) => {
-    // Ignora tabelas com o atributo data-no-datatable="true"
     if (tabela.hasAttribute('data-no-datatable')) return;
 
-    // Define um ID único para cada tabela
-    const idTabela = `dataTable_${index}`;
-    tabela.id = idTabela;
+    const ths = tabela.querySelectorAll("thead th");
+    const tds = tabela.querySelectorAll("tbody td");
 
-    // Aplica estilo à tabela
+    // Aplica estilo sempre
     tabela.style.border = "0.3px solid #ccc";
     tabela.style.borderCollapse = "collapse";
 
-    // Aplica estilo às células th e td
-    const ths = tabela.querySelectorAll("thead th");
     ths.forEach(th => {
-      th.setAttribute("scope", "col");
-     
-    
-    });
-
-    const tds = tabela.querySelectorAll("tbody td");
-    tds.forEach(td => {
-    
-     
-    });
-
-    // Inicializa o DataTable para essa tabela
-    new DataTable(`#${idTabela}`, {
-      language: {
-        lengthMenu: "Mostrar _MENU_ registros por página",
-        search: "Buscar:"
+      th.style.padding = "8px";
+      th.style.backgroundColor = "#f8f8f8";
+      if (index === 0) {
+        th.setAttribute("scope", "col");
       }
     });
+
+    tds.forEach(td => {
+      td.style.padding = "8px";
+      td.style.borderTop = "1px solid #ccc";
+    });
+
+    if (index === 0) {
+      const idTabela = `dataTable_${index}`;
+      tabela.id = idTabela;
+
+      // Verifica se existem TRs reais com número de TDs compatível
+      const linhasValidas = Array.from(tabela.querySelectorAll("tbody tr")).filter(tr => {
+        const colunas = tr.querySelectorAll("td");
+        return colunas.length === ths.length;
+      });
+
+      if (linhasValidas.length > 0) {
+        new DataTable(`#${idTabela}`, {
+          language: {
+            info: "Mostrando de _START_ a _END_ de _TOTAL_ entradas",
+            lengthMenu: "Mostrar _MENU_ registros por página",
+            search: "Buscar:"
+          }
+        });
+      } else {
+        console.log("Tabela ignorada por não ter dados válidos para o DataTable.");
+      }
+    }
   });
 }
 
-// Espera o DOM carregar antes de executar
 document.addEventListener("DOMContentLoaded", aplicarDataTablePadrao);
-
