@@ -413,7 +413,7 @@
               total: {
                 showAlways: true,
                 show: true,
-                label: 'Customer Report',
+                label: '',
                 // formatter: function (w) {
                 //     return w.globals.seriesTotals.reduce((a, b) => {
                 //         return a + b;
@@ -443,7 +443,7 @@
         data: [60, 120, 60, 90, 50, 95, 90]
       }],
       colors: ['#45B369', '#144bd6', '#FF9F29'],
-      labels: ['Active', 'New', 'Total'] ,
+      labels: ['Ativo', 'novo', 'Total'] ,
       
       legend: {
           show: false 

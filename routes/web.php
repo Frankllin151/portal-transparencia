@@ -4,6 +4,20 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TelaHomeController;
+
+Route::get('/listar-rotas', function () {
+    $routes = collect(Route::getRoutes())->map(function ($route) {
+        return [
+            'uri' => $route->uri(),
+            'name' => $route->getName(),
+            'methods' => $route->methods(),
+            'action' => $route->getActionName(),
+        ];
+    });
+
+    return response()->json($routes);
+});
+
 Route::get('/search', [SearchController::class, 'index'])->name('search.results');
 
 Route::get('/', [TelaHomeController::class, "index"])->name("main");

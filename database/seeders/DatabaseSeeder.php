@@ -13,7 +13,8 @@ use App\Models\Pagamentosreceitasdespesasextraorcamentarium;
 use App\Models\Processoslicitatorio;
 use App\Models\Receitasdespesasextraorcamentarium;
 use App\Models\Receitum;
-use App\Models\Servidore;;
+use App\Models\Servidore;
+use App\Models\Group;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -62,5 +63,52 @@ class DatabaseSeeder extends Seeder
             LotacaoSeeder::class,
             ModalidadeLicitacaoSeeder::class,
         ]);
+
+
+     // Criação dos grupos
+        $adminGroup = Group::create(['name' => 'Administrador']);
+        $financeGroup = Group::create(['name' => 'Financeiro']);
+        $secretaryGroup = Group::create(['name' => 'Secretária']);
+
+        // Permissões por grupo
+        $adminGroup->permissions()->createMany([
+            ['key' => 'view_dashboard'],
+            ['key' => 'edit_users'],
+            ['key' => 'view_reports'],
+            ['key' => 'manage_settings'],
+        ]);
+
+        $financeGroup->permissions()->createMany([
+            ['key' => 'view_reports'],
+            ['key' => 'manage_invoices'],
+        ]);
+
+        $secretaryGroup->permissions()->createMany([
+            ['key' => 'view_dashboard'],
+            ['key' => 'schedule_appointments'],
+        ]);
+
+        // Criação dos usuários e vinculação ao grupo
+
+        $adminUser = User::create([
+            'name' => 'Usuário Administrador',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $adminUser->groups()->attach($adminGroup);
+
+        $financeUser = User::create([
+            'name' => 'Usuário Financeiro',
+            'email' => 'financeiro@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $financeUser->groups()->attach($financeGroup);
+
+        $secretaryUser = User::create([
+            'name' => 'Usuário Secretária',
+            'email' => 'secretaria@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $secretaryUser->groups()->attach($secretaryGroup);
     }
 }

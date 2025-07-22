@@ -17,7 +17,7 @@
         @endif
 
 
-        <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" sizes="16x16">
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.jpeg') }}" sizes="16x16">
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">

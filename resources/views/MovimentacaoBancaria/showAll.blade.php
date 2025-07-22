@@ -8,7 +8,7 @@
         </h2>
     </x-slot>
 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-  <h6 class="fw-semibold mb-0"> {{ __('Movimentação Bancaria') }}</h6>
+  <h6 class="fw-semibold mb-0"> {{ __('Movimentação Bancária') }}</h6>
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
       <a href="{{route('movimentacaobancaria.novo')}}" class="btn btn-primary">

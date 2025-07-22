@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <title>Portal Transparência</title>
+ <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.jpeg') }}" sizes="16x16">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -51,7 +51,7 @@
           <iconify-icon icon="heroicons:bars-3-solid" class="icon"></iconify-icon>
         </button>
         <form class="navbar-search">
-          <input type="text" name="search" placeholder="Search">
+          <input type="text" name="search" placeholder="Pesquisar">
           <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
         </form>
       </div>
@@ -59,100 +59,8 @@
     <div class="col-auto">
       <div class="d-flex flex-wrap align-items-center gap-3">
         <button type="button" data-theme-toggle class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"></button>
-        <div class="dropdown d-none d-sm-inline-block">
-          <button class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center" type="button" data-bs-toggle="dropdown">
-            <img src="{{asset('assets/images/lang-flag.png')}}" alt="image" class="w-24 h-24 object-fit-cover rounded-circle">
-          </button>
-          <div class="dropdown-menu to-top dropdown-menu-sm">
-            <div class="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
-              <div>
-                <h6 class="text-lg text-primary-light fw-semibold mb-0">Choose Your Language</h6>
-              </div>
-            </div>
-
-            <div class="max-h-400-px overflow-y-auto scroll-sm pe-8">
-              <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
-                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="english"> 
-                  <span class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                    <img src="assets/images/flags/flag1.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                    <span class="text-md fw-semibold mb-0">English</span>
-                  </span>
-                </label>
-                <input class="form-check-input" type="radio" name="crypto" id="english">
-              </div>
-  
-              <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
-                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="japan"> 
-                  <span class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                    <img src="assets/images/flags/flag2.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                    <span class="text-md fw-semibold mb-0">Japan</span>
-                  </span>  
-                </label>
-                <input class="form-check-input" type="radio" name="crypto" id="japan">
-              </div>
-              
-              <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
-                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="france"> 
-                  <span class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                    <img src="assets/images/flags/flag3.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                    <span class="text-md fw-semibold mb-0">France</span>
-                  </span>  
-                </label>
-                <input class="form-check-input" type="radio" name="crypto" id="france">
-              </div>
-              
-              <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
-                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="germany"> 
-                  <span class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                    <img src="assets/images/flags/flag4.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                    <span class="text-md fw-semibold mb-0">Germany</span>
-                  </span>  
-                </label>
-                <input class="form-check-input" type="radio" name="crypto" id="germany">
-              </div>
-              
-              <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
-                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="korea"> 
-                  <span class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                    <img src="assets/images/flags/flag5.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                    <span class="text-md fw-semibold mb-0">South Korea</span>
-                  </span>  
-                </label>
-                <input class="form-check-input" type="radio" name="crypto" id="korea">
-              </div>
-              
-              <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
-                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="bangladesh"> 
-                  <span class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                    <img src="assets/images/flags/flag6.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                    <span class="text-md fw-semibold mb-0">Bangladesh</span>
-                  </span>  
-                </label>
-                <input class="form-check-input" type="radio" name="crypto" id="bangladesh">
-              </div>
-              
-              <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
-                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="india"> 
-                  <span class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                    <img src="assets/images/flags/flag7.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                    <span class="text-md fw-semibold mb-0">India</span>
-                  </span>  
-                </label>
-                <input class="form-check-input" type="radio" name="crypto" id="india">
-              </div>
-              <div class="form-check style-check d-flex align-items-center justify-content-between">
-                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="canada"> 
-                  <span class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                    <img src="assets/images/flags/flag8.png" alt="" class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                    <span class="text-md fw-semibold mb-0">Canada</span>
-                  </span>  
-                </label>
-                <input class="form-check-input" type="radio" name="crypto" id="canada">
-              </div>
-            </div>
-          </div>
-        </div><!-- Language dropdown end -->
-
+      
+          <!-- Message dropdown-->
         <div class="dropdown">
           <button class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center" type="button" data-bs-toggle="dropdown">
             <iconify-icon icon="mage:email" class="text-primary-light text-xl"></iconify-icon>
@@ -160,7 +68,7 @@
           <div class="dropdown-menu to-top dropdown-menu-lg p-0">
             <div class="m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
               <div>
-                <h6 class="text-lg text-primary-light fw-semibold mb-0">Message</h6>
+                <h6 class="text-lg text-primary-light fw-semibold mb-0">Mensagens</h6>
               </div>
               <span class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
             </div>
@@ -175,7 +83,7 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there i’m...</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">Olá! eu sou...</p>
                 </div>
               </div>
               <div class="d-flex flex-column align-items-end"> 
@@ -192,7 +100,7 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there i’m...</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">Olá! eu sou...</p>
                 </div>
               </div>
               <div class="d-flex flex-column align-items-end"> 
@@ -209,7 +117,7 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there i’m...</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">Olá! eu sou...</p>
                 </div>
               </div>
               <div class="d-flex flex-column align-items-end"> 
@@ -226,7 +134,7 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there i’m...</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">Olá! eu sou...</p>
                 </div>
               </div>
               <div class="d-flex flex-column align-items-end"> 
@@ -243,7 +151,7 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there i’m...</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-100-px">Olá! eu sou...</p>
                 </div>
               </div>
               <div class="d-flex flex-column align-items-end"> 
@@ -254,19 +162,20 @@
 
            </div>
             <div class="text-center py-12 px-16"> 
-                <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">See All Message</a>
+                <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">Ver Todas as Mensagens</a>
             </div>
           </div>
-        </div><!-- Message dropdown end -->
-
-        <div class="dropdown">
+        </div>
+        <!-- Message dropdown end -->
+         <!---notificationn dropdown -->
+      <div class="dropdown">
           <button class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center" type="button" data-bs-toggle="dropdown">
             <iconify-icon icon="iconoir:bell" class="text-primary-light text-xl"></iconify-icon>
           </button>
           <div class="dropdown-menu to-top dropdown-menu-lg p-0">
             <div class="m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
               <div>
-                <h6 class="text-lg text-primary-light fw-semibold mb-0">Notifications</h6>
+                <h6 class="text-lg text-primary-light fw-semibold mb-0">Notificações</h6>
               </div>
               <span class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
             </div>
@@ -278,11 +187,11 @@
                   <iconify-icon icon="bitcoin-icons:verify-outline" class="icon text-xxl"></iconify-icon>
                 </span> 
                 <div>
-                  <h6 class="text-md fw-semibold mb-4">Congratulations</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Your profile has been Verified. Your profile has been Verified</p>
+                  <h6 class="text-md fw-semibold mb-4">Parabéns</h6>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Seu perfil foi verificado. Seu perfil foi verificado</p>
                 </div>
               </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
             </a>
             
             <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
@@ -292,10 +201,10 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Ronald Richards</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">You can stitch between artboards</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Você pode alternar entre pranchetas</p>
                 </div>
               </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
             </a>
             
             <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
@@ -305,10 +214,10 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Arlene McCoy</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Invite you to prototyping</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
                 </div>
               </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
             </a>
 
             <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
@@ -318,10 +227,10 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Annette Black</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Invite you to prototyping</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
                 </div>
               </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
             </a>
 
             <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
@@ -331,19 +240,104 @@
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Darlene Robertson</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Invite you to prototyping</p>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
                 </div>
               </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
             </a>
            </div>
 
             <div class="text-center py-12 px-16"> 
-                <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">See All Notification</a>
+                <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">Ver Todas as Notificações</a>
             </div>
 
           </div>
-        </div><!-- Notification dropdown end -->
+        </div><div class="dropdown">
+          <button class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center" type="button" data-bs-toggle="dropdown">
+            <iconify-icon icon="iconoir:bell" class="text-primary-light text-xl"></iconify-icon>
+          </button>
+          <div class="dropdown-menu to-top dropdown-menu-lg p-0">
+            <div class="m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
+              <div>
+                <h6 class="text-lg text-primary-light fw-semibold mb-0">Notificações</h6>
+              </div>
+              <span class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
+            </div>
+            
+           <div class="max-h-400-px overflow-y-auto scroll-sm pe-4">
+            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
+                <span class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                  <iconify-icon icon="bitcoin-icons:verify-outline" class="icon text-xxl"></iconify-icon>
+                </span> 
+                <div>
+                  <h6 class="text-md fw-semibold mb-4">Parabéns</h6>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Seu perfil foi verificado. Seu perfil foi verificado</p>
+                </div>
+              </div>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
+            </a>
+            
+            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
+              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
+                <span class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                  <img src="{{asset('assets/images/notification/profile-1.png')}}" alt="">
+                </span> 
+                <div>
+                  <h6 class="text-md fw-semibold mb-4">Ronald Richards</h6>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Você pode alternar entre pranchetas</p>
+                </div>
+              </div>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
+            </a>
+            
+            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
+                <span class="w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                  AM
+                </span> 
+                <div>
+                  <h6 class="text-md fw-semibold mb-4">Arlene McCoy</h6>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
+                </div>
+              </div>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
+            </a>
+
+            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
+              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
+                <span class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                  <img src="{{asset('assets/images/notification/profile-2.png')}}" alt="">
+                </span> 
+                <div>
+                  <h6 class="text-md fw-semibold mb-4">Annette Black</h6>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
+                </div>
+              </div>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
+            </a>
+
+            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
+                <span class="w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                  DR
+                </span> 
+                <div>
+                  <h6 class="text-md fw-semibold mb-4">Darlene Robertson</h6>
+                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
+                </div>
+              </div>
+              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
+            </a>
+           </div>
+
+            <div class="text-center py-12 px-16"> 
+                <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">Ver Todas as Notificações</a>
+            </div>
+
+          </div>
+        </div>
+         <!-- Notification dropdown end -->
 
         <div class="dropdown">
           <button class="d-flex justify-content-center align-items-center rounded-circle" type="button" data-bs-toggle="dropdown">
@@ -408,5 +402,6 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
+  
     </body>
 </html>

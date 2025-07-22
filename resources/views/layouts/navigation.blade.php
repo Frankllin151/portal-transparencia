@@ -15,7 +15,7 @@
       <li>
         <a href="{{route('dashboard')}}">
           <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
-          <span>Inicio</span>
+          <span>Início</span>
         </a>
       </li>
 
@@ -61,7 +61,7 @@
 <li>
   <a href="{{route('processo')}}">
     <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
-    <span>Processos LCT</span>
+    <span>Processos Licitatórios</span>
   </a>
 </li>
 
@@ -106,7 +106,7 @@
           <li><a href="{{route('unidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Unidade</a></li>
           <li><a href="{{route('nomeorgao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Nome Orgão</a></li>
           <li><a href="{{route('natureza')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Natureza Receita</a></li>
-          <li><a href="{{route('naturezajuridica')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Natureza Juridica</a></li>
+          <li><a href="{{route('naturezajuridica')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Natureza Jurídica</a></li>
           <li><a href="{{route('nomecredor')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Nome Credor</a></li>
           <li><a href="{{route('finalidade')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Finalidade</a></li>
           <li><a href="{{route('formaingresso')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Forma Ingresso</a></li>
@@ -117,9 +117,9 @@
            <li><a href="{{route('cargos')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Cargos</a></li>
           <li><a href="{{route('classificacaocargo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação do Cargo</a></li>
           <li><a href="{{route('classificacaoafastamento')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação de Afastamento</a></li>
-          <li><a href="{{route('vinculoempregaticio')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Vinculo Empregaticio</a></li>
+          <li><a href="{{route('vinculoempregaticio')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Vinculo Empregatício</a></li>
           <li><a href="{{route('lotacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Lotação</a></li>
-          <li><a href="{{route('modalidadelicitacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Modalidade Licitacão</a></li>
+          <li><a href="{{route('modalidadelicitacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Modalidade Licitação</a></li>
        
         <li><a href="{{route('tipomatricula.index')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Tipo de Matrícula</a></li>
         </ul>

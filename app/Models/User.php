@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -45,4 +46,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+public function groups()
+{
+    return $this->belongsToMany(Group::class);
+}
+
+public function permissions()
+{
+    return $this->groups()->with('permissions')->get()
+        ->flatMap->permissions
+        ->pluck('key')
+        ->unique();
+}
+
+public function hasPermission($key)
+{
+    return $this->permissions()->contains($key);
+}
+
 }

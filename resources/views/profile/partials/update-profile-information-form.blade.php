@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 mb-16">
-            {{ __('Profile Information') }}
+            {{ __('Informações do perfil') }}
         </h2>
         <p class="mt-1 text-sm text-gray-600">
             {{ __("Atualize as informações do perfil e o endereço de e-mail da sua conta.") }}

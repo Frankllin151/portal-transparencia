@@ -216,3 +216,32 @@ function aplicarDataTablePadrao() {
 }
 
 document.addEventListener("DOMContentLoaded", aplicarDataTablePadrao);
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona todas as tags <link> com rel="icon"
+    const iconLinks = document.querySelectorAll('link[rel="icon"]');
+
+    // Define o novo caminho para o ícone.
+    // Lembre-se que esta URL já deve estar resolvida pelo Laravel no HTML final.
+    const newHref = '/assets/images/facivon.png';
+
+    // Itera sobre cada tag encontrada e modifica seus atributos
+    iconLinks.forEach(link => {
+        link.href = newHref;
+        link.sizes = '16x16';
+        console.log('Link do ícone modificado:', link.outerHTML);
+    });
+
+    // Se não houver nenhum <link rel="icon"> e você quiser adicionar um, pode fazer assim:
+    if (iconLinks.length === 0) {
+        const newIconLink = document.createElement('link');
+        newIconLink.rel = 'icon';
+        newIconLink.href = newHref;
+        newIconLink.sizes = '16x16';
+        document.head.appendChild(newIconLink);
+        console.log('Novo link de ícone adicionado:', newIconLink.outerHTML);
+    }
+});

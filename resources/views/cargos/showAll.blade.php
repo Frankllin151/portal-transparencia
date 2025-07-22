@@ -26,7 +26,7 @@
   <div class="card-header">
     <h5 class="mb-0">Cargos</h5>
   </div>
-  <div class="card-body">
+  <div class="card-body table-responsive-scrollable">
     <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
       <thead>
         <tr>
@@ -38,6 +38,7 @@
           </th>
           <th>Situação do Cargo</th>
           <th>Classificação do Cargo</th>
+          <th>Descrição Cargo</th>
           <th>Competência</th>
           <th>Ano</th>
           <th>Ação</th>
@@ -49,6 +50,7 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ $item->situacao_cargo }}</td>
             <td>{{ $item->classificacao_cargo }}</td>
+            <td>{{$item->descricao_cargo}}</td>
             <td>{{ $item->competencia }}</td>
             <td>{{ $item->ano }}</td>
             <td>

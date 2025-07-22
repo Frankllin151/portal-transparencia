@@ -15599,3 +15599,14 @@ td.fc-header-center {
 
 }
 
+
+
+/**estilo movimento para card blade - components/publico/card**/
+.card-custom-hover {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Adiciona uma transição suave */
+}
+
+.card-custom-hover:hover {
+  transform: translateY(-5px); /* Move o card ligeiramente para cima no hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra para o efeito de elevação no hover */
+}

@@ -22,7 +22,7 @@
 
 <div class="card basic-data-table">
   <div class="card-header">
-    <h5 class="mb-0">Entidade</h5> {{-- Título da tabela ajustado --}}
+    <h5 class="mb-0">Unidade</h5> {{-- Título da tabela ajustado --}}
   </div>
   <div class="card-body">
     <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>

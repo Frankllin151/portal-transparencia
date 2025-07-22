@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('tipo_contrato', function (Blueprint $table) {
-             $table->uuid("id")->primary();
-            $table->string("nome");
+        Schema::create('groups', function (Blueprint $table) {
+            $table->id();
+              $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_contrato');
+        Schema::dropIfExists('groups');
     }
 };
