@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+         @stack('styles')
     </head>
     <body class="font-sans antialiased">
        </main>
@@ -166,7 +167,11 @@
             </div>
           </div>
         </div>
+
         <!-- Message dropdown end -->
+
+
+        
          <!---notificationn dropdown -->
       <div class="dropdown">
           <button class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center" type="button" data-bs-toggle="dropdown">
@@ -252,93 +257,12 @@
             </div>
 
           </div>
-        </div><div class="dropdown">
-          <button class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center" type="button" data-bs-toggle="dropdown">
-            <iconify-icon icon="iconoir:bell" class="text-primary-light text-xl"></iconify-icon>
-          </button>
-          <div class="dropdown-menu to-top dropdown-menu-lg p-0">
-            <div class="m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
-              <div>
-                <h6 class="text-lg text-primary-light fw-semibold mb-0">Notificações</h6>
-              </div>
-              <span class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
-            </div>
-            
-           <div class="max-h-400-px overflow-y-auto scroll-sm pe-4">
-            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
-              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                <span class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                  <iconify-icon icon="bitcoin-icons:verify-outline" class="icon text-xxl"></iconify-icon>
-                </span> 
-                <div>
-                  <h6 class="text-md fw-semibold mb-4">Parabéns</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Seu perfil foi verificado. Seu perfil foi verificado</p>
-                </div>
-              </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
-            </a>
-            
-            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
-              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                <span class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                  <img src="{{asset('assets/images/notification/profile-1.png')}}" alt="">
-                </span> 
-                <div>
-                  <h6 class="text-md fw-semibold mb-4">Ronald Richards</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Você pode alternar entre pranchetas</p>
-                </div>
-              </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
-            </a>
-            
-            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
-              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                <span class="w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                  AM
-                </span> 
-                <div>
-                  <h6 class="text-md fw-semibold mb-4">Arlene McCoy</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
-                </div>
-              </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
-            </a>
-
-            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
-              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                <span class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                  <img src="{{asset('assets/images/notification/profile-2.png')}}" alt="">
-                </span> 
-                <div>
-                  <h6 class="text-md fw-semibold mb-4">Annette Black</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
-                </div>
-              </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
-            </a>
-
-            <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
-              <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
-                <span class="w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                  DR
-                </span> 
-                <div>
-                  <h6 class="text-md fw-semibold mb-4">Darlene Robertson</h6>
-                  <p class="mb-0 text-sm text-secondary-light text-w-200-px">Convidou você para prototipagem</p>
-                </div>
-              </div>
-              <span class="text-sm text-secondary-light flex-shrink-0">Há 23 minutos</span>
-            </a>
-           </div>
-
-            <div class="text-center py-12 px-16"> 
-                <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">Ver Todas as Notificações</a>
-            </div>
-
-          </div>
         </div>
+      
+        
          <!-- Notification dropdown end -->
 
+         <!----profile  dropdown--->
         <div class="dropdown">
           <button class="d-flex justify-content-center align-items-center rounded-circle" type="button" data-bs-toggle="dropdown">
             <img src="{{asset('assets/images/user.png')}}" alt="image" class="w-40-px h-40-px object-fit-cover rounded-circle">
@@ -372,7 +296,8 @@
               </li>
             </ul>
           </div>
-        </div><!-- Profile dropdown end -->
+        </div>
+        <!-- Profile dropdown end -->
       </div>
     </div>
   </div>
@@ -402,6 +327,6 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
-  
+   @stack('scripts')
     </body>
 </html>

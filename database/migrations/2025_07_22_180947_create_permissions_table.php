@@ -12,10 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('permissions', function (Blueprint $table) {
-         $table->id();
-    $table->foreignId('group_id')->constrained()->onDelete('cascade');
-    $table->string('key'); // ex: 'view_reports', 'edit_products'
-    $table->timestamps();
+            $table->uuid("id")->primary();
+
+            // --- CHANGE THIS LINE ---
+            // Instead of foreignId(), explicitly define it as a UUID column
+            $table->uuid('group_id');
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
+            // --- END CHANGE ---
+
+            $table->string('key');
+            $table->timestamps();
         });
     }
 

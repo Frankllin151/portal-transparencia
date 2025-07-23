@@ -71,4 +71,6 @@ require __DIR__."/FormaJulgamentoRoute.php";
 require __DIR__."/relatorioRoutes.php";
 require __DIR__."/comprasDiretasRoutes.php";
 require __DIR__."/tipoMatriculaRoute.php";
+require __DIR__."/gruporouta.php";
+require __DIR__."/permissao.php";
 require __DIR__.'/auth.php';
