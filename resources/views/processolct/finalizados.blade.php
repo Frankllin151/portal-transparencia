@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Portal  Transparência</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+
+        <!-- Styles / Scripts -->
+        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @else
+        @endif
+
+
+        <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" sizes="16x16">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/apexcharts.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/dataTables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/editor-katex.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/editor.atom-one-dark.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/editor.quill.snow.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/flatpickr.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/full-calendar.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/jquery-jvectormap-2.0.5.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/magnific-popup.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/slick.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/prism.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/file-upload.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lib/audioplayer.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <style>
+    body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa; /* Fundo levemente cinza para destacar o header/footer brancos */
+        }
+  </style>
+    </head>
+    <body>
+   <x-header></x-header>
+   <br>
+   <br>
+   <div class="">
+    <div class="card basic-data-table">
+  <div class="card-header">
+  
+
+ <div  class="d-flex  align-items-center justify-content-between ">
+      <h5 class="mb-0">Processos de Licitação Finalizados</h5>
+    <div>
+
+       <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar 
+</a>
+ <a href="javascript:void(0)" class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
+        <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
+        Download
+      </a>
+    </div>
+   </div>
+
+  </div>
+  <div class="card-body">
+    <div class="row mb-4">
+      {{-- Total de Registros --}}
+      <div class="col-md-4">
+        <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
+      </div>
+
+       <div class="col-md-4">
+
+        <p class="mb-0"><strong>Modalide (Contagem): <br>
+        <small> {{ $modalidade }} Dispensa de licitações</small>   <br>
+        <small>{{$pregao}} Pregão Eletrónico</small> 
+        </strong></p>
+      </div>
+      {{-- Adicione outros totais aqui, se aplicável --}}
+    </div>
+<div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTableDispensaLicitacao" data-page-length='10'>
+            <thead>
+                <tr>
+                    <th class="ps-8"><small>S.L</small></th>
+                    <th class="ps-8"><small>ENTIDADE</small></th>
+                    <th class="ps-8"><small>NÚMERO DO PROCESSO</small></th>
+                    <th class="ps-8"><small>ANO DO PROCESSO</small></th>
+                    <th class="ps-8"><small>NÚMERO DA LICITAÇÃO</small></th>
+                    <th class="ps-8"><small>ANO DA LICITAÇÃO</small></th>
+                    <th class="ps-8"><small>MODALIDADE</small></th>
+                    <th class="ps-8"><small>TIPO DE OBJETO</small></th>
+                    <th class="ps-8"><small>FORMA DE JULGAMENTO</small></th>
+                    <th class="ps-8"><small>SITUAÇÃO</small></th>
+                    <th class="ps-8"><small>DATA DE HOMOLOGAÇÃO</small></th>
+                    <th class="ps-8"><small>CIDADE DO CERTAME</small></th>
+                    <th class="ps-8"><small>ESTADO DO CERTAME</small></th>
+                    <th class="ps-8"><small>ABERTURA DOS ENVELOPES</small></th>
+                    <th class="ps-8"><small>INÍCIO RECEBIMENTO ENVELOPES</small></th>
+                    <th class="ps-8"><small>TÉRMINO RECEBIMENTO ENVELOPES</small></th>
+                    <th class="ps-8"><small>DATA DE CRIAÇÃO</small></th>
+                    <th class="ps-8"><small>FORMA DE CONTRATAÇÃO</small></th>
+                    <th class="ps-8"><small>REGISTRO DE PREÇOS</small></th>
+                    <th class="ps-8"><small>NOME DO CONTATO</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($data as $index => $processo)
+                    <tr>
+                        <td class="ps-8"><small>{{ $index + 1 }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->entidade ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->numero_processo ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->ano_processo ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->numero_licitacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->ano_licitacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->modalidade ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->tipo_objeto ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->forma_julgamento ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->situacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->data_homologacao ? \Carbon\Carbon::parse($processo->data_homologacao)->format('d/m/Y') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->cidade_certame ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->estado_certame ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->data_hora_abertura_envelopes ? \Carbon\Carbon::parse($processo->data_hora_abertura_envelopes)->format('d/m/Y H:i:s') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->inicio_recebimento_envelopes ? \Carbon\Carbon::parse($processo->inicio_recebimento_envelopes)->format('d/m/Y H:i:s') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->termino_recebimento_envelopes ? \Carbon\Carbon::parse($processo->termino_recebimento_envelopes)->format('d/m/Y H:i:s') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->data_criacao ? \Carbon\Carbon::parse($processo->data_criacao)->format('d/m/Y') : 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->forma_contratacao ?? 'N/A' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->registro_precos ? 'Sim' : 'Não' }}</small></td>
+                        <td class="ps-8"><small>{{ $processo->nome_contato ?? 'N/A' }}</small></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="20" class="text-center"><small>Nenhum registro de processo licitatório encontrado.</small></td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+   </div>
+  <x-footer></x-footer>
+<script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/apexcharts.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/iconify-icon.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/jquery-ui.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/jquery-jvectormap-2.0.5.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/jquery-jvectormap-world-mill-en.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/magnifc-popup.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/slick.min.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/prism.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
+  <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
+  <script src="{{ asset('assets/js/app.js') }}"></script>
+
+    </body>
+</html>
