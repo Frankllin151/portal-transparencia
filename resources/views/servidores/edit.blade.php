@@ -295,6 +295,12 @@
                   @enderror
                 </div>
               </div>
+               <div class="row gy-3">
+                <div class="col-12">
+                  <label class="form-label" for="observacoes">Observações</label>
+                  <textarea name="observacoes" id="observacoes" class="form-control" rows="3" placeholder="Digite observações adicionais">{{ old('observacoes', $data->observacoes ?? '') }}</textarea>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -303,6 +309,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
+             
               <div class="d-flex flex-wrap justify-content-end gap-3">
                 <button type="button" class="btn btn-secondary" onclick="history.back()">
                   <iconify-icon icon="mynaui:arrow-left" class="me-1"></iconify-icon>

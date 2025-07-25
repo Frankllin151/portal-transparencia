@@ -2,11 +2,11 @@
 
 <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 py-3">
   <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
+    <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
       <div class="card-body p-20">
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
           <div>
-            <p class="fw-medium text-primary-light mb-1">Receita Prevista X  Realizado</p>
+            <p class="fw-bold text-primary-light mb-1">Receita Prevista X  Realizado</p>
             <h6 class="mb-0"></h6> </div>
           <div class="w-50-px h-50-px btn-warning-600 rounded-circle d-flex justify-content-center align-items-center">
             <iconify-icon icon="mdi:cash-plus" class="text-white text-2xl mb-0"></iconify-icon>
@@ -23,11 +23,11 @@
 
 <!---Receitas Orçamentárias-->
 <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
+    <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
       <div class="card-body p-20">
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
           <div>
-            <p class="fw-medium text-primary-light mb-1">Receitas Orçamentárias</p>
+            <p class="fw-bold text-primary-light mb-1">Receitas Orçamentárias</p>
             <h6 class="mb-0"></h6> </div>
           <div class="w-50-px h-50-px btn-warning-600 rounded-circle d-flex justify-content-center align-items-center">
             <iconify-icon icon="mdi:cash-plus" class="text-white text-2xl mb-0"></iconify-icon>
@@ -46,11 +46,11 @@
 <!--Receitas Orçamentárias Diárias-->
 
 <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
+    <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
       <div class="card-body p-20">
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
           <div>
-            <p class="fw-medium text-primary-light mb-1">Receitas Orçamentárias Diárias</p>
+            <p class="fw-bold text-primary-light mb-1">Receitas Orçamentárias Diárias</p>
             <h6 class="mb-0"></h6> </div>
           <div class="w-50-px h-50-px btn-warning-600 rounded-circle d-flex justify-content-center align-items-center">
             <iconify-icon icon="mdi:cash-plus" class="text-white text-2xl mb-0"></iconify-icon>

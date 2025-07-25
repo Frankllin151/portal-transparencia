@@ -63,6 +63,7 @@ class ProcessosLicitatoriosController extends Controller
                 'forma_contratacao' => 'required|string',
                 'registro_precos' => 'required|string',
                 'nome_contato' => 'required|string',
+                'observacoes' => 'nullable|string',
             ]);
              $id = Str::uuid()->toString();
        $validatedData = ['id' => $id] + $validatedData;

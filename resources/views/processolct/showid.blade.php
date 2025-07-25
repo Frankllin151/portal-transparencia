@@ -113,6 +113,11 @@
                 </table>
               </div>
             </div>
+            @if(!empty($processo->observacoes))
+              <div class="alert alert-info mt-3">
+                <strong>Observações:</strong> {{ $processo->observacoes }}
+              </div>
+            @endif
 
             <!-- Local do Certame -->
             <div class="mt-24">

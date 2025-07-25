@@ -76,7 +76,8 @@ class Servidore extends Model
 		'carga_horaria_semanal',
 		'carga_horaria_mensal',
 		'organograma', 
-		"cpf"
+		"cpf", 
+		"observacoes"
 	];
 
 	public function cargo()

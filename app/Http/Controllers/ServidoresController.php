@@ -87,6 +87,7 @@ class ServidoresController extends Controller
                 'carga_horaria_mensal' => 'nullable|numeric|between:0,999.99',
                 'organograma' => 'nullable|string|max:255',
                 "cpf" => 'nullable|string|max:255',
+                'observacoes' => 'nullable|string',
             ]);
 
             // Gera um UUID para o ID do novo servidor
@@ -137,6 +138,7 @@ class ServidoresController extends Controller
      */
     public function edit(string $id)
     {
+       
         try {
             // Tenta encontrar o servidor pelo ID
             $data = Servidore::findOrFail($id);
@@ -176,6 +178,7 @@ class ServidoresController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        
         try {
             // Tenta encontrar o servidor pelo ID
             $servidor = Servidore::findOrFail($id);
@@ -202,6 +205,7 @@ class ServidoresController extends Controller
                 'carga_horaria_mensal' => 'nullable|numeric|between:0,999.99',
                 'organograma' => 'nullable|string|max:255',
                 "cpf" => 'nullable|string|max:255',
+                'observacoes' => 'nullable|string',
             ]);
 
             // Atualiza os atributos do servidor com os dados validados

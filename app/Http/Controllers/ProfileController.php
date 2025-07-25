@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\Pagamentosreceitasdespesasextraorcamentarium;
 use App\Models\Despesa;
 use App\Models\Receitum;
@@ -33,13 +33,28 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+       $user = $request->user();
+        $userData = $request->validated();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // **Lógica para o upload e salvamento da foto**
+        if ($request->hasFile('foto')) {
+            // Salva a imagem no disco 'public'
+            $path = $request->file('foto')->store('fotos_usuarios', 'public');
+            // Obtém o URL completo e o atribui para ser salvo no DB
+            $userData['foto'] = Storage::url($path);
+        } else {
+            // Se não houver novo upload, e você quer explicitamente setar como null se não for enviado, use isso.
+            // Caso contrário, remova esta linha para manter a foto existente se não for atualizada.
+            // $userData['foto'] = null;
         }
 
-        $request->user()->save();
+        $user->fill($userData);
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

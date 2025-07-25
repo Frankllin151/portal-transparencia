@@ -123,6 +123,11 @@
                   </table>
                 </div>
               </div>
+              @if(!empty($servidor->observacoes))
+                <div class="alert alert-info mt-3">
+                  <strong>Observações:</strong> {{ $servidor->observacoes }}
+                </div>
+              @endif
             </div>
 
             <!-- Informações de Cargo Relacionado -->

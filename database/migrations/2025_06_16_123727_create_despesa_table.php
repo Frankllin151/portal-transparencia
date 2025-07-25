@@ -58,6 +58,7 @@ return new class extends Migration
             $table->string('tipo_recurso');
             $table->string('modalidade_aplicacao');
             $table->string('tipo_poder');
+            // ja tenho aqui a coluna observacao
             $table->timestamps();
         });
     }

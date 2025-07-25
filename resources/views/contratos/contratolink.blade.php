@@ -46,17 +46,16 @@
     <body class="d-flex flex-column min-vh-100">
    <x-header></x-header>
    <main class="flex-grow-1">
-
-  <div class="container">
+<div class="container">
   <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 py-3">
 
     {{-- Contratos --}}
     <div class="col">
-      <div class="card shadow-none border bg-gradient-start-1 h-100">
+      <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
         <div class="card-body p-20">
           <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
             <div>
-              <p class="fw-medium text-primary-light mb-1">Contratos</p>
+              <p class="text-primary-light mb-1 fw-bold">Contratos</p>
               <h6 class="mb-0"></h6>
             </div>
             <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
@@ -72,11 +71,11 @@
 
     {{-- Fiscais dos Contratos --}}
     <div class="col">
-      <div class="card shadow-none border bg-gradient-start-1 h-100">
+      <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
         <div class="card-body p-20">
           <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
             <div>
-              <p class="fw-medium text-primary-light mb-1">Fiscais dos Contratos</p>
+              <p class="text-primary-light mb-1 fw-bold">Fiscais dos Contratos</p>
               <h6 class="mb-0"></h6>
             </div>
             <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">

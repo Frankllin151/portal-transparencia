@@ -58,6 +58,7 @@ class ReceitaController extends Controller
             'valor_lancado_periodo' => 'nullable|numeric|min:0',
             'receita_corrente_liquida' => 'boolean',
             'realizado_percentual' => 'nullable|numeric|min:0|max:100',
+            'observacoes' => 'nullable|string',
         ]);
          $id = Str::uuid()->toString();
         $validatedData = ['id' => $id] + $validatedData;
@@ -67,8 +68,7 @@ class ReceitaController extends Controller
         ->with('success', 'Receita  cadastrado com sucesso!');
 
         } catch(ValidationException $e){
-            $erros = collect($e->errors())->flatten()->implode(' | ');
-    return redirect()->back()->with('error', 'Erros nos inputs: ' . $erros)->withInput();
+          return redirect()->back()->withErrors($e->errors())->withInput();
         } catch(\Exception $e){
             
 $erros = collect( $e->getMessage())->flatten()->implode(' | ');
@@ -138,14 +138,14 @@ return redirect()->back()->with(
             'valor_lancado_periodo' => 'nullable|numeric|min:0',
             'receita_corrente_liquida' => 'boolean',
             'realizado_percentual' => 'nullable|numeric|min:0|max:100',
+            'observacoes' => 'nullable|string',
         ]);
          $receita->update($validatedData);
           return redirect()->route('receita.show', $receita->id)
           ->with('success', 'Receita atualizada com sucesso!');
         }
          catch(ValidationException $e){
-return redirect()->back()->with('error', 'Erros nos inputs: ' . 
-$e->errors())->withInput();
+ return redirect()->back()->withErrors($e->errors())->withInput();
         } catch(\Exception $e){
 return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar a Receita: ' .
  $e->getMessage())->withInput();

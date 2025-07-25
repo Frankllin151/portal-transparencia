@@ -79,6 +79,7 @@ class ContratoController extends Controller
                 'codigo_processo' => 'required|string|max:255',
                 'numero_licitacao' => 'required|integer',
                 'subcontratacao' => 'required|string|max:255',
+                'observacoes' => 'nullable|string',
             ]);
             
             // Gera um UUID para o ID do novo contrato
@@ -191,6 +192,7 @@ class ContratoController extends Controller
                 'codigo_processo' => 'required|string|max:255',
                 'numero_licitacao' => 'required|integer',
                 'subcontratacao' => 'required|string|max:255',
+                'observacoes' => 'nullable|string',
             ]);
 
             // Atualiza os atributos do contrato com os dados validados

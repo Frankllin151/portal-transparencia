@@ -76,6 +76,7 @@ class Processoslicitatorio extends Model
 		'data_criacao',
 		'forma_contratacao',
 		'registro_precos',
-		'nome_contato'
+		'nome_contato',
+		'observacoes'
 	];
 }

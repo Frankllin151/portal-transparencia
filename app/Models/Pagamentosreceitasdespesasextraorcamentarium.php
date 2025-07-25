@@ -42,7 +42,8 @@ class Pagamentosreceitasdespesasextraorcamentarium extends Model
 		'nome_beneficiario',
 		'numero_pagamento',
 		'valor',
-		'receita_depesa_extraorcamentaria_id'
+		'receita_depesa_extraorcamentaria_id',
+		'observacoes'
 	];
 	public function Receitasdespesasextraorcamentarium()
 	{

@@ -257,6 +257,11 @@
                 </div>
               </div>
             </div>
+            @if(!empty($despesa->observacoes))
+              <div class="alert alert-info mt-3">
+                <strong>Observações:</strong> {{ $despesa->observacoes }}
+              </div>
+            @endif
 
             <div class="mt-64">
               <p class="text-center text-secondary-light text-sm fw-semibold">Detalhes da Despesa Pública</p>

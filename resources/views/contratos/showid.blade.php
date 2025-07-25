@@ -177,6 +177,11 @@
                     </tbody>
                   </table>
                 </div>
+                  @if(!empty($data->observacoes))
+                <div class="alert alert-info mt-3">
+                  <strong>Observações:</strong> {{ $data->observacoes }}
+                </div>
+              @endif
               </div>
             </div>
 

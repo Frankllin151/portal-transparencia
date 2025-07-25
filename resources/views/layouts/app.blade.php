@@ -264,59 +264,68 @@
 
          <!----profile  dropdown--->
       <div class="dropdown">
+       
     <button class="d-flex justify-content-center align-items-center rounded-circle" type="button" data-bs-toggle="dropdown">
-        <img src="{{asset('assets/images/user.png')}}" alt="image" class="w-40-px h-40-px object-fit-cover rounded-circle">
+        <img src="{{asset(Auth::user()->foto)}}" alt="image" class="w-40-px h-40-px object-fit-cover rounded-circle">
     </button>
     <div class="dropdown-menu to-top dropdown-menu-sm">
         <div class="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
-            <div>
-                <h6 class="text-lg text-primary-light fw-semibold mb-2">{{ Auth::user()->name }}</h6>
-                <span class="text-secondary-light fw-medium text-sm">Adminstrador</span>
-            </div>
+           <div>
+    <h6 class="text-lg text-primary-light fw-semibold mb-2">{{ Auth::user()->name }}</h6>
+    @if (Auth::check() && Auth::user()->groups->isNotEmpty())
+        <span class="text-secondary-light fw-medium text-sm">
+            {{ Auth::user()->groups->first()->name }}
+        </span>
+       
+    @else
+        <span class="text-secondary-light fw-medium text-sm">Sem Grupo Atribuído</span>
+    @endif
+</div>
             <button type="button" class="hover-text-danger">
                 <iconify-icon icon="radix-icons:cross-1" class="icon text-xl"></iconify-icon>
             </button>
         </div>
-        <ul class="to-top-list">
-            <li>
-                <a href="{{ route('profile.edit') }}" class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="view-profile.html">
-                    <iconify-icon icon="solar:user-linear" class="icon text-xl"></iconify-icon> Perfil
-                </a>
-            </li>
-       
-            {{-- Novos links adicionados aqui --}}
-            <li>
-                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('grupos') }}">
-                    <iconify-icon icon="solar:users-group-rounded-linear" class="icon text-xl"></iconify-icon> Grupos
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('permissoes') }}">
-                    <iconify-icon icon="solar:key-square-linear" class="icon text-xl"></iconify-icon> Permissões
-                </a>
-            </li>
-             <li>
-                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('user.lista') }}"> {{-- Ou a rota específica do seu cadastro de usuário --}}
-                    <iconify-icon icon="solar:user-plus-linear" class="icon text-xl"></iconify-icon> Lista de Usuários
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('group_users') }}">
-                    <iconify-icon icon="solar:link-square-linear" class="icon text-xl"></iconify-icon> Associação de Usuário
-                </a>
-            </li>
-            {{-- Fim dos novos links --}}
-          
-            <li>
-               <form method="POST" action="{{ route('logout') }}">
-              @csrf
-                 <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3" href="javascript:void(0)">
-                    <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon> Sair
-                </a>
-            </form>
-            
-            </li>
-        </ul>
+      <ul class="to-top-list">
+    <li>
+        <a href="{{ route('profile.edit') }}" class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+            <iconify-icon icon="solar:user-linear" class="icon text-xl"></iconify-icon> Perfil
+        </a>
+    </li>
+
+    {{-- Novos links adicionados aqui, condicionados pela permissão 'todas' --}}
+    @if (Auth::check() && Auth::user()->hasPermission('todas'))
+        <li>
+            <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('grupos') }}">
+                <iconify-icon icon="solar:users-group-rounded-linear" class="icon text-xl"></iconify-icon> Grupos
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('permissoes') }}">
+                <iconify-icon icon="solar:key-square-linear" class="icon text-xl"></iconify-icon> Permissões
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('user.lista') }}">
+                <iconify-icon icon="solar:user-plus-linear" class="icon text-xl"></iconify-icon> Lista de Usuários
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('group_users') }}">
+                <iconify-icon icon="solar:link-square-linear" class="icon text-xl"></iconify-icon> Associação de Usuário
+            </a>
+        </li>
+    @endif
+    {{-- Fim dos novos links --}}
+
+    <li>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3">
+                <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon> Sair
+            </a>
+        </form>
+    </li>
+</ul>
     </div>
 </div>
 

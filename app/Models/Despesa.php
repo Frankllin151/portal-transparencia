@@ -132,6 +132,7 @@ class Despesa extends Model
 		'descricao_recurso',
 		'tipo_recurso',
 		'modalidade_aplicacao',
-		'tipo_poder'
+		'tipo_poder',
+		'observacoes'
 	];
 }

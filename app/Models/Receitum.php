@@ -69,7 +69,8 @@ class Receitum extends Model
 		'valor_lancado_mes',
 		'valor_lancado_periodo',
 		'receita_corrente_liquida',
-		'realizado_percentual'
+		'realizado_percentual',
+		'observacoes'
 	];
 
 	public function naturezaReceitum()

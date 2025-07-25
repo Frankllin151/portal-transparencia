@@ -16,7 +16,7 @@ class ControllerPermission extends Controller
             "receita",
             "despesas",
             "pagamentos",
-            "movimentobancario"
+            "movimentacao"
         ],
         "servidores",
         "processo",

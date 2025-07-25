@@ -48,71 +48,71 @@
          <x-header></x-header>
       <main class="flex-grow-1">
  <div class="container">
-<div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 py-3">
+  <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 py-3">
 
-  {{-- Relatório de Movimentação Bancária --}}
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Movimentação Bancária</p>
-            <h6 class="mb-0"></h6>
+    {{-- Relatório de Movimentação Bancária --}}
+    <div class="col">
+      <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
+        <div class="card-body p-20">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div>
+              <p class="fw-bold text-primary-light mb-1">Movimentação Bancária</p>
+              <h6 class="mb-0"></h6>
+            </div>
+            <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
+              <iconify-icon icon="mdi:bank-transfer" class="text-white text-2xl mb-0"></iconify-icon>
+            </div>
           </div>
-          <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
-            <iconify-icon icon="mdi:bank-transfer" class="text-white text-2xl mb-0"></iconify-icon>
-          </div>
+          <p class="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
+            <a href="{{ route('publico.relatorio.movimentacao_bancaria') }}" class="text-primary-main">Ver Detalhes</a>
+          </p>
         </div>
-        <p class="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-          <a href="{{ route('publico.relatorio.movimentacao_bancaria') }}" class="text-primary-main">Ver Detalhes</a>
-        </p>
       </div>
     </div>
-  </div>
 
-  {{-- Relatório de Movimentação Bancária Mensal --}}
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Movimentação Mensal</p>
-            <h6 class="mb-0"></h6>
+    {{-- Relatório de Movimentação Bancária Mensal --}}
+    <div class="col">
+      <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
+        <div class="card-body p-20">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div>
+              <p class="fw-bold text-primary-light mb-1">Movimentação Mensal</p>
+              <h6 class="mb-0"></h6>
+            </div>
+            <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
+              <iconify-icon icon="mdi:calendar-month-outline" class="text-white text-2xl mb-0"></iconify-icon>
+            </div>
           </div>
-          <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
-            <iconify-icon icon="mdi:calendar-month-outline" class="text-white text-2xl mb-0"></iconify-icon>
-          </div>
+          <p class="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
+            <a href="{{ route('publico.relatorio.movimentacao_bancaria_mensal') }}" class="text-primary-main">Ver Detalhes</a>
+          </p>
         </div>
-        <p class="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-          <a href="{{ route('publico.relatorio.movimentacao_bancaria_mensal') }}" class="text-primary-main">Ver Detalhes</a>
-        </p>
       </div>
     </div>
-  </div>
 
-  {{-- Relatório da Lei de Responsabilidade Fiscal --}}
-  <div class="col">
-    <div class="card shadow-none border bg-gradient-start-1 h-100">
-      <div class="card-body p-20">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-          <div>
-            <p class="fw-medium text-primary-light mb-1">Lei Resp. Fiscal</p>
-            <h6 class="mb-0"></h6>
+    {{-- Relatório da Lei de Responsabilidade Fiscal --}}
+    <div class="col">
+      <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
+        <div class="card-body p-20">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div>
+              <p class="fw-bold text-primary-light mb-1">Lei Resp. Fiscal</p>
+              <h6 class="mb-0"></h6>
+            </div>
+            <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
+              <iconify-icon icon="mdi:scale-balance" class="text-white text-2xl mb-0"></iconify-icon>
+            </div>
           </div>
-          <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
-            <iconify-icon icon="mdi:scale-balance" class="text-white text-2xl mb-0"></iconify-icon>
-          </div>
+          <p class="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
+            <a href="{{ route('publico.relatorio.lei_responsabilidade_fiscal') }}" class="text-primary-main">Ver Detalhes</a>
+          </p>
         </div>
-        <p class="fw-medium text-sm text-primary-light mt-12 mb-0 d-flex align-items-center gap-2">
-          <a href="{{ route('publico.relatorio.lei_responsabilidade_fiscal') }}" class="text-primary-main">Ver Detalhes</a>
-        </p>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>
 
-</div>
       </main>
 
     

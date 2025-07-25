@@ -251,10 +251,18 @@
                   @enderror
                 </div>
               </div>
+
+               <div class="row gy-3">
+                <div class="col-12">
+                  <label class="form-label" for="observacoes">Observações</label>
+                  <textarea name="observacoes" id="observacoes" class="form-control" rows="3" placeholder="Digite observações adicionais">{{ old('observacoes') }}</textarea>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
+       
         {{-- Botões de Ação --}}
         <div class="col-12">
           <div class="card">

@@ -45,17 +45,17 @@
     </head>
     <body>
    <x-header></x-header>
-  <div class="container">
+   <div class="container">
   <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 py-3">
 
     {{-- Cargos e Vencimentos --}}
     <div class="col">
-      <div class="card shadow-none border bg-gradient-start-1 h-100">
+      <div class="card card-custom-hover shadow-none border bg-gradient-start-1 h-100">
         <div class="card-body p-20">
           <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
             <div>
-              <p class="fw-medium text-primary-light mb-1">Cargos e Vencimentos</p>
-              <h6 class="mb-0"></h6>
+              <p class="fw-bold text-primary-light mb-1">Cargos e Vencimentos</p>
+              <h6 class="fw-bold mb-0"></h6>
             </div>
             <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
               <iconify-icon icon="mdi:briefcase-outline" class="text-white text-2xl mb-0"></iconify-icon>
@@ -70,12 +70,12 @@
 
     {{-- Remunerações dos Servidores --}}
     <div class="col">
-      <div class="card shadow-none border bg-gradient-start-1 h-100">
+      <div class="card card-custom-hover shadow-none border bg-gradient-start-1 h-100">
         <div class="card-body p-20">
           <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
             <div>
-              <p class="fw-medium text-primary-light mb-1">Servidores e Remunerações</p>
-              <h6 class="mb-0"></h6>
+              <p class="fw-bold text-primary-light mb-1">Servidores e Remunerações</p>
+              <h6 class="fw-bold mb-0"></h6>
             </div>
             <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
               <iconify-icon icon="mdi:currency-usd" class="text-white text-2xl mb-0"></iconify-icon>
@@ -90,12 +90,12 @@
 
     {{-- Lista de Servidores Públicos --}}
     <div class="col">
-      <div class="card shadow-none border bg-gradient-start-1 h-100">
+      <div class="card card-custom-hover shadow-none border bg-gradient-start-1 h-100">
         <div class="card-body p-20">
           <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
             <div>
-              <p class="fw-medium text-primary-light mb-1">Servidores Públicos</p>
-              <h6 class="mb-0"></h6>
+              <p class="fw-bold text-primary-light mb-1">Servidores Públicos</p>
+              <h6 class="fw-bold mb-0"></h6>
             </div>
             <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
               <iconify-icon icon="mdi:account-group-outline" class="text-white text-2xl mb-0"></iconify-icon>
@@ -110,12 +110,12 @@
 
     {{-- Servidores Públicos Ativos --}}
     <div class="col">
-      <div class="card shadow-none border bg-gradient-start-1 h-100">
+      <div class="card card-custom-hover shadow-none border bg-gradient-start-1 h-100">
         <div class="card-body p-20">
           <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
             <div>
-              <p class="fw-medium text-primary-light mb-1">Servidores Ativos</p>
-              <h6 class="mb-0"></h6>
+              <p class="fw-bold text-primary-light mb-1">Servidores Ativos</p>
+              <h6 class="fw-bold mb-0"></h6>
             </div>
             <div class="w-50-px h-50-px btn-info-600 rounded-circle d-flex justify-content-center align-items-center">
               <iconify-icon icon="mdi:account-check-outline" class="text-white text-2xl mb-0"></iconify-icon>
@@ -130,6 +130,7 @@
 
   </div>
 </div>
+
 
   <x-footer></x-footer>
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>

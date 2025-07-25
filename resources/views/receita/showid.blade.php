@@ -109,6 +109,11 @@
                 </table>
               </div>
             </div>
+            @if(!empty($receita->observacoes))
+              <div class="alert alert-info mt-3">
+                <strong>Observações:</strong> {{ $receita->observacoes }}
+              </div>
+            @endif
 
             <div class="mt-24">
               <div class="d-flex flex-wrap justify-content-between gap-3">

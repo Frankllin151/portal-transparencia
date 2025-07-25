@@ -78,7 +78,8 @@ class Contrato extends Model
 		'codigo_fornecedor',
 		'codigo_processo',
 		'numero_licitacao',
-		'subcontratacao'
+		'subcontratacao',
+		'observacoes'
 	];
 
 	public function contratosItems()

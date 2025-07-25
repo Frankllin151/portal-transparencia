@@ -54,6 +54,7 @@ class PagamentosReceitasDespesasExtraorcamentariaController extends Controller
                 'string',
                 Rule::exists('receitasdespesasextraorcamentaria', 'id')
             ],
+            'observacoes' => 'nullable|string',
             ]);
               $id = Str::uuid()->toString();
           $validatedData = ['id' => $id] + $validatedData;
@@ -117,6 +118,7 @@ class PagamentosReceitasDespesasExtraorcamentariaController extends Controller
                 'string',
                 Rule::exists('receitasdespesasextraorcamentaria', 'id')
             ],
+            'observacoes' => 'nullable|string',
         ];
 
         try {
