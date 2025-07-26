@@ -45,14 +45,17 @@
     </head>
     <body>
 <x-header></x-header>
+<br>
+<br>
 <div class="card">
   <div class="card-header">
     <div class="d-flex justify-content-between gap-2">
-       <a href="{{route("publico.compras.diretas")}}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
-    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
-    Voltar
-</a>
-       <a href="javascript:void(0)" class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
+      {{-- Rota para retornar à lista de compras diretas --}}
+      <a href="{{ route('publico.compras.diretas') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+        <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+        Voltar
+      </a>
+      <a href="javascript:void(0)" class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
         <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
         Download
       </a>
@@ -64,34 +67,47 @@
         <div class="shadow-4 border radius-8">
           <div class="p-20 d-flex flex-wrap justify-content-between gap-3 border-bottom">
             <div>
-              <h3 class="text-xl">Pagamento Extra Orçamentário #<small>{{$data->numero_pagamento}}</small></h3>
-              <p class="mb-1 text-sm">Beneficiário: <small>{{$data->nome_beneficiario}}</small></p>
-              <p class="mb-0 text-sm">CPF/CNPJ: <small>{{$data->cpf_cnpj_beneficiario}}</small></p>
+              {{-- Substituindo 'Pagamento Extra Orçamentário' por 'Compra Direta' --}}
+              <h3 class="text-xl">Compra Direta #<small>{{ $compraDireta->codigo ?? 'N/A' }}</small></h3>
+              <p class="mb-1 text-sm">Fornecedor: <small>{{ $compraDireta->fornecedor ?? 'N/A' }}</small></p>
+              <p class="mb-0 text-sm">CPF/CNPJ: <small>{{ $compraDireta->cnpj_cpf_fornecedor ?? 'N/A' }}</small></p>
             </div>
             <div>
-              <h4 class="mb-8">Valor: <small>R$ {{ number_format($data->valor, 2, ',', '.') }}</small></h4>
-              <p class="mb-1 text-sm">Data do Pagamento: <small>{{$data->data_pagamento ? date('d/m/Y', strtotime($data->data_pagamento)) : 'N/A'}}</small></p>
-              <p class="mb-0 text-sm">ID do Registro: <small>{{$data->id}}</small></p>
+              <h4 class="mb-8">Valor: <small>R$ {{ number_format((float)$compraDireta->valor_rs, 2, ',', '.') }}</small></h4>
+              <p class="mb-1 text-sm">Data da Compra: <small>{{ $compraDireta->data_da_compra ? \Carbon\Carbon::parse($compraDireta->data_da_compra)->format('d/m/Y') : 'N/A' }}</small></p>
+            
             </div>
           </div>
 
           <div class="py-28 px-20">
             <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
               <div>
-                <h6 class="text-md">Informações do Pagamento:</h6>
+                <h6 class="text-md">Informações da Compra:</h6>
                 <table class="text-sm text-secondary-light">
                   <tbody>
                     <tr>
-                      <td>Número do Pagamento</td>
-                      <td class="ps-8">: <small>{{$data->numero_pagamento}}</small></td>
+                      <td>Código</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->codigo ?? 'N/A' }}</small></td>
                     </tr>
                     <tr>
-                      <td>Histórico</td>
-                      <td class="ps-8">: <small>{{$data->historico}}</small></td>
+                      <td>Objeto</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->objeto ?? 'N/A' }}</small></td>
                     </tr>
                     <tr>
-                      <td>Valor Pago</td>
-                      <td class="ps-8">: <small>R$ {{ number_format($data->valor, 2, ',', '.') }}</small></td>
+                      <td>Centro de Custos</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->centro_de_custos ?? 'N/A' }}</small></td>
+                    </tr>
+                    <tr>
+                      <td>Fundamentação</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->fundamentacao ?? 'N/A' }}</small></td>
+                    </tr>
+                    <tr>
+                      <td>Tipo</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->tipo ?? 'N/A' }}</small></td>
+                    </tr>
+                    <tr>
+                      <td>Valor</td>
+                      <td class="ps-8">: <small>R$ {{ number_format((float)$compraDireta->valor_rs, 2, ',', '.') }}</small></td>
                     </tr>
                   </tbody>
                 </table>
@@ -100,40 +116,35 @@
                 <table class="text-sm text-secondary-light">
                   <tbody>
                     <tr>
-                      <td>Beneficiário</td>
-                      <td class="ps-8">: <small>{{$data->nome_beneficiario}}</small></td>
+                      <td>Fornecedor</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->fornecedor ?? 'N/A' }}</small></td>
                     </tr>
                     <tr>
-                      <td>CPF/CNPJ</td>
-                      <td class="ps-8">: <small>{{$data->cpf_cnpj_beneficiario}}</small></td>
+                      <td>CPF/CNPJ Fornecedor</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->cnpj_cpf_fornecedor ?? 'N/A' }}</small></td>
+                    </tr>
+                     <tr>
+                      <td>Criado em</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->created_at ? \Carbon\Carbon::parse($compraDireta->created_at)->format('d/m/Y H:i') : 'N/A' }}</small></td>
+                    </tr>
+                     <tr>
+                      <td>Última Atualização</td>
+                      <td class="ps-8">: <small>{{ $compraDireta->updated_at ? \Carbon\Carbon::parse($compraDireta->updated_at)->format('d/m/Y H:i') : 'N/A' }}</small></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
 
-            <div class="mt-24">
-              <h6 class="text-md">Informações da Receita/Despesa Extra Orçamentária Associada:</h6>
-              <div class="d-flex flex-wrap justify-content-between gap-3">
-                <div>
-                  <p class="text-sm mb-2"><span class="text-primary-light fw-semibold">Classificação:</span> <small>{{$data->receitasdespesasextraorcamentarium->classificacao}}</small></p>
-                  <p class="text-sm mb-2"><span class="text-primary-light fw-semibold">Descrição da Classificação:</span> <small>{{$data->receitasdespesasextraorcamentarium->descricao_classificacao}}</small></p>
-                  <p class="text-sm mb-0"><span class="text-primary-light fw-semibold">Fonte de Recursos:</span> <small>{{$data->receitasdespesasextraorcamentarium->fonte_recursos}}</small></p>
-                </div>
-                <div>
-                    <p class="text-sm mb-2"><span class="text-primary-light fw-semibold">Máscara:</span> <small>{{$data->receitasdespesasextraorcamentarium->mascara}}</small></p>
-                    <p class="text-sm mb-2"><span class="text-primary-light fw-semibold">Número de Identificação:</span> <small>{{$data->receitasdespesasextraorcamentarium->numero}}</small></p>
-                    <p class="text-sm mb-0"><span class="text-primary-light fw-semibold">Criado em:</span> <small>{{$data->receitasdespesasextraorcamentarium->created_at ? date('d/m/Y H:i', strtotime($data->receitasdespesasextraorcamentarium->created_at)) : 'N/A'}}</small></p>
-                </div>
-              </div>
-            </div>
+            {{-- Removemos a seção 'Informações da Receita/Despesa Extra Orçamentária Associada' --}}
+            {{-- pois não é relevante para Compras Diretas baseadas nos atributos fornecidos. --}}
 
             <div class="mt-64">
-              <p class="text-center text-secondary-light text-sm fw-semibold">Detalhes do Pagamento Extra Orçamentário</p>
+              <p class="text-center text-secondary-light text-sm fw-semibold">Detalhes da Compra Direta</p>
             </div>
 
             <div class="d-flex flex-wrap justify-content-between align-items-end mt-64">
-              <div class="text-sm border-top d-inline-block px-12">ID do Pagamento: <small>{{$data->id}}</small></div>
+            
               <div class="text-sm border-top d-inline-block px-12">Sistema de Transparência</div>
             </div>
           </div>
@@ -141,7 +152,7 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
 <x-footer></x-footer>
 
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>

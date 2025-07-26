@@ -45,108 +45,114 @@
     </head>
     <body>
    <x-header></x-header>
-   <br>
-   <br>
-   <div class="">
+  <br>
+<br>
+<div class="">
 
-     <div class="">
-        <div class="card h-100 radius-8 border">
-          <div class="card-body p-24">
-            <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
-              <div>
-              
-              
-              </div>
-              <div class="text-end">
-               {{-- <h6 class="mb-2 fw-bold text-lg">{{ number_format($totalValorOrcadoAtualizado, 2, ",", ".")}}</h6>--}}
-              
-              </div>
-            </div>
-          
-        <div id="totalPagamentosDonutChart" class="d-flex justify-content-center align-items-center" 
-        style="min-height: 300px;"></div>
+  <div class="">
+    <div class="card h-100 radius-8 border">
+      <div class="card-body p-24">
+        <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
+          <div>
+
+
+          </div>
+          <div class="text-end">
+            {{-- <h6 class="mb-2 fw-bold text-lg">{{ number_format($totalValorOrcadoAtualizado, 2, ",", ".")}}</h6>--}}
 
           </div>
         </div>
+
+        <div id="totalPagamentosDonutChart" class="d-flex justify-content-center align-items-center"
+          style="min-height: 300px;"></div>
+
       </div>
-    <div class="card basic-data-table">
-  <div class="card-header">
-  
-
- <div  class="d-flex  align-items-center justify-content-between ">
-      <h5 class="mb-0">Compras Diretas</h5>
-    <div>
-
-       <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
-    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
-    Voltar 
-</a>
- <a href="javascript:void(0)" class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
-        <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
-        Download
-      </a>
     </div>
-   </div>
-
   </div>
-  <div class="card-body">
-    <div class="row mb-4">
-      {{-- Total de Registros --}}
-      <div class="col-md-4">
-        <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
+  <div class="card basic-data-table">
+    <div class="card-header">
+
+
+      <div class="d-flex align-items-center justify-content-between ">
+        <h5 class="mb-0">Compras Diretas</h5>
+        <div>
+
+          <a href="javascript:void(0);" onclick="history.back();"
+            class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+            <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+            Voltar
+          </a>
+          <a href="javascript:void(0)"
+            class="btn btn-sm btn-warning radius-8 d-inline-flex align-items-center gap-1">
+            <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
+            Download
+          </a>
+        </div>
       </div>
 
-      <div class="col-md-4">
-    <p class="mb-0"><strong> Valor (Soma)
-      : R$ {{ number_format($Valor, 2, ',', '.') }}</strong></p>
-</div>
-      {{-- Adicione outros totais ou resumos aqui, se aplicável --}}
     </div>
-<div class="table-responsive-scrollable">
-    <table class="table bordered-table mb-0" id="dataTablePagamentosExtraOrcamentario" data-page-length='10'>
-        <thead>
+    <div class="card-body">
+      <div class="row mb-4">
+        {{-- Total de Registros --}}
+        <div class="col-md-4">
+          <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
+        </div>
+
+        <div class="col-md-4">
+          <p class="mb-0"><strong> Valor (Soma): R$ {{ number_format($Valor, 2, ',', '.') }}</strong></p>
+        </div>
+        {{-- Adicione outros totais ou resumos aqui, se aplicável --}}
+      </div>
+      <div class="table-responsive-scrollable">
+        <table class="table bordered-table mb-0" id="dataTablePagamentosExtraOrcamentario" data-page-length='10'>
+          <thead>
             <tr>
-                
-                <th class="ps-8"><small>Data do Pagamento</small></th>
-                <th class="ps-8"><small>Número do Pagamento</small></th>
-                <th class="ps-8"><small>Nome do Beneficiário</small></th>
-                <th class="ps-8"><small>CPF/CNPJ Beneficiário</small></th>
-                <th class="ps-8"><small>Histórico</small></th>
-                <th class="ps-8"><small>Valor R$</small></th>
-                <th class="ps-8"><small>Classificação (Extra)</small></th>
-                <th class="ps-8"><small>Ver mais</small></th>
+
+              <th class="ps-8"><small>Data da Compra</small></th>
+              <th class="ps-8"><small>Código</small></th>
+              <th class="ps-8"><small>Objeto</small></th>
+              <th class="ps-8"><small>Fornecedor</small></th>
+              <th class="ps-8"><small>CPF/CNPJ Fornecedor</small></th>
+              <th class="ps-8"><small>Fundamentação</small></th>
+              <th class="ps-8"><small>Tipo</small></th>
+              <th class="ps-8"><small>Valor R$</small></th>
+              <th class="ps-8"><small>Ver mais</small></th>
             </tr>
-        </thead>
-        <tbody>
-            @forelse ($data as $index => $pagamentoExtra)
-                <tr>
-                    
-                    <td class="ps-8"><small>{{ \Carbon\Carbon::parse($pagamentoExtra->data_pagamento)->format('d/m/Y') }}</small></td>
-                    <td class="ps-8"><small>{{ $pagamentoExtra->numero_pagamento ?? 'N/A' }}</small></td>
-                    <td class="ps-8"><small>{{ $pagamentoExtra->nome_beneficiario ?? 'N/A' }}</small></td>
-                    <td class="ps-8"><small>{{ $pagamentoExtra->cpf_cnpj_beneficiario ?? 'N/A' }}</small></td>
-                    <td class="ps-8"><small>{{ Str::before($pagamentoExtra->historico ?? 'N/A', ' ') }}</small></td>
-                    <td class="ps-8"><small>R$ {{ number_format((float)$pagamentoExtra->valor, 2, ',', '.') }}</small></td>
-                    <td class="ps-8"><small>{{ $pagamentoExtra->Receitasdespesasextraorcamentarium->descricao_classificacao ?? 'N/A' }}</small></td>
-                    <td class="ps-8">
-                        <small>
-                            <a href="{{route("publico.compras.diretas.id", $pagamentoExtra->id)}}">
-                                <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
-                            </a>
-                        </small>
-                    </td>  
-                </tr>
+          </thead>
+          <tbody>
+            @forelse ($data as $index => $compraDireta)
+            <tr>
+
+              <td class="ps-8"><small>{{ \Carbon\Carbon::parse($compraDireta->data_da_compra)->format('d/m/Y')
+                  }}</small></td>
+              <td class="ps-8"><small>{{ $compraDireta->codigo ?? 'N/A' }}</small></td>
+              <td class="ps-8"><small>{{ $compraDireta->objeto ?? 'N/A' }}</small></td>
+              <td class="ps-8"><small>{{ $compraDireta->fornecedor ?? 'N/A' }}</small></td>
+              <td class="ps-8"><small>{{ $compraDireta->cnpj_cpf_fornecedor ?? 'N/A' }}</small></td>
+              <td class="ps-8"><small>{{ $compraDireta->fundamentacao ?? 'N/A' }}</small></td>
+              <td class="ps-8"><small>{{ $compraDireta->tipo ?? 'N/A' }}</small></td>
+              <td class="ps-8"><small>R$ {{ number_format((float)$compraDireta->valor_rs, 2, ',', '.')
+                  }}</small></td>
+              <td class="ps-8">
+                <small>
+                  {{-- Certifique-se de que a rota 'publico.compras.diretas.id' está corretamente definida --}}
+                  <a href="{{ route('publico.compras.diretas.id', $compraDireta->id) }}">
+                    <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                  </a>
+                </small>
+              </td>
+            </tr>
             @empty
-                <tr>
-                    <td colspan="9" class="text-center"><small>Nenhum registro de pagamento extraorçamentário encontrado.</small></td>
-                </tr>
+            <tr>
+              <td colspan="9" class="text-center"><small>Nenhuma compra direta encontrada.</small></td>
+            </tr>
             @endforelse
-        </tbody>
-    </table>
-</div>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
-   </div>
   <x-footer></x-footer>
 <script src="{{ asset('assets/js/lib/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>
