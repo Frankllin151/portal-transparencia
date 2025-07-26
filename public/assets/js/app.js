@@ -245,3 +245,83 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Novo link de ícone adicionado:', newIconLink.outerHTML);
     }
 });
+
+
+// moeda real: 
+
+  document.querySelectorAll('.moedaBr').forEach(function(input) {
+  input.addEventListener('input', function () {
+    let valor = input.value;
+
+    // Remove tudo que não for número
+    valor = valor.replace(/\D/g, '');
+
+    // Evita erro ao apagar tudo
+    if (valor === '') {
+      input.value = '';
+      return;
+    }
+
+    // Converte para número com duas casas decimais
+    valor = (parseInt(valor, 10) / 100).toFixed(2);
+
+    // Formata para moeda BRL
+    input.value = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(valor);
+  });
+});
+
+
+
+// mascara cpf/cnpj: 
+
+document.querySelectorAll('.cpf-cnpj-mask').forEach(function(input) {
+  input.addEventListener('input', function() {
+    let value = input.value;
+
+    // Remove tudo que não for número
+    value = value.replace(/\D/g, '');
+
+    // Verifica o tamanho para decidir se é CPF ou CNPJ
+    if (value.length <= 11) { // Potencialmente um CPF (ou ainda não atingiu o tamanho do CNPJ)
+      // Limita o número de caracteres para 11 (CPF)
+      if (value.length > 11) {
+        value = value.substring(0, 11);
+      }
+
+      // Aplica a máscara de CPF: 000.000.000-00
+      if (value.length > 9) {
+        value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+      } else if (value.length > 6) {
+        value = value.replace(/^(\d{3})(\d{3})(\d{3})$/, '$1.$2.$3');
+      } else if (value.length > 3) {
+        value = value.replace(/^(\d{3})(\d{3})$/, '$1.$2');
+      } else if (value.length > 0) {
+        value = value.replace(/^(\d{3})$/, '$1');
+      }
+
+    } else { // Provavelmente um CNPJ
+      // Limita o número de caracteres para 14 (CNPJ)
+      if (value.length > 14) {
+        value = value.substring(0, 14);
+      }
+
+      // Aplica a máscara de CNPJ: 00.000.000/0000-00
+      if (value.length > 12) {
+        value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+      } else if (value.length > 8) {
+        value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})$/, '$1.$2.$3/$4');
+      } else if (value.length > 5) {
+        value = value.replace(/^(\d{2})(\d{3})(\d{3})$/, '$1.$2.$3');
+      } else if (value.length > 2) {
+        value = value.replace(/^(\d{2})(\d{3})$/, '$1.$2');
+      } else if (value.length > 0) {
+        value = value.replace(/^(\d{2})$/, '$1');
+      }
+    }
+
+    input.value = value;
+  });
+});

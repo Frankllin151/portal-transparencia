@@ -217,7 +217,7 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_inicial">Valor Inicial</label>
-                  <input type="number" step="0.01" name="valor_inicial" id="valor_inicial" class="form-control @error('valor_inicial') is-invalid @enderror"
+                  <input type="text" step="0.01" name="valor_inicial" id="valor_inicial" class="form-control moedaBr @error('valor_inicial') is-invalid @enderror"
                          value="{{ old('valor_inicial', $data->valor_inicial) }}" placeholder="0.00" required>
                   @error('valor_inicial')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -225,7 +225,7 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_final">Valor Final</label>
-                  <input type="number" step="0.01" name="valor_final" id="valor_final" class="form-control @error('valor_final') is-invalid @enderror"
+                  <input type="text" step="0.01" name="valor_final" id="valor_final" class="form-control moedaBr @error('valor_final') is-invalid @enderror"
                          value="{{ old('valor_final', $data->valor_final) }}" placeholder="0.00" required>
                   @error('valor_final')
                     <div class="invalid-feedback">{{ $message }}</div>

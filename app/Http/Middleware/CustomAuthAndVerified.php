@@ -16,6 +16,7 @@ class CustomAuthAndVerified
        private $allKeysRoutes = [
         "financeiro" => [
             "receita",
+            "comprasdiretas",
             "despesas",
             "pagamentos",
             "movimentobancario" // Esta é a chave que você vai comparar

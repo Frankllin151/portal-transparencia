@@ -14,6 +14,7 @@ class ControllerPermission extends Controller
      private $allKeysRoutes = [
         "financeiro" => [
             "receita",
+            "comprasdiretas",
             "despesas",
             "pagamentos",
             "movimentacao"

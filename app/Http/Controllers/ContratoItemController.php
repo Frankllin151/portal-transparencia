@@ -48,7 +48,28 @@ class ContratoItemController extends Controller
      */
     public function store(Request $request)
     {
+       
+
+
         try {
+
+            $valorInicial = $request->input('valor_unitario');
+            $valorFinal = $request->input('valor_total');
+
+             $valorInicial = str_replace(['R$', '.', ' ', "\u{A0}"], '', $valorInicial);
+            $valorInicial = str_replace(',', '.', $valorInicial);
+
+            $valorFinal = str_replace(['R$', '.', ' ', "\u{A0}"], '', $valorFinal);
+            $valorFinal = str_replace(',', '.', $valorFinal);
+
+             $valorInicial = (float) $valorInicial;
+            $valorFinal = (float) $valorFinal;
+
+             $request->merge([
+                'valor_unitario' => $valorInicial,
+                'valor_total' => $valorFinal,
+            ]);
+            
             // Validação dos dados de entrada baseada na sua migration 'contratos_item'
             $validatedData = $request->validate([
                 'codigo_item_contrato' => 'required|integer|min:1',
@@ -145,6 +166,23 @@ class ContratoItemController extends Controller
             // Tenta encontrar o item de contrato pelo ID
             $itemContrato = ContratosItem::findOrFail($id);
 
+
+             $valorInicial = $request->input('valor_unitario');
+            $valorFinal = $request->input('valor_total');
+
+             $valorInicial = str_replace(['R$', '.', ' ', "\u{A0}"], '', $valorInicial);
+            $valorInicial = str_replace(',', '.', $valorInicial);
+
+            $valorFinal = str_replace(['R$', '.', ' ', "\u{A0}"], '', $valorFinal);
+            $valorFinal = str_replace(',', '.', $valorFinal);
+
+             $valorInicial = (float) $valorInicial;
+            $valorFinal = (float) $valorFinal;
+
+             $request->merge([
+                'valor_unitario' => $valorInicial,
+                'valor_total' => $valorFinal,
+            ]);
             // Validação dos dados de entrada para atualização
             $validatedData = $request->validate([
                 'codigo_item_contrato' => 'required|integer|min:1',

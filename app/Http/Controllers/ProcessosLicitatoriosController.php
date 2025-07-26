@@ -41,6 +41,7 @@ class ProcessosLicitatoriosController extends Controller
      */
     public function store(Request $request)
     {
+        
         try {
             // Validate the incoming request data
             $validatedData = $request->validate([
@@ -73,8 +74,8 @@ class ProcessosLicitatoriosController extends Controller
             ->with('success', 'Processo licitatório cadastrado com sucesso!');
 
         } catch (ValidationException $e) {
-           
-            return redirect()->back()->with('error', 'Ocorreu um erro nos  inputs:');
+          
+          return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
           
             return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar o processo licitatório: ' . $e->getMessage())->withInput();
@@ -120,6 +121,7 @@ class ProcessosLicitatoriosController extends Controller
      */
     public function update(Request $request, string $id)
     {
+       
          $dataId = Processoslicitatorio::find($id);
           if(!$dataId){
          abort(404, "Processos não encontrada");

@@ -241,79 +241,105 @@
         </div>
 
         {{-- Valores Financeiros e Carga Horária --}}
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">
-              <h6 class="card-title mb-0">Remuneração e Carga Horária</h6>
-            </div>
-            <div class="card-body">
-              <div class="row gy-3">
-                <div class="col-12">
-                  <label class="form-label" for="remuneracao_contratual">Remuneração Contratual</label>
-                  <input type="number" step="0.01" name="remuneracao_contratual" id="remuneracao_contratual" class="form-control @error('remuneracao_contratual') is-invalid @enderror"
-                         value="{{ old('remuneracao_contratual') }}" placeholder="0.00" required>
-                  @error('remuneracao_contratual')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="col-12">
-                  <label class="form-label" for="contribuicao_empregado_rgps">Contrib. Empregado (RGPS)</label>
-                  <input type="number" step="0.01" name="contribuicao_empregado_rgps" id="contribuicao_empregado_rgps" class="form-control @error('contribuicao_empregado_rgps') is-invalid @enderror"
-                         value="{{ old('contribuicao_empregado_rgps') }}" placeholder="0.00">
-                  @error('contribuicao_empregado_rgps')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="col-12">
-                  <label class="form-label" for="contribuicao_empregado_rat_fat">Contrib. Empregado (RAT/FAT)</label>
-                  <input type="number" step="0.01" name="contribuicao_empregado_rat_fat" id="contribuicao_empregado_rat_fat" class="form-control @error('contribuicao_empregado_rat_fat') is-invalid @enderror"
-                         value="{{ old('contribuicao_empregado_rat_fat') }}" placeholder="0.00">
-                  @error('contribuicao_empregado_rat_fat')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="col-12">
-                  <label class="form-label" for="contribuicao_patronal_rgps">Contrib. Patronal (RGPS)</label>
-                  <input type="number" step="0.01" name="contribuicao_patronal_rgps" id="contribuicao_patronal_rgps" class="form-control @error('contribuicao_patronal_rgps') is-invalid @enderror"
-                         value="{{ old('contribuicao_patronal_rgps') }}" placeholder="0.00">
-                  @error('contribuicao_patronal_rgps')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="col-12">
-                  <label class="form-label" for="carga_horaria_semanal">Carga Horária Semanal</label>
-                  <input type="number" step="0.01" name="carga_horaria_semanal" id="carga_horaria_semanal" class="form-control @error('carga_horaria_semanal') is-invalid @enderror"
-                         value="{{ old('carga_horaria_semanal') }}" placeholder="0.00" required>
-                  @error('carga_horaria_semanal')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="col-12">
-                  <label class="form-label" for="carga_horaria_mensal">Carga Horária Mensal</label>
-                  <input type="number" step="0.01" name="carga_horaria_mensal" id="carga_horaria_mensal" class="form-control @error('carga_horaria_mensal') is-invalid @enderror"
-                         value="{{ old('carga_horaria_mensal') }}" placeholder="0.00">
-                  @error('carga_horaria_mensal')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="col-12">
-                  <label class="form-label" for="organograma">Organograma</label>
-                  <input type="text" name="organograma" id="organograma" class="form-control @error('organograma') is-invalid @enderror"
-                         value="{{ old('organograma') }}" placeholder="Estrutura Organizacional">
-                  @error('organograma')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-              </div>
-               <div class="row gy-3">
-                <div class="col-12">
-                  <label class="form-label" for="observacoes">Observações</label>
-                  <textarea name="observacoes" id="observacoes" class="form-control" rows="3" placeholder="Digite observações adicionais">{{ old('observacoes') }}</textarea>
-                </div>
-              </div>
-            </div>
-          </div>
+       <div class="col-md-6">
+  <div class="card">
+    <div class="card-header">
+      <h6 class="card-title mb-0">Remuneração e Carga Horária</h6>
+    </div>
+    <div class="card-body">
+      <div class="row gy-3">
+
+        {{-- Remuneração Contratual --}}
+        <div class="col-12">
+          <label class="form-label" for="remuneracao_contratual">Remuneração Contratual</label>
+          <input type="text" name="remuneracao_contratual" id="remuneracao_contratual"
+                 class="form-control @error('remuneracao_contratual') is-invalid @enderror"
+                 value="{{ old('remuneracao_contratual') }}" placeholder="0,00"
+                 onkeyup="mascaraMoeda(this, event)" required>
+          @error('remuneracao_contratual')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
+
+        {{-- Contribuição RGPS --}}
+        <div class="col-12">
+          <label class="form-label" for="contribuicao_empregado_rgps">Contrib. Empregado (RGPS)</label>
+          <input type="text" name="contribuicao_empregado_rgps" id="contribuicao_empregado_rgps"
+                 class="form-control @error('contribuicao_empregado_rgps') is-invalid @enderror"
+                 value="{{ old('contribuicao_empregado_rgps') }}" placeholder="0,00"
+                 onkeyup="mascaraMoeda(this, event)">
+          @error('contribuicao_empregado_rgps')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        {{-- Contribuição RAT/FAT --}}
+        <div class="col-12">
+          <label class="form-label" for="contribuicao_empregado_rat_fat">Contrib. Empregado (RAT/FAT)</label>
+          <input type="text" name="contribuicao_empregado_rat_fat" id="contribuicao_empregado_rat_fat"
+                 class="form-control @error('contribuicao_empregado_rat_fat') is-invalid @enderror"
+                 value="{{ old('contribuicao_empregado_rat_fat') }}" placeholder="0,00"
+                 onkeyup="mascaraMoeda(this, event)">
+          @error('contribuicao_empregado_rat_fat')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        {{-- Contribuição Patronal --}}
+        <div class="col-12">
+          <label class="form-label" for="contribuicao_patronal_rgps">Contrib. Patronal (RGPS)</label>
+          <input type="text" name="contribuicao_patronal_rgps" id="contribuicao_patronal_rgps"
+                 class="form-control @error('contribuicao_patronal_rgps') is-invalid @enderror"
+                 value="{{ old('contribuicao_patronal_rgps') }}" placeholder="0,00"
+                 onkeyup="mascaraMoeda(this, event)">
+          @error('contribuicao_patronal_rgps')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        {{-- Carga Horária Semanal (sem máscara) --}}
+        <div class="col-12">
+          <label class="form-label" for="carga_horaria_semanal">Carga Horária Semanal</label>
+          <input type="number" step="0.01" name="carga_horaria_semanal" id="carga_horaria_semanal"
+                 class="form-control @error('carga_horaria_semanal') is-invalid @enderror"
+                 value="{{ old('carga_horaria_semanal') }}" placeholder="0.00" required>
+          @error('carga_horaria_semanal')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        {{-- Carga Horária Mensal (sem máscara) --}}
+        <div class="col-12">
+          <label class="form-label" for="carga_horaria_mensal">Carga Horária Mensal</label>
+          <input type="number" step="0.01" name="carga_horaria_mensal" id="carga_horaria_mensal"
+                 class="form-control @error('carga_horaria_mensal') is-invalid @enderror"
+                 value="{{ old('carga_horaria_mensal') }}" placeholder="0.00">
+          @error('carga_horaria_mensal')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        {{-- Organograma --}}
+        <div class="col-12">
+          <label class="form-label" for="organograma">Organograma</label>
+          <input type="text" name="organograma" id="organograma"
+                 class="form-control @error('organograma') is-invalid @enderror"
+                 value="{{ old('organograma') }}" placeholder="Estrutura Organizacional">
+          @error('organograma')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+      </div>
+
+      <div class="row gy-3">
+        <div class="col-12">
+          <label class="form-label" for="observacoes">Observações</label>
+          <textarea name="observacoes" id="observacoes" class="form-control" rows="3" placeholder="Digite observações adicionais">{{ old('observacoes') }}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
         {{-- Botões de Ação --}}
         <div class="col-12">
@@ -364,5 +390,35 @@
         });
     });
 });
+
+
+String.prototype.reverse = function(){
+  return this.split('').reverse().join('');
+};
+
+function mascaraMoeda(campo, evento){
+  var tecla = (!evento) ? window.event.keyCode : evento.which;
+
+  // Permitir apenas teclas de controle
+  if (tecla === 8 || tecla === 46 || tecla === 37 || tecla === 39) return true;
+
+  var valor = campo.value.replace(/[^\d]+/gi,'').reverse();
+  var resultado = "";
+  var mascara = "##.###.###,##".reverse();
+
+  for (var x=0, y=0; x<mascara.length && y<valor.length;) {
+    if (mascara.charAt(x) != '#') {
+      resultado += mascara.charAt(x);
+      x++;
+    } else {
+      resultado += valor.charAt(y);
+      y++;
+      x++;
+    }
+  }
+
+  campo.value = resultado.reverse();
+}
+
 </script>
 </x-app-layout>

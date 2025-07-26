@@ -207,38 +207,7 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Estado do Certame</label>
-                  <select name="estado_certame" class="form-select">
-                    <option value="">Selecione o Estado</option>
-                    <option value="AC" {{ $processo->estado_certame == 'AC' ? 'selected' : '' }}>Acre</option>
-                    <option value="AL" {{ $processo->estado_certame == 'AL' ? 'selected' : '' }}>Alagoas</option>
-                    <option value="AP" {{ $processo->estado_certame == 'AP' ? 'selected' : '' }}>Amapá</option>
-                    <option value="AM" {{ $processo->estado_certame == 'AM' ? 'selected' : '' }}>Amazonas</option>
-                    <option value="BA" {{ $processo->estado_certame == 'BA' ? 'selected' : '' }}>Bahia</option>
-                    <option value="CE" {{ $processo->estado_certame == 'CE' ? 'selected' : '' }}>Ceará</option>
-                    <option value="DF" {{ $processo->estado_certame == 'DF' ? 'selected' : '' }}>Distrito Federal</option>
-                    <option value="ES" {{ $processo->estado_certame == 'ES' ? 'selected' : '' }}>Espírito Santo</option>
-                    <option value="GO" {{ $processo->estado_certame == 'GO' ? 'selected' : '' }}>Goiás</option>
-                    <option value="MA" {{ $processo->estado_certame == 'MA' ? 'selected' : '' }}>Maranhão</option>
-                    <option value="MT" {{ $processo->estado_certame == 'MT' ? 'selected' : '' }}>Mato Grosso</option>
-                    <option value="MS" {{ $processo->estado_certame == 'MS' ? 'selected' : '' }}>Mato Grosso do Sul</option>
-                    <option value="MG" {{ $processo->estado_certame == 'MG' ? 'selected' : '' }}>Minas Gerais</option>
-                    <option value="PA" {{ $processo->estado_certame == 'PA' ? 'selected' : '' }}>Pará</option>
-                    <option value="PB" {{ $processo->estado_certame == 'PB' ? 'selected' : '' }}>Paraíba</option>
-                    <option value="PR" {{ $processo->estado_certame == 'PR' ? 'selected' : '' }}>Paraná</option>
-                    <option value="PE" {{ $processo->estado_certame == 'PE' ? 'selected' : '' }}>Pernambuco</option>
-                    <option value="PI" {{ $processo->estado_certame == 'PI' ? 'selected' : '' }}>Piauí</option>
-                    <option value="RJ" {{ $processo->estado_certame == 'RJ' ? 'selected' : '' }}>Rio de Janeiro</option>
-                    <option value="RN" {{ $processo->estado_certame == 'RN' ? 'selected' : '' }}>Rio Grande do Norte</option>
-                    <option value="RS" {{ $processo->estado_certame == 'RS' ? 'selected' : '' }}>Rio Grande do Sul</option>
-                    <option value="RO" {{ $processo->estado_certame == 'RO' ? 'selected' : '' }}>Rondônia</option>
-                    <option value="RR" {{ $processo->estado_certame == 'RR' ? 'selected' : '' }}>Roraima</option>
-                    <option value="SC" {{ $processo->estado_certame == 'SC' ? 'selected' : '' }}>Santa Catarina</option>
-                    <option value="SP" {{ $processo->estado_certame == 'SP' ? 'selected' : '' }}>São Paulo</option>
-                    <option value="SE" {{ $processo->estado_certame == 'SE' ? 'selected' : '' }}>Sergipe</option>
-                    <option value="TO" {{ $processo->estado_certame == 'TO' ? 'selected' : '' }}>Tocantins</option>
-                    <option value="NC" {{ $processo->estado_certame == 'NC' ? 'selected' : '' }}>NC</option>
-                    <option value="DC" {{ $processo->estado_certame == 'DC' ? 'selected' : '' }}>DC</option>
-                  </select>
+                   <input type="text" name="estado_certame" class="form-control" placeholder="Estado certame">
                 </div>
                 <div class="col-12">
                   <label class="form-label">Nome do Contato</label>

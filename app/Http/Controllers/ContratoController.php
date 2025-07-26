@@ -58,18 +58,50 @@ class ContratoController extends Controller
     public function store(Request $request)
     {
         try {
+            // Pre-processamento dos valores monetários para formato decimal
+            $valorInicial = $request->input('valor_inicial');
+            $valorFinal = $request->input('valor_final');
+
+            // --- CORREÇÃO AQUI ---
+            // Remove "R$", pontos de milhar, espaços normais e espaços não-quebráveis (\u{A0})
+            // e então substitui a vírgula decimal por ponto.
+            $valorInicial = str_replace(['R$', '.', ' ', "\u{A0}"], '', $valorInicial);
+            $valorInicial = str_replace(',', '.', $valorInicial);
+
+            $valorFinal = str_replace(['R$', '.', ' ', "\u{A0}"], '', $valorFinal);
+            $valorFinal = str_replace(',', '.', $valorFinal);
+            // --- FIM DA CORREÇÃO ---
+
+            // Convert to float explicitly to ensure it's a numeric type
+            $valorInicial = (float) $valorInicial;
+            $valorFinal = (float) $valorFinal;
+            // Optional: You can add a dd() here to verify the final float values
+            // dd([
+            //     'converted_valor_inicial' => $valorInicial,
+            //     'converted_valor_final' => $valorFinal,
+            //     'type_initial' => gettype($valorInicial),
+            //     'type_final' => gettype($valorFinal)
+            // ]);
+
+
+            // Atualiza os valores no request para que a validação os veja no formato correto
+            $request->merge([
+                'valor_inicial' => $valorInicial,
+                'valor_final' => $valorFinal,
+            ]);
+
             // Validação dos dados de entrada baseada na sua migration 'contratos'
             $validatedData = $request->validate([
                 'entidade' => 'required|string|max:255',
                 'data_assinatura' => 'required|date',
-                'numero_contrato' => 'required|string|max:255|unique:contratos,numero_contrato', // Garante número de contrato único
+                'numero_contrato' => 'required|string|max:255',
                 'numero_processo' => 'required|integer',
-                'ano' => 'required|integer|min:1900|max:' . (date('Y') + 1), // Ano válido, até o próximo ano
+                'ano' => 'required|integer|min:1900|max:' . (date('Y') + 1),
                 'modalidade_licitacao' => 'required|string|max:255',
                 'tipo_contrato' => 'required|string|max:255',
                 'contratado' => 'required|string|max:255',
                 'data_vigencia_inicial' => 'required|date',
-                'data_vigencia_final' => 'required|date|after_or_equal:data_vigencia_inicial', // Vigência final deve ser igual ou depois da inicial
+                'data_vigencia_final' => 'required|date|after_or_equal:data_vigencia_inicial',
                 'situacao' => 'required|string|max:255',
                 'valor_inicial' => 'required|numeric|between:0,9999999999999.99', // Formato decimal (15,2)
                 'valor_final' => 'required|numeric|between:0,9999999999999.99|gte:valor_inicial', // Formato decimal (15,2) e maior ou igual ao valor inicial
@@ -81,7 +113,7 @@ class ContratoController extends Controller
                 'subcontratacao' => 'required|string|max:255',
                 'observacoes' => 'nullable|string',
             ]);
-            
+
             // Gera um UUID para o ID do novo contrato
             $id = Str::uuid()->toString();
             $validatedData['id'] = $id;
@@ -96,7 +128,7 @@ class ContratoController extends Controller
         } catch (ValidationException $e) {
             // Captura erros de validação e redireciona de volta com os erros e inputs antigos
             return redirect()->back()
-                ->withErrors($e->errors()) // Retorna os erros de validação
+                ->withErrors($e->errors())
                 ->withInput()
                 ->with('error', 'Erros nos inputs: Por favor, verifique os dados preenchidos.');
         } catch (\Exception $e) {
@@ -170,12 +202,42 @@ class ContratoController extends Controller
         try {
             // Tenta encontrar o contrato pelo ID
             $contrato = Contrato::findOrFail($id);
+  // Pre-processamento dos valores monetários para formato decimal
+            $valorInicial = $request->input('valor_inicial');
+            $valorFinal = $request->input('valor_final');
 
+            // --- CORREÇÃO AQUI ---
+            // Remove "R$", pontos de milhar, espaços normais e espaços não-quebráveis (\u{A0})
+            // e então substitui a vírgula decimal por ponto.
+            $valorInicial = str_replace(['R$', '.', ' ', "\u{A0}"], '', $valorInicial);
+            $valorInicial = str_replace(',', '.', $valorInicial);
+
+            $valorFinal = str_replace(['R$', '.', ' ', "\u{A0}"], '', $valorFinal);
+            $valorFinal = str_replace(',', '.', $valorFinal);
+            // --- FIM DA CORREÇÃO ---
+
+            // Convert to float explicitly to ensure it's a numeric type
+            $valorInicial = (float) $valorInicial;
+            $valorFinal = (float) $valorFinal;
+            // Optional: You can add a dd() here to verify the final float values
+            // dd([
+            //     'converted_valor_inicial' => $valorInicial,
+            //     'converted_valor_final' => $valorFinal,
+            //     'type_initial' => gettype($valorInicial),
+            //     'type_final' => gettype($valorFinal)
+            // ]);
+
+
+            // Atualiza os valores no request para que a validação os veja no formato correto
+            $request->merge([
+                'valor_inicial' => $valorInicial,
+                'valor_final' => $valorFinal,
+            ]);
             // Validação dos dados de entrada para atualização
             $validatedData = $request->validate([
                 'entidade' => 'required|string|max:255',
                 'data_assinatura' => 'required|date',
-                'numero_contrato' => 'required|string|max:255|unique:contratos,numero_contrato,' . $id, // Garante número de contrato único, exceto para o próprio contrato
+                'numero_contrato' => 'required|string|max:255', // Garante número de contrato único, exceto para o próprio contrato
                 'numero_processo' => 'required|integer',
                 'ano' => 'required|integer|min:1900|max:' . (date('Y') + 1),
                 'modalidade_licitacao' => 'required|string|max:255',

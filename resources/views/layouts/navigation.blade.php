@@ -46,6 +46,12 @@
         <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Movimentação bancária
       </a>
     </li>
+
+     <li>
+      <a href="{{route('comprasdiretas')}}">
+        <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Compras Diretas
+      </a>
+    </li>
   </ul>
 </li>
 

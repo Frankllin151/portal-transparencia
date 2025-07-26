@@ -40,12 +40,52 @@ class ReceitaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        try{
-            $validatedData = $request->validate([
+   public function store(Request $request)
+{
+    try {
+        $input = $request->all();
+
+        // Lista de campos a converter
+        $decimalFields = [
+            'valor_orcado_inicial',
+            'valor_orcado_atualizado',
+            'valor_deducoes_orcado',
+            'valor_arrecadado_mes',
+            'valor_arrecadado_acumulado',
+            'valor_deducoes_mes',
+            'valor_lancado_mes',
+            'valor_lancado_periodo',
+            'realizado_percentual'
+        ];
+
+        // Função para converter valor brasileiro para decimal
+        $convertToDecimal = function ($valor) {
+            $valor = trim((string) $valor);
+            $valor = preg_replace('/[^0-9,\.]/', '', $valor);
+
+            if (str_contains($valor, ',') && str_contains($valor, '.')) {
+                $valor = str_replace('.', '', $valor);
+                $valor = str_replace(',', '.', $valor);
+            } elseif (str_contains($valor, ',')) {
+                $valor = str_replace(',', '.', $valor);
+            } elseif (str_contains($valor, '.')) {
+                if (substr_count($valor, '.') > 1) {
+                    $valor = str_replace('.', '', $valor);
+                }
+            }
+
+            return ($valor === '' || !is_numeric($valor)) ? null : (float) $valor;
+        };
+
+        // Aplicar conversão
+        foreach ($decimalFields as $field) {
+            $input[$field] = isset($input[$field]) ? $convertToDecimal($input[$field]) : null;
+        }
+
+        // Validação com os dados já convertidos
+        $validatedData = validator($input, [
             'data' => 'required|date',
-            'natureza_id' => 'required|uuid|exists:natureza_receita,id', // Valida se é um UUID e existe na tabela natureza_receita
+            'natureza_id' => 'required|uuid|exists:natureza_receita,id',
             'finalidade' => 'required|string|max:255',
             'forma_ingresso' => 'required|string|max:255',
             'valor_orcado_inicial' => 'nullable|numeric|min:0',
@@ -59,25 +99,23 @@ class ReceitaController extends Controller
             'receita_corrente_liquida' => 'boolean',
             'realizado_percentual' => 'nullable|numeric|min:0|max:100',
             'observacoes' => 'nullable|string',
-        ]);
-         $id = Str::uuid()->toString();
-        $validatedData = ['id' => $id] + $validatedData;
+        ])->validate();
+
+        // Adiciona ID manualmente
+        $validatedData['id'] = Str::uuid()->toString();
+
+        // Cria o registro
         $novaReceita = Receitum::create($validatedData);
 
         return redirect()->route('receita.show', ['id' => $novaReceita->id])
-        ->with('success', 'Receita  cadastrado com sucesso!');
-
-        } catch(ValidationException $e){
-          return redirect()->back()->withErrors($e->errors())->withInput();
-        } catch(\Exception $e){
-            
-$erros = collect( $e->getMessage())->flatten()->implode(' | ');
-return redirect()->back()->with(
-    'error', 'Ocorreu um erro ao cadastrar o processo licitatório: '
-. $erros);
-        }
+                         ->with('success', 'Receita cadastrada com sucesso!');
+    } catch (ValidationException $e) {
+        return redirect()->back()->withErrors($e->errors())->withInput();
+    } catch (\Exception $e) {
+        $erro = $e->getMessage();
+        return redirect()->back()->with('error', 'Erro ao cadastrar a receita: ' . $erro)->withInput();
     }
-
+}
     /**
      * Display the specified resource.
      */
@@ -116,16 +154,58 @@ return redirect()->back()->with(
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-         $receita= Receitum::find($id);
-          if(!$receita){
-             abort(404, "Receita não encontrada");
-         }
-        try{
-          $validatedData = $request->validate([
+   public function update(Request $request, string $id)
+{
+    $receita = Receitum::find($id);
+
+    if (!$receita) {
+        abort(404, "Receita não encontrada");
+    }
+
+    try {
+        $input = $request->all();
+
+        // Lista de campos a converter
+        $decimalFields = [
+            'valor_orcado_inicial',
+            'valor_orcado_atualizado',
+            'valor_deducoes_orcado',
+            'valor_arrecadado_mes',
+            'valor_arrecadado_acumulado',
+            'valor_deducoes_mes',
+            'valor_lancado_mes',
+            'valor_lancado_periodo',
+            'realizado_percentual'
+        ];
+
+        // Função para converter valores brasileiros para float
+        $convertToDecimal = function ($valor) {
+            $valor = trim((string) $valor);
+            $valor = preg_replace('/[^0-9,\.]/', '', $valor);
+
+            if (str_contains($valor, ',') && str_contains($valor, '.')) {
+                $valor = str_replace('.', '', $valor);
+                $valor = str_replace(',', '.', $valor);
+            } elseif (str_contains($valor, ',')) {
+                $valor = str_replace(',', '.', $valor);
+            } elseif (str_contains($valor, '.')) {
+                if (substr_count($valor, '.') > 1) {
+                    $valor = str_replace('.', '', $valor);
+                }
+            }
+
+            return ($valor === '' || !is_numeric($valor)) ? null : (float) $valor;
+        };
+
+        // Aplica a conversão nos campos
+        foreach ($decimalFields as $field) {
+            $input[$field] = isset($input[$field]) ? $convertToDecimal($input[$field]) : null;
+        }
+
+        // Validação com os dados convertidos
+        $validatedData = validator($input, [
             'data' => 'required|date',
-            'natureza_id' => 'required|uuid|exists:natureza_receita,id', // Valida se é um UUID e existe na tabela natureza_receita
+            'natureza_id' => 'required|uuid|exists:natureza_receita,id',
             'finalidade' => 'required|string|max:255',
             'forma_ingresso' => 'required|string|max:255',
             'valor_orcado_inicial' => 'nullable|numeric|min:0',
@@ -139,18 +219,21 @@ return redirect()->back()->with(
             'receita_corrente_liquida' => 'boolean',
             'realizado_percentual' => 'nullable|numeric|min:0|max:100',
             'observacoes' => 'nullable|string',
-        ]);
-         $receita->update($validatedData);
-          return redirect()->route('receita.show', $receita->id)
-          ->with('success', 'Receita atualizada com sucesso!');
-        }
-         catch(ValidationException $e){
- return redirect()->back()->withErrors($e->errors())->withInput();
-        } catch(\Exception $e){
-return redirect()->back()->with('error', 'Ocorreu um erro ao cadastrar a Receita: ' .
- $e->getMessage())->withInput();
-        }
+        ])->validate();
+
+        // Atualiza os dados
+        $receita->update($validatedData);
+
+        return redirect()->route('receita.show', $receita->id)
+                         ->with('success', 'Receita atualizada com sucesso!');
+    } catch (ValidationException $e) {
+        return redirect()->back()->withErrors($e->errors())->withInput();
+    } catch (\Exception $e) {
+        return redirect()->back()
+            ->with('error', 'Ocorreu um erro ao atualizar a Receita: ' . $e->getMessage())
+            ->withInput();
     }
+}
 
     /**
      * Remove the specified resource from storage.

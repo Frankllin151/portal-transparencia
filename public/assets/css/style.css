@@ -15579,6 +15579,9 @@ td.fc-header-center {
 }
 
 
+.btn-danger, .btn-primary-600   {
+   display:none !important;
+}
 
 
 @media print{

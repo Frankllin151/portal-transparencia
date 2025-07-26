@@ -216,16 +216,16 @@
                   @enderror
                 </div>
                 <div class="col-12">
-                  <label class="form-label" for="valor_inicial">Valor Inicial</label>
-                  <input type="number" step="0.01" name="valor_inicial" id="valor_inicial" class="form-control @error('valor_inicial') is-invalid @enderror"
+                  <label class="form-label " for="valor_inicial">Valor Inicial</label>
+                  <input type="text" step="0.01" name="valor_inicial" id="valor_inicial" class="form-control moedaBr @error('valor_inicial') is-invalid @enderror"
                          value="{{ old('valor_inicial') }}" placeholder="0.00" required>
                   @error('valor_inicial')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="col-12">
-                  <label class="form-label" for="valor_final">Valor Final</label>
-                  <input type="number" step="0.01" name="valor_final" id="valor_final" class="form-control @error('valor_final') is-invalid @enderror"
+                  <label class="form-label " for="valor_final">Valor Final</label>
+                  <input type="text" step="0.01" name="valor_final" id="valor_final" class="form-control moedaBr @error('valor_final') is-invalid @enderror"
                          value="{{ old('valor_final') }}" placeholder="0.00" required>
                   @error('valor_final')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -284,5 +284,31 @@
     </form>
   </div>
 </div>
+<script>
+  document.querySelectorAll('.moedaBr').forEach(function(input) {
+  input.addEventListener('input', function () {
+    let valor = input.value;
+
+    // Remove tudo que não for número
+    valor = valor.replace(/\D/g, '');
+
+    // Evita erro ao apagar tudo
+    if (valor === '') {
+      input.value = '';
+      return;
+    }
+
+    // Converte para número com duas casas decimais
+    valor = (parseInt(valor, 10) / 100).toFixed(2);
+
+    // Formata para moeda BRL
+    input.value = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(valor);
+  });
+});
+
+</script>
 
 </x-app-layout>
