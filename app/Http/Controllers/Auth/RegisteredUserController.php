@@ -34,7 +34,6 @@ class RegisteredUserController extends Controller
         $users = User::where('id', '!=', $loggedInUserId)
                      ->orderBy('name', 'asc')
                      ->get();
-
         // 3. Passar a lista filtrada de usuários para a view
         return view("cadastrar.showAll", ['data' => $users]);
     }
