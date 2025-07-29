@@ -63,7 +63,7 @@
                                 <td>
 
                                     {{-- Botão de Visualizar (exemplo, ajuste a rota se tiver uma) --}}
-                                    <a href="javascript:void(0)" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center" title="Visualizar">
+                                    <a href="{{route("user.showid", $item->id)}}" class="w-32-px h-32-px bg-primary-light text-primary-600 rounded-circle d-inline-flex align-items-center justify-content-center" title="Visualizar">
                                         <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
                                     </a>
                                     {{-- Botão de Editar --}}

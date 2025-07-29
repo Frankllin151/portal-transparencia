@@ -71,16 +71,16 @@
               <div>
                 <h6 class="text-lg text-primary-light fw-semibold mb-0">Mensagens</h6>
               </div>
-              <span class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
+              <span class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center" id="messageCountSpan">05</span>
             </div>
             
-           <div class="max-h-400-px overflow-y-auto scroll-sm pe-4">
+           <div class="max-h-400-px overflow-y-auto scroll-sm pe-4" id="messageMessages">
             
             <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
               <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
                 <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
                   <img src="assets/images/notification/profile-3.png" alt="">
-                  <span class="w-8-px h-8-px bg-success-main rounded-circle position-absolute end-0 bottom-0"></span>
+                  <span class="w-8-px h-8-px bg-success-main rounded-circle position-absolute end-0 bottom-0" id="messageCountSpan"></span>
                 </span> 
                 <div>
                   <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
@@ -162,9 +162,14 @@
             </a>
 
            </div>
-            <div class="text-center py-12 px-16"> 
-                <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">Ver Todas as Mensagens</a>
-            </div>
+             <div class="d-flex justify-content-between">
+      <div class="text-center py-12 px-16"> 
+        <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">Ver Todas as Mensagens</a>
+      </div>
+      <div class="text-center py-8 px-16">
+        <button id="clearMessagesBtn" class="btn btn-sm btn-outline-primary">Limpar Mensagens</button>
+      </div>
+    </div>
           </div>
         </div>
 
@@ -182,10 +187,10 @@
               <div>
                 <h6 class="text-lg text-primary-light fw-semibold mb-0">Notificações</h6>
               </div>
-              <span class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
+              <span class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center" id="notificationCountSpan">05</span>
             </div>
             
-           <div class="max-h-400-px overflow-y-auto scroll-sm pe-4">
+           <div class="max-h-400-px overflow-y-auto scroll-sm pe-4" id="notificationNotifications">
             <a href="javascript:void(0)" class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
               <div class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"> 
                 <span class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
@@ -252,9 +257,14 @@
             </a>
            </div>
 
-            <div class="text-center py-12 px-16"> 
-                <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">Ver Todas as Notificações</a>
-            </div>
+           <div class="d-flex justify-content-between">
+      <div class="text-center py-12 px-16"> 
+        <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">Ver Todas as Notificações</a>
+      </div>
+      <div class="text-center py-8 px-16">
+        <button id="clearNotificationsBtn" class="btn btn-sm btn-outline-primary">Limpar Notificações</button>
+      </div>
+    </div>
 
           </div>
         </div>
@@ -265,6 +275,8 @@
          <!----profile  dropdown--->
       <div class="dropdown">
        
+
+
     <button class="d-flex justify-content-center align-items-center rounded-circle" type="button" data-bs-toggle="dropdown">
         <img src="{{asset(Auth::user()->foto)}}" alt="image" class="w-40-px h-40-px object-fit-cover rounded-circle">
     </button>
@@ -359,6 +371,40 @@
   <script src="{{ asset('assets/js/lib/file-upload.js') }}"></script>
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+  function setupClearFunctionality(clearButtonId, containerId, countSpanId) {
+    const clearButton = document.getElementById(clearButtonId);
+    const notificationContainer = document.getElementById(containerId);
+    const notificationCountSpan = document.getElementById(countSpanId);
+
+    if (clearButton && notificationContainer && notificationCountSpan) {
+      clearButton.addEventListener('click', function() {
+        // Remove todos os filhos do contêiner de notificações
+        while (notificationContainer.firstChild) {
+          notificationContainer.removeChild(notificationContainer.firstChild);
+        }
+        
+        // Atualiza a contagem para 00
+        notificationCountSpan.textContent = '00';
+
+        // Adiciona uma mensagem de "Nenhuma notificação"
+        const noNotificationsMessage = document.createElement('p');
+        noNotificationsMessage.textContent = 'Nenhuma notificação no momento.';
+        noNotificationsMessage.classList.add('text-center', 'text-secondary-light', 'py-4');
+        notificationContainer.appendChild(noNotificationsMessage);
+      });
+    }
+  }
+
+  // Configurar para mensagens
+  setupClearFunctionality('clearMessagesBtn', 'messageMessages', 'messageCountSpan');
+
+  // Configurar para notificações
+  setupClearFunctionality('clearNotificationsBtn', 'notificationNotifications', 'notificationCountSpan');
+});
+  </script>
    @stack('scripts')
     </body>
 </html>

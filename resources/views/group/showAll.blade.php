@@ -19,7 +19,7 @@
  <li class="fw-medium">
 <a href="{{route("permissoes")}}" class="btn btn-primary">
        
-    {{ __('lista permissão') }}
+    {{ __('Lista permissão') }}
       </a>
     </li>
     <li class="fw-medium">

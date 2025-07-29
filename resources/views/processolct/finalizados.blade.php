@@ -77,7 +77,7 @@
 
        <div class="col-md-4">
 
-        <p class="mb-0"><strong>Modalide (Contagem): <br>
+        <p class="mb-0"><strong>Modalidade(Contagem): <br>
         <small> {{ $modalidade }} Dispensa de licitações</small>   <br>
         <small>{{$pregao}} Pregão Eletrónico</small> 
         </strong></p>

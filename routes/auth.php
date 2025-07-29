@@ -15,7 +15,7 @@ Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    //Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
@@ -63,6 +63,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get("/dashboard/lista-usuario", [RegisteredUserController::class, "index"])
     ->middleware(['auth', 'verified'])->name('user.lista');
+
+Route::get("/dashboard/lista-usuario/{id}", [RegisteredUserController::class, "showid"])
+->name("user.showid");
 
 Route::get("/dashboard/cadastra", [RegisteredUserController::class,"createAdmin"])
 ->middleware(['auth', 'verified'])->name('admin.usuario.registrer');

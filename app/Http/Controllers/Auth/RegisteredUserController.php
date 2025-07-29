@@ -38,9 +38,34 @@ class RegisteredUserController extends Controller
         return view("cadastrar.showAll", ['data' => $users]);
     }
 
-    public function create(): View
+    public function create()
     {
-        return view('auth.register');
+      return redirect()->route("login");
+    }
+
+    public function showid($id)
+    {
+         try {
+            $user = User::findOrFail($id);
+           
+
+            // Obter o group_id atual do usuário na tabela pivô
+            // Como o formulário de edição tem um select único, pegamos o primeiro grupo associado.
+            $currentUserGroupId = null;
+            if ($user->groups->isNotEmpty()) {
+                $currentUserGroupId = $user->groups->first()->name;
+            }
+            
+        return view("cadastrar.showid", ["data" => $user,
+                'currentUserGroupId' => $currentUserGroupId
+    ]);
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()
+                ->with('error', 'Usuário não encontrado.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Ocorreu um erro ao excluir o usuário: ' . $e->getMessage());
+        }
     }
 
     public function createAdmin()

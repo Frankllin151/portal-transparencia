@@ -17,20 +17,18 @@
                 padding: 0.375rem 0.75rem; /* Padding para corresponder aos inputs padrão */
             }
             .select2-container--default .select2-selection--multiple .select2-selection__choice {
-                background-color: #007bff; /* Cor de fundo dos itens selecionados */
-                color: white;
-                border: 1px solid #007bff;
-                border-radius: 0.2rem;
-                padding: 0 0.5rem;
-                margin-top: 0.25rem;
+                /* Cor de fundo dos itens selecionados */
+                color: #000;
+              
+              
             }
             .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-                color: white;
-                margin-left: 5px;
+                color: #000;
+               
             }
-            .select2-container--default .select2-search--inline .select2-search__field {
-                margin-top: 0.25rem;
-            }
+          .select2-results__option {
+    color: #000;
+  }
         </style>
     @endpush
 
@@ -79,7 +77,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-
+                                   
                                     <div class="col-12">
                                         <label class="form-label" for="key">Chave da Permissão (Rota)</label>
                                         {{-- Adicionamos o atributo 'multiple' e mudamos o nome para 'key[]' --}}

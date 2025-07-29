@@ -123,7 +123,7 @@
            <li><a href="{{route('cargos')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Cargos</a></li>
           <li><a href="{{route('classificacaocargo')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação do Cargo</a></li>
           <li><a href="{{route('classificacaoafastamento')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Classificação de Afastamento</a></li>
-          <li><a href="{{route('vinculoempregaticio')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Vinculo Empregatício</a></li>
+          <li><a href="{{route('vinculoempregaticio')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Vínculo Empregatício</a></li>
           <li><a href="{{route('lotacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Lotação</a></li>
           <li><a href="{{route('modalidadelicitacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Modalidade Licitação</a></li>
        

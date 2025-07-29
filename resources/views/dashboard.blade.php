@@ -127,7 +127,7 @@
                   <h6 class="mb-2 fw-bold text-lg">Movimentação Bancária</h6>
                   <div class="">
                     <select class="form-select form-select-sm w-auto bg-base border text-secondary-light radius-8">
-                      <option>Mes</option>
+                      <option>Mês</option>
                       <option>Ano</option>
                       <option>Semana</option>
                       

@@ -93,13 +93,13 @@
         <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
       </div>
         <div class="col-md-4">
-        <p class="mb-0"><strong>Vinculo Empregatício (Contagem):  <br>
+        <p class="mb-0"><strong>Vínculo Empregatício (Contagem):  <br>
         <small>{{ $contagemVinculoEmpregaticio }} Celetista </small>  
         </strong></p>
       </div>
 
        <div class="col-md-4">
-        <p class="mb-0"><strong>Situacao (Contagem): 
+        <p class="mb-0"><strong>Situação (Contagem): 
         <br> <small> {{ $situacao }} Trabalhando </small>  
         </strong></p>
       </div>
@@ -206,7 +206,7 @@
                       name: {
                           show: true,
                           fontSize: '16px',
-                          color: undefined,
+                          color: "#000",
                           offsetY: -10,
                           text: 'Total Remuneração' // Texto que aparece acima do valor central
                       },

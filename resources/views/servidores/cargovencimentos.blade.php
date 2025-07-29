@@ -93,7 +93,7 @@
                     <th class="ps-8"><small>DESCRIÇÃO DO CARGO</small></th>
                     <th class="ps-8"><small>CLASSIFICAÇÃO DO CARGO</small></th>
                     <th class="ps-8"><small>MATRÍCULA</small></th>
-                    <th class="ps-8"><small>VINCULO EMPREGATICIO</small></th>
+                    <th class="ps-8"><small>VÍNCULO EMPREGATÍCIO</small></th>
                     <th class="ps-8"><small>SITUAÇÃO DO CARGO</small></th>
                      <th class="ps-8"><small>VER MAIS</small></th>
                 </tr>

@@ -95,7 +95,7 @@
         <p class="mb-0"><strong>Total de Registros: {{ (float)$total }}</strong></p>
       </div>
        <div class="col-md-4">
-        <p class="mb-0"><strong>Tipo de Matricula(Contagem): {{ $matricula}}</strong></p>
+        <p class="mb-0"><strong>Tipo de Matrícula(Contagem): {{ $matricula}}</strong></p>
       </div>
         <div class="col-md-4">
         <p class="mb-0"><strong>Situação (Contagem): {{ $afastado}}</strong></p>
@@ -222,7 +222,7 @@
                       name: {
                           show: true,
                           fontSize: '16px',
-                          color: undefined,
+                          color: "#000",
                           offsetY: -10,
                           text: 'Total Remuneração' // Texto que aparece acima do valor central
                       },

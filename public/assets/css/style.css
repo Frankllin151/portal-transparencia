@@ -15579,7 +15579,7 @@ td.fc-header-center {
 }
 
 
-.btn-danger, .btn-primary-600   {
+.btn-danger  , .btn-primary-600.radius-8.gap-1 {
    display:none !important;
 }
 

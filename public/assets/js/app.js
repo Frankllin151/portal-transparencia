@@ -325,3 +325,9 @@ document.querySelectorAll('.cpf-cnpj-mask').forEach(function(input) {
     input.value = value;
   });
 });
+
+
+
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});

@@ -90,7 +90,7 @@
       </div>
 
       <div class="col-md-4">
-    <p class="mb-0"><strong>Valo final 
+    <p class="mb-0"><strong>Valor final 
       R$ (Soma)
       : R$ {{ number_format($valorFinal, 2, ',', '.') }}</strong></p>
 </div>

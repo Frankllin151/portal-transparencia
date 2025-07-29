@@ -1,5 +1,15 @@
 <div  class="container">
+<div  class="d-flex  align-items-center justify-content-end ">
+   
+    <div>
 
+       <a href="javascript:void(0);" onclick="history.back();"  class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+    <iconify-icon icon="mynaui:arrow-left" class="icon text-lg"></iconify-icon>
+    Voltar 
+</a>
+
+    </div>
+   </div>
 <div class="row row-cols-xxxl-5 row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4 py-3">
   <div class="col">
     <div class="card shadow-none border bg-gradient-start-1 h-100 card-custom-hover">
