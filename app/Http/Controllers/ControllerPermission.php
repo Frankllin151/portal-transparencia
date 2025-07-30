@@ -176,9 +176,53 @@ class ControllerPermission extends Controller
     public function edit(string $id)
     {
         try {
+            $keysRoutes = [
+            "dashboard",
+            "financeiro" => [
+                "receita", 
+                "despesas", 
+                "pagamentos",
+                "movimentobancario"
+            ], 
+            "servidores", 
+            "processo", 
+            "contratos" => [
+                "contratos", 
+                "contratos_item"
+            ], 
+            "paramentros" =>[
+        "Tipo Poder",
+        "Tipo Ação",
+        "Tipo Recurso",
+        "Tipo Empenho",
+        "Tipo de Conta",
+        "Tipo de Contrato",
+        "Categoria Empenho",
+        "Entidade",
+        "Unidade",
+        "Nome Orgão",
+        "Natureza Receita",
+        "Natureza Jurídica",
+        "Nome Credor",
+        "Finalidade",
+        "Forma Ingresso",
+        "Forma Julgamento",
+        "Classificação",
+        "Fonte Recurso",
+        "Situação Cargo",
+        "Cargos",
+        "Classificação do Cargo",
+        "Classificação de Afastamento",
+        "Vínculo Empregatício",
+        "Lotação",
+        "Modalidade Licitação",
+        "Tipo de Matrícula"
+            ]
+        ];
+
             $data = Permission::with('group')->findOrFail($id);
             $groups = Group::all();
-            return view("permission.edit", ["data" => $data, 'groups' => $groups]);
+            return view("permission.edit", ["data" => $data, 'groups' => $groups, "keysRoutes" => $keysRoutes]);
         } catch (ModelNotFoundException $e) {
             return redirect()->back()
                 ->with('error', 'Permissão não encontrada.');

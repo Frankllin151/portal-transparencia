@@ -372,37 +372,33 @@
   <script src="{{ asset('assets/js/lib/audioplayer.js') }}"></script>
   <script src="{{ asset('assets/js/app.js') }}"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+   document.addEventListener('DOMContentLoaded', function() {
 
-  function setupClearFunctionality(clearButtonId, containerId, countSpanId) {
+  function setupClearFunctionality(clearButtonId, containerId, countSpanId, emptyText) {
     const clearButton = document.getElementById(clearButtonId);
     const notificationContainer = document.getElementById(containerId);
     const notificationCountSpan = document.getElementById(countSpanId);
 
     if (clearButton && notificationContainer && notificationCountSpan) {
       clearButton.addEventListener('click', function() {
-        // Remove todos os filhos do contêiner de notificações
         while (notificationContainer.firstChild) {
           notificationContainer.removeChild(notificationContainer.firstChild);
         }
-        
-        // Atualiza a contagem para 00
         notificationCountSpan.textContent = '00';
 
-        // Adiciona uma mensagem de "Nenhuma notificação"
         const noNotificationsMessage = document.createElement('p');
-        noNotificationsMessage.textContent = 'Nenhuma notificação no momento.';
+        noNotificationsMessage.textContent = emptyText;
         noNotificationsMessage.classList.add('text-center', 'text-secondary-light', 'py-4');
         notificationContainer.appendChild(noNotificationsMessage);
       });
     }
   }
 
-  // Configurar para mensagens
-  setupClearFunctionality('clearMessagesBtn', 'messageMessages', 'messageCountSpan');
+  // Mensagens
+  setupClearFunctionality('clearMessagesBtn', 'messageMessages', 'messageCountSpan', 'Nenhuma mensagem no momento.');
 
-  // Configurar para notificações
-  setupClearFunctionality('clearNotificationsBtn', 'notificationNotifications', 'notificationCountSpan');
+  // Notificações
+  setupClearFunctionality('clearNotificationsBtn', 'notificationNotifications', 'notificationCountSpan', 'Nenhuma notificação no momento.');
 });
   </script>
    @stack('scripts')

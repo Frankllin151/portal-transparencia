@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Criar Nova Permissão') }}
+            {{ __('Editar Permissão') }}
         </h2>
     </x-slot>
 
@@ -19,11 +19,9 @@
             .select2-container--default .select2-selection--multiple .select2-selection__choice {
                 /* Cor de fundo dos itens selecionados */
                 color: #000;
-              
-              
             }
 
- .select2-container .select2-search--inline .select2-search__field{
+            .select2-container .select2-search--inline .select2-search__field{
              box-sizing: border-box;
     border: none;
     font-size: 100%;
@@ -37,14 +35,12 @@
     overflow: hidden;
     word-break: keep-all;
             }
-            
             .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
                 color: #000;
-               
             }
-          .select2-results__option {
-    color: #000;
-  }
+            .select2-results__option {
+                color: #000;
+            }
         </style>
     @endpush
 
@@ -63,12 +59,14 @@
     <div class="card">
         <div class="card-header">
             <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
-                <h6 class="card-title mb-0">Adicionar Nova Permissão</h6>
+                <h6 class="card-title mb-0">Editar Permissão</h6>
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('permissoes.store') }}" method="POST">
+            {{-- O método do formulário será POST, mas Laravel usará PUT/PATCH com @method('PUT') --}}
+            <form action="{{ route('permissoes.update', $data->id) }}" method="POST">
                 @csrf {{-- Token CSRF para segurança --}}
+                @method('PUT') {{-- Indica que esta é uma requisição PUT para atualização --}}
 
                 <div class="row gy-4">
                     {{-- Informações da Permissão --}}
@@ -84,7 +82,8 @@
                                         <select name="group_id" id="group_id" class="form-control @error('group_id') is-invalid @enderror" required>
                                             <option value="">Selecione um Grupo</option>
                                             @foreach($groups as $group)
-                                                <option value="{{ $group->id }}" data-group-name="{{ $group->name }}" {{ old('group_id') == $group->id ? 'selected' : '' }}>
+                                                {{-- Pré-seleciona o grupo da permissão existente --}}
+                                                <option value="{{ $group->id }}" data-group-name="{{ $group->name }}" {{ (old('group_id', $data->group_id) == $group->id) ? 'selected' : '' }}>
                                                     {{ $group->name }}
                                                 </option>
                                             @endforeach
@@ -93,22 +92,27 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                   
+
                                     <div class="col-12">
                                         <label class="form-label" for="key">Chave da Permissão (Rota)</label>
                                         {{-- Adicionamos o atributo 'multiple' e mudamos o nome para 'key[]' --}}
                                         <select name="key[]" id="key" class="form-control @error('key') is-invalid @enderror" multiple="multiple" required>
+                                            {{-- IMPORTANTE: Certifique-se de que $keysRoutes esteja disponível nesta view.
+                                                 Se não estiver, você precisará passá-lo do seu controlador 'edit'.
+                                                 Assumimos que $data->key é um array de chaves selecionadas ou pode ser convertido. --}}
                                             @foreach($keysRoutes as $category => $keys)
                                                 @if(is_array($keys))
                                                     <optgroup label="{{ ucfirst($category) }}">
                                                         @foreach($keys as $key_route)
-                                                            <option value="{{ $key_route }}" {{ in_array($key_route, old('key', [])) ? 'selected' : '' }}>
+                                                            {{-- Pré-seleciona as chaves da permissão existente --}}
+                                                            <option value="{{ $key_route }}" {{ in_array($key_route, old('key', json_decode($data->key) ?? [])) ? 'selected' : '' }}>
                                                                 {{ ucfirst(str_replace('_', ' ', $key_route)) }}
                                                             </option>
                                                         @endforeach
                                                     </optgroup>
                                                 @else
-                                                    <option value="{{ $keys }}" {{ in_array($keys, old('key', [])) ? 'selected' : '' }}>
+                                                    {{-- Caso haja chaves fora de categorias (diretamente no array $keysRoutes) --}}
+                                                    <option value="{{ $keys }}" {{ in_array($keys, old('key', json_decode($data->key) ?? [])) ? 'selected' : '' }}>
                                                         {{ ucfirst(str_replace('_', ' ', $keys)) }}
                                                     </option>
                                                 @endif
@@ -134,7 +138,7 @@
                                     </button>
                                     <button type="submit" class="btn btn-primary">
                                         <iconify-icon icon="material-symbols:save" class="me-1"></iconify-icon>
-                                        Adicionar Permissão
+                                        Atualizar Permissão
                                     </button>
                                 </div>
                             </div>
@@ -155,7 +159,7 @@
             $(document).ready(function() {
                 // Inicializa o Select2 para o campo de chaves
                 $('#key').select2({
-                    placeholder: 'Selecione  chaves',
+                    placeholder: 'Selecione chaves', // Alterado aqui!
                     allowClear: true // Permite limpar a seleção
                 });
 
@@ -177,6 +181,7 @@
                 });
 
                 // Dispara o evento 'change' no carregamento da página caso já haja um grupo selecionado (para old('group_id'))
+                // Isso garante que a lógica de "Administrador" seja aplicada se o grupo já estiver selecionado ao carregar a página.
                 $('#group_id').trigger('change');
             });
         </script>
