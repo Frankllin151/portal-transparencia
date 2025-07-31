@@ -97,22 +97,17 @@
                                         <label class="form-label" for="key">Chave da Permissão (Rota)</label>
                                         {{-- Adicionamos o atributo 'multiple' e mudamos o nome para 'key[]' --}}
                                         <select name="key[]" id="key" class="form-control @error('key') is-invalid @enderror" multiple="multiple" required>
-                                            {{-- IMPORTANTE: Certifique-se de que $keysRoutes esteja disponível nesta view.
-                                                 Se não estiver, você precisará passá-lo do seu controlador 'edit'.
-                                                 Assumimos que $data->key é um array de chaves selecionadas ou pode ser convertido. --}}
                                             @foreach($keysRoutes as $category => $keys)
                                                 @if(is_array($keys))
                                                     <optgroup label="{{ ucfirst($category) }}">
                                                         @foreach($keys as $key_route)
-                                                            {{-- Pré-seleciona as chaves da permissão existente --}}
-                                                            <option value="{{ $key_route }}" {{ in_array($key_route, old('key', json_decode($data->key) ?? [])) ? 'selected' : '' }}>
+                                                            <option value="{{ $key_route }}" {{ in_array($key_route, old('key', [])) ? 'selected' : '' }}>
                                                                 {{ ucfirst(str_replace('_', ' ', $key_route)) }}
                                                             </option>
                                                         @endforeach
                                                     </optgroup>
                                                 @else
-                                                    {{-- Caso haja chaves fora de categorias (diretamente no array $keysRoutes) --}}
-                                                    <option value="{{ $keys }}" {{ in_array($keys, old('key', json_decode($data->key) ?? [])) ? 'selected' : '' }}>
+                                                    <option value="{{ $keys }}" {{ in_array($keys, old('key', [])) ? 'selected' : '' }}>
                                                         {{ ucfirst(str_replace('_', ' ', $keys)) }}
                                                     </option>
                                                 @endif
@@ -151,15 +146,14 @@
 
     {{-- Adicione o jQuery e o JS do Select2 aqui --}}
     @push('scripts')
-        {{-- Carregue jQuery primeiro --}}
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         {{-- Depois carregue Select2 --}}
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script>
             $(document).ready(function() {
                 // Inicializa o Select2 para o campo de chaves
                 $('#key').select2({
-                    placeholder: 'Selecione chaves', // Alterado aqui!
+                    placeholder: 'Selecione  chaves',
                     allowClear: true // Permite limpar a seleção
                 });
 
@@ -181,7 +175,6 @@
                 });
 
                 // Dispara o evento 'change' no carregamento da página caso já haja um grupo selecionado (para old('group_id'))
-                // Isso garante que a lógica de "Administrador" seja aplicada se o grupo já estiver selecionado ao carregar a página.
                 $('#group_id').trigger('change');
             });
         </script>

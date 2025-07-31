@@ -16,7 +16,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Facades\File;
 
 class RegisteredUserController extends Controller
 {
@@ -105,7 +105,7 @@ class RegisteredUserController extends Controller
         }
     }
 
-      public function adminUpdate(Request $request, string $id)
+    public function adminUpdate(Request $request, string $id)
     {
         try {
             $user = User::findOrFail($id);
@@ -149,22 +149,38 @@ class RegisteredUserController extends Controller
                 $userDataToUpdate['password'] = $validatedData['password'];
             }
 
-            // Lidar com o upload da nova foto
-            if ($request->hasFile('foto')) {
-                // Deletar a foto antiga se existir
-                if ($user->foto) {
-                    $oldFilePath = str_replace(Storage::url('/'), '', $user->foto);
-                    Storage::disk('public')->delete($oldFilePath);
-                }
-                $path = $request->file('foto')->store('fotos_usuarios', 'public');
-                $userDataToUpdate['foto'] = Storage::url($path);
-            } elseif ($request->input('clear_foto')) { // Se houver um checkbox ou campo hidden para limpar a foto
-                if ($user->foto) {
-                    $oldFilePath = str_replace(Storage::url('/'), '', $user->foto);
-                    Storage::disk('public')->delete($oldFilePath);
-                }
-                $userDataToUpdate['foto'] = null;
-            }
+     // Lidar com o upload da nova foto
+if ($request->hasFile('foto')) {
+    $foto = $request->file('foto');
+    // Definir o nome do arquivo, por exemplo, usando o ID do usuário e um timestamp
+    // ou um hash para garantir nomes únicos e evitar conflitos.
+    $nomeArquivo = uniqid() . '_' . time() . '.' . $foto->getClientOriginalExtension();
+
+    // Deletar a foto antiga se existir
+    if ($user->foto) {
+        // Obtenha o caminho completo da foto antiga no disco
+        $caminhoAntigo = public_path('fotos_usuarios/' . basename($user->foto));
+        if (file_exists($caminhoAntigo)) {
+            unlink($caminhoAntigo); // Deleta o arquivo físico
+        }
+    }
+
+    // Mover a nova foto para a pasta public/fotos_usuarios
+    $foto->move(public_path('fotos_usuarios'), $nomeArquivo);
+
+    // Salvar o caminho relativo para o banco de dados
+    // Isso é o que você usará para exibir a imagem no HTML
+    $userDataToUpdate['foto'] = 'fotos_usuarios/' . $nomeArquivo;
+
+} elseif ($request->input('clear_foto')) {
+    if ($user->foto) {
+        $caminhoAntigo = public_path('fotos_usuarios/' . basename($user->foto));
+        if (file_exists($caminhoAntigo)) {
+            unlink($caminhoAntigo);
+        }
+    }
+    $userDataToUpdate['foto'] = null;
+}
 
 
             // Atualiza os dados principais do usuário
@@ -238,13 +254,31 @@ class RegisteredUserController extends Controller
                 // 'group_id' => null, // Não inclua group_id aqui se ele não existe na tabela users ou se a associação é via pivô
             ];
 
-            // Lidar com o upload da foto
-            if ($request->hasFile('foto')) {
-                $path = $request->file('foto')->store('fotos_usuarios', 'public');
-                $userData['foto'] = Storage::url($path);
-            } else {
-                $userData['foto'] = null;
-            }
+           // Lidar com o upload da foto
+if ($request->hasFile('foto')) {
+    $foto = $request->file('foto');
+
+    // Gerar um nome de arquivo único para evitar conflitos
+    $nomeArquivo = uniqid() . '_' . time() . '.' . $foto->getClientOriginalExtension();
+
+    // Definir o caminho de destino dentro da pasta public
+    $caminhoDestino = public_path('fotos_usuarios');
+
+    // Criar a pasta se ela não existir
+    if (!File::isDirectory($caminhoDestino)) {
+        File::makeDirectory($caminhoDestino, 0755, true, true);
+    }
+
+    // Mover a foto para a pasta public/fotos_usuarios
+    $foto->move($caminhoDestino, $nomeArquivo);
+
+    // Salvar o caminho relativo no banco de dados
+    // Este é o caminho que você usará para exibir a imagem no HTML (ex: fotos_usuarios/nome_da_foto.jpg)
+    $userData['foto'] = 'fotos_usuarios/' . $nomeArquivo;
+} else {
+    // Se nenhuma foto for enviada, defina como null
+    $userData['foto'] = null;
+}
 
             // Cria o novo usuário
             $user = User::create($userData);
@@ -321,10 +355,17 @@ class RegisteredUserController extends Controller
             // -------------------------------------------------------------------
 
             // Opcional: Se o usuário tiver uma foto, você pode deletá-la do storage
-            if ($user->foto) {
-                $filePath = str_replace(Storage::url('/'), '', $user->foto);
-                Storage::disk('public')->delete($filePath);
-            }
+          // PASSO 1: Deletar a foto do usuário se ela existir na pasta public
+if ($user->foto) {
+    // Constrói o caminho completo da foto no sistema de arquivos
+    // Supondo que $user->foto esteja salvo como 'fotos_usuarios/nome_da_foto.jpg'
+    $caminhoFoto = public_path($user->foto);
+
+    // Verifica se o arquivo realmente existe antes de tentar deletar
+    if (file_exists($caminhoFoto)) {
+        unlink($caminhoFoto); // Deleta o arquivo físico do disco
+    }
+}
 
             // PASSO 2: Deletar o usuário da tabela 'users'
             $user->delete();

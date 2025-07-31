@@ -17,7 +17,8 @@ class ControllerPermission extends Controller
             "comprasdiretas",
             "despesas",
             "pagamentos",
-            "movimentacao"
+            "movimentacao", 
+            "comprasdiretas",
         ],
         "servidores",
         "processo",
@@ -72,12 +73,14 @@ class ControllerPermission extends Controller
     {
         $groups = Group::all(); // Obtém todos os grupos para o selectbox
         $keysRoutes = [
+            'todas',
             "dashboard",
             "financeiro" => [
                 "receita", 
                 "despesas", 
                 "pagamentos",
-                "movimentobancario"
+                "movimentobancario", 
+                "comprasdiretas",
             ], 
             "servidores", 
             "processo", 
@@ -177,12 +180,14 @@ class ControllerPermission extends Controller
     {
         try {
             $keysRoutes = [
+            'todas',
             "dashboard",
             "financeiro" => [
                 "receita", 
                 "despesas", 
                 "pagamentos",
-                "movimentobancario"
+                "movimentobancario", 
+                "comprasdiretas",
             ], 
             "servidores", 
             "processo", 
@@ -238,29 +243,51 @@ class ControllerPermission extends Controller
         try {
             $permission = Permission::findOrFail($id);
 
+            // Validação agora espera 'key' como um array, assim como no store
             $validatedData = $request->validate([
                 'group_id' => 'required|string|exists:groups,id',
-                'key' => 'required|string|max:255',
+                'key' => 'required|array', // Agora espera um array
+                'key.*' => 'string|max:255', // Cada item do array deve ser uma string
             ]);
 
-            $permission->update($validatedData);
+            $groupId = $validatedData['group_id'];
+            $selectedKeys = $validatedData['key'];
+
+            $group = Group::find($groupId);
+
+            $keysString = ''; // Variável para armazenar a string final
+
+            // Lógica para determinar o valor de 'key' baseada no nome do grupo
+            if ($group && strtolower($group->name) === 'administrador') {
+                $keysString = 'todas';
+            } else {
+                $keysToSaveArray = array_unique($selectedKeys); // Remove duplicatas do array
+                $keysString = implode(',', $keysToSaveArray); // Converte o array para string
+            }
+
+            // Atualiza o registro de permissão com a string de chaves
+            $permission->update(['key' => $keysString]);
 
             return redirect()->route('permissoes')
                 ->with('success', 'Permissão atualizada com sucesso!');
 
         } catch (ModelNotFoundException $e) {
-            abort(404, "Permissão não encontrada.");
+            // Se a permissão não for encontrada
+            return redirect()->back()
+                ->with('error', 'Permissão não encontrada para atualização.')
+                ->withInput(); // Mantém os dados no formulário
         } catch (ValidationException $e) {
+            // Erros de validação
             return redirect()->back()
                 ->withErrors($e->errors())
                 ->withInput();
         } catch (\Exception $e) {
+            // Outros erros
             return redirect()->back()
                 ->with('error', 'Ocorreu um erro ao atualizar o registro da Permissão: ' . $e->getMessage())
                 ->withInput();
         }
     }
-
     /**
      * Remove the specified resource from storage.
      * Remove a permissão especificada do armazenamento.

@@ -15,6 +15,7 @@ use App\Models\Receitum;
 use App\Models\Processoslicitatorio;
 use App\Models\Movimentacaobancarium;
 use App\Models\Servidore;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -36,17 +37,33 @@ class ProfileController extends Controller
        $user = $request->user();
         $userData = $request->validated();
 
-        // **Lógica para o upload e salvamento da foto**
-        if ($request->hasFile('foto')) {
-            // Salva a imagem no disco 'public'
-            $path = $request->file('foto')->store('fotos_usuarios', 'public');
-            // Obtém o URL completo e o atribui para ser salvo no DB
-            $userData['foto'] = Storage::url($path);
-        } else {
-            // Se não houver novo upload, e você quer explicitamente setar como null se não for enviado, use isso.
-            // Caso contrário, remova esta linha para manter a foto existente se não for atualizada.
-            // $userData['foto'] = null;
-        }
+       if ($request->hasFile('foto')) {
+    $foto = $request->file('foto');
+
+    // Gerar um nome de arquivo único para a foto
+    $nomeArquivo = uniqid() . '_' . time() . '.' . $foto->getClientOriginalExtension();
+
+    // Definir o caminho completo para a subpasta dentro de 'public'
+    $caminhoDestino = public_path('fotos_usuarios');
+
+    // Criar a pasta 'fotos_usuarios' dentro de 'public' se ela não existir
+    if (!File::isDirectory($caminhoDestino)) {
+        File::makeDirectory($caminhoDestino, 0755, true, true);
+    }
+
+    // Mover o arquivo de upload para o diretório de destino
+    $foto->move($caminhoDestino, $nomeArquivo);
+
+    // Salvar o caminho **relativo** no banco de dados
+    // Ex: 'fotos_usuarios/nome_da_foto.jpg'
+    $userData['foto'] = 'fotos_usuarios/' . $nomeArquivo;
+} else {
+    // Se não houver novo upload, a foto deve ser definida como null no banco de dados.
+    // Se a intenção for manter a foto existente caso nenhuma nova seja enviada,
+    // você precisaria de uma lógica diferente aqui (por exemplo, não sobrescrever $userData['foto']
+    // se já houver uma foto e nenhum novo upload).
+    $userData['foto'] = null;
+}
 
         $user->fill($userData);
 
