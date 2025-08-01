@@ -106,4 +106,24 @@
     </div>
 </div>
     </section>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.toggle-password').forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+            const input = document.querySelector(this.getAttribute('data-toggle'));
+            if (input) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    this.classList.remove('ri-eye-line');
+                    this.classList.add('ri-eye-off-line');
+                } else {
+                    input.type = 'password';
+                    this.classList.remove('ri-eye-off-line');
+                    this.classList.add('ri-eye-line');
+                }
+            }
+        });
+    });
+});
+</script>
 </x-guest-layout>

@@ -2,11 +2,19 @@
 @php
     $user = Auth::user();
     $group = $user && $user->groups->isNotEmpty() ? $user->groups->first() : null;
-    $groupPermissions = $group && isset($group->permissions) && $group->permissions->isNotEmpty()
-        ? explode(',', $group->permissions->first()->key)
-        : [];
+    $groupPermissions = [];
 
-    // Todas as rotas possíveis
+    if ($group && isset($group->permissions) && $group->permissions->isNotEmpty()) {
+        // Suporte para múltiplas permissões por grupo
+        foreach ($group->permissions as $permission) {
+            $keys = array_map('trim', explode(',', $permission->key));
+            $groupPermissions = array_merge($groupPermissions, $keys);
+        }
+        // Remove duplicados e espaços
+        $groupPermissions = array_unique(array_map('trim', $groupPermissions));
+    }
+ ////dd($groupPermissions);
+    // Se tiver 'todas', libera tudo
     $allRoutes = [
         'dashboard', 'receita', 'despesas', 'pagamentos', 'movimentobancario', 'comprasdiretas',
         'servidores', 'processo', 'contratos', 'contratos_item',
@@ -16,8 +24,6 @@
         'fonterecurso', 'situacaocargo', 'cargos', 'classificacaocargo', 'classificacaoafastamento',
         'vinculoempregaticio', 'lotacao', 'modalidadelicitacao', 'tipomatricula.index'
     ];
-
-    // Se tiver permissão 'todas', libera tudo
     if (in_array('todas', $groupPermissions)) {
         $groupPermissions = $allRoutes;
     }
@@ -66,8 +72,9 @@
                     <li><a href="{{route('movimentacao')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Movimentação bancária</a></li>
                     @endif
                     
-                    <li><a href="{{route('comprasdiretas')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Compras Diretas</a></li>
-              
+                @if(in_array('comprasdiretas', $groupPermissions))
+<li><a href="{{route('comprasdiretas')}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Compras Diretas</a></li>
+@endif
                 </ul>
             </li>
             @endif
@@ -111,51 +118,55 @@
             @endif
 
             <!-- Parâmetros -->
-            @php
-                $parametros = [
-                    'tipopoder' => 'Tipo Poder',
-                    'tipoacao' => 'Tipo Ação',
-                    'tiporecurso' => 'Tipo Recurso',
-                    'tipoempenho' => 'Tipo Empenho',
-                    'tipoconta' => 'Tipo de Conta',
-                    'tipocontrato' => 'Tipo de Contrato',
-                    'categoriaempenho' => 'Categoria Empenho',
-                    'entidade' => 'Entidade',
-                    'unidade' => 'Unidade',
-                    'nomeorgao' => 'Nome Orgão',
-                    'natureza' => 'Natureza Receita',
-                    'naturezajuridica' => 'Natureza Jurídica',
-                    'nomecredor' => 'Nome Credor',
-                    'finalidade' => 'Finalidade',
-                    'formaingresso' => 'Forma Ingresso',
-                    'formajulgamento' => 'Forma Julgamento',
-                    'classificacao' => 'Classificação',
-                    'fonterecurso' => 'Fonte Recurso',
-                    'situacaocargo' => 'Situação Cargo',
-                    'cargos' => 'Cargos',
-                    'classificacaocargo' => 'Classificação do Cargo',
-                    'classificacaoafastamento' => 'Classificação de Afastamento',
-                    'vinculoempregaticio' => 'Vínculo Empregatício',
-                    'lotacao' => 'Lotação',
-                    'modalidadelicitacao' => 'Modalidade Licitação',
-                    'tipomatricula.index' => 'Tipo de Matrícula'
-                ];
-            @endphp
-            @if(array_intersect(array_keys($parametros), $groupPermissions))
-            <li class="dropdown">
-                <a href="javascript:void(0)">
-                    <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
-                    <span>Parâmetros</span>
-                </a>
-                <ul class="sidebar-submenu">
-                    @foreach($parametros as $route => $label)
-                        @if(in_array($route, $groupPermissions))
-                        <li><a href="{{route($route)}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>{{ $label }}</a></li>
-                        @endif
-                    @endforeach
-                </ul>
-            </li>
-            @endif
+          @php
+    $parametros = [
+        'tipopoder' => 'Tipo Poder',
+        'tipoacao' => 'Tipo Ação',
+        'tiporecurso' => 'Tipo Recurso',
+        'tipoempenho' => 'Tipo Empenho',
+        'tipoconta' => 'Tipo de Conta',
+        'tipocontrato' => 'Tipo de Contrato',
+        'categoriaempenho' => 'Categoria Empenho',
+        'entidade' => 'Entidade',
+        'unidade' => 'Unidade',
+        'nomeorgao' => 'Nome Orgão',
+        'natureza' => 'Natureza Receita',
+        'naturezajuridica' => 'Natureza Jurídica',
+        'nomecredor' => 'Nome Credor',
+        'finalidade' => 'Finalidade',
+        'formaingresso' => 'Forma Ingresso',
+        'formajulgamento' => 'Forma Julgamento',
+        'classificacao' => 'Classificação',
+        'fonterecurso' => 'Fonte Recurso',
+        'situacaocargo' => 'Situação Cargo',
+        'cargos' => 'Cargos',
+        'classificacaocargo' => 'Classificação do Cargo',
+        'classificacaoafastamento' => 'Classificação de Afastamento',
+        'vinculoempregaticio' => 'Vínculo Empregatício',
+        'lotacao' => 'Lotação',
+        'modalidadelicitacao' => 'Modalidade Licitação',
+        'tipomatricula.index' => 'Tipo de Matrícula'
+    ];
+
+    // Aceita tanto a chave quanto o label nas permissões
+    $parametrosKeysAndLabels = array_merge(array_keys($parametros), array_values($parametros));
+@endphp
+
+@if(array_intersect($parametrosKeysAndLabels, $groupPermissions))
+    <li class="dropdown">
+        <a href="javascript:void(0)">
+            <iconify-icon icon="mdi:file-document-outline" class="menu-icon"></iconify-icon>
+            <span>Parâmetros</span>
+        </a>
+        <ul class="sidebar-submenu">
+            @foreach($parametros as $route => $label)
+                @if(in_array($route, $groupPermissions) || in_array($label, $groupPermissions))
+                    <li><a href="{{route($route)}}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>{{ $label }}</a></li>
+                @endif
+            @endforeach
+        </ul>
+    </li>
+@endif
 
             <!-- Configurações sempre visível -->
             <li class="dropdown">

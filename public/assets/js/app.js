@@ -246,32 +246,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+/// real moeda
 
-// moeda real: 
 
-  document.querySelectorAll('.moedaBr').forEach(function(input) {
-  input.addEventListener('input', function () {
-    let valor = input.value;
-
-    // Remove tudo que não for número
-    valor = valor.replace(/\D/g, '');
-
-    // Evita erro ao apagar tudo
-    if (valor === '') {
-      input.value = '';
-      return;
+$(document).ready(function(){
+  $('.moedaBr').each(function(){
+    let valor = $(this).val();
+    if(valor && !valor.includes(',')) {
+      valor = parseFloat(valor).toFixed(2).replace('.', ',');
+      $(this).val(valor);
     }
-
-    // Converte para número com duas casas decimais
-    valor = (parseInt(valor, 10) / 100).toFixed(2);
-
-    // Formata para moeda BRL
-    input.value = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(valor);
   });
+
+  $('.moedaBr').mask('000.000.000.000.000,00', {reverse: true});
 });
+
 
 
 
@@ -330,4 +319,18 @@ document.querySelectorAll('.cpf-cnpj-mask').forEach(function(input) {
 
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
+});
+
+
+
+$(document).ready(function(){
+  $('.money').each(function(){
+    let valor = $(this).val();
+    if(valor && !valor.includes(',')) {
+      valor = parseFloat(valor).toFixed(2).replace('.', ',');
+      $(this).val(valor);
+    }
+  });
+
+  $('.money').mask('000.000.000.000.000,00', {reverse: true});
 });

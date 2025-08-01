@@ -74,4 +74,5 @@ require __DIR__."/tipoMatriculaRoute.php";
 require __DIR__."/gruporouta.php";
 require __DIR__."/permissao.php";
 require __DIR__."/groupuserRoute.php";
+require __DIR__."/footerConfigRoute.php";
 require __DIR__.'/auth.php';

@@ -311,6 +311,8 @@
                 <iconify-icon icon="solar:users-group-rounded-linear" class="icon text-xl"></iconify-icon> Grupos
             </a>
         </li>
+        
+
         <li>
             <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('permissoes') }}">
                 <iconify-icon icon="solar:key-square-linear" class="icon text-xl"></iconify-icon> Permissões
@@ -326,6 +328,11 @@
                 <iconify-icon icon="solar:link-square-linear" class="icon text-xl"></iconify-icon> Associação de Usuário
             </a>
         </li>
+        <li>
+    <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3" href="{{ route('footer.config') }}">
+        <iconify-icon icon="solar:settings-linear" class="icon text-xl"></iconify-icon> Configuração
+    </a>
+</li>
     @endif
     {{-- Fim dos novos links --}}
 
@@ -401,6 +408,12 @@
   setupClearFunctionality('clearNotificationsBtn', 'notificationNotifications', 'notificationCountSpan', 'Nenhuma notificação no momento.');
 });
   </script>
+
+<!-- jQuery (se ainda não estiver incluso) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
    @stack('scripts')
     </body>
 </html>

@@ -284,31 +284,5 @@
     </form>
   </div>
 </div>
-<script>
-  document.querySelectorAll('.moedaBr').forEach(function(input) {
-  input.addEventListener('input', function () {
-    let valor = input.value;
-
-    // Remove tudo que não for número
-    valor = valor.replace(/\D/g, '');
-
-    // Evita erro ao apagar tudo
-    if (valor === '') {
-      input.value = '';
-      return;
-    }
-
-    // Converte para número com duas casas decimais
-    valor = (parseInt(valor, 10) / 100).toFixed(2);
-
-    // Formata para moeda BRL
-    input.value = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(valor);
-  });
-});
-
-</script>
 
 </x-app-layout>

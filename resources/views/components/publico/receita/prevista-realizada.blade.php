@@ -84,7 +84,7 @@
                     <td class="ps-8"><small>R${{ number_format($item->valor_orcado_inicial, 2, ',', '.') }}</small></td>
                     <td class="ps-8"><small>R${{ number_format($item->valor_lancado_periodo, 2, ',', '.') }}</small></td>
                     <td class="ps-8"><small>R${{ number_format($item->valor_lancado_mes, 2, ',', '.') }}</small></td>
-                    <td class="ps-8"><small>R${{ number_format($item->valor_lancado_periodo ?? 0, 2, ',', '.') }}</small></td>
+                    <td class="ps-8"><small>R${{ number_format($item->valor_orcado_atualizado  ?? 0, 2, ',', '.') }}</small></td>
                     <td class="ps-8"><small>R${{ number_format($item->valor_arrecadado_mes ?? 0, 2, ',', '.') }}</small></td>
                     <td class="ps-8"><small>R${{ number_format($item->valor_deducoes_orcado ?? 0, 2, ',', '.') }}</small></td>
                     <td class="ps-8"><small>R${{ number_format($item->valor_deducoes_mes ?? 0, 2, ',', '.') }}</small></td>

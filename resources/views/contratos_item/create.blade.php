@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label" for="valor_total">Valor Total</label>
-                  <input type="text" step="0.01" name="valor_total" id="valor_total" class="moedaBr  form-control @error('valor_total') is-invalid @enderror"
+                  <input type="text"  name="valor_total" id="valor_total" class="moedaBr  form-control @error('valor_total') is-invalid @enderror"
                          value="{{ old('valor_total') }}" placeholder="0.00" required>
                   @error('valor_total')
                     <div class="invalid-feedback">{{ $message }}</div>

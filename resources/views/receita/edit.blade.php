@@ -243,8 +243,18 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- jQuery Mask Plugin -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
 <script>
-$(document).ready(function(){
+  $(document).ready(function(){
+  $('.money').each(function(){
+    let valor = $(this).val();
+    if(valor && !valor.includes(',')) {
+      valor = parseFloat(valor).toFixed(2).replace('.', ',');
+      $(this).val(valor);
+    }
+  });
+
   $('.money').mask('000.000.000.000.000,00', {reverse: true});
 });
+
 </script>
