@@ -1,22 +1,28 @@
+{{-- filepath: /home/frankllin/docker/portal-transparencia/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email.blade.php --}}
 <x-mail::message>
-{{-- Greeting --}}
+{{-- Logo personalizada --}}
+<div style="text-align:center; margin-bottom: 24px;">
+    <img src="{{ asset('assets/images/logo.jpeg') }}" alt="Acesso Transparência" style="max-width: 220px;">
+</div>
+
+{{-- Saudação --}}
 @if (! empty($greeting))
 # {{ $greeting }}
 @else
 @if ($level === 'error')
-# @lang('Whoops!')
+# Opa!
 @else
-# @lang('Hello!')
+# Olá!
 @endif
 @endif
 
-{{-- Intro Lines --}}
+{{-- Linhas de introdução --}}
 @foreach ($introLines as $line)
 {{ $line }}
 
 @endforeach
 
-{{-- Action Button --}}
+{{-- Botão de ação --}}
 @isset($actionText)
 <?php
     $color = match ($level) {
@@ -29,26 +35,26 @@
 </x-mail::button>
 @endisset
 
-{{-- Outro Lines --}}
+{{-- Linhas finais --}}
 @foreach ($outroLines as $line)
 {{ $line }}
 
 @endforeach
 
-{{-- Salutation --}}
+{{-- Saudação final --}}
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards,')<br>
+Atenciosamente,<br>
 {{ config('app.name') }}
 @endif
 
-{{-- Subcopy --}}
+{{-- Subcópia --}}
 @isset($actionText)
 <x-slot:subcopy>
 @lang(
-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser:',
+    "Se você estiver com problemas para clicar no botão \":actionText\", copie e cole a URL abaixo\n".
+    'no seu navegador:',
     [
         'actionText' => $actionText,
     ]

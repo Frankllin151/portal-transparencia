@@ -1,6 +1,6 @@
 <x-guest-layout>
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+   
 
     <section class="auth bg-base d-flex flex-wrap">  
         <div class="auth-left d-lg-block d-none">
@@ -17,6 +17,7 @@
             <h4 class="mb-12">Faça login na sua conta</h4>
             <p class="mb-32 text-secondary-light text-lg">Bem-vindo de volta! Por favor, insira seus dados</p>
         </div>
+         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         {{-- LOCAL PARA EXIBIR A MENSAGEM DE ERRO GERAL --}}
         {{-- Adicione este bloco AQUI, antes do formulário --}}

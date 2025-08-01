@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use App\Notifications\CustomResetPassword;
 class User extends Authenticatable
 {
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
@@ -67,6 +68,15 @@ public function permissions()
 public function hasPermission($key)
 {
     return $this->permissions()->contains($key);
+}
+
+
+
+
+
+public function sendPasswordResetNotification($token)
+{
+    $this->notify(new CustomResetPassword($token));
 }
 
 }
