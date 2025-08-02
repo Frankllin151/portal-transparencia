@@ -22,7 +22,7 @@
         'categoriaempenho', 'entidade', 'unidade', 'nomeorgao', 'natureza', 'naturezajuridica',
         'nomecredor', 'finalidade', 'formaingresso', 'formajulgamento', 'classificacao',
         'fonterecurso', 'situacaocargo', 'cargos', 'classificacaocargo', 'classificacaoafastamento',
-        'vinculoempregaticio', 'lotacao', 'modalidadelicitacao', 'tipomatricula.index'
+        'vinculoempregaticio', 'lotacao', 'modalidadelicitacao', 'tipomatricula'
     ];
     if (in_array('todas', $groupPermissions)) {
         $groupPermissions = $allRoutes;
@@ -145,11 +145,12 @@
         'vinculoempregaticio' => 'Vínculo Empregatício',
         'lotacao' => 'Lotação',
         'modalidadelicitacao' => 'Modalidade Licitação',
-        'tipomatricula.index' => 'Tipo de Matrícula'
+        'tipomatricula' => 'Tipo de Matrícula'
     ];
 
     // Aceita tanto a chave quanto o label nas permissões
     $parametrosKeysAndLabels = array_merge(array_keys($parametros), array_values($parametros));
+ 
 @endphp
 
 @if(array_intersect($parametrosKeysAndLabels, $groupPermissions))

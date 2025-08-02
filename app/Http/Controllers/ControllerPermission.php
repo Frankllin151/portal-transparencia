@@ -71,7 +71,7 @@ class ControllerPermission extends Controller
     'vinculoempregaticio',
     'lotacao',
     'modalidadelicitacao',
-    'tipomatricula.index'
+    'tipomatricula'
             ]
         ];
         return view("permission.create", ["groups" => $groups , 
@@ -178,7 +178,7 @@ class ControllerPermission extends Controller
     'vinculoempregaticio',
     'lotacao',
     'modalidadelicitacao',
-    'tipomatricula.index'
+    'tipomatricula'
             ]
         ];
 

@@ -11,7 +11,7 @@
   <h6 class="fw-semibold mb-0"> {{ __('Tipo Empenho') }}</h6> {{-- Título da seção ajustado --}}
   <ul class="d-flex align-items-center gap-2">
     <li class="fw-medium">
-     <a href="{{ route('tipomatricula.index') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
+     <a href="{{ route('tipomatricula') }}" class="btn btn-sm btn-secondary radius-8 d-inline-flex align-items-center gap-1">
           <iconify-icon icon="mynaui:arrow-left" class="text-xl"></iconify-icon>
           Voltar
         </a>

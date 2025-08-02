@@ -24,7 +24,7 @@
         <div class="card-header">
             <h5 class="mb-0">Lista de Permissões</h5>
         </div>
-        <div class="card-body">
+        <div class="card-body table-responsive-scrollable">
             <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
                 <thead>
                     <tr>

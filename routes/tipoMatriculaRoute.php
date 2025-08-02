@@ -12,7 +12,7 @@ use App\Http\Controllers\TipoMatriculaController; // Certifique-se de que esta l
 
 // Rota para listar todos os Tipos de Matrícula (equivalente ao index)
 Route::get("/dashboard/tipo/matricula",[TipoMatriculaController::class, "index"])
-    ->middleware(['auth', 'verified'])->name('tipomatricula.index'); // Alterado para .index para clareza
+    ->middleware(['auth', 'verified'])->name('tipomatricula'); // Alterado para .index para clareza
 
 // Rota para exibir o formulário de criação de um novo Tipo de Matrícula
 Route::get('/dashboard/tipo/matricula/novo', [TipoMatriculaController::class, "create"])

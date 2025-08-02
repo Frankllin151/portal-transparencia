@@ -44,7 +44,7 @@ class TipoMatriculaController extends Controller
  
             TipoMatricula::create($validatedData);
 
-            return redirect()->route('tipomatricula.index') // Alterado para 'tipomatricula.index'
+            return redirect()->route('tipomatricula') // Alterado para 'tipomatricula.index'
                 ->with('success', 'Tipo de Matrícula cadastrado com sucesso!');
 
         } catch (ValidationException $e) {
@@ -103,7 +103,7 @@ class TipoMatriculaController extends Controller
 
             $tipoMatricula->update($validatedData);
 
-            return redirect()->route('tipomatricula.index') // Alterado para 'tipomatricula.index'
+            return redirect()->route('tipomatricula') // Alterado para 'tipomatricula.index'
                             ->with('success', 'Tipo de Matrícula atualizado com sucesso!');
 
         } catch (ModelNotFoundException $e) {
@@ -130,7 +130,7 @@ class TipoMatriculaController extends Controller
             $data = TipoMatricula::findOrFail($id);
             $data->delete();
 
-            return redirect()->route('tipomatricula.index') // Alterado para 'tipomatricula.index'
+            return redirect()->route('tipomatricula') // Alterado para 'tipomatricula.index'
                 ->with('success', 'Tipo de Matrícula excluído com sucesso!');
 
         } catch (ModelNotFoundException $e) {
