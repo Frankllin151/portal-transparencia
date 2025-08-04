@@ -42,6 +42,7 @@ class PrevistaRealizada extends Component
      */
     public function render(): View|Closure|string
     {
+        
          $data = Receitum::with("NaturezaReceitum")->get();
         return view('components.publico.receita.prevista-realizada', 
     [

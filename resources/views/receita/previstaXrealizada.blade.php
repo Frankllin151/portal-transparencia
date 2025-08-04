@@ -124,7 +124,7 @@
             text: 'Ano'
           }
       },
-      yaxis: {
+       yaxis: {
         title: {
             text: 'Valor (R$)'
         },
@@ -132,7 +132,10 @@
             formatter: function (value) {
                 return 'R$ ' + value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             }
-        }
+        }, 
+        min: 0, // Garante que a escala comece em 0
+        max: 30000000, // Exemplo: define o teto do eixo Y em 30 milhões
+        tickAmount: 6 // Define 6 rótulos no eixo, para melhor legibilidade
       },
       fill: {
           opacity: 1

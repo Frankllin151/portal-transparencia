@@ -91,9 +91,7 @@
             </button>
 
             {{-- Social Login Divider --}}
-            <div class="mt-32 center-border-horizontal text-center">
-                <span class="bg-base z-1 px-4">Ou faça login com</span>
-            </div>
+         
 
 
 

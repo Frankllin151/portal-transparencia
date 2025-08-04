@@ -44,7 +44,7 @@
 <div class="col-md-4">
     <p class="mb-0"><strong>Valor arrecadado da receita no período
       R$ (Soma)
-      : R$ {{ number_format($totalValorLancadoPeriodo, 2, ',', '.') }}</strong></p>
+      : R$ {{ number_format($totalValorArrecadadoMes, 2, ',', '.') }}</strong></p>
 </div>
 
  <div class="col-md-4">
@@ -55,7 +55,7 @@
 
 <div class="col-md-4">
     <p class="mb-0"><strong>Valor Orçado Atualizado (soma)
-      R$:  {{ number_format($totalValorOrcadoAtualizado, 2, ',', '.') }}</strong></p>
+      R$:  {{ number_format($totalValorOrcadoInicial, 2, ',', '.') }}</strong></p>
 </div>
   
 </div>
@@ -64,7 +64,9 @@
 
     <div class="horizontal-scroll-top-wrapper">
         <div class="horizontal-scroll-top"></div> </div>
-    <div class="table-responsive-scrollable"> <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
+    <div class="table-responsive-scrollable"> 
+      
+      <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
             <thead>
                 <tr>
                     <th scope="col" class="ps-8"><small>Natureza da Receita</small></th>
