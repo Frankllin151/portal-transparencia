@@ -31,8 +31,8 @@ return new class extends Migration
             $table->decimal('contribuicao_empregado_rat_fat', 15, 2)->nullable();
             $table->decimal('contribuicao_patronal_rgps', 15, 2)->nullable();
             $table->string('efetivo_em_cargo_comissionado')->nullable();
-            $table->decimal('carga_horaria_semanal', 5, 2);
-            $table->decimal('carga_horaria_mensal', 5, 2)->nullable();
+           $table->string('carga_horaria_semanal');
+$table->string('carga_horaria_mensal')->nullable();
             $table->string('organograma')->nullable();
 
             $table->timestamps();

@@ -115,15 +115,14 @@ class ServidoresController extends Controller
             ->with('success', 'Servidor cadastrado com sucesso!');
 
     } catch (ValidationException $e) {
-        dd($request->all()); // Debug
-        return redirect()->back()
+        dd($e->errors()); // Debug
+       /* return redirect()->back()
             ->withErrors($e->errors())
             ->withInput()
-            ->with('error', 'Erros nos inputs: Por favor, verifique os dados preenchidos.');
+            ->with('error', 'Erros nos inputs: Por favor, verifique os dados preenchidos.');*/
     } catch (\Exception $e) {
-        return redirect()->back()
-            ->withInput()
-            ->with('error', 'Ocorreu um erro ao cadastrar o servidor: ' . $e->getMessage());
+dd($e->getMessage());
+       
     }
 }
 
