@@ -46,14 +46,14 @@ class PublicaReceitaController extends Controller
   {
     $valorAtulizao = Receitum::select(
                 DB::raw('YEAR(updated_at) as ano'),
-                DB::raw('SUM(valor_orcado_atualizado) as total_orcado')
+                DB::raw('SUM(valor_orcado_inicial) as total_orcado')
             )
             ->groupBy('ano')
             ->orderBy('ano', 'desc') // Opcional: ordenar os anos
             ->get();
   $ValorArrecado = Receitum::select(
                 DB::raw('YEAR(updated_at) as ano'),
-                DB::raw('SUM(valor_arrecadado_acumulado) as total_orcado')
+                DB::raw('SUM(valor_arrecadado_mes) as total_orcado')
             )
             ->groupBy('ano')
             ->orderBy('ano', 'desc') // Opcional: ordenar os anos

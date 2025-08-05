@@ -56,42 +56,43 @@
     </div>
 
     <div class="table-responsive-scrollable">
-        <table class="table bordered-table mb-0" id="dataTableReceitas" data-page-length='10'>
-            <thead>
-                <tr>
-                    <th class="ps-8"><small>Rubrica Natureza</small></th>
-                    <th class="ps-8"><small>Descrição Natureza Receita</small></th>
-                    <th class="ps-8"><small>Valor Orçado R$</small></th>
-                    <th class="ps-8"><small>Orçado Atualizado R$</small></th>
-                    <th class="ps-8"><small>Valor Lançado Mês</small></th>
-                    <th class="ps-8"><small>Valor Arrecadado Mês</small></th>
-                    <th class="ps-8"><small>Valor Arrecadado Acumulado Até o Mês</small></th>
-                    <th class="ps-8"><small>Realizado (%)</small></th>
-                     <th class="ps-8"><small>Ver mais</small></th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($data as $index => $item)
-                    <tr>
-                        <td class="ps-8"><small>{{ $item->naturezaReceitum->rubrica ?? 'N/A' }}</small></td>
-                        <td class="ps-8"><small>{{ $item->naturezaReceitum->descricao ?? 'N/A' }}</small></td>
-                        <td class="ps-8"><small>R$ {{ number_format($item->valor_orcado_inicial, 2, ',', '.') }}</small></td>
-                        <td class="ps-8"><small>R$ {{ number_format($item->valor_orcado_atualizado, 2, ',', '.') }}</small></td>
-                        <td class="ps-8"><small>R$ {{ number_format($item->valor_lancado_mes, 2, ',', '.') }}</small></td>
-                        <td class="ps-8"><small>R$ {{ number_format($item->valor_arrecadado_mes, 2, ',', '.') }}</small></td>
-                        <td class="ps-8"><small>R$ {{ number_format($item->valor_arrecadado_acumulado, 2, ',', '.') }}</small></td>
-                        <td class="ps-8"><small>{{ number_format($item->realizado_percentual, 2, ',', '.') }}%</small></td>
-                        <td class="ps-8"><small><a href="{{route("receita.prevista.id.realizada", $item->id)}}">
-                        <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
-                        </a></small></td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="8" class="text-center"><small>Nenhum registro de receita encontrado.</small></td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+       <table class="table bordered-table mb-0" id="dataTableReceitaDiaria" data-page-length='10'>
+    <thead>
+        <tr>
+            <th class="ps-8"><small>Natureza da Receita</small></th>
+            <th class="ps-8"><small>Data da Receita</small></th>
+            <th class="ps-8"><small>Valor Orçado Inicial R$</small></th>
+            <th class="ps-8"><small>Valor Orçado Atualizado R$</small></th>
+            {{-- Nova coluna adicionada para Valor Lançado Mês --}}
+            <th class="ps-8"><small>Valor Lançado Mês R$</small></th>
+            <th class="ps-8"><small>Valor Arrecadado da Receita No Período R$</small></th>
+            <th class="ps-8"><small>Valor Arrecadado da Receita Até o Período R$</small></th>
+            <th class="ps-8"><small>Ver mais</small></th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse ($data as $index => $item)
+            <tr>
+                <td class="ps-8"><small>{{ $item->naturezaReceitum->descricao ?? 'N/A' }}</small></td>
+                <td class="ps-8"><small>{{ \Carbon\Carbon::parse($item->data)->format('d/m/Y') }}</small></td>
+                <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_orcado_inicial, 2, ',', '.') }}</small></td>
+                <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_orcado_inicial, 2, ',', '.') }}</small></td>
+                {{-- Dados para a nova coluna Valor Lançado Mês --}}
+                <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_lancado_mes, 2, ',', '.') }}</small></td>
+                <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_arrecadado_mes, 2, ',', '.') }}</small></td>
+                <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_arrecadado_acumulado, 2, ',', '.') }}</small></td>
+                <td class="ps-8"><small><a href="{{route("receita.prevista.id.realizada", $item->id)}}">
+                    <iconify-icon icon="iconamoon:eye-light"></iconify-icon>
+                </a></small></td>
+            </tr>
+        @empty
+            <tr>
+                {{-- Colspan ajustado para 8 colunas (7 originais + 1 nova) --}}
+                <td colspan="8" class="text-center"><small>Nenhum registro de receita diária encontrado.</small></td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
     </div>
   </div>
 </div>

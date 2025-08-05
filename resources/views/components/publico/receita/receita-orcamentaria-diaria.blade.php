@@ -33,7 +33,7 @@
       </div>
       {{-- Total Valor Lançado Período --}}
       <div class="col-md-3">
-        <p class="mb-0"><strong>Valor Lançado no Período (Soma): R$ {{ number_format((float)$totalValorLancadoPeriodo, 2, ",", ".") }}</strong></p>
+        <p class="mb-0"><strong>Valor arrecadado da receita no período (Soma):R$ {{ number_format((float)$totalValorLancadoPeriodo, 2, ",", ".") }}</strong></p>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
                         <td class="ps-8"><small>{{ $item->naturezaReceitum->descricao ?? 'N/A' }}</small></td>
                         <td class="ps-8"><small>{{ \Carbon\Carbon::parse($item->data)->format('d/m/Y') }}</small></td>
                         <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_orcado_inicial, 2, ',', '.') }}</small></td>
-                        <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_orcado_atualizado, 2, ',', '.') }}</small></td>
+                        <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_orcado_inicial, 2, ',', '.') }}</small></td>
                         <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_arrecadado_mes, 2, ',', '.') }}</small></td>
                         <td class="ps-8"><small>R$ {{ number_format((float)$item->valor_arrecadado_acumulado, 2, ',', '.') }}</small></td>
                     <td class="ps-8"><small><a href="{{route("receita.prevista.id.realizada", $item->id)}}">

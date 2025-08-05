@@ -16,7 +16,7 @@ class ReceitaOrcamentariaDiaria extends Component
     public function __construct()
     {
      $this->quantidadeDados = Receitum::count();
-     $this->totalValorOrcadoAtualizado = Receitum::sum('valor_orcado_atualizado');
+     $this->totalValorOrcadoAtualizado = Receitum::sum('valor_orcado_inicial');
      $this->totalValorLancadoPeriodo = Receitum::sum('valor_lancado_periodo');
       $this->receitaOrcamentaria = Receitum::with("NaturezaReceitum")->get();
     }

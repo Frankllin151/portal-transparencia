@@ -24,7 +24,7 @@ class ReceitasOrcamentarias extends Component
     {
      $data =  Receitum::with("NaturezaReceitum")->get();
      $totalRegistro = Receitum::with("NaturezaReceitum")->count();
-     $valorOrcadoAtualizado =Receitum::sum("valor_orcado_atualizado");
+     $valorOrcadoAtualizado =Receitum::sum("valor_orcado_inicial");
      $valorArrecadomes  = Receitum::sum("valor_arrecadado_mes");
         return view('components.publico.receita.receitas-orcamentarias',
     ["data" => $data, "totalRegistro"=> $totalRegistro,
