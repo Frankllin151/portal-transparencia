@@ -15616,6 +15616,6 @@ td.fc-header-center {
 
 /*grafico */
 .apexcharts-text tspan {
-left: 0px !important;
+  right: 13px !important; 
   text-anchor: middle !important;
 }

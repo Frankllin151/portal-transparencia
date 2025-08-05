@@ -92,7 +92,7 @@
           name: "Valor Orçado Atualizado",
           data: valorAtulizaoData
       }, {
-          name: "Valor Arrecadado Acumulado",
+          name: "Valor Arrecadado da receita no mês",
           data: ValorArrecadoData
       }],
       chart: {
