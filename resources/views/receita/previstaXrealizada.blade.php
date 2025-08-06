@@ -125,6 +125,7 @@
           }
       },
        yaxis: {
+          
         title: {
             text: 'Valor (R$)'
         },
